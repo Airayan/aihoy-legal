@@ -182,6 +182,7 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
   <button class="lang-btn" id="btn-hu" onclick="setLang('hu')" title="Magyar">🇭🇺</button>
   <button class="lang-btn" id="btn-en" onclick="setLang('en')" title="English">🇬🇧</button>
   <button class="lang-btn" id="btn-el" onclick="setLang('el')" title="Ελληνικά">🇬🇷</button>
+  <button class="lang-btn" id="btn-hr" onclick="setLang('hr')" title="Hrvatski">🇭🇷</button>
 </div>
 
 <section class="hero">
@@ -261,6 +262,22 @@ const T = {
     'card2-desc': 'Charter operator, tour organizer or boat rental? See how Aihoy! helps fill your boat — with no commission and no middleman.',
     'card2-link': 'Learn more',
   },
+
+  hr: {
+    'hero-desc': 'Gotovo svi sanjaju o izletu brodom za vrijeme odmora — ali je ili <strong>preskupo samo</strong>, ili ne mogu naći <strong>pravo društvo</strong>.<br><br>Aihoy! rješava to.',
+    'btn-learn': '⚓ Saznaj više',
+    'stat1': 'Provizija<br>Potpuno besplatno',
+    'stat2': 'Jezika<br>hu / en / el / hr',
+    'stat3': 'Mogućnosti<br>Grčki otoci & Jadran',
+    'section-tag': 'Za koga je?',
+    'section-title': 'Odaberi svoju perspektivu',
+    'card1-title': 'Putnici &<br>Turisti',
+    'card1-desc': 'Planiraš izlet brodom? Tražiš pravo društvo? Pogledaj kako Aihoy! pronalazi ljude koji odgovaraju tebi — po dobi, raspoloženju i interesima.',
+    'card1-link': 'Pogledaj',
+    'card2-title': 'Vlasnici brodova<br>& Pružatelji usluga',
+    'card2-desc': 'Charter, organizator tura ili iznajmljivanje brodova? Pogledaj kako ti Aihoy! pomaže popuniti brod — bez provizije i posrednika.',
+    'card2-link': 'Pogledaj',
+  },
   el: {
     'hero-desc': 'Σχεδόν όλοι ονειρεύονται μια βόλτα με σκάφος στις διακοπές — αλλά είναι είτε <strong>πολύ ακριβό μόνοι</strong>, είτε δεν βρίσκουν <strong>τη σωστή παρέα</strong>.<br><br>Το Aihoy! λύνει αυτό το πρόβλημα.',
     'btn-learn': '⚓ Μάθε περισσότερα',
@@ -294,7 +311,7 @@ function setLang(lang) {
 let savedLang = null;
 try { savedLang = localStorage.getItem('aihoy-lang'); } catch(e) {}
 const bl = (navigator.language || 'hu').slice(0,2);
-setLang(savedLang || (bl === 'en' ? 'en' : bl === 'el' ? 'el' : 'hu'));
+setLang(savedLang || (bl === 'en' ? 'en' : bl === 'el' ? 'el' : bl === 'hr' ? 'hr' : 'hu'));
 
 
 // ── Audio Player ──
