@@ -239,15 +239,18 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
     <h2 class="waitlist-title" id="wl-title"></h2>
     <p class="waitlist-sub" id="wl-sub"></p>
 
-    <div class="counter-box">
-      <div class="counter-num" id="counter-num">5,000+</div>
-      <div class="counter-label" id="counter-label"></div>
+    <div class="counter-box" style="margin-bottom:32px;">
+      <div style="text-align:center;">
+        <div style="font-size:48px;margin-bottom:8px;">🌍</div>
+        <div class="counter-num" id="counter-num" style="font-size:42px;">47</div>
+        <div class="counter-label" id="counter-label"></div>
+      </div>
     </div>
 
-    <div class="waitlist-form">
-      <input type="email" class="waitlist-input" id="waitlist-email" placeholder="email@example.com">
-      <button class="btn btn-primary" onclick="joinWaitlist()" id="btn-join"></button>
-    </div>
+    <form class="waitlist-form" id="waitlist-form" action="https://formspree.io/f/mojrppae" method="POST" onsubmit="handleWaitlist(event)">
+      <input type="email" name="email" class="waitlist-input" id="waitlist-email" placeholder="email@example.com" required>
+      <button type="submit" class="btn btn-primary" id="btn-join"></button>
+    </form>
     <div class="waitlist-success" id="waitlist-success"></div>
   </div>
 </section>
@@ -305,8 +308,8 @@ const T = {
     'stat4': 'Lehetőség<br>Görög szigetek & Adria',
     'wl-tag': '🚀 Hamarosan',
     'wl-title': 'Legyél az elsők között!',
-    'wl-sub': 'Az Aihoy! hamarosan elérhető lesz az összes felhasználónak. Iratkozz fel és értesítünk az induláskor — elsőként!',
-    'counter-label': 'hajós & utazó\nmár várakozik',
+    'wl-sub': 'Légy az elsők között! Már <strong>47 országból</strong> figyelnek minket. Iratkozz fel és értesítünk az induláskor!',
+    'counter-label': 'országból figyelnek<br>már minket 🌊',
     'btn-join': '🔔 Értesíts engem',
     'waitlist-success': '✅ Feliratkoztál! Értesítünk az induláskor. ⚓',
     'beta-tag': '🧪 Beta tesztelők kerestetnek',
@@ -335,8 +338,8 @@ const T = {
     'stat4': 'Possibilities<br>Greek Islands & Adriatic',
     'wl-tag': '🚀 Coming Soon',
     'wl-title': 'Be among the first!',
-    'wl-sub': 'Aihoy! is launching soon for all users. Sign up and we\'ll notify you the moment it\'s live — first in line!',
-    'counter-label': 'sailors & travelers\nalready waiting',
+    'wl-sub': 'Be among the first! People from <strong>47 countries</strong> are already watching us. Sign up and we\'ll notify you at launch!',
+    'counter-label': 'countries already<br>watching us 🌊',
     'btn-join': '🔔 Notify me',
     'waitlist-success': '✅ You\'re on the list! We\'ll notify you at launch. ⚓',
     'beta-tag': '🧪 Beta testers wanted',
@@ -365,8 +368,8 @@ const T = {
     'stat4': 'Δυνατότητες<br>Ελληνικά νησιά & Αδριατική',
     'wl-tag': '🚀 Σύντομα',
     'wl-title': 'Γίνε από τους πρώτους!',
-    'wl-sub': 'Το Aihoy! έρχεται σύντομα για όλους. Εγγράψου και θα σε ειδοποιήσουμε τη στιγμή της κυκλοφορίας!',
-    'counter-label': 'ναύτες & ταξιδιώτες\nπεριμένουν ήδη',
+    'wl-sub': 'Γίνε από τους πρώτους! Ήδη <strong>47 χώρες</strong> μας παρακολουθούν. Εγγράψου και θα σε ειδοποιήσουμε!',
+    'counter-label': 'χώρες μας<br>παρακολουθούν ήδη 🌊',
     'btn-join': '🔔 Ειδοποίησέ με',
     'waitlist-success': '✅ Είσαι στη λίστα! Θα σε ειδοποιήσουμε. ⚓',
     'beta-tag': '🧪 Ζητούνται beta testers',
@@ -395,8 +398,8 @@ const T = {
     'stat4': 'Mogućnosti<br>Grčki otoci & Jadran',
     'wl-tag': '🚀 Uskoro',
     'wl-title': 'Budi među prvima!',
-    'wl-sub': 'Aihoy! uskoro stiže za sve korisnike. Prijavi se i obavijestit ćemo te čim bude dostupno!',
-    'counter-label': 'mornara i putnika\nveć čeka',
+    'wl-sub': 'Budi među prvima! Već nas prati <strong>47 zemalja</strong>. Prijavi se i javit ćemo ti se pri lansiranju!',
+    'counter-label': 'zemalja nas<br>već prati 🌊',
     'btn-join': '🔔 Obavijesti me',
     'waitlist-success': '✅ Na listi si! Obavijestit ćemo te. ⚓',
     'beta-tag': '🧪 Traže se beta testeri',
@@ -425,8 +428,8 @@ const T = {
     'stat4': '可能性<br>ギリシャ諸島 & アドリア海',
     'wl-tag': '🚀 もうすぐ公開',
     'wl-title': '最初のユーザーになろう！',
-    'wl-sub': 'Aihoy!はまもなく全ユーザーに公開されます。登録してリリース時に通知を受け取りましょう！',
-    'counter-label': '人の船乗り＆旅行者が\nすでに待っています',
+    'wl-sub': 'いち早く参加しよう！すでに<strong>47カ国</strong>が注目しています。登録してリリース時に通知を受け取りましょう！',
+    'counter-label': 'カ国が<br>すでに注目しています 🌊',
     'btn-join': '🔔 通知を受け取る',
     'waitlist-success': '✅ 登録完了！リリース時にお知らせします。⚓',
     'beta-tag': '🧪 ベータテスター募集中',
@@ -462,47 +465,62 @@ function setLang(lang) {
   const betaBtn = document.getElementById('btn-beta-mail');
   if (betaBtn) {
     const subjects = {hu:'Beta tesztelő jelentkezés', en:'Beta tester application', el:'Αίτηση beta tester', hr:'Prijava beta testera', ja:'ベータテスター応募'};
-    betaBtn.href = 'mailto:aihoy.app@gmail.com?subject=' + encodeURIComponent(subjects[lang] || 'Beta tester');
+    betaBtn.href = 'mailto:aihoy.app@gmail.com?subject=' + encodeURIComponent(subjects[lang] || 'Beta tester') + '&body=' + encodeURIComponent('Szia! Beta tesztelő szeretnék lenni.\n\nNevem: \nEszközöm: Android\nMiért jelentkezem: ');
   }
 }
 
-function joinWaitlist() {
+async function handleWaitlist(e) {
+  e.preventDefault();
   const email = document.getElementById('waitlist-email').value.trim();
-  if (!email || !email.includes('@')) {
-    document.getElementById('waitlist-email').style.borderColor = 'rgba(255,80,80,0.5)';
-    return;
+  const btn = document.getElementById('btn-join');
+  const success = document.getElementById('waitlist-success');
+  
+  btn.disabled = true;
+  btn.style.opacity = '0.7';
+  
+  try {
+    const resp = await fetch('https://formspree.io/f/mojrppae', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ email: email })
+    });
+    if (resp.ok) {
+      success.style.display = 'block';
+      document.getElementById('waitlist-email').value = '';
+      // Animáció a sikeres feliratkozáshoz
+      success.style.animation = 'fadeUp 0.4s ease';
+    } else {
+      throw new Error('Hiba');
+    }
+  } catch(err) {
+    success.innerHTML = '⚠️ Hiba történt. Próbáld újra vagy írj: aihoy.app@gmail.com';
+    success.style.display = 'block';
+    success.style.borderColor = 'rgba(255,80,80,0.3)';
   }
-  document.getElementById('waitlist-email').style.borderColor = 'rgba(0,229,255,0.2)';
-  // Mailto fallback – emailt küld az aihoy.app@gmail.com-ra
-  window.location.href = 'mailto:aihoy.app@gmail.com?subject=Waitlist&body=Email:%20' + encodeURIComponent(email);
-  document.getElementById('waitlist-success').style.display = 'block';
-  document.getElementById('waitlist-email').value = '';
-  // Increment counter display
-  var num = document.getElementById('counter-num');
-  num.textContent = '5,000+';
+  
+  btn.disabled = false;
+  btn.style.opacity = '1';
 }
 
-// Animált számláló
-function animateCounter(el, target, suffix) {
-  var start = 0; var duration = 1500;
+// Animált számláló 0-tól 47-ig
+function animateCounter(el, target) {
+  var start = 0; var duration = 1200;
   var step = Math.ceil(target / (duration / 16));
   var interval = setInterval(function() {
     start = Math.min(start + step, target);
-    el.textContent = start.toLocaleString() + (suffix || '');
+    el.textContent = start;
     if (start >= target) clearInterval(interval);
   }, 16);
 }
-
-// Intersection Observer a számlálóhoz
 var counted = false;
 var observer = new IntersectionObserver(function(entries) {
   if (entries[0].isIntersecting && !counted) {
     counted = true;
-    animateCounter(document.getElementById('counter-num'), 5000, '+');
+    animateCounter(document.getElementById('counter-num'), 47);
   }
 }, { threshold: 0.5 });
 var counterEl = document.getElementById('counter-num');
-if (counterEl) observer.observe(counterEl);
+if (counterEl) { counterEl.textContent = '0'; observer.observe(counterEl); }
 
 // Auto-detect language
 let savedLang = null;
