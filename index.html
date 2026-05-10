@@ -74,19 +74,80 @@ h1 {
   padding: 16px 36px; border-radius: 100px; font-size: 15px; font-weight: 700;
   text-decoration: none; letter-spacing: 0.5px;
   transition: transform 0.2s, box-shadow 0.2s;
-  display: inline-flex; align-items: center; gap: 8px;
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none;
 }
 .btn:hover { transform: translateY(-2px); }
 .btn-primary { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: white; box-shadow: 0 8px 32px rgba(0,229,255,0.2); }
 .btn-primary:hover { box-shadow: 0 12px 40px rgba(0,229,255,0.35); }
 .btn-outline { background: transparent; color: var(--cyan); border: 1.5px solid rgba(0,229,255,0.4); }
 .btn-outline:hover { background: rgba(0,229,255,0.05); }
+.btn-beta { background: linear-gradient(135deg, #E8A020, var(--purple)); color: white; box-shadow: 0 8px 32px rgba(232,160,32,0.25); }
+.btn-beta:hover { box-shadow: 0 12px 40px rgba(232,160,32,0.4); }
 
+/* ── Stats ── */
 .stats { background: var(--surface); border-top: 1px solid rgba(0,229,255,0.08); border-bottom: 1px solid rgba(0,229,255,0.08); padding: 60px 24px; }
-.stats-inner { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; text-align: center; }
+.stats-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; text-align: center; }
 .stat-num { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 900; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; line-height: 1; margin-bottom: 8px; }
 .stat-label { font-size: 13px; color: var(--textsec); line-height: 1.5; }
 
+/* ── Waitlist Section ── */
+.waitlist {
+  padding: 100px 24px; text-align: center;
+  background: radial-gradient(ellipse at center, rgba(157,78,221,0.08) 0%, transparent 70%), var(--ocean);
+  border-top: 1px solid rgba(0,229,255,0.08);
+}
+.waitlist-inner { max-width: 600px; margin: 0 auto; }
+.waitlist-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); font-weight: 600; margin-bottom: 16px; }
+.waitlist-title { font-family: 'Fraunces', serif; font-size: clamp(28px,5vw,44px); font-weight: 700; margin-bottom: 16px; line-height: 1.15; }
+.waitlist-sub { font-size: 16px; color: var(--textsec); line-height: 1.7; margin-bottom: 40px; }
+
+/* Counter */
+.counter-box {
+  background: var(--surface); border: 1px solid rgba(157,78,221,0.25);
+  border-radius: 20px; padding: 28px 32px; margin-bottom: 40px;
+  display: flex; align-items: center; justify-content: center; gap: 20px;
+}
+.counter-num {
+  font-family: 'Fraunces', serif; font-size: 56px; font-weight: 900;
+  background: linear-gradient(135deg, var(--purple), var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  line-height: 1;
+}
+.counter-label { font-size: 14px; color: var(--textsec); line-height: 1.5; text-align: left; }
+
+/* Waitlist form */
+.waitlist-form { display: flex; gap: 12px; max-width: 480px; margin: 0 auto 24px; flex-wrap: wrap; justify-content: center; }
+.waitlist-input {
+  flex: 1; min-width: 220px; padding: 16px 20px; border-radius: 100px;
+  background: var(--surface); border: 1.5px solid rgba(0,229,255,0.2);
+  color: var(--text); font-family: 'Outfit', sans-serif; font-size: 15px;
+  outline: none; transition: border-color 0.2s;
+}
+.waitlist-input:focus { border-color: rgba(0,229,255,0.5); }
+.waitlist-input::placeholder { color: var(--textsec); }
+.waitlist-success {
+  display: none; background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
+  border-radius: 16px; padding: 20px 24px; margin-top: 16px;
+  font-size: 15px; color: var(--cyan);
+}
+
+/* Beta section */
+.beta-section {
+  padding: 80px 24px; text-align: center;
+  background: var(--surface);
+  border-top: 1px solid rgba(232,160,32,0.12);
+}
+.beta-inner { max-width: 600px; margin: 0 auto; }
+.beta-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #E8A020; font-weight: 600; margin-bottom: 16px; }
+.beta-title { font-family: 'Fraunces', serif; font-size: clamp(24px,4vw,38px); font-weight: 700; margin-bottom: 16px; }
+.beta-sub { font-size: 16px; color: var(--textsec); line-height: 1.7; margin-bottom: 36px; }
+.beta-perks { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
+.beta-perk {
+  background: rgba(232,160,32,0.08); border: 1px solid rgba(232,160,32,0.2);
+  border-radius: 100px; padding: 8px 18px; font-size: 13px; color: #E8A020;
+}
+
+/* Pitches */
 .pitches { padding: 100px 24px; max-width: 1000px; margin: 0 auto; }
 .section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); font-weight: 600; margin-bottom: 16px; text-align: center; }
 .section-title { font-family: 'Fraunces', serif; font-size: clamp(28px,5vw,48px); font-weight: 700; text-align: center; margin-bottom: 64px; color: var(--text); line-height: 1.15; }
@@ -113,54 +174,18 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
 .footer-link:hover { color: var(--cyan); }
 
 @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes countUp { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
 @media (max-width: 600px) {
-  .stats-inner { grid-template-columns: 1fr; gap: 24px; }
+  .stats-inner { grid-template-columns: repeat(2,1fr); gap: 24px; }
   .cta-group { flex-direction: column; align-items: center; }
   .btn { width: 100%; max-width: 280px; justify-content: center; }
+  .counter-box { flex-direction: column; gap: 12px; }
+  .counter-label { text-align: center; }
 }
 
 /* ── Audio Player ── */
-.audio-section {
-  padding: 60px 24px;
-  text-align: center;
-  background: var(--ocean);
-  border-top: 1px solid rgba(0,229,255,0.08);
-}
-.audio-label {
-  font-size: 12px; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--cyan); font-weight: 600; margin-bottom: 16px;
-}
-.audio-title {
-  font-family: 'Fraunces', serif; font-size: 22px;
-  color: var(--text); margin-bottom: 28px; font-style: italic;
-}
-.audio-player {
-  max-width: 480px; margin: 0 auto;
-  background: var(--surface);
-  border: 1px solid rgba(0,229,255,0.15);
-  border-radius: 20px; padding: 24px 28px;
-}
-.player-controls {
-  display: flex; align-items: center; gap: 16px;
-}
-.play-btn {
-  width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--cyan), var(--purple));
-  color: white; font-size: 18px; display: flex; align-items: center; justify-content: center;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(0,229,255,0.3);
-}
-.play-btn:hover { transform: scale(1.08); box-shadow: 0 6px 20px rgba(0,229,255,0.45); }
-.progress-wrap { flex: 1; }
-.progress-bar {
-  width: 100%; height: 4px; background: rgba(255,255,255,0.1);
-  border-radius: 4px; cursor: pointer; position: relative; margin-bottom: 6px;
-}
-.progress-fill {
-  height: 100%; background: linear-gradient(90deg, var(--cyan), var(--purple));
-  border-radius: 4px; width: 0%; transition: width 0.1s;
-}
-.time-row { display: flex; justify-content: space-between; font-size: 11px; color: var(--textsec); }
+.audio-section { padding: 60px 24px; text-align: center; background: var(--ocean); border-top: 1px solid rgba(0,229,255,0.08); }
 </style>
 </head>
 <body>
@@ -183,6 +208,7 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
   <button class="lang-btn" id="btn-en" onclick="setLang('en')" title="English">🇬🇧</button>
   <button class="lang-btn" id="btn-el" onclick="setLang('el')" title="Ελληνικά">🇬🇷</button>
   <button class="lang-btn" id="btn-hr" onclick="setLang('hr')" title="Hrvatski">🇭🇷</button>
+  <button class="lang-btn" id="btn-ja" onclick="setLang('ja')" title="日本語">🇯🇵</button>
 </div>
 
 <section class="hero">
@@ -191,19 +217,57 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
   <p class="tagline">the Social Boatsharing</p>
   <p class="hero-desc" id="hero-desc"></p>
   <div class="cta-group">
-    <a href="#pitches" class="btn btn-primary" id="btn-learn"></a>
-    <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" class="btn btn-outline" target="_blank">📱 Android</a>
+    <a href="#waitlist" class="btn btn-primary" id="btn-waitlist"></a>
+    <a href="#pitches" class="btn btn-outline" id="btn-learn"></a>
   </div>
 </section>
 
+<!-- ── Stats ── -->
 <div class="stats">
   <div class="stats-inner">
     <div><span class="stat-num">0€</span><span class="stat-label" id="stat1"></span></div>
-    <div><span class="stat-num">4</span><span class="stat-label" id="stat2"></span></div>
-    <div><span class="stat-num">∞</span><span class="stat-label" id="stat3"></span></div>
+    <div><span class="stat-num">5</span><span class="stat-label" id="stat2"></span></div>
+    <div><span class="stat-num">47</span><span class="stat-label" id="stat3"></span></div>
+    <div><span class="stat-num">∞</span><span class="stat-label" id="stat4"></span></div>
   </div>
 </div>
 
+<!-- ── Waitlist ── -->
+<section class="waitlist" id="waitlist">
+  <div class="waitlist-inner">
+    <p class="waitlist-tag" id="wl-tag"></p>
+    <h2 class="waitlist-title" id="wl-title"></h2>
+    <p class="waitlist-sub" id="wl-sub"></p>
+
+    <div class="counter-box">
+      <div class="counter-num" id="counter-num">5,000+</div>
+      <div class="counter-label" id="counter-label"></div>
+    </div>
+
+    <div class="waitlist-form">
+      <input type="email" class="waitlist-input" id="waitlist-email" placeholder="email@example.com">
+      <button class="btn btn-primary" onclick="joinWaitlist()" id="btn-join"></button>
+    </div>
+    <div class="waitlist-success" id="waitlist-success"></div>
+  </div>
+</section>
+
+<!-- ── Beta Tester ── -->
+<section class="beta-section" id="beta">
+  <div class="beta-inner">
+    <p class="beta-tag" id="beta-tag"></p>
+    <h2 class="beta-title" id="beta-title"></h2>
+    <p class="beta-sub" id="beta-sub"></p>
+    <div class="beta-perks">
+      <span class="beta-perk" id="perk1"></span>
+      <span class="beta-perk" id="perk2"></span>
+      <span class="beta-perk" id="perk3"></span>
+    </div>
+    <a href="mailto:aihoy.app@gmail.com?subject=Beta%20tester" class="btn btn-beta" id="btn-beta-mail"></a>
+  </div>
+</section>
+
+<!-- ── Pitches ── -->
 <section class="pitches" id="pitches">
   <p class="section-tag" id="section-tag"></p>
   <h2 class="section-title" id="section-title"></h2>
@@ -223,7 +287,6 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
   </div>
 </section>
 
-
 <footer>
   <div class="footer-logo">Aihoy!</div>
   <p class="footer-sub">the Social Boatsharing · 2026</p>
@@ -234,64 +297,153 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
 const T = {
   hu: {
     'hero-desc': 'Szinte mindenki szeretne legalább egyszer hajókirándulni egy nyaralás alatt — de vagy <strong>túl drága egyedül</strong>, vagy nem volt meg a <strong>megfelelő társaság</strong> hozzá.<br><br>Az Aihoy! megoldja ezt.',
-    'btn-learn': '⚓ Tudj meg többet',
+    'btn-waitlist': '⚓ Feliratkozom',
+    'btn-learn': '📖 Tudj meg többet',
     'stat1': 'Jutalék<br>Teljesen ingyenes',
-    'stat2': 'Nyelven elérhető<br>hu / en / el / hr',
-    'stat3': 'Lehetőség<br>Görög szigetek & Adria',
+    'stat2': 'Nyelven elérhető<br>hu / en / el / hr / ja',
+    'stat3': 'Ország<br>Már figyel minket',
+    'stat4': 'Lehetőség<br>Görög szigetek & Adria',
+    'wl-tag': '🚀 Hamarosan',
+    'wl-title': 'Legyél az elsők között!',
+    'wl-sub': 'Az Aihoy! hamarosan elérhető lesz az összes felhasználónak. Iratkozz fel és értesítünk az induláskor — elsőként!',
+    'counter-label': 'hajós & utazó\nmár várakozik',
+    'btn-join': '🔔 Értesíts engem',
+    'waitlist-success': '✅ Feliratkoztál! Értesítünk az induláskor. ⚓',
+    'beta-tag': '🧪 Beta tesztelők kerestetnek',
+    'beta-title': 'Alakítsd te az Aihoy! jövőjét!',
+    'beta-sub': 'Keresünk lelkes tesztelőket akik kipróbálják az appot és visszajelzést adnak. Cserébe korai hozzáférés és névjóváírás az appban.',
+    'perk1': '✅ Korai hozzáférés',
+    'perk2': '🏆 Névjóváírás az appban',
+    'perk3': '⚡ Direkt kapcsolat a fejlesztővel',
+    'btn-beta-mail': '📩 Jelentkezem beta tesztelőnek',
     'section-tag': 'Kinek szól?',
     'section-title': 'Válaszd ki a te perspektívádat',
     'card1-title': 'Utazók &<br>Nyaralók',
-    'card1-desc': 'Hajókirándulást tervezel? Keresed a megfelelő társaságot? Lásd hogyan találja meg az Aihoy! a hozzád illő embereket — korosztály, hangulat és érdeklődés alapján.',
+    'card1-desc': 'Hajókirándulást tervezel? Keresed a megfelelő társaságot? Lásd hogyan találja meg az Aihoy! a hozzád illő embereket.',
     'card1-link': 'Megnézem',
     'card2-title': 'Hajótulajdonosok<br>& Szolgáltatók',
-    'card2-desc': 'Charteres, túraszervező vagy hajóbérlő? Nézd meg hogyan segít az Aihoy! a hajóid feltöltésében — jutalék és közvetítő nélkül.',
+    'card2-desc': 'Charteres, túraszervező vagy hajóbérlő? Nézd meg hogyan segít az Aihoy! a hajóid feltöltésében — jutalék nélkül.',
     'card2-link': 'Megnézem',
   },
   en: {
     'hero-desc': 'Almost everyone dreams of a boat trip during their holiday — but it\'s either <strong>too expensive alone</strong>, or they can\'t find the <strong>right company</strong>.<br><br>Aihoy! solves this.',
-    'btn-learn': '⚓ Learn more',
+    'btn-waitlist': '⚓ Join the Waitlist',
+    'btn-learn': '📖 Learn more',
     'stat1': 'Commission<br>Completely free',
-    'stat2': 'Languages<br>hu / en / el / hr',
-    'stat3': 'Possibilities<br>Greek Islands & Adriatic',
+    'stat2': 'Languages<br>hu / en / el / hr / ja',
+    'stat3': 'Countries<br>Already watching',
+    'stat4': 'Possibilities<br>Greek Islands & Adriatic',
+    'wl-tag': '🚀 Coming Soon',
+    'wl-title': 'Be among the first!',
+    'wl-sub': 'Aihoy! is launching soon for all users. Sign up and we\'ll notify you the moment it\'s live — first in line!',
+    'counter-label': 'sailors & travelers\nalready waiting',
+    'btn-join': '🔔 Notify me',
+    'waitlist-success': '✅ You\'re on the list! We\'ll notify you at launch. ⚓',
+    'beta-tag': '🧪 Beta testers wanted',
+    'beta-title': 'Help shape the future of Aihoy!',
+    'beta-sub': 'We\'re looking for enthusiastic testers to try the app and share feedback. In return: early access and name credit in the app.',
+    'perk1': '✅ Early access',
+    'perk2': '🏆 Name credit in app',
+    'perk3': '⚡ Direct line to the developer',
+    'btn-beta-mail': '📩 Apply as beta tester',
     'section-tag': 'Who is it for?',
     'section-title': 'Choose your perspective',
     'card1-title': 'Travelers &<br>Holiday makers',
-    'card1-desc': 'Planning a boat trip? Looking for the right crowd? See how Aihoy! finds people who match your vibe — by age group, mood and interests.',
+    'card1-desc': 'Planning a boat trip? Looking for the right crowd? See how Aihoy! finds people who match your vibe — by age, mood and interests.',
     'card1-link': 'Learn more',
     'card2-title': 'Boat owners<br>& Providers',
     'card2-desc': 'Charter operator, tour organizer or boat rental? See how Aihoy! helps fill your boat — with no commission and no middleman.',
     'card2-link': 'Learn more',
   },
-
-  hr: {
-    'hero-desc': 'Gotovo svi sanjaju o izletu brodom za vrijeme odmora — ali je ili <strong>preskupo samo</strong>, ili ne mogu naći <strong>pravo društvo</strong>.<br><br>Aihoy! rješava to.',
-    'btn-learn': '⚓ Saznaj više',
-    'stat1': 'Provizija<br>Potpuno besplatno',
-    'stat2': 'Jezika<br>hu / en / el / hr',
-    'stat3': 'Mogućnosti<br>Grčki otoci & Jadran',
-    'section-tag': 'Za koga je?',
-    'section-title': 'Odaberi svoju perspektivu',
-    'card1-title': 'Putnici &<br>Turisti',
-    'card1-desc': 'Planiraš izlet brodom? Tražiš pravo društvo? Pogledaj kako Aihoy! pronalazi ljude koji odgovaraju tebi — po dobi, raspoloženju i interesima.',
-    'card1-link': 'Pogledaj',
-    'card2-title': 'Vlasnici brodova<br>& Pružatelji usluga',
-    'card2-desc': 'Charter, organizator tura ili iznajmljivanje brodova? Pogledaj kako ti Aihoy! pomaže popuniti brod — bez provizije i posrednika.',
-    'card2-link': 'Pogledaj',
-  },
   el: {
     'hero-desc': 'Σχεδόν όλοι ονειρεύονται μια βόλτα με σκάφος στις διακοπές — αλλά είναι είτε <strong>πολύ ακριβό μόνοι</strong>, είτε δεν βρίσκουν <strong>τη σωστή παρέα</strong>.<br><br>Το Aihoy! λύνει αυτό το πρόβλημα.',
-    'btn-learn': '⚓ Μάθε περισσότερα',
+    'btn-waitlist': '⚓ Εγγραφή',
+    'btn-learn': '📖 Μάθε περισσότερα',
     'stat1': 'Προμήθεια<br>Εντελώς δωρεάν',
-    'stat2': 'Γλώσσες<br>hu / en / el / hr',
-    'stat3': 'Δυνατότητες<br>Ελληνικά νησιά & Αδριατική',
+    'stat2': 'Γλώσσες<br>hu / en / el / hr / ja',
+    'stat3': 'Χώρες<br>Ήδη μας παρακολουθούν',
+    'stat4': 'Δυνατότητες<br>Ελληνικά νησιά & Αδριατική',
+    'wl-tag': '🚀 Σύντομα',
+    'wl-title': 'Γίνε από τους πρώτους!',
+    'wl-sub': 'Το Aihoy! έρχεται σύντομα για όλους. Εγγράψου και θα σε ειδοποιήσουμε τη στιγμή της κυκλοφορίας!',
+    'counter-label': 'ναύτες & ταξιδιώτες\nπεριμένουν ήδη',
+    'btn-join': '🔔 Ειδοποίησέ με',
+    'waitlist-success': '✅ Είσαι στη λίστα! Θα σε ειδοποιήσουμε. ⚓',
+    'beta-tag': '🧪 Ζητούνται beta testers',
+    'beta-title': 'Διαμόρφωσε το μέλλον του Aihoy!',
+    'beta-sub': 'Ψάχνουμε για ενθουσιώδεις δοκιμαστές. Σε αντάλλαγμα: πρώιμη πρόσβαση και αναφορά ονόματος στην εφαρμογή.',
+    'perk1': '✅ Πρώιμη πρόσβαση',
+    'perk2': '🏆 Αναφορά στην εφαρμογή',
+    'perk3': '⚡ Άμεση επαφή με τον developer',
+    'btn-beta-mail': '📩 Κάνε αίτηση',
     'section-tag': 'Για ποιον είναι;',
     'section-title': 'Διάλεξε την οπτική σου',
     'card1-title': 'Ταξιδιώτες &<br>Τουρίστες',
-    'card1-desc': 'Σχεδιάζεις βόλτα με σκάφος; Ψάχνεις για τη σωστή παρέα; Δες πώς το Aihoy! βρίσκει ανθρώπους που ταιριάζουν — ηλικία, διάθεση και ενδιαφέροντα.',
+    'card1-desc': 'Σχεδιάζεις βόλτα με σκάφος; Ψάχνεις για τη σωστή παρέα; Δες πώς το Aihoy! βρίσκει ανθρώπους που ταιριάζουν.',
     'card1-link': 'Μάθε περισσότερα',
     'card2-title': 'Ιδιοκτήτες σκαφών<br>& Πάροχοι',
-    'card2-desc': 'Έχεις σκάφος ή οργανώνεις εκδρομές; Δες πώς το Aihoy! σε βοηθά να γεμίσεις το σκάφος σου — χωρίς προμήθειες και μεσάζοντες.',
+    'card2-desc': 'Έχεις σκάφος ή οργανώνεις εκδρομές; Δες πώς το Aihoy! σε βοηθά να γεμίσεις το σκάφος σου χωρίς προμήθειες.',
     'card2-link': 'Μάθε περισσότερα',
+  },
+  hr: {
+    'hero-desc': 'Gotovo svi sanjaju o izletu brodom na odmoru — ali je ili <strong>preskupo sami</strong>, ili ne mogu naći <strong>pravo društvo</strong>.<br><br>Aihoy! rješava ovo.',
+    'btn-waitlist': '⚓ Prijavi se',
+    'btn-learn': '📖 Saznaj više',
+    'stat1': 'Provizija<br>Potpuno besplatno',
+    'stat2': 'Jezika<br>hu / en / el / hr / ja',
+    'stat3': 'Zemalja<br>Već nas prati',
+    'stat4': 'Mogućnosti<br>Grčki otoci & Jadran',
+    'wl-tag': '🚀 Uskoro',
+    'wl-title': 'Budi među prvima!',
+    'wl-sub': 'Aihoy! uskoro stiže za sve korisnike. Prijavi se i obavijestit ćemo te čim bude dostupno!',
+    'counter-label': 'mornara i putnika\nveć čeka',
+    'btn-join': '🔔 Obavijesti me',
+    'waitlist-success': '✅ Na listi si! Obavijestit ćemo te. ⚓',
+    'beta-tag': '🧪 Traže se beta testeri',
+    'beta-title': 'Oblikuj budućnost Aihoy!',
+    'beta-sub': 'Tražimo entuzijastične testere. Zauzvrat: rani pristup i ime u aplikaciji.',
+    'perk1': '✅ Rani pristup',
+    'perk2': '🏆 Ime u aplikaciji',
+    'perk3': '⚡ Direktan kontakt s developerom',
+    'btn-beta-mail': '📩 Prijavi se kao beta tester',
+    'section-tag': 'Za koga je?',
+    'section-title': 'Odaberi svoju perspektivu',
+    'card1-title': 'Putnici &<br>Ljetovatelji',
+    'card1-desc': 'Planiraš izlet brodom? Tražiš pravo društvo? Vidi kako Aihoy! pronalazi ljude koji ti odgovaraju.',
+    'card1-link': 'Saznaj više',
+    'card2-title': 'Vlasnici brodova<br>& Pružatelji usluga',
+    'card2-desc': 'Charter, organizator tura ili najam broda? Vidi kako Aihoy! pomaže popuniti tvoj brod — bez provizije.',
+    'card2-link': 'Saznaj više',
+  },
+  ja: {
+    'hero-desc': '休暇中にボート旅行を夢見る人はたくさんいます — でも<strong>一人では高すぎる</strong>か、<strong>ぴったりの仲間</strong>が見つからない。<br><br>Aihoy!がこれを解決します。',
+    'btn-waitlist': '⚓ 登録する',
+    'btn-learn': '📖 もっと詳しく',
+    'stat1': '手数料<br>完全無料',
+    'stat2': '対応言語<br>hu / en / el / hr / ja',
+    'stat3': 'カ国<br>すでに注目中',
+    'stat4': '可能性<br>ギリシャ諸島 & アドリア海',
+    'wl-tag': '🚀 もうすぐ公開',
+    'wl-title': '最初のユーザーになろう！',
+    'wl-sub': 'Aihoy!はまもなく全ユーザーに公開されます。登録してリリース時に通知を受け取りましょう！',
+    'counter-label': '人の船乗り＆旅行者が\nすでに待っています',
+    'btn-join': '🔔 通知を受け取る',
+    'waitlist-success': '✅ 登録完了！リリース時にお知らせします。⚓',
+    'beta-tag': '🧪 ベータテスター募集中',
+    'beta-title': 'Aihoy!の未来を一緒に作ろう！',
+    'beta-sub': 'アプリをテストしてフィードバックをくれる方を募集しています。お礼として早期アクセスとアプリ内クレジットを提供します。',
+    'perk1': '✅ 早期アクセス',
+    'perk2': '🏆 アプリ内クレジット',
+    'perk3': '⚡ 開発者との直接連絡',
+    'btn-beta-mail': '📩 ベータテスターに応募',
+    'section-tag': '誰のためのアプリ？',
+    'section-title': 'あなたの視点を選んでください',
+    'card1-title': '旅行者 &<br>バカンス客',
+    'card1-desc': 'ボート旅行を計画中？ぴったりの仲間を探していますか？Aihoy!が年齢・気分・興味でマッチングします。',
+    'card1-link': '詳しく見る',
+    'card2-title': 'ボートオーナー<br>& サービス提供者',
+    'card2-desc': 'チャーター会社、ツアーオーガナイザー、レンタルボート？手数料なしでボートを満席にする方法をご覧ください。',
+    'card2-link': '詳しく見る',
   }
 };
 
@@ -303,62 +455,88 @@ function setLang(lang) {
     if (el) el.innerHTML = t[id];
   });
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  document.querySelector('.lang-btn[onclick="setLang(\'' + lang + '\')"]').classList.add('active');
+  const btn = document.querySelector('.lang-btn[onclick="setLang(\'' + lang + '\')"]');
+  if (btn) btn.classList.add('active');
   document.documentElement.lang = lang;
+  // Update beta email subject in current lang
+  const betaBtn = document.getElementById('btn-beta-mail');
+  if (betaBtn) {
+    const subjects = {hu:'Beta tesztelő jelentkezés', en:'Beta tester application', el:'Αίτηση beta tester', hr:'Prijava beta testera', ja:'ベータテスター応募'};
+    betaBtn.href = 'mailto:aihoy.app@gmail.com?subject=' + encodeURIComponent(subjects[lang] || 'Beta tester');
+  }
 }
 
-// Auto-detect
+function joinWaitlist() {
+  const email = document.getElementById('waitlist-email').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('waitlist-email').style.borderColor = 'rgba(255,80,80,0.5)';
+    return;
+  }
+  document.getElementById('waitlist-email').style.borderColor = 'rgba(0,229,255,0.2)';
+  // Mailto fallback – emailt küld az aihoy.app@gmail.com-ra
+  window.location.href = 'mailto:aihoy.app@gmail.com?subject=Waitlist&body=Email:%20' + encodeURIComponent(email);
+  document.getElementById('waitlist-success').style.display = 'block';
+  document.getElementById('waitlist-email').value = '';
+  // Increment counter display
+  var num = document.getElementById('counter-num');
+  num.textContent = '5,000+';
+}
+
+// Animált számláló
+function animateCounter(el, target, suffix) {
+  var start = 0; var duration = 1500;
+  var step = Math.ceil(target / (duration / 16));
+  var interval = setInterval(function() {
+    start = Math.min(start + step, target);
+    el.textContent = start.toLocaleString() + (suffix || '');
+    if (start >= target) clearInterval(interval);
+  }, 16);
+}
+
+// Intersection Observer a számlálóhoz
+var counted = false;
+var observer = new IntersectionObserver(function(entries) {
+  if (entries[0].isIntersecting && !counted) {
+    counted = true;
+    animateCounter(document.getElementById('counter-num'), 5000, '+');
+  }
+}, { threshold: 0.5 });
+var counterEl = document.getElementById('counter-num');
+if (counterEl) observer.observe(counterEl);
+
+// Auto-detect language
 let savedLang = null;
 try { savedLang = localStorage.getItem('aihoy-lang'); } catch(e) {}
 const bl = (navigator.language || 'hu').slice(0,2);
-setLang(savedLang || (bl === 'en' ? 'en' : bl === 'el' ? 'el' : bl === 'hr' ? 'hr' : 'hu'));
-
+const langMap = {hu:'hu', en:'en', el:'el', hr:'hr', ja:'ja'};
+setLang(savedLang || langMap[bl] || 'en');
 
 // ── Audio Player ──
 var audio = document.getElementById('aihoy-audio');
 var playBtn = document.getElementById('play-btn');
 var fill = document.getElementById('progress-fill');
 var timeCur = document.getElementById('time-cur');
-var timeDur = document.getElementById('time-dur');
 
-function fmt(s) {
-  var m = Math.floor(s/60);
-  return m + ':' + ('0'+Math.floor(s%60)).slice(-2);
-}
+function fmt(s) { var m=Math.floor(s/60); return m+':'+('0'+Math.floor(s%60)).slice(-2); }
 function togglePlay() {
-  if (audio.paused) { audio.play(); playBtn.textContent = '⏸'; }
-  else { audio.pause(); playBtn.textContent = '▶'; }
+  if (audio.paused) { audio.play(); playBtn.textContent='⏸'; }
+  else { audio.pause(); playBtn.textContent='▶'; }
 }
-// Autoplay on load - requires user gesture on some browsers
 document.addEventListener('DOMContentLoaded', function() {
   audio.volume = 1;
   var p = audio.play();
-  if (p !== undefined) {
-    p.then(function() {
-      playBtn.textContent = '⏸';
-    }).catch(function() {
-      // Autoplay blocked - user must press play
-      playBtn.textContent = '▶';
-    });
-  }
+  if (p !== undefined) { p.then(function(){ playBtn.textContent='⏸'; }).catch(function(){ playBtn.textContent='▶'; }); }
 });
 audio.addEventListener('timeupdate', function() {
   if (!audio.duration) return;
-  fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
-  timeCur.textContent = fmt(audio.currentTime);
+  fill.style.width=(audio.currentTime/audio.duration*100)+'%';
+  timeCur.textContent=fmt(audio.currentTime);
 });
-audio.addEventListener('loadedmetadata', function() {
-  timeDur.textContent = fmt(audio.duration);
-});
-audio.addEventListener('ended', function() {
-  playBtn.textContent = '▶';
-  fill.style.width = '0%';
-  timeCur.textContent = '0:00';
-});
+audio.addEventListener('ended', function(){ playBtn.textContent='▶'; fill.style.width='0%'; timeCur.textContent='0:00'; });
 function seek(e) {
-  var bar = document.getElementById('progress-bar');
-  var rect = bar.getBoundingClientRect();
-  audio.currentTime = ((e.clientX - rect.left) / rect.width) * audio.duration;
+  var bar=document.getElementById('progress-bar');
+  var rect=bar.getBoundingClientRect();
+  audio.currentTime=((e.clientX-rect.left)/rect.width)*audio.duration;
 }
 </script>
 </body>
