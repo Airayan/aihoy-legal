@@ -187,6 +187,14 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
 /* ── Audio Player ── */
 .audio-section { padding: 60px 24px; text-align: center; background: var(--ocean); border-top: 1px solid rgba(0,229,255,0.08); }
 </style>
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7NXGL1PPX6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7NXGL1PPX6');
+</script>
 </head>
 <body>
 
@@ -227,7 +235,7 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
   <div class="stats-inner">
     <div><span class="stat-num">0€</span><span class="stat-label" id="stat1"></span></div>
     <div><span class="stat-num">5</span><span class="stat-label" id="stat2"></span></div>
-    <div><span class="stat-num">47</span><span class="stat-label" id="stat3"></span></div>
+    <div><span class="stat-num">48</span><span class="stat-label" id="stat3"></span></div>
     <div><span class="stat-num">∞</span><span class="stat-label" id="stat4"></span></div>
   </div>
 </div>
@@ -239,18 +247,15 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
     <h2 class="waitlist-title" id="wl-title"></h2>
     <p class="waitlist-sub" id="wl-sub"></p>
 
-    <div class="counter-box" style="margin-bottom:32px;">
-      <div style="text-align:center;">
-        <div style="font-size:48px;margin-bottom:8px;">🌍</div>
-        <div class="counter-num" id="counter-num" style="font-size:42px;">47</div>
-        <div class="counter-label" id="counter-label"></div>
-      </div>
+    <div class="counter-box">
+      <div class="counter-num" id="counter-num">0</div>
+      <div class="counter-label" id="counter-label"></div>
     </div>
 
-    <form class="waitlist-form" id="waitlist-form" action="https://formspree.io/f/mojrppae" method="POST" onsubmit="handleWaitlist(event)">
-      <input type="email" name="email" class="waitlist-input" id="waitlist-email" placeholder="email@example.com" required>
-      <button type="submit" class="btn btn-primary" id="btn-join"></button>
-    </form>
+    <div class="waitlist-form">
+      <input type="email" class="waitlist-input" id="waitlist-email" placeholder="email@example.com">
+      <button class="btn btn-primary" onclick="joinWaitlist()" id="btn-join"></button>
+    </div>
     <div class="waitlist-success" id="waitlist-success"></div>
   </div>
 </section>
@@ -293,6 +298,20 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
 <footer>
   <div class="footer-logo">Aihoy!</div>
   <p class="footer-sub">the Social Boatsharing · 2026</p>
+    <div style="display:flex;gap:20px;justify-content:center;margin-bottom:20px;">
+    <a href="https://x.com/aihoy_app" target="_blank" rel="noopener" style="color:var(--textsec);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#00E5FF'" onmouseout="this.style.color='var(--textsec)'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.733-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      @aihoy_app
+    </a>
+    <a href="https://www.instagram.com/aihoy.app" target="_blank" rel="noopener" style="color:var(--textsec);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#E1306C'" onmouseout="this.style.color='var(--textsec)'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      @aihoy.app
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61589779041288" target="_blank" rel="noopener" style="color:var(--textsec);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#1877F2'" onmouseout="this.style.color='var(--textsec)'">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+  </div>
   <a href="mailto:aihoy.app@gmail.com" class="footer-link">aihoy.app@gmail.com</a>
 </footer>
 
@@ -308,8 +327,8 @@ const T = {
     'stat4': 'Lehetőség<br>Görög szigetek & Adria',
     'wl-tag': '🚀 Hamarosan',
     'wl-title': 'Legyél az elsők között!',
-    'wl-sub': 'Légy az elsők között! Már <strong>47 országból</strong> figyelnek minket. Iratkozz fel és értesítünk az induláskor!',
-    'counter-label': 'országból figyelnek<br>már minket 🌊',
+    'wl-sub': 'Az Aihoy! hamarosan elérhető lesz az összes felhasználónak. Iratkozz fel és értesítünk az induláskor — elsőként!',
+    'counter-label': 'hajós & utazó\nmár várakozik',
     'btn-join': '🔔 Értesíts engem',
     'waitlist-success': '✅ Feliratkoztál! Értesítünk az induláskor. ⚓',
     'beta-tag': '🧪 Beta tesztelők kerestetnek',
@@ -338,8 +357,8 @@ const T = {
     'stat4': 'Possibilities<br>Greek Islands & Adriatic',
     'wl-tag': '🚀 Coming Soon',
     'wl-title': 'Be among the first!',
-    'wl-sub': 'Be among the first! People from <strong>47 countries</strong> are already watching us. Sign up and we\'ll notify you at launch!',
-    'counter-label': 'countries already<br>watching us 🌊',
+    'wl-sub': 'Aihoy! is launching soon for all users. Sign up and we\'ll notify you the moment it\'s live — first in line!',
+    'counter-label': 'sailors & travelers\nalready waiting',
     'btn-join': '🔔 Notify me',
     'waitlist-success': '✅ You\'re on the list! We\'ll notify you at launch. ⚓',
     'beta-tag': '🧪 Beta testers wanted',
@@ -368,8 +387,8 @@ const T = {
     'stat4': 'Δυνατότητες<br>Ελληνικά νησιά & Αδριατική',
     'wl-tag': '🚀 Σύντομα',
     'wl-title': 'Γίνε από τους πρώτους!',
-    'wl-sub': 'Γίνε από τους πρώτους! Ήδη <strong>47 χώρες</strong> μας παρακολουθούν. Εγγράψου και θα σε ειδοποιήσουμε!',
-    'counter-label': 'χώρες μας<br>παρακολουθούν ήδη 🌊',
+    'wl-sub': 'Το Aihoy! έρχεται σύντομα για όλους. Εγγράψου και θα σε ειδοποιήσουμε τη στιγμή της κυκλοφορίας!',
+    'counter-label': 'ναύτες & ταξιδιώτες\nπεριμένουν ήδη',
     'btn-join': '🔔 Ειδοποίησέ με',
     'waitlist-success': '✅ Είσαι στη λίστα! Θα σε ειδοποιήσουμε. ⚓',
     'beta-tag': '🧪 Ζητούνται beta testers',
@@ -398,8 +417,8 @@ const T = {
     'stat4': 'Mogućnosti<br>Grčki otoci & Jadran',
     'wl-tag': '🚀 Uskoro',
     'wl-title': 'Budi među prvima!',
-    'wl-sub': 'Budi među prvima! Već nas prati <strong>47 zemalja</strong>. Prijavi se i javit ćemo ti se pri lansiranju!',
-    'counter-label': 'zemalja nas<br>već prati 🌊',
+    'wl-sub': 'Aihoy! uskoro stiže za sve korisnike. Prijavi se i obavijestit ćemo te čim bude dostupno!',
+    'counter-label': 'mornara i putnika\nveć čeka',
     'btn-join': '🔔 Obavijesti me',
     'waitlist-success': '✅ Na listi si! Obavijestit ćemo te. ⚓',
     'beta-tag': '🧪 Traže se beta testeri',
@@ -428,8 +447,8 @@ const T = {
     'stat4': '可能性<br>ギリシャ諸島 & アドリア海',
     'wl-tag': '🚀 もうすぐ公開',
     'wl-title': '最初のユーザーになろう！',
-    'wl-sub': 'いち早く参加しよう！すでに<strong>47カ国</strong>が注目しています。登録してリリース時に通知を受け取りましょう！',
-    'counter-label': 'カ国が<br>すでに注目しています 🌊',
+    'wl-sub': 'Aihoy!はまもなく全ユーザーに公開されます。登録してリリース時に通知を受け取りましょう！',
+    'counter-label': '人の船乗り＆旅行者が\nすでに待っています',
     'btn-join': '🔔 通知を受け取る',
     'waitlist-success': '✅ 登録完了！リリース時にお知らせします。⚓',
     'beta-tag': '🧪 ベータテスター募集中',
@@ -465,62 +484,47 @@ function setLang(lang) {
   const betaBtn = document.getElementById('btn-beta-mail');
   if (betaBtn) {
     const subjects = {hu:'Beta tesztelő jelentkezés', en:'Beta tester application', el:'Αίτηση beta tester', hr:'Prijava beta testera', ja:'ベータテスター応募'};
-    betaBtn.href = 'mailto:aihoy.app@gmail.com?subject=' + encodeURIComponent(subjects[lang] || 'Beta tester') + '&body=' + encodeURIComponent('Szia! Beta tesztelő szeretnék lenni.\n\nNevem: \nEszközöm: Android\nMiért jelentkezem: ');
+    betaBtn.href = 'mailto:aihoy.app@gmail.com?subject=' + encodeURIComponent(subjects[lang] || 'Beta tester');
   }
 }
 
-async function handleWaitlist(e) {
-  e.preventDefault();
+function joinWaitlist() {
   const email = document.getElementById('waitlist-email').value.trim();
-  const btn = document.getElementById('btn-join');
-  const success = document.getElementById('waitlist-success');
-  
-  btn.disabled = true;
-  btn.style.opacity = '0.7';
-  
-  try {
-    const resp = await fetch('https://formspree.io/f/mojrppae', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ email: email })
-    });
-    if (resp.ok) {
-      success.style.display = 'block';
-      document.getElementById('waitlist-email').value = '';
-      // Animáció a sikeres feliratkozáshoz
-      success.style.animation = 'fadeUp 0.4s ease';
-    } else {
-      throw new Error('Hiba');
-    }
-  } catch(err) {
-    success.innerHTML = '⚠️ Hiba történt. Próbáld újra vagy írj: aihoy.app@gmail.com';
-    success.style.display = 'block';
-    success.style.borderColor = 'rgba(255,80,80,0.3)';
+  if (!email || !email.includes('@')) {
+    document.getElementById('waitlist-email').style.borderColor = 'rgba(255,80,80,0.5)';
+    return;
   }
+  document.getElementById('waitlist-email').style.borderColor = 'rgba(0,229,255,0.2)';
+  // Mailto fallback – emailt küld az aihoy.app@gmail.com-ra
+  window.location.href = 'mailto:aihoy.app@gmail.com?subject=Waitlist&body=Email:%20' + encodeURIComponent(email);
+  document.getElementById('waitlist-success').style.display = 'block';
+  document.getElementById('waitlist-email').value = '';
+  // Increment counter display
+  var num = document.getElementById('counter-num');
   
-  btn.disabled = false;
-  btn.style.opacity = '1';
 }
 
-// Animált számláló 0-tól 47-ig
-function animateCounter(el, target) {
-  var start = 0; var duration = 1200;
+// Animált számláló
+function animateCounter(el, target, suffix) {
+  var start = 0; var duration = 1500;
   var step = Math.ceil(target / (duration / 16));
   var interval = setInterval(function() {
     start = Math.min(start + step, target);
-    el.textContent = start;
+    el.textContent = start.toLocaleString() + (suffix || '');
     if (start >= target) clearInterval(interval);
   }, 16);
 }
+
+// Intersection Observer a számlálóhoz
 var counted = false;
 var observer = new IntersectionObserver(function(entries) {
   if (entries[0].isIntersecting && !counted) {
     counted = true;
-    animateCounter(document.getElementById('counter-num'), 47);
+    animateCounter(document.getElementById('counter-num'), 48);
   }
 }, { threshold: 0.5 });
 var counterEl = document.getElementById('counter-num');
-if (counterEl) { counterEl.textContent = '0'; observer.observe(counterEl); }
+if (counterEl) observer.observe(counterEl);
 
 // Auto-detect language
 let savedLang = null;
