@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aihoy! — the Social Boatsharing</title>
+<title>Aihoy! — The Vibematcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -222,7 +222,8 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
 <section class="hero">
   <div class="logo-wrapper"><div class="logo-fallback">⚓</div></div>
   <h1>Aihoy!</h1>
-  <p class="tagline">the Social Boatsharing</p>
+  <p class="tagline">The Vibematcher</p>
+  <p class="tagline" style="font-size:clamp(13px,2vw,16px);margin-top:-36px;margin-bottom:40px;opacity:0.7;">Find your crew — match by vibe.</p>
   <p class="hero-desc" id="hero-desc"></p>
   <div class="cta-group">
     <a href="#waitlist" class="btn btn-primary" id="btn-waitlist"></a>
@@ -297,7 +298,7 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
 
 <footer>
   <div class="footer-logo">Aihoy!</div>
-  <p class="footer-sub">the Social Boatsharing · 2026</p>
+  <p class="footer-sub">The Vibematcher · 2026</p>
     <div style="display:flex;gap:20px;justify-content:center;margin-bottom:20px;">
     <a href="https://x.com/aihoy_app" target="_blank" rel="noopener" style="color:var(--textsec);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#00E5FF'" onmouseout="this.style.color='var(--textsec)'">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.733-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -318,7 +319,7 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
 <script>
 const T = {
   hu: {
-    'hero-desc': 'Szinte mindenki szeretne legalább egyszer hajókirándulni egy nyaralás alatt — de vagy <strong>túl drága egyedül</strong>, vagy nem volt meg a <strong>megfelelő társaság</strong> hozzá.<br><br>Az Aihoy! megoldja ezt.',
+    'hero-desc': 'Búvárkodás, horgászat, hajós naplemente, csoportos kirándulás — rengeteg élmény, amit <strong>nem mindegy kivel</strong> élsz meg. Egyedül drága, idegenekkel kockázatos.<br><br>Az Aihoy! összeköt azokkal akikkel <strong>tényleg érdemes elindulni.</strong>',
     'btn-waitlist': '⚓ Feliratkozom',
     'btn-learn': '📖 Tudj meg többet',
     'stat1': 'Jutalék<br>Teljesen ingyenes',
@@ -341,14 +342,14 @@ const T = {
     'section-tag': 'Kinek szól?',
     'section-title': 'Válaszd ki a te perspektívádat',
     'card1-title': 'Utazók &<br>Nyaralók',
-    'card1-desc': 'Hajókirándulást tervezel? Keresed a megfelelő társaságot? Lásd hogyan találja meg az Aihoy! a hozzád illő embereket.',
+    'card1-desc': 'Búvárkodást, horgászatot, hajós programot tervezel? Keresed a megfelelő társaságot? Lásd hogyan találja meg az Aihoy! a hozzád illő embereket.',
     'card1-link': 'Megnézem',
     'card2-title': 'Hajótulajdonosok<br>& Szolgáltatók',
     'card2-desc': 'Charteres, túraszervező vagy hajóbérlő? Nézd meg hogyan segít az Aihoy! a hajóid feltöltésében — jutalék nélkül.',
     'card2-link': 'Megnézem',
   },
   en: {
-    'hero-desc': 'Almost everyone dreams of a boat trip during their holiday — but it\'s either <strong>too expensive alone</strong>, or they can\'t find the <strong>right company</strong>.<br><br>Aihoy! solves this.',
+    'hero-desc': 'Diving, fishing, sunset sailing, group adventures — experiences that are <strong>completely different</strong> depending on who you share them with. Solo is expensive. Strangers are a gamble.<br><br>Aihoy! connects you with people <strong>worth going with.</strong>',
     'btn-waitlist': '⚓ Join the Waitlist',
     'btn-learn': '📖 Learn more',
     'stat1': 'Commission<br>Completely free',
@@ -371,14 +372,14 @@ const T = {
     'section-tag': 'Who is it for?',
     'section-title': 'Choose your perspective',
     'card1-title': 'Travelers &<br>Holiday makers',
-    'card1-desc': 'Planning a boat trip? Looking for the right crowd? See how Aihoy! finds people who match your vibe — by age, mood and interests.',
+    'card1-desc': 'Planning to dive, fish or sail? Looking for the right crowd? See how Aihoy! finds people who match your vibe — by age, mood and interests.',
     'card1-link': 'Learn more',
     'card2-title': 'Boat owners<br>& Providers',
     'card2-desc': 'Charter operator, tour organizer or boat rental? See how Aihoy! helps fill your boat — with no commission and no middleman.',
     'card2-link': 'Learn more',
   },
   el: {
-    'hero-desc': 'Σχεδόν όλοι ονειρεύονται μια βόλτα με σκάφος στις διακοπές — αλλά είναι είτε <strong>πολύ ακριβό μόνοι</strong>, είτε δεν βρίσκουν <strong>τη σωστή παρέα</strong>.<br><br>Το Aihoy! λύνει αυτό το πρόβλημα.',
+    'hero-desc': 'Κατάδυση, ψάρεμα, ηλιοβασίλεμα στη θάλασσα, ομαδικές εξορμήσεις — εμπειρίες που αλλάζουν <strong>ανάλογα με την παρέα</strong>. Μόνος είναι ακριβό. Με άγνωστους, ρίσκο.<br><br>Το Aihoy! σε συνδέει με ανθρώπους <strong>που αξίζει να ταξιδέψεις μαζί τους.</strong>',
     'btn-waitlist': '⚓ Εγγραφή',
     'btn-learn': '📖 Μάθε περισσότερα',
     'stat1': 'Προμήθεια<br>Εντελώς δωρεάν',
@@ -401,14 +402,14 @@ const T = {
     'section-tag': 'Για ποιον είναι;',
     'section-title': 'Διάλεξε την οπτική σου',
     'card1-title': 'Ταξιδιώτες &<br>Τουρίστες',
-    'card1-desc': 'Σχεδιάζεις βόλτα με σκάφος; Ψάχνεις για τη σωστή παρέα; Δες πώς το Aihoy! βρίσκει ανθρώπους που ταιριάζουν.',
+    'card1-desc': 'Σχεδιάζεις κατάδυση, ψάρεμα ή βόλτα με σκάφος; Ψάχνεις για τη σωστή παρέα; Δες πώς το Aihoy! βρίσκει ανθρώπους που ταιριάζουν με τη διάθεσή σου.',
     'card1-link': 'Μάθε περισσότερα',
     'card2-title': 'Ιδιοκτήτες σκαφών<br>& Πάροχοι',
     'card2-desc': 'Έχεις σκάφος ή οργανώνεις εκδρομές; Δες πώς το Aihoy! σε βοηθά να γεμίσεις το σκάφος σου χωρίς προμήθειες.',
     'card2-link': 'Μάθε περισσότερα',
   },
   hr: {
-    'hero-desc': 'Gotovo svi sanjaju o izletu brodom na odmoru — ali je ili <strong>preskupo sami</strong>, ili ne mogu naći <strong>pravo društvo</strong>.<br><br>Aihoy! rješava ovo.',
+    'hero-desc': 'Ronjenje, ribolov, zalazak sunca na moru, grupske avanture — iskustva koja su <strong>potpuno drugačija</strong> ovisno o tome s kim ih dijeliš. Sam je skupo. S neznancima — rizik.<br><br>Aihoy! te povezuje s ljudima <strong>s kojima vrijedi krenuti.</strong>',
     'btn-waitlist': '⚓ Prijavi se',
     'btn-learn': '📖 Saznaj više',
     'stat1': 'Provizija<br>Potpuno besplatno',
@@ -431,14 +432,14 @@ const T = {
     'section-tag': 'Za koga je?',
     'section-title': 'Odaberi svoju perspektivu',
     'card1-title': 'Putnici &<br>Ljetovatelji',
-    'card1-desc': 'Planiraš izlet brodom? Tražiš pravo društvo? Vidi kako Aihoy! pronalazi ljude koji ti odgovaraju.',
+    'card1-desc': 'Planiraš ronjenje, ribolov ili izlet brodom? Tražiš pravo društvo? Vidi kako Aihoy! pronalazi ljude koji odgovaraju tvojim interesima i vibeovima.',
     'card1-link': 'Saznaj više',
     'card2-title': 'Vlasnici brodova<br>& Pružatelji usluga',
     'card2-desc': 'Charter, organizator tura ili najam broda? Vidi kako Aihoy! pomaže popuniti tvoj brod — bez provizije.',
     'card2-link': 'Saznaj više',
   },
   ja: {
-    'hero-desc': '休暇中にボート旅行を夢見る人はたくさんいます — でも<strong>一人では高すぎる</strong>か、<strong>ぴったりの仲間</strong>が見つからない。<br><br>Aihoy!がこれを解決します。',
+    'hero-desc': 'ダイビング、釣り、夕日のセーリング、グループ冒険 — <strong>誰と行くかで</strong>まったく違う体験になる。一人では高すぎる。知らない人とでは賭けになる。<br><br>Aihoy!は<strong>一緒に行く価値のある人</strong>と繋げます。',
     'btn-waitlist': '⚓ 登録する',
     'btn-learn': '📖 もっと詳しく',
     'stat1': '手数料<br>完全無料',
@@ -461,7 +462,7 @@ const T = {
     'section-tag': '誰のためのアプリ？',
     'section-title': 'あなたの視点を選んでください',
     'card1-title': '旅行者 &<br>バカンス客',
-    'card1-desc': 'ボート旅行を計画中？ぴったりの仲間を探していますか？Aihoy!が年齢・気分・興味でマッチングします。',
+    'card1-desc': 'ダイビング、釣り、ボート旅行を計画中？ぴったりの仲間を探していますか？Aihoy!が年齢・気分・興味でマッチングします。',
     'card1-link': '詳しく見る',
     'card2-title': 'ボートオーナー<br>& サービス提供者',
     'card2-desc': 'チャーター会社、ツアーオーガナイザー、レンタルボート？手数料なしでボートを満席にする方法をご覧ください。',
