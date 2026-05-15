@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aihoy! — Technikai áttekintő</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Fraunces:ital,wght@0,700;0,900;1,300&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --ocean: #0A1628;
+    --ocean2: #0F1F35;
+    --surface: #112240;
+    --surface2: #1A3050;
+    --cyan: #00E5FF;
+    --purple: #9D4EDD;
+    --green: #2ECC71;
+    --orange: #E8A020;
+    --red: #E8533A;
+    --text: #E8F4FD;
+    --textsec: #8BA8C8;
+    --divider: #1E3A5F;
+    --code-bg: #0D1B2E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Outfit', sans-serif; background: var(--ocean); color: var(--text); overflow-x: hidden; }
+
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 80px 24px;
+    background: radial-gradient(ellipse at 20% 50%, rgba(0,229,255,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(157,78,221,0.09) 0%, transparent 60%),
+                var(--ocean);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300E5FF' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.3);
+    border-radius: 100px; padding: 8px 20px;
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--cyan); font-weight: 600; margin-bottom: 32px;
+  }
+  h1 {
+    font-family: 'Fraunces', serif; font-size: clamp(52px, 11vw, 100px);
+    font-weight: 900; line-height: 0.9; letter-spacing: -2px; margin-bottom: 8px;
+    background: linear-gradient(135deg, var(--cyan) 0%, #7B8FFF 50%, var(--purple) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-sub {
+    font-family: 'Fraunces', serif; font-size: clamp(16px, 2.5vw, 22px);
+    color: var(--textsec); font-style: italic; font-weight: 300; margin-bottom: 20px;
+  }
+  .hero-desc { max-width: 620px; font-size: 16px; line-height: 1.8; color: var(--textsec); margin-bottom: 48px; }
+  .hero-desc strong { color: var(--text); }
+
+  .stack-pills { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 48px; }
+  .pill {
+    background: var(--surface); border: 1px solid var(--divider);
+    border-radius: 100px; padding: 7px 16px;
+    font-size: 13px; font-weight: 600; color: var(--cyan);
+    font-family: 'Fira Code', monospace;
+  }
+  .pill.purple { color: var(--purple); border-color: rgba(157,78,221,0.3); }
+  .pill.green { color: var(--green); border-color: rgba(46,204,113,0.3); }
+  .pill.orange { color: var(--orange); border-color: rgba(232,160,32,0.3); }
+
+  .cta-group { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+  .btn {
+    padding: 14px 28px; border-radius: 100px; font-size: 14px; font-weight: 700;
+    text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: white; box-shadow: 0 8px 28px rgba(0,229,255,0.2); }
+  .btn-outline { background: transparent; color: var(--cyan); border: 1.5px solid rgba(0,229,255,0.35); }
+  .btn-outline:hover { background: rgba(0,229,255,0.05); }
+
+  /* ── Sections ── */
+  .section { padding: 80px 24px; max-width: 900px; margin: 0 auto; }
+  .section-wide { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+  .section-dark { background: var(--surface); border-top: 1px solid var(--divider); border-bottom: 1px solid var(--divider); }
+  .section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); font-weight: 600; margin-bottom: 12px; }
+  .section-tag.purple { color: var(--purple); }
+  .section-tag.green { color: var(--green); }
+  .section-tag.orange { color: var(--orange); }
+  h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 4vw, 42px); font-weight: 700; margin-bottom: 16px; line-height: 1.15; }
+  .lead { font-size: 16px; color: var(--textsec); line-height: 1.8; margin-bottom: 40px; max-width: 700px; }
+
+  /* ── Tech cards ── */
+  .tech-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 32px; }
+  .tech-card {
+    background: var(--surface2); border-radius: 20px; padding: 28px 24px;
+    border: 1px solid var(--divider); transition: border-color 0.2s, transform 0.2s;
+  }
+  .tech-card:hover { border-color: rgba(0,229,255,0.2); transform: translateY(-3px); }
+  .tech-card-icon { font-size: 32px; margin-bottom: 14px; display: block; }
+  .tech-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .tech-card p { font-size: 13px; color: var(--textsec); line-height: 1.6; }
+  .tech-card code { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--cyan); background: var(--code-bg); padding: 2px 6px; border-radius: 4px; }
+
+  /* ── Code block ── */
+  .code-block {
+    background: var(--code-bg); border-radius: 16px; padding: 24px;
+    border: 1px solid var(--divider); overflow-x: auto; margin: 24px 0;
+  }
+  .code-block pre { font-family: 'Fira Code', monospace; font-size: 13px; line-height: 1.7; color: #A8C7FA; }
+  .code-block .kw { color: #FF79C6; }
+  .code-block .str { color: #F1FA8C; }
+  .code-block .cm { color: #6272A4; font-style: italic; }
+  .code-block .fn { color: #50FA7B; }
+  .code-block .num { color: #BD93F9; }
+
+  /* ── Flow diagram ── */
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 32px 0; }
+  .flow-step {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding: 20px 0; border-bottom: 1px solid var(--divider);
+  }
+  .flow-step:last-child { border-bottom: none; }
+  .flow-num {
+    width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--cyan), var(--purple));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Fraunces', serif; font-size: 16px; font-weight: 900; color: white;
+  }
+  .flow-step h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .flow-step p { font-size: 13px; color: var(--textsec); line-height: 1.6; }
+  .flow-step code { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--cyan); background: var(--code-bg); padding: 2px 6px; border-radius: 4px; }
+
+  /* ── DB table ── */
+  .db-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 28px; }
+  .db-table {
+    background: var(--code-bg); border-radius: 16px; padding: 20px;
+    border: 1px solid var(--divider);
+  }
+  .db-table-name { font-family: 'Fira Code', monospace; font-size: 14px; font-weight: 500; color: var(--cyan); margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .db-table-name span { font-size: 16px; }
+  .db-field { font-family: 'Fira Code', monospace; font-size: 11px; color: var(--textsec); padding: 3px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .db-field:last-child { border-bottom: none; }
+  .db-field .field-name { color: #A8C7FA; }
+  .db-field .field-type { color: #BD93F9; margin-left: 8px; }
+  .db-field .field-note { color: #6272A4; margin-left: 8px; font-style: italic; }
+
+  /* ── Score bars ── */
+  .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+  .score-item { background: var(--surface2); border-radius: 12px; padding: 16px; border: 1px solid var(--divider); }
+  .score-label { font-size: 12px; color: var(--textsec); margin-bottom: 8px; }
+  .score-bar-wrap { background: var(--ocean); border-radius: 4px; height: 6px; overflow: hidden; }
+  .score-bar { height: 6px; border-radius: 4px; background: linear-gradient(90deg, var(--cyan), var(--purple)); }
+  .score-pct { font-size: 11px; color: var(--cyan); font-weight: 700; margin-top: 4px; font-family: 'Fira Code', monospace; }
+
+  /* ── Question cards ── */
+  .q-grid { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 28px; }
+  .q-card {
+    background: var(--surface2); border-radius: 14px; padding: 20px 24px;
+    border: 1px solid rgba(232,160,32,0.2);
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .q-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .q-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--orange); }
+  .q-card p { font-size: 13px; color: var(--textsec); line-height: 1.6; }
+
+  /* ── CTA ── */
+  .cta-section {
+    padding: 80px 24px; text-align: center;
+    background: radial-gradient(ellipse at center, rgba(157,78,221,0.08) 0%, transparent 70%), var(--ocean);
+    border-top: 1px solid var(--divider);
+  }
+
+  /* ── Footer ── */
+  footer { padding: 32px 24px; text-align: center; border-top: 1px solid var(--divider); }
+  footer p { font-size: 12px; color: var(--textsec); }
+
+  @media (max-width: 600px) {
+    .score-grid { grid-template-columns: 1fr; }
+    .flow-step { flex-direction: column; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ HERO -->
+<section class="hero">
+  <div class="hero-badge">⚙️ Technikai áttekintő · Fejlesztőknek</div>
+  <h1>Aihoy!</h1>
+  <p class="hero-sub">The Vibematcher — belülről</p>
+  <p class="hero-desc">
+    Egy solo fejlesztő által épített, <strong>AI-asszisztált Flutter app</strong> — 
+    nulláról, előzetes programozási tapasztalat nélkül, 2026 januárjától. 
+    Ez az oldal a technikai megvalósítást mutatja be: architektúra, adatbázis, 
+    realtime, push és match logika.
+  </p>
+  <div class="stack-pills">
+    <span class="pill">Flutter (Android)</span>
+    <span class="pill purple">Supabase</span>
+    <span class="pill green">Firebase FCM V1</span>
+    <span class="pill orange">Claude AI</span>
+    <span class="pill">Cloudflare Pages</span>
+    <span class="pill purple">PostgreSQL + RLS</span>
+  </div>
+  <div class="cta-group">
+    <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" class="btn btn-primary" target="_blank">📱 Play Store (beta)</a>
+    <a href="mailto:aihoy.app@gmail.com?subject=Technikai visszajelzés" class="btn btn-outline">✉️ Visszajelzés küldése</a>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ TECH STACK -->
+<div class="section-dark">
+<div class="section-wide">
+  <p class="section-tag">01 · Tech stack</p>
+  <h2>Mivel van megépítve</h2>
+  <p class="lead">Minden réteg tudatosan lett választva — minél kevesebb backend saját kód, minél több managed service.</p>
+  <div class="tech-grid">
+    <div class="tech-card">
+      <span class="tech-card-icon">📱</span>
+      <h3>Flutter — Android-first</h3>
+      <p>Dart alapú cross-platform framework. Az app jelenleg Androidra készül (<code>com.aihoy.app</code>), iOS-re nem terjeszkedik az első szezonban. 5 nyelv: hu/en/el/hr/ja, ARB alapú lokalizáció.</p>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">🗄️</span>
+      <h3>Supabase — Backend as a Service</h3>
+      <p>PostgreSQL adatbázis, Auth (email + Google OAuth), Storage (avatárok, hajóképek, chat képek), Realtime (chat stream), Edge Functions (Deno/TypeScript). Projekt: <code>seufpmzohygxjycpplli</code></p>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">🔔</span>
+      <h3>Firebase FCM V1</h3>
+      <p>Push értesítések Service Account alapú hitelesítéssel. A token kezelés a Supabase <code>profiles.fcm_token</code> mezőben él. Az Edge Function hívja a Google FCM API-t közvetlenül.</p>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">🤖</span>
+      <h3>Claude AI (Anthropic)</h3>
+      <p>Haiku modell, Supabase Edge Function hívja. Feladat: radar match intro generálás — személyre szabott, humoros szöveg a found user kártyájára. Nyelv detektálással.</p>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">🌐</span>
+      <h3>Cloudflare Pages</h3>
+      <p>A marketing oldal (<code>aihoy.app</code>) statikus HTML/CSS/JS, GitHub repóból deployolva. Nincs szerver, nincs build step — három HTML fájl, közvetlen CDN.</p>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">📊</span>
+      <h3>Google Analytics</h3>
+      <p>A marketing oldalon <code>G-7NXGL1PPX6</code> tracking. Az app belső analitikája Supabase lekérésekből deriválható (user_presence, bookings timestamp-ek).</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ AUTH FLOW -->
+<div class="section">
+  <p class="section-tag">02 · Autentikáció</p>
+  <h2>Auth flow</h2>
+  <p class="lead">Supabase Auth kezeli az összes hitelesítést. Az app egy <code>AuthGate</code> widget köré épül, ami az auth stream alapján router.</p>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div>
+        <h4>Belépés — email vagy Google OAuth</h4>
+        <p>A Supabase Auth JWT tokent ad vissza. Google sign-in esetén a <code>user.userMetadata['name']</code> mezőből kerül ki a <code>full_name</code>. RLS INSERT policy szükséges a <code>profiles</code> táblán — enélkül néma hibával sikertelen a regisztráció.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div>
+        <h4>AuthGate — route döntés</h4>
+        <p><code>AuthGate</code> figyeli az <code>onAuthStateChange</code> stream-et. Ha van session → profil ellenőrzés (<code>super_match_done</code> mező). Ha <code>false</code> → Onboarding. Ha <code>true</code> → HomePage. Ha nincs profil (törölve) → LoginPage.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div>
+        <h4>Onboarding — 4 lépéses profil setup</h4>
+        <p>Szerepkör, utazási stílus, érdeklődési körök, korosztály + nyelv + nemzetiség. Mentés után <code>super_match_done: true</code> — az AuthGate ezután a főoldalra küld. A <code>full_name</code> auth metadatából szinkronizálódik ha a DB-ben még nincs.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div>
+        <h4>Session kezelés</h4>
+        <p>Session lejárat előtt 60 másodperccel az AuthGate automatikusan refresheli. Ha a refresh sikertelen → LoginPage. A FCM token törlődik kijelentkezéskor a <code>profiles</code> táblából.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ DB SCHEMA -->
+<div class="section-dark">
+<div class="section-wide">
+  <p class="section-tag purple">03 · Adatbázis</p>
+  <h2>PostgreSQL séma — főbb táblák</h2>
+  <p class="lead">Supabase Postgres, RLS (Row Level Security) policy-kkel minden táblán. A Flutter app a Supabase Dart SDK-n keresztül ér el mindent.</p>
+  <div class="db-grid">
+    <div class="db-table">
+      <div class="db-table-name"><span>👤</span> profiles</div>
+      <div class="db-field"><span class="field-name">id</span><span class="field-type">uuid</span><span class="field-note">FK → auth.users</span></div>
+      <div class="db-field"><span class="field-name">full_name</span><span class="field-type">text</span></div>
+      <div class="db-field"><span class="field-name">username</span><span class="field-type">text unique</span></div>
+      <div class="db-field"><span class="field-name">role</span><span class="field-type">text</span><span class="field-note">user/provider/owner</span></div>
+      <div class="db-field"><span class="field-name">languages</span><span class="field-type">text[]</span><span class="field-note">HU, EN, GR...</span></div>
+      <div class="db-field"><span class="field-name">interests</span><span class="field-type">text[]</span></div>
+      <div class="db-field"><span class="field-name">preferred_style</span><span class="field-type">text</span><span class="field-note">chill,party,...</span></div>
+      <div class="db-field"><span class="field-name">target_age</span><span class="field-type">text</span><span class="field-note">25–35,35–50</span></div>
+      <div class="db-field"><span class="field-name">birth_year</span><span class="field-type">int</span></div>
+      <div class="db-field"><span class="field-name">nationality</span><span class="field-type">text</span></div>
+      <div class="db-field"><span class="field-name">fcm_token</span><span class="field-type">text</span><span class="field-note">push token</span></div>
+      <div class="db-field"><span class="field-name">super_match_done</span><span class="field-type">bool</span></div>
+      <div class="db-field"><span class="field-name">avatar_url</span><span class="field-type">text</span></div>
+    </div>
+    <div class="db-table">
+      <div class="db-table-name"><span>⛵</span> trips</div>
+      <div class="db-field"><span class="field-name">id</span><span class="field-type">uuid</span></div>
+      <div class="db-field"><span class="field-name">organizer_id</span><span class="field-type">uuid</span><span class="field-note">FK → profiles</span></div>
+      <div class="db-field"><span class="field-name">title</span><span class="field-type">text</span></div>
+      <div class="db-field"><span class="field-name">start_date</span><span class="field-type">timestamptz</span></div>
+      <div class="db-field"><span class="field-name">port_name</span><span class="field-type">text</span></div>
+      <div class="db-field"><span class="field-name">latitude / longitude</span><span class="field-type">float8</span></div>
+      <div class="db-field"><span class="field-name">capacity</span><span class="field-type">int</span></div>
+      <div class="db-field"><span class="field-name">languages</span><span class="field-type">text[]</span></div>
+      <div class="db-field"><span class="field-name">moods</span><span class="field-type">text[]</span></div>
+      <div class="db-field"><span class="field-name">type</span><span class="field-type">text</span><span class="field-note">sailing/diving...</span></div>
+      <div class="db-field"><span class="field-name">target_age</span><span class="field-type">text</span></div>
+      <div class="db-field"><span class="field-name">external_guests</span><span class="field-type">int</span></div>
+      <div class="db-field"><span class="field-name">is_public</span><span class="field-type">bool</span></div>
+    </div>
+    <div class="db-table">
+      <div class="db-table-name"><span>📋</span> bookings</div>
+      <div class="db-field"><span class="field-name">id</span><span class="field-type">uuid</span></div>
+      <div class="db-field"><span class="field-name">trip_id</span><span class="field-type">uuid</span><span class="field-note">nullable (DM esetén)</span></div>
+      <div class="db-field"><span class="field-name">user_id</span><span class="field-type">uuid</span></div>
+      <div class="db-field"><span class="field-name">organizer_id</span><span class="field-type">uuid</span></div>
+      <div class="db-field"><span class="field-name">status</span><span class="field-type">text</span><span class="field-note">pending/confirmed/rejected</span></div>
+      <div class="db-field"><span class="field-name">booking_type</span><span class="field-type">text</span><span class="field-note">firm/intent/supermatch_dm</span></div>
+      <div class="db-field"><span class="field-name">guest_count</span><span class="field-type">int</span></div>
+      <div class="db-field"><span class="field-name">last_message_at</span><span class="field-type">timestamptz</span></div>
+      <div class="db-field"><span class="field-name">organizer_last_read_at</span><span class="field-type">timestamptz</span></div>
+      <div class="db-field"><span class="field-name">user_last_read_at</span><span class="field-type">timestamptz</span></div>
+      <div class="db-field"><span class="field-name">has_unread</span><span class="field-type">bool</span></div>
+    </div>
+    <div class="db-table">
+      <div class="db-table-name"><span>💬</span> chat_messages</div>
+      <div class="db-field"><span class="field-name">id</span><span class="field-type">uuid</span></div>
+      <div class="db-field"><span class="field-name">booking_id</span><span class="field-type">uuid</span><span class="field-note">1:1 chat</span></div>
+      <div class="db-field"><span class="field-name">trip_id</span><span class="field-type">uuid</span><span class="field-note">csoport chat</span></div>
+      <div class="db-field"><span class="field-name">sender_id</span><span class="field-type">uuid</span></div>
+      <div class="db-field"><span class="field-name">content</span><span class="field-type">text</span></div>
+      <div class="db-field"><span class="field-name">is_system_message</span><span class="field-type">bool</span></div>
+      <div class="db-field"><span class="field-name">is_captain_message</span><span class="field-type">bool</span></div>
+      <div class="db-field"><span class="field-name">read_at</span><span class="field-type">timestamptz</span></div>
+      <div class="db-field"><span class="field-name">delivered_at</span><span class="field-type">timestamptz</span></div>
+    </div>
+    <div class="db-table">
+      <div class="db-table-name"><span>📡</span> user_presence</div>
+      <div class="db-field"><span class="field-name">user_id</span><span class="field-type">uuid unique</span></div>
+      <div class="db-field"><span class="field-name">is_visible</span><span class="field-type">bool</span></div>
+      <div class="db-field"><span class="field-name">intent</span><span class="field-type">text</span><span class="field-note">has_boat/no_boat</span></div>
+      <div class="db-field"><span class="field-name">mood</span><span class="field-type">text[]</span></div>
+      <div class="db-field"><span class="field-name">latitude / longitude</span><span class="field-type">float8</span></div>
+      <div class="db-field"><span class="field-name">radius_meters</span><span class="field-type">int</span></div>
+      <div class="db-field"><span class="field-name">expires_at</span><span class="field-type">timestamptz</span></div>
+      <div class="db-field"><span class="field-name">min_match_pct</span><span class="field-type">int</span><span class="field-note">hard floor: 65</span></div>
+      <div class="db-field"><span class="field-name">require_language</span><span class="field-type">bool</span></div>
+      <div class="db-field"><span class="field-name">group_type</span><span class="field-type">text</span><span class="field-note">solo/couple/family</span></div>
+    </div>
+    <div class="db-table">
+      <div class="db-table-name"><span>🪟</span> travel_windows</div>
+      <div class="db-field"><span class="field-name">id</span><span class="field-type">uuid</span></div>
+      <div class="db-field"><span class="field-name">user_id</span><span class="field-type">uuid</span></div>
+      <div class="db-field"><span class="field-name">destination</span><span class="field-type">text</span></div>
+      <div class="db-field"><span class="field-name">latitude / longitude</span><span class="field-type">float8</span></div>
+      <div class="db-field"><span class="field-name">date_from / date_to</span><span class="field-type">date</span></div>
+      <div class="db-field"><span class="field-name">activities</span><span class="field-type">text[]</span></div>
+      <div class="db-field"><span class="field-name">is_active</span><span class="field-type">bool</span></div>
+      <div class="db-field"><span class="field-name">notes</span><span class="field-type">text</span></div>
+    </div>
+  </div>
+
+  <div style="margin-top:32px;">
+    <p class="section-tag purple" style="margin-bottom:12px;">RLS Policy gondolkodás</p>
+    <div class="code-block">
+<pre><span class="cm">-- Példa: profiles tábla SELECT policy</span>
+<span class="cm">-- Mindenki láthat profilokat (radar, match), de csak saját adatot módosíthat</span>
+
+<span class="kw">CREATE POLICY</span> <span class="str">"Profil olvasható"</span> <span class="kw">ON</span> profiles
+  <span class="kw">FOR SELECT USING</span> (<span class="kw">true</span>);
+
+<span class="kw">CREATE POLICY</span> <span class="str">"Saját profil szerkeszthető"</span> <span class="kw">ON</span> profiles
+  <span class="kw">FOR UPDATE USING</span> (auth.uid() = id);
+
+<span class="kw">CREATE POLICY</span> <span class="str">"Saját profil létrehozható"</span> <span class="kw">ON</span> profiles
+  <span class="kw">FOR INSERT WITH CHECK</span> (auth.uid() = id);
+
+<span class="cm">-- chat_messages: csak a booking résztvevői látják</span>
+<span class="kw">CREATE POLICY</span> <span class="str">"Chat üzenet olvasás"</span> <span class="kw">ON</span> chat_messages
+  <span class="kw">FOR SELECT USING</span> (
+    booking_id <span class="kw">IN</span> (
+      <span class="kw">SELECT</span> id <span class="kw">FROM</span> bookings
+      <span class="kw">WHERE</span> user_id = auth.uid() <span class="kw">OR</span> organizer_id = auth.uid()
+    )
+  );</pre>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ REALTIME -->
+<div class="section">
+  <p class="section-tag green">04 · Realtime</p>
+  <h2>Chat és radar — realtime megvalósítás</h2>
+  <p class="lead">A Supabase Realtime PostgreSQL változásokat stremel WebSocket-en. A Flutter app <code>StreamBuilder</code> helyett manuális <code>StreamController</code>-t használ — a <code>StreamBuilder</code> rebuild-onként új stream példányt hozna létre.</p>
+
+  <div class="code-block">
+<pre><span class="cm">// Chat stream — StreamController pattern (nem StreamBuilder!)</span>
+<span class="fn">Stream</span>&lt;<span class="fn">List</span>&lt;<span class="fn">Map</span>&lt;<span class="fn">String</span>, <span class="fn">dynamic</span>&gt;&gt;&gt; <span class="fn">getChatStream</span>(String bookingId) {
+  <span class="kw">late</span> StreamController controller;
+  RealtimeChannel? channel;
+
+  controller = StreamController(
+    onListen: () <span class="kw">async</span> {
+      <span class="kw">await</span> reload(); <span class="cm">// kezdeti adat</span>
+      channel = _supabase
+          .channel(<span class="str">'chat_messages_$bookingId'</span>)
+          .onPostgresChanges(
+            event: PostgresChangeEvent.all,
+            table: <span class="str">'chat_messages'</span>,
+            filter: PostgresChangeFilter(column: <span class="str">'booking_id'</span>, value: bookingId),
+            callback: (_) =&gt; reload(), <span class="cm">// DB változáskor újratölt</span>
+          ).subscribe();
+    },
+    onCancel: () <span class="kw">async</span> {
+      <span class="kw">await</span> channel?.unsubscribe();
+    },
+  );
+  <span class="kw">return</span> controller.stream;
+}</pre>
+  </div>
+
+  <div class="flow" style="margin-top:8px;">
+    <div class="flow-step">
+      <div class="flow-num">📡</div>
+      <div>
+        <h4>Radar jelenlét — user_presence tábla</h4>
+        <p>A radar bekapcsolásakor <code>user_presence</code> upsert történik GPS koordinátákkal, lejárati idővel (<code>expires_at</code>), és match beállításokkal. A <code>pg_cron</code> 5 percenként törli a lejárt jelenléteket. A RadarStatus singleton szinkronban tartja a Flutter state-et DB nélkül is.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">🔢</div>
+      <div>
+        <h4>Olvasatlan üzenetek — per-user timestamp</h4>
+        <p><code>organizer_last_read_at</code> és <code>user_last_read_at</code> mezők a <code>bookings</code> táblában. Az unread számítás Dart oldalon történik: ha <code>last_message_at > saját_last_read_at</code> → olvasatlan. Így nincs szerver oldali számítás szükséges.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PUSH -->
+<div class="section-dark">
+<div class="section">
+  <p class="section-tag orange">05 · Push értesítések</p>
+  <h2>FCM V1 — Edge Function alapú küldés</h2>
+  <p class="lead">A push küldés Supabase Edge Functionön keresztül megy, Service Account JSON alapú OAuth2 hitelesítéssel. A Flutter app nem hívja közvetlenül a FCM API-t.</p>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div>
+        <h4>FCM token tárolás</h4>
+        <p>App indításkor a <code>FirebaseMessaging.instance.getToken()</code> lekéri a device tokent, ami a <code>profiles.fcm_token</code> mezőbe kerül. Kijelentkezéskor nullázódik. Reinstall után auto-refresh szükséges (backlog).</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div>
+        <h4>Edge Function: <code>send-notification</code></h4>
+        <p>Deno/TypeScript. Bemenete: <code>token</code>, <code>title</code>, <code>body</code>, <code>data</code>. A function a Supabase Vault-ban tárolt Service Account JSON-ból generál rövid életű Google OAuth2 tokent, majd POST-ol a <code>fcm.googleapis.com/v1/projects/.../messages:send</code> végpontra.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div>
+        <h4>Foreground suppression</h4>
+        <p>Ha az app előtérben van (<code>WidgetsBindingObserver</code> + <code>NotificationService.isAppInForeground</code>), a push értesítő nem jelenik meg — csak a badge számláló növekszik. A <code>NotificationService.onNotificationTap</code> callback kezeli a navigációt tapp esetén.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div>
+        <h4>Edge Function: <code>radar-match-notify</code></h4>
+        <p>Radar bekapcsolásakor hívódik — megkeresi a kompatibilis, aktív jelenlétű usereket és push értesítőt küld nekik. Tartalmazza a feladó <code>user_id</code>-ját, amiből a fogadó appja közvetlenül a SuperMatch találatok oldalra navigál.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-block">
+<pre><span class="cm">// Edge Function hívás Flutter oldalon</span>
+<span class="kw">await</span> _supabase.functions.invoke(
+  <span class="str">'send-notification'</span>,
+  body: {
+    <span class="str">'token'</span>: fcmToken,
+    <span class="str">'title'</span>: <span class="str">'💬 $senderName'</span>,
+    <span class="str">'body'</span>: snippet,
+    <span class="str">'data'</span>: {<span class="str">'type'</span>: <span class="str">'chat_message'</span>, <span class="str">'booking_id'</span>: bookingId},
+  },
+);</pre>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ MATCH -->
+<div class="section">
+  <p class="section-tag">06 · Match kalkulátor</p>
+  <h2>SuperMatch score logika</h2>
+  <p class="lead">A <code>RadarMatchCalculator.calculate()</code> Dart oldalon fut — nincs szerver oldali számítás. A score 0–100% között mozog, 65% a hard floor.</p>
+
+  <div class="score-grid">
+    <div class="score-item">
+      <div class="score-label">🌊 Utazási szándék egyezés (intent)</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:30%"></div></div>
+      <div class="score-pct">max 30 pont</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">🎭 Hangulat (mood) átfedés</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:25%"></div></div>
+      <div class="score-pct">max 25 pont</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">🌍 Közös nyelv</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:20%"></div></div>
+      <div class="score-pct">max 20 pont</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">🎂 Korosztály preferencia</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:15%"></div></div>
+      <div class="score-pct">max 15 pont</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">⛵ Hajó típus egyezés</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:10%"></div></div>
+      <div class="score-pct">max 10 pont</div>
+    </div>
+    <div class="score-item">
+      <div class="score-label">🚭 Dohányzás szűrő</div>
+      <div class="score-bar-wrap"><div class="score-bar" style="width:8%; background: linear-gradient(90deg,#E8533A,#E8A020)"></div></div>
+      <div class="score-pct" style="color:#E8533A">kizáró feltétel</div>
+    </div>
+  </div>
+
+  <div style="margin-top:28px;">
+    <p style="font-size:13px; color:var(--textsec); line-height:1.7;">
+      A <strong style="color:var(--text)">Smart 2-match algoritmus</strong> a 100%-tól lefelé 5%-os lépésekben keres, és megáll amint 2 találat van az adott küszöb felett. Ha csak 1 találat van 65% felett, azt adja vissza. 65% alatt senki nem jelenik meg.<br><br>
+      Az <strong style="color:var(--text)">AI intro generálás</strong> (Claude Haiku) az első 1-2 találathoz fut le — az Edge Function hangulat, szándék és Mood Fusion (pl. chill+party = "Laza bulis") alapján generál személyre szabott bemutatkozó szöveget.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ EDGE FUNCTIONS -->
+<div class="section-dark">
+<div class="section">
+  <p class="section-tag purple">07 · Edge Functions</p>
+  <h2>Szerver oldali logika</h2>
+  <p class="lead">Minden szerver oldali művelet Supabase Edge Functionön fut (Deno runtime). Nincs saját szerver, nincs VPS.</p>
+
+  <div class="tech-grid" style="margin-top:8px;">
+    <div class="tech-card">
+      <span class="tech-card-icon">🔔</span>
+      <h3><code>send-notification</code></h3>
+      <p>FCM V1 push küldés. Service Account OAuth2 token generálás, Google FCM API hívás. Bemenete: token, title, body, data object.</p>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">📡</span>
+      <h3><code>radar-match-notify</code></h3>
+      <p>Radar bekapcsoláskor keres kompatibilis aktív usereket, és push értesítőt küld nekik "valaki megtalált a radaron" üzenettel.</p>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">🤖</span>
+      <h3><code>generate-match-intro</code></h3>
+      <p>Claude Haiku hívás. Bemenete: két user neve, hangulat, szándék, score, Mood Fusion. Kimenete: rövid, humoros bemutatkozó szöveg. Nyelv detektálással.</p>
+    </div>
+    <div class="tech-card">
+      <span class="tech-card-icon">🗑️</span>
+      <h3><code>delete-account</code></h3>
+      <p>GDPR-kompatibilis fiók törlés. Törli: profil, trips, bookings, chat_messages, connection_requests, user_presence, storage avatár. Majd <code>auth.admin.deleteUser()</code>.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ QUESTIONS -->
+<div class="section">
+  <p class="section-tag orange">08 · Amit szívesen megvizsgálnék</p>
+  <h2>Nyitott kérdések — ahol vélemény kell</h2>
+  <p class="lead">Ez egy solo projekt, AI asszisztenssel felépítve. Vannak döntések amikről nem biztos hogy a legjobb úton jártam — ezeket szívesen megvitatnám.</p>
+
+  <div class="q-grid">
+    <div class="q-card">
+      <div class="q-icon">🔐</div>
+      <div>
+        <h4>RLS policy lefedettség</h4>
+        <p>Minden táblán van RLS, de nem biztos hogy minden edge case le van fedve. Különösen a <code>bookings</code> és <code>chat_messages</code> táblák aggasztanak — egy user láthat-e olyan chat üzenetet aminek nem résztvevője?</p>
+      </div>
+    </div>
+    <div class="q-card">
+      <div class="q-icon">📡</div>
+      <div>
+        <h4>Realtime stream architektúra</h4>
+        <p>A manuális <code>StreamController</code> + Supabase channel pattern működik, de kérdés hogy production terhelés esetén (100+ egyidejű user) hogyan skálázódik. Van-e jobb pattern?</p>
+      </div>
+    </div>
+    <div class="q-card">
+      <div class="q-icon">🗺️</div>
+      <div>
+        <h4>GPS koordináta tárolás</h4>
+        <p>A <code>user_presence</code> tábla plaintext lat/lng-t tárol. PostGIS extension nélkül a radius szűrés Dart oldalon (Haversine) történik. Ez skálázható megközelítés, vagy érdemes PostGIS-re váltani?</p>
+      </div>
+    </div>
+    <div class="q-card">
+      <div class="q-icon">🔑</div>
+      <div>
+        <h4>FCM token kezelés</h4>
+        <p>A token reinstall után nem frissül automatikusan — ez backlog. A jelenlegi megoldás: app indításkor mindig újra lekérjük és frissítjük. Van-e elegánsabb megközelítés?</p>
+      </div>
+    </div>
+    <div class="q-card">
+      <div class="q-icon">⚡</div>
+      <div>
+        <h4>N+1 query probléma</h4>
+        <p>Több helyen (pl. <code>fetchMyTrips</code>, <code>fetchPendingBookings</code>) a booking listán iterálva töltöm be a profilokat egyenként. Supabase-ben hogyan oldható meg ez elegánsan join nélkül?</p>
+      </div>
+    </div>
+    <div class="q-card">
+      <div class="q-icon">🧪</div>
+      <div>
+        <h4>Testing stratégia</h4>
+        <p>Jelenleg nincs automatizált teszt — minden manuálisan tesztelve, Play Store belső beta tesztelőkkel. Egy Flutter/Supabase projekthez mi lenne a legpragmatikusabb testing megközelítés?</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ CTA -->
+<section class="cta-section">
+  <p class="section-tag" style="text-align:center; margin-bottom:16px;">Próbáld ki / Adj visszajelzést</p>
+  <h2 style="font-family:'Fraunces',serif; font-size:clamp(26px,4vw,40px); margin-bottom:16px;">Kíváncsi vagy a működésére?</h2>
+  <p style="font-size:16px; color:var(--textsec); max-width:520px; margin:0 auto 40px; line-height:1.7;">
+    Töltsd le a beta verziót és próbáld ki — vagy írj közvetlenül ha technikai kérdésed van, esetleg látsz valamit amit máshogy csinálnál.
+  </p>
+  <div class="cta-group" style="justify-content:center;">
+    <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" class="btn btn-primary" target="_blank">📱 Play Store beta</a>
+    <a href="mailto:aihoy.app@gmail.com?subject=Technikai visszajelzés — Aihoy!" class="btn btn-outline">✉️ Írj nekem</a>
+  </div>
+</section>
+
+<footer>
+  <p>Aihoy! · The Vibematcher · <a href="https://aihoy.app" style="color:var(--cyan); text-decoration:none;">aihoy.app</a> · 2026</p>
+</footer>
+
+</body>
+</html>
