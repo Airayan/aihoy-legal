@@ -199,7 +199,7 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
 <body>
 
 <!-- ── Sticky Audio Player ── -->
-<audio id="aihoy-audio" src="Aihoy!%20(Remastered).mp3" preload="auto" loop></audio>
+<audio id="aihoy-audio" src="Aihoy!%20(Remastered).mp3" preload="auto"></audio>
 <div id="sticky-player" style="position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(10,22,40,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,229,255,0.15);padding:10px 20px;display:flex;align-items:center;gap:14px;">
   <button id="play-btn" onclick="togglePlay()" style="width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#00E5FF,#9D4EDD);color:white;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 12px rgba(0,229,255,0.3);">▶</button>
   <div style="flex:1;min-width:0;">
@@ -217,6 +217,7 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
   <button class="lang-btn" id="btn-el" onclick="setLang('el')" title="Ελληνικά">🇬🇷</button>
   <button class="lang-btn" id="btn-hr" onclick="setLang('hr')" title="Hrvatski">🇭🇷</button>
   <button class="lang-btn" id="btn-ja" onclick="setLang('ja')" title="日本語">🇯🇵</button>
+  <button class="lang-btn" id="btn-pl" onclick="setLang('pl')" title="Polski">🇵🇱</button>
 </div>
 
 <section class="hero">
@@ -438,6 +439,36 @@ const T = {
     'card2-desc': 'Charter, organizator tura ili najam broda? Vidi kako Aihoy! pomaže popuniti tvoj brod — bez provizije.',
     'card2-link': 'Saznaj više',
   },
+  pl: {
+    'hero-desc': 'Nurkowanie, wędkowanie, żeglowanie o zachodzie słońca, grupowe przygody — doświadczenia, które są <strong>zupełnie inne</strong> w zależności od tego, z kim je przeżywasz. Sam jest drogo. Z nieznajomymi — ryzyko.<br><br>Aihoy! łączy cię z ludźmi, <strong>z którymi warto ruszyć w drogę.</strong>',
+    'btn-waitlist': '⚓ Zapisz się',
+    'btn-learn': '📖 Dowiedz się więcej',
+    'stat1': 'Prowizja<br>Całkowicie bezpłatnie',
+    'stat2': 'Języków<br>hu / en / el / hr / ja / pl',
+    'stat3': 'Krajów<br>Już nas obserwuje',
+    'stat4': 'Możliwości<br>Greckie wyspy & Adriatyk',
+    'wl-tag': '🚀 Wkrótce',
+    'wl-title': 'Bądź wśród pierwszych!',
+    'wl-sub': 'Aihoy! pojawi się wkrótce dla wszystkich. Zapisz się i powiadomimy cię w chwili startu!',
+    'counter-label': 'żeglarzy i podróżników\njuż czeka',
+    'btn-join': '🔔 Powiadom mnie',
+    'waitlist-success': '✅ Jesteś na liście! Powiadomimy cię przy starcie. ⚓',
+    'beta-tag': '🧪 Szukamy beta testerów',
+    'beta-title': 'Kształtuj przyszłość Aihoy!',
+    'beta-sub': 'Szukamy entuzjastycznych testerów, którzy wypróbują aplikację i podzielą się opinią. W zamian: wczesny dostęp i wzmianka w aplikacji.',
+    'perk1': '✅ Wczesny dostęp',
+    'perk2': '🏆 Wzmianka w aplikacji',
+    'perk3': '⚡ Bezpośredni kontakt z developerem',
+    'btn-beta-mail': '📩 Zgłoś się jako beta tester',
+    'section-tag': 'Dla kogo?',
+    'section-title': 'Wybierz swoją perspektywę',
+    'card1-title': 'Podróżnicy &<br>Urlopowicze',
+    'card1-desc': 'Planujesz nurkowanie, wędkowanie lub rejs? Szukasz odpowiednich towarzyszy? Zobacz jak Aihoy! znajduje ludzi dopasowanych do twojego stylu.',
+    'card1-link': 'Dowiedz się więcej',
+    'card2-title': 'Właściciele łodzi<br>& Usługodawcy',
+    'card2-desc': 'Czarter, organizator wycieczek lub wynajem łodzi? Zobacz jak Aihoy! pomaga zapełnić twoją łódź — bez prowizji.',
+    'card2-link': 'Dowiedz się więcej',
+  },
   ja: {
     'hero-desc': 'ダイビング、釣り、夕日のセーリング、グループ冒険 — <strong>誰と行くかで</strong>まったく違う体験になる。一人では高すぎる。知らない人とでは賭けになる。<br><br>Aihoy!は<strong>一緒に行く価値のある人</strong>と繋げます。',
     'btn-waitlist': '⚓ 登録する',
@@ -484,7 +515,7 @@ function setLang(lang) {
   // Update beta email subject in current lang
   const betaBtn = document.getElementById('btn-beta-mail');
   if (betaBtn) {
-    const subjects = {hu:'Beta tesztelő jelentkezés', en:'Beta tester application', el:'Αίτηση beta tester', hr:'Prijava beta testera', ja:'ベータテスター応募'};
+    const subjects = {hu:'Beta tesztelő jelentkezés', en:'Beta tester application', el:'Αίτηση beta tester', hr:'Prijava beta testera', ja:'ベータテスター応募', pl:'Zgłoszenie beta testera'};
     betaBtn.href = 'mailto:aihoy.app@gmail.com?subject=' + encodeURIComponent(subjects[lang] || 'Beta tester');
   }
 }
@@ -531,7 +562,7 @@ if (counterEl) observer.observe(counterEl);
 let savedLang = null;
 try { savedLang = localStorage.getItem('aihoy-lang'); } catch(e) {}
 const bl = (navigator.language || 'hu').slice(0,2);
-const langMap = {hu:'hu', en:'en', el:'el', hr:'hr', ja:'ja'};
+const langMap = {hu:'hu', en:'en', el:'el', hr:'hr', ja:'ja', pl:'pl'};
 setLang(savedLang || langMap[bl] || 'en');
 
 // ── Audio Player ──
