@@ -363,7 +363,7 @@ var _lang = null;
 try { _lang = localStorage.getItem('aihoy-lang'); } catch(e) {}
 if (!_lang) {
   var _bl = (navigator.language || 'hu').slice(0,2);
-  _lang = (_bl === 'en') ? 'en' : (_bl === 'el') ? 'el' : (_bl === 'hr') ? 'hr' : (_bl === 'ja') ? 'ja' : 'hu';
+  _lang = (_bl === 'en') ? 'en' : (_bl === 'el') ? 'el' : (_bl === 'hr') ? 'hr' : (_bl === 'ja') ? 'ja' : (_bl === 'pl') ? 'pl' : 'hu';
 }
 aihoyLang(_lang);
 </script>
