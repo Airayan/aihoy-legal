@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aihoy.app/sitemap.xml
