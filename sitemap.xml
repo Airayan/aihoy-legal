@@ -4,29 +4,47 @@
 
   <url>
     <loc>https://aihoy.app/</loc>
-    <lastmod>2026-05-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="hu" href="https://aihoy.app/"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://aihoy.app/"/>
-    <xhtml:link rel="alternate" hreflang="el" href="https://aihoy.app/"/>
-    <xhtml:link rel="alternate" hreflang="hr" href="https://aihoy.app/"/>
-    <xhtml:link rel="alternate" hreflang="ja" href="https://aihoy.app/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://aihoy.app/"/>
   </url>
 
   <url>
     <loc>https://aihoy.app/pitch_user.html</loc>
-    <lastmod>2026-05-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://aihoy.app/pitch_business-2.html</loc>
-    <lastmod>2026-05-25</lastmod>
+    <lastmod>2026-07-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://aihoy.app/privacy</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://aihoy.app/child-safety</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://aihoy.app/delete-account</loc>
+    <lastmod>2026-07-26</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 
 </urlset>

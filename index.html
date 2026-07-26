@@ -3,97 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aihoy! — The Vibematcher | Boat Sharing & Crew Matching App</title>
-
-<!-- ── SEO ── -->
-<meta name="description" content="Match sailors &amp; travelers by vibe — language, interests, age and style. Find your crew for diving, fishing or sailing. Greek Islands &amp; Adriatic. Free.">
-<meta name="keywords" content="boat sharing, crew matching, sailing app, boatshare, hajóbérlés, Görög szigetek, Adria, crew finder, charter, sailing Mediterranean, vibematcher, Aihoy">
-<meta name="author" content="Aihoy!">
+<title>Aihoy! — The Vibematcher | Hajós társkereső és túraszervező app</title>
+<meta name="description" content="Aihoy! — találj túrát, társaságot vagy legénységet a vízparton, vagy szervezd meg a sajátodat. GPS-radar, vibe-alapú párosítás, chat fordítóval. Görög szigetek és Adria. Android app.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://aihoy.app/">
+<link rel="icon" type="image/png" href="/favicon.png">
 
-<!-- ── Open Graph (Facebook, WhatsApp, LinkedIn) ── -->
+<meta property="og:title" content="Aihoy! — The Vibematcher">
+<meta property="og:description" content="Találj túrát, társaságot vagy legénységet a vízparton — vagy szervezd meg a sajátodat.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://aihoy.app/">
-<meta property="og:title" content="Aihoy! — Find Your Crew. Match by Vibe.">
-<meta property="og:description" content="Match with sailors and travelers by language, interests and style. Diving, fishing, sunset sailing — find the right people for your next adventure. Greek Islands & Adriatic. Free.">
 <meta property="og:image" content="https://aihoy.app/og-image.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:locale" content="en_US">
-<meta property="og:locale:alternate" content="hu_HU">
-<meta property="og:site_name" content="Aihoy!">
 
-<!-- ── Twitter / X Card ── -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:site" content="@aihoy_app">
-<meta name="twitter:creator" content="@aihoy_app">
-<meta name="twitter:title" content="Aihoy! — Find Your Crew. Match by Vibe.">
-<meta name="twitter:description" content="Match with sailors and travelers by language, interests and style. Greek Islands & Adriatic. Free, no commission.">
-<meta name="twitter:image" content="https://aihoy.app/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<!-- ── Structured Data (JSON-LD) ── -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "MobileApplication",
   "name": "Aihoy!",
   "alternateName": "Aihoy Vibematcher",
-  "description": "Social boat sharing app that matches sailors, travelers and boat owners by compatibility — language, interests, age and travel style. Greek Islands and Adriatic focus.",
+  "description": "Social boat sharing and trip app that matches travelers, sailors and crew by vibe — language, interests and travel style. Greek Islands and Adriatic focus.",
   "url": "https://aihoy.app",
   "applicationCategory": "TravelApplication",
   "operatingSystem": "Android",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "EUR"
-  },
+  "downloadUrl": "https://play.google.com/store/apps/details?id=com.aihoy.app",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
   "author": {
-    "@type": "Organization",
-    "name": "Aihoy!",
-    "url": "https://aihoy.app",
-    "email": "aihoy.app@gmail.com",
-    "sameAs": [
-      "https://x.com/aihoy_app",
-      "https://www.instagram.com/aihoy.app"
-    ]
+    "@type": "Person", "name": "Aihoy!", "url": "https://aihoy.app", "email": "aihoy.app@gmail.com",
+    "sameAs": ["https://x.com/aihoy_app", "https://www.instagram.com/aihoy.app"]
   },
-  "inLanguage": ["hu", "en", "el", "hr", "ja"],
-  "areaServed": ["Greece", "Croatia", "Hungary", "Mediterranean"]
+  "inLanguage": ["hu", "en"],
+  "areaServed": ["Greece", "Croatia", "Hungary", "Slovakia", "Romania", "Mediterranean"]
 }
 </script>
 
-<!-- ── Favicon ── -->
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7NXGL1PPX6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7NXGL1PPX6');
+</script>
+
 <style>
 :root {
   --ocean: #0A1628; --ocean2: #0F1F35; --cyan: #00E5FF;
   --purple: #9D4EDD; --text: #E8F4FD; --textsec: #8BA8C8; --surface: #162440;
+  --gold: #E8A020;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Outfit', sans-serif; background: var(--ocean); color: var(--text); overflow-x: hidden; padding-top: 58px; }
+body { font-family: 'Outfit', sans-serif; background: var(--ocean); color: var(--text); overflow-x: hidden; }
 
+/* ── Nyelvváltó ── */
 .lang-bar {
-  position: fixed; top: 58px; right: 20px; z-index: 100;
-  display: flex; gap: 6px;
+  position: fixed; top: 14px; right: 16px; z-index: 300;
+  display: flex; gap: 4px;
   background: rgba(15,31,53,0.9); backdrop-filter: blur(12px);
-  border: 1px solid rgba(0,229,255,0.15); border-radius: 100px; padding: 6px 10px;
+  border: 1px solid rgba(0,229,255,0.15); border-radius: 100px; padding: 5px 8px;
 }
-.lang-btn {
-  background: none; border: none; cursor: pointer; font-size: 20px;
-  padding: 4px 6px; border-radius: 50%; transition: background 0.2s, transform 0.2s; line-height: 1;
-}
-.lang-btn:hover { background: rgba(0,229,255,0.1); transform: scale(1.15); }
-.lang-btn.active { background: rgba(0,229,255,0.15); }
+.lang-btn { background: none; border: none; cursor: pointer; font-size: 18px; padding: 3px 6px; border-radius: 100px; transition: background 0.2s, transform 0.2s; line-height: 1; color: var(--textsec); font-weight: 700; font-family: inherit; }
+.lang-btn:hover { background: rgba(0,229,255,0.1); transform: scale(1.08); }
+.lang-btn.active { background: rgba(0,229,255,0.15); color: var(--cyan); }
 
+/* ── Hero ── */
 .hero {
   min-height: 100vh; display: flex; flex-direction: column;
   align-items: center; justify-content: center; text-align: center;
-  padding: 60px 24px 80px; position: relative;
+  padding: 80px 24px 60px; position: relative;
   background: radial-gradient(ellipse at 20% 50%, rgba(0,229,255,0.08) 0%, transparent 60%),
               radial-gradient(ellipse at 80% 20%, rgba(157,78,221,0.10) 0%, transparent 60%),
               var(--ocean);
@@ -103,254 +83,240 @@ body { font-family: 'Outfit', sans-serif; background: var(--ocean); color: var(-
   content: ''; position: absolute; inset: 0; pointer-events: none;
   background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300E5FF' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
 }
-.logo-wrapper { margin-bottom: 40px; animation: fadeUp 0.8s ease both; }
+.logo-wrapper { margin-bottom: 32px; animation: fadeUp 0.8s ease both; }
 .logo-fallback {
-  width: 110px; height: 110px; border-radius: 26px;
+  width: 100px; height: 100px; border-radius: 24px;
   background: linear-gradient(135deg, var(--ocean2), var(--surface));
   border: 2px solid rgba(0,229,255,0.25);
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto; font-size: 52px;
+  margin: 0 auto; font-size: 48px;
 }
 h1 {
-  font-family: 'Fraunces', serif; font-size: clamp(64px, 14vw, 120px);
+  font-family: 'Fraunces', serif; font-size: clamp(60px, 14vw, 116px);
   font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin-bottom: 8px;
   background: linear-gradient(135deg, var(--cyan) 0%, #7B8FFF 50%, var(--purple) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   animation: fadeUp 0.8s 0.1s ease both;
 }
-.tagline {
-  font-family: 'Fraunces', serif; font-size: clamp(16px, 3vw, 22px);
-  color: var(--textsec); font-style: italic; font-weight: 300;
-  margin-bottom: 56px; animation: fadeUp 0.8s 0.2s ease both;
-}
-.hero-desc {
-  max-width: 560px; font-size: 17px; line-height: 1.8;
-  color: var(--textsec); margin-bottom: 56px; animation: fadeUp 0.8s 0.3s ease both;
-}
+.tagline { font-family: 'Fraunces', serif; font-size: clamp(16px, 3vw, 22px); color: var(--textsec); font-style: italic; font-weight: 300; margin-bottom: 6px; animation: fadeUp 0.8s 0.2s ease both; }
+.subtagline { font-size: clamp(14px, 2vw, 17px); color: var(--text); font-weight: 500; margin-bottom: 40px; animation: fadeUp 0.8s 0.25s ease both; }
+.hero-desc { max-width: 560px; font-size: 17px; line-height: 1.8; color: var(--textsec); margin-bottom: 44px; animation: fadeUp 0.8s 0.3s ease both; }
 .hero-desc strong { color: var(--text); font-weight: 600; }
-.cta-group {
-  display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
-  animation: fadeUp 0.8s 0.4s ease both;
-}
-.btn {
-  padding: 16px 36px; border-radius: 100px; font-size: 15px; font-weight: 700;
-  text-decoration: none; letter-spacing: 0.5px;
-  transition: transform 0.2s, box-shadow 0.2s;
-  display: inline-flex; align-items: center; gap: 8px; cursor: pointer; border: none;
-}
+.cta-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.8s 0.4s ease both; }
+.btn { padding: 16px 34px; border-radius: 100px; font-size: 15px; font-weight: 700; text-decoration: none; letter-spacing: 0.3px; transition: transform 0.2s, box-shadow 0.2s; display: inline-flex; align-items: center; gap: 9px; cursor: pointer; border: none; font-family: inherit; }
 .btn:hover { transform: translateY(-2px); }
 .btn-primary { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: white; box-shadow: 0 8px 32px rgba(0,229,255,0.2); }
 .btn-primary:hover { box-shadow: 0 12px 40px rgba(0,229,255,0.35); }
 .btn-outline { background: transparent; color: var(--cyan); border: 1.5px solid rgba(0,229,255,0.4); }
 .btn-outline:hover { background: rgba(0,229,255,0.05); }
-.btn-beta { background: linear-gradient(135deg, #E8A020, var(--purple)); color: white; box-shadow: 0 8px 32px rgba(232,160,32,0.25); }
-.btn-beta:hover { box-shadow: 0 12px 40px rgba(232,160,32,0.4); }
+.btn-play-anthem { background: rgba(22,36,64,0.6); color: var(--textsec); border: 1px solid rgba(0,229,255,0.12); font-size: 13px; padding: 10px 20px; margin-top: 28px; animation: fadeUp 0.8s 0.5s ease both; }
+.btn-play-anthem:hover { color: var(--cyan); border-color: rgba(0,229,255,0.3); transform: none; }
+
+/* ── Anthem sticky sáv (rejtett, amíg nem szól) ── */
+#sticky-player {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 400;
+  background: rgba(10,22,40,0.96); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,229,255,0.15);
+  padding: 8px 16px; display: none; align-items: center; gap: 12px;
+}
+#sticky-player.visible { display: flex; }
+#sticky-player .p-btn { width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer; background: linear-gradient(135deg, var(--cyan), var(--purple)); color: #06101f; font-size: 15px; flex-shrink: 0; }
+#sticky-player .p-label { font-size: 11px; color: var(--textsec); letter-spacing: 1px; text-transform: uppercase; }
+#sticky-player .p-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; position: relative; }
+#sticky-player .p-fill { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--purple)); border-radius: 3px; width: 0%; }
+#sticky-player .p-close { background: none; border: none; color: var(--textsec); cursor: pointer; font-size: 18px; flex-shrink: 0; }
 
 /* ── Stats ── */
-.stats { background: var(--surface); border-top: 1px solid rgba(0,229,255,0.08); border-bottom: 1px solid rgba(0,229,255,0.08); padding: 60px 24px; }
-.stats-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; text-align: center; }
-.stat-num { font-family: 'Fraunces', serif; font-size: 48px; font-weight: 900; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; line-height: 1; margin-bottom: 8px; }
+.stats { background: var(--surface); border-top: 1px solid rgba(0,229,255,0.08); border-bottom: 1px solid rgba(0,229,255,0.08); padding: 56px 24px; }
+.stats-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 28px; text-align: center; }
+.stat-num { font-family: 'Fraunces', serif; font-size: clamp(32px, 6vw, 46px); font-weight: 900; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; line-height: 1; margin-bottom: 8px; }
 .stat-label { font-size: 13px; color: var(--textsec); line-height: 1.5; }
 
-/* ── Waitlist Section ── */
-.waitlist {
-  padding: 100px 24px; text-align: center;
-  background: radial-gradient(ellipse at center, rgba(157,78,221,0.08) 0%, transparent 70%), var(--ocean);
-  border-top: 1px solid rgba(0,229,255,0.08);
-}
-.waitlist-inner { max-width: 600px; margin: 0 auto; }
-.waitlist-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); font-weight: 600; margin-bottom: 16px; }
-.waitlist-title { font-family: 'Fraunces', serif; font-size: clamp(28px,5vw,44px); font-weight: 700; margin-bottom: 16px; line-height: 1.15; }
-.waitlist-sub { font-size: 16px; color: var(--textsec); line-height: 1.7; margin-bottom: 40px; }
+/* ── Általános szekció ── */
+.section { padding: 88px 24px; max-width: 1000px; margin: 0 auto; }
+.section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); font-weight: 700; margin-bottom: 14px; text-align: center; }
+.section-title { font-family: 'Fraunces', serif; font-size: clamp(28px, 5vw, 42px); font-weight: 700; line-height: 1.15; text-align: center; margin-bottom: 16px; }
+.section-lead { font-size: 17px; color: var(--textsec); line-height: 1.7; text-align: center; max-width: 620px; margin: 0 auto 48px; }
+.alt { background: var(--ocean2); }
 
-/* Counter */
-.counter-box {
-  background: var(--surface); border: 1px solid rgba(157,78,221,0.25);
-  border-radius: 20px; padding: 28px 32px; margin-bottom: 40px;
-  display: flex; align-items: center; justify-content: center; gap: 20px;
-}
-.counter-num {
-  font-family: 'Fraunces', serif; font-size: 56px; font-weight: 900;
-  background: linear-gradient(135deg, var(--purple), var(--cyan));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  line-height: 1;
-}
-.counter-label { font-size: 14px; color: var(--textsec); line-height: 1.5; text-align: left; }
+/* ── Feature rács ── */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.feature { background: var(--surface); border: 1px solid rgba(0,229,255,0.08); border-radius: 16px; padding: 26px; transition: transform 0.2s, border-color 0.2s; }
+.feature:hover { transform: translateY(-3px); border-color: rgba(0,229,255,0.25); }
+.feature .emoji { font-size: 28px; display: block; margin-bottom: 14px; }
+.feature h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+.feature p { font-size: 14px; color: var(--textsec); line-height: 1.65; }
 
-/* Waitlist form */
-.waitlist-form { display: flex; gap: 12px; max-width: 480px; margin: 0 auto 24px; flex-wrap: wrap; justify-content: center; }
-.waitlist-input {
-  flex: 1; min-width: 220px; padding: 16px 20px; border-radius: 100px;
-  background: var(--surface); border: 1.5px solid rgba(0,229,255,0.2);
-  color: var(--text); font-family: 'Outfit', sans-serif; font-size: 15px;
-  outline: none; transition: border-color 0.2s;
-}
-.waitlist-input:focus { border-color: rgba(0,229,255,0.5); }
-.waitlist-input::placeholder { color: var(--textsec); }
-.waitlist-success {
-  display: none; background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
-  border-radius: 16px; padding: 20px 24px; margin-top: 16px;
-  font-size: 15px; color: var(--cyan);
-}
+/* ── Türelem-blokk ── */
+.patience { background: radial-gradient(ellipse at center, rgba(157,78,221,0.08) 0%, transparent 70%), var(--ocean); text-align: center; }
+.patience .box { max-width: 640px; margin: 0 auto; background: var(--surface); border: 1px solid rgba(157,78,221,0.22); border-radius: 20px; padding: 40px 32px; }
+.patience h2 { font-family: 'Fraunces', serif; font-size: clamp(24px, 4vw, 34px); font-weight: 700; margin-bottom: 20px; }
+.patience p { font-size: 16px; color: var(--textsec); line-height: 1.8; margin-bottom: 16px; }
+.patience p:last-child { margin-bottom: 0; }
+.patience strong { color: var(--text); font-weight: 600; }
 
-/* Beta section */
-.beta-section {
-  padding: 80px 24px; text-align: center;
-  background: var(--surface);
-  border-top: 1px solid rgba(232,160,32,0.12);
-}
-.beta-inner { max-width: 600px; margin: 0 auto; }
-.beta-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #E8A020; font-weight: 600; margin-bottom: 16px; }
-.beta-title { font-family: 'Fraunces', serif; font-size: clamp(24px,4vw,38px); font-weight: 700; margin-bottom: 16px; }
-.beta-sub { font-size: 16px; color: var(--textsec); line-height: 1.7; margin-bottom: 36px; }
-.beta-perks { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 36px; }
-.beta-perk {
-  background: rgba(232,160,32,0.08); border: 1px solid rgba(232,160,32,0.2);
-  border-radius: 100px; padding: 8px 18px; font-size: 13px; color: #E8A020;
-}
+/* ── Történet ── */
+.story { max-width: 680px; margin: 0 auto; }
+.story h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 4.5vw, 38px); font-weight: 700; margin-bottom: 28px; line-height: 1.2; text-align: center; }
+.story p { font-size: 17px; color: var(--textsec); line-height: 1.85; margin-bottom: 20px; }
+.story p strong { color: var(--text); font-weight: 600; }
+.story .signature { font-family: 'Fraunces', serif; font-style: italic; color: var(--textsec); text-align: center; margin-top: 8px; }
 
-/* Pitches */
-.pitches { padding: 100px 24px; max-width: 1000px; margin: 0 auto; }
-.section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); font-weight: 600; margin-bottom: 16px; text-align: center; }
-.section-title { font-family: 'Fraunces', serif; font-size: clamp(28px,5vw,48px); font-weight: 700; text-align: center; margin-bottom: 64px; color: var(--text); line-height: 1.15; }
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px,1fr)); gap: 24px; }
-.card { background: var(--surface); border-radius: 28px; padding: 40px 36px; border: 1px solid rgba(0,229,255,0.1); text-decoration: none; display: block; transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s; position: relative; overflow: hidden; }
-.card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: 0; transition: opacity 0.3s; }
-.card.user::before { background: linear-gradient(90deg, var(--cyan), #7B8FFF); }
-.card.business::before { background: linear-gradient(90deg, #E8A020, var(--purple)); }
-.card:hover { transform: translateY(-6px); border-color: rgba(0,229,255,0.25); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
-.card:hover::before { opacity: 1; }
-.card-emoji { font-size: 48px; margin-bottom: 24px; display: block; }
-.card-title { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.2; }
-.card-desc { font-size: 15px; color: var(--textsec); line-height: 1.7; margin-bottom: 28px; }
-.card-link { font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
-.card.user .card-link { color: var(--cyan); }
-.card.business .card-link { color: #E8A020; }
-.card-link::after { content: '→'; transition: transform 0.2s; }
-.card:hover .card-link::after { transform: translateX(4px); }
+/* ── Támogatás ── */
+.support { text-align: center; }
+.support .box { max-width: 560px; margin: 0 auto; background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(157,78,221,0.06)); border: 1px solid rgba(0,229,255,0.15); border-radius: 20px; padding: 40px 32px; }
+.support h2 { font-family: 'Fraunces', serif; font-size: clamp(22px, 4vw, 30px); font-weight: 700; margin-bottom: 14px; }
+.support p { font-size: 16px; color: var(--textsec); line-height: 1.7; margin-bottom: 28px; }
+.btn-kofi { background: linear-gradient(135deg, var(--gold), var(--purple)); color: white; box-shadow: 0 8px 32px rgba(232,160,32,0.25); }
+.btn-kofi:hover { box-shadow: 0 12px 40px rgba(232,160,32,0.4); }
+.support .note { font-size: 12px; color: var(--textsec); margin-top: 20px; margin-bottom: 0; opacity: 0.7; }
 
-footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
-.footer-logo { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 900; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 12px; }
-.footer-sub { font-size: 13px; color: var(--textsec); margin-bottom: 24px; }
-.footer-link { color: var(--textsec); text-decoration: none; font-size: 13px; transition: color 0.2s; }
-.footer-link:hover { color: var(--cyan); }
+/* ── Pitch kártyák ── */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.card { background: var(--surface); border: 1px solid rgba(0,229,255,0.08); border-radius: 20px; padding: 32px; text-decoration: none; transition: transform 0.2s, border-color 0.2s; display: block; }
+.card:hover { transform: translateY(-4px); border-color: rgba(0,229,255,0.3); }
+.card-emoji { font-size: 36px; display: block; margin-bottom: 16px; }
+.card-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.2; }
+.card-desc { font-size: 14px; color: var(--textsec); line-height: 1.65; margin-bottom: 16px; }
+.card-link { color: var(--cyan); font-size: 14px; font-weight: 700; }
 
-@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes countUp { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+/* ── Download CTA sáv ── */
+.download-cta { background: var(--surface); border-top: 1px solid rgba(0,229,255,0.08); text-align: center; padding: 72px 24px; }
+.download-cta h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 5vw, 40px); font-weight: 700; margin-bottom: 24px; }
 
-@media (max-width: 600px) {
-  .stats-inner { grid-template-columns: repeat(2,1fr); gap: 24px; }
-  .cta-group { flex-direction: column; align-items: center; }
-  .btn { width: 100%; max-width: 280px; justify-content: center; }
-  .counter-box { flex-direction: column; gap: 12px; }
-  .counter-label { text-align: center; }
-}
+/* ── Footer ── */
+footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,229,255,0.08); }
+.footer-logo { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 900; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; }
+.footer-sub { color: var(--textsec); font-size: 13px; margin-bottom: 24px; }
+.footer-social { display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; }
+.footer-social a { color: var(--textsec); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+.footer-social a:hover { color: var(--cyan); }
+.footer-links { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+.footer-links a { color: var(--textsec); text-decoration: none; font-size: 13px; }
+.footer-links a:hover { color: var(--cyan); }
+.footer-mail { color: var(--cyan); text-decoration: none; font-size: 14px; }
 
-/* ── Audio Player ── */
-.audio-section { padding: 60px 24px; text-align: center; background: var(--ocean); border-top: 1px solid rgba(0,229,255,0.08); }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+[data-i18n-lang].hidden { display: none; }
 </style>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7NXGL1PPX6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7NXGL1PPX6');
-</script>
 </head>
 <body>
 
-<!-- ── Sticky Audio Player ── -->
-<audio id="aihoy-audio" src="Aihoy!%20(Remastered).mp3" preload="auto" loop></audio>
-<div id="sticky-player" style="position:fixed;top:0;left:0;right:0;z-index:9999;background:rgba(10,22,40,0.95);backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,229,255,0.15);padding:10px 20px;display:flex;align-items:center;gap:14px;">
-  <button id="play-btn" onclick="togglePlay()" style="width:38px;height:38px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#00E5FF,#9D4EDD);color:white;font-size:16px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 12px rgba(0,229,255,0.3);">▶</button>
-  <div style="flex:1;min-width:0;">
-    <div style="font-size:11px;color:#8BA8C8;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;">🎵 Aihoy! Anthem</div>
-    <div style="position:relative;height:3px;background:rgba(255,255,255,0.1);border-radius:3px;cursor:pointer;" id="progress-bar" onclick="seek(event)">
-      <div id="progress-fill" style="height:100%;background:linear-gradient(90deg,#00E5FF,#9D4EDD);border-radius:3px;width:0%;transition:width 0.1s;"></div>
-    </div>
-  </div>
-  <span id="time-cur" style="font-size:11px;color:#8BA8C8;flex-shrink:0;">0:00</span>
+<audio id="aihoy-audio" src="Aihoy!%20(Remastered).mp3" preload="none" loop></audio>
+
+<!-- Anthem sticky sáv (csak lejátszáskor jelenik meg) -->
+<div id="sticky-player">
+  <button class="p-btn" id="sp-btn" onclick="togglePlay()">⏸</button>
+  <span class="p-label">🎵 Aihoy! Anthem</span>
+  <div class="p-bar" id="sp-bar" onclick="seek(event)"><div class="p-fill" id="sp-fill"></div></div>
+  <button class="p-close" onclick="stopAnthem()" title="Bezárás">✕</button>
 </div>
 
-<div class="lang-bar" style="top:60px;gap:2px;padding:4px 10px;">
-  <button class="lang-btn" id="btn-hu" onclick="setLang('hu')" title="Magyar" style="font-size:16px;padding:3px 5px;">🇭🇺</button>
-  <button class="lang-btn" id="btn-en" onclick="setLang('en')" title="English" style="font-size:16px;padding:3px 5px;">🇬🇧</button>
-  <button class="lang-btn" id="btn-el" onclick="setLang('el')" title="Ελληνικά" style="font-size:16px;padding:3px 5px;">🇬🇷</button>
-  <button class="lang-btn" id="btn-hr" onclick="setLang('hr')" title="Hrvatski" style="font-size:16px;padding:3px 5px;">🇭🇷</button>
-  <button class="lang-btn" id="btn-ja" onclick="setLang('ja')" title="日本語" style="font-size:16px;padding:3px 5px;">🇯🇵</button>
-  <button class="lang-btn" id="btn-pl" onclick="setLang('pl')" title="Polski" style="font-size:16px;padding:3px 5px;">🇵🇱</button>
+<!-- Nyelvváltó -->
+<div class="lang-bar">
+  <button class="lang-btn active" id="btn-hu" onclick="setLang('hu')">HU</button>
+  <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
 </div>
 
+<!-- ══════════ HERO ══════════ -->
 <section class="hero">
   <div class="logo-wrapper"><div class="logo-fallback">⚓</div></div>
   <h1>Aihoy!</h1>
   <p class="tagline">The Vibematcher</p>
-  <p class="tagline" style="font-size:clamp(13px,2vw,16px);margin-top:-36px;margin-bottom:40px;opacity:0.7;">Find your crew — match by vibe.</p>
+  <p class="subtagline" id="subtagline"></p>
   <p class="hero-desc" id="hero-desc"></p>
   <div class="cta-group">
-    <a href="#waitlist" class="btn btn-primary" id="btn-waitlist"></a>
-    <a href="#pitches" class="btn btn-outline" id="btn-learn"></a>
+    <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download"></a>
+    <a href="#travelers" class="btn btn-outline" id="btn-learn"></a>
   </div>
+  <button class="btn btn-play-anthem" onclick="togglePlay()" id="btn-anthem"></button>
 </section>
 
-<!-- ── Stats ── -->
+<!-- ══════════ STATS ══════════ -->
 <div class="stats">
   <div class="stats-inner">
     <div><span class="stat-num">0€</span><span class="stat-label" id="stat1"></span></div>
-    <div><span class="stat-num">5</span><span class="stat-label" id="stat2"></span></div>
-    <div><span class="stat-num">48</span><span class="stat-label" id="stat3"></span></div>
+    <div><span class="stat-num">7</span><span class="stat-label" id="stat2"></span></div>
+    <div><span class="stat-num">⚓</span><span class="stat-label" id="stat3"></span></div>
     <div><span class="stat-num">∞</span><span class="stat-label" id="stat4"></span></div>
   </div>
 </div>
 
-<!-- ── Waitlist ── -->
-<section class="waitlist" id="waitlist">
-  <div class="waitlist-inner">
-    <p class="waitlist-tag" id="wl-tag"></p>
-    <h2 class="waitlist-title" id="wl-title"></h2>
-    <p class="waitlist-sub" id="wl-sub"></p>
-
-    <div class="counter-box">
-      <div class="counter-num" id="counter-num">0</div>
-      <div class="counter-label" id="counter-label"></div>
-    </div>
-
-    <div class="waitlist-form">
-      <input type="email" class="waitlist-input" id="waitlist-email" placeholder="email@example.com">
-      <button class="btn btn-primary" onclick="joinWaitlist()" id="btn-join"></button>
-    </div>
-    <div class="waitlist-success" id="waitlist-success"></div>
+<!-- ══════════ UTAZÓKNAK ══════════ -->
+<section class="section" id="travelers">
+  <p class="section-tag" id="trav-tag"></p>
+  <h2 class="section-title" id="trav-title"></h2>
+  <p class="section-lead" id="trav-lead"></p>
+  <div class="feature-grid">
+    <div class="feature"><span class="emoji">🔍</span><h3 id="tf1-t"></h3><p id="tf1-d"></p></div>
+    <div class="feature"><span class="emoji">✍️</span><h3 id="tf2-t"></h3><p id="tf2-d"></p></div>
+    <div class="feature"><span class="emoji">📡</span><h3 id="tf3-t"></h3><p id="tf3-d"></p></div>
+    <div class="feature"><span class="emoji">🤝</span><h3 id="tf4-t"></h3><p id="tf4-d"></p></div>
+    <div class="feature"><span class="emoji">💬</span><h3 id="tf5-t"></h3><p id="tf5-d"></p></div>
+    <div class="feature"><span class="emoji">🛡️</span><h3 id="tf6-t"></h3><p id="tf6-d"></p></div>
   </div>
 </section>
 
-<!-- ── Beta Tester ── -->
-<section class="beta-section" id="beta">
-  <div class="beta-inner">
-    <p class="beta-tag" id="beta-tag"></p>
-    <h2 class="beta-title" id="beta-title"></h2>
-    <p class="beta-sub" id="beta-sub"></p>
-    <div class="beta-perks">
-      <span class="beta-perk" id="perk1"></span>
-      <span class="beta-perk" id="perk2"></span>
-      <span class="beta-perk" id="perk3"></span>
+<!-- ══════════ HAJÓSOKNAK ══════════ -->
+<section class="section alt" style="max-width:none;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <p class="section-tag" id="host-tag"></p>
+    <h2 class="section-title" id="host-title"></h2>
+    <p class="section-lead" id="host-lead"></p>
+    <div class="feature-grid">
+      <div class="feature"><span class="emoji">🔁</span><h3 id="hf1-t"></h3><p id="hf1-d"></p></div>
+      <div class="feature"><span class="emoji">📋</span><h3 id="hf2-t"></h3><p id="hf2-d"></p></div>
+      <div class="feature"><span class="emoji">🚤</span><h3 id="hf3-t"></h3><p id="hf3-d"></p></div>
+      <div class="feature"><span class="emoji">💬</span><h3 id="hf4-t"></h3><p id="hf4-d"></p></div>
+      <div class="feature"><span class="emoji">⚓</span><h3 id="hf5-t"></h3><p id="hf5-d"></p></div>
+      <div class="feature"><span class="emoji">💸</span><h3 id="hf6-t"></h3><p id="hf6-d"></p></div>
     </div>
-    <a href="mailto:aihoy.app@gmail.com?subject=Beta%20tester" class="btn btn-beta" id="btn-beta-mail"></a>
   </div>
 </section>
 
-<!-- ── Pitches ── -->
-<section class="pitches" id="pitches">
-  <p class="section-tag" id="section-tag"></p>
-  <h2 class="section-title" id="section-title"></h2>
-  <div class="cards">
-    <a href="pitch_user.html" class="card user">
+<!-- ══════════ TÜRELEM ══════════ -->
+<section class="section patience" style="max-width:none;">
+  <div class="box">
+    <h2 id="pat-title"></h2>
+    <p id="pat-p1"></p>
+    <p id="pat-p2"></p>
+  </div>
+</section>
+
+<!-- ══════════ TÖRTÉNET ══════════ -->
+<section class="section">
+  <div class="story">
+    <h2 id="story-title"></h2>
+    <p id="story-p1"></p>
+    <p id="story-p2"></p>
+    <p id="story-p3"></p>
+    <p id="story-p4"></p>
+  </div>
+</section>
+
+<!-- ══════════ TÁMOGATÁS ══════════ -->
+<section class="section support alt" style="max-width:none;">
+  <div class="box">
+    <h2 id="sup-title"></h2>
+    <p id="sup-p"></p>
+    <a href="https://ko-fi.com/aihoy" target="_blank" rel="noopener" class="btn btn-kofi" id="btn-kofi"></a>
+    <p class="note" id="sup-note"></p>
+  </div>
+</section>
+
+<!-- ══════════ PITCH KÁRTYÁK ══════════ -->
+<section class="section">
+  <p class="section-tag" id="pitch-tag"></p>
+  <h2 class="section-title" id="pitch-title"></h2>
+  <div class="cards" style="margin-top:40px;">
+    <a href="pitch_user.html" class="card">
       <span class="card-emoji">🧳</span>
       <h3 class="card-title" id="card1-title"></h3>
       <p class="card-desc" id="card1-desc"></p>
       <span class="card-link" id="card1-link"></span>
     </a>
-    <a href="pitch_business-2.html" class="card business">
+    <a href="pitch_business-2.html" class="card">
       <span class="card-emoji">⛵</span>
       <h3 class="card-title" id="card2-title"></h3>
       <p class="card-desc" id="card2-desc"></p>
@@ -359,301 +325,183 @@ footer { padding: 48px 24px; text-align: center; border-top: 1px solid rgba(255,
   </div>
 </section>
 
+<!-- ══════════ DOWNLOAD CTA ══════════ -->
+<div class="download-cta">
+  <h2 id="dl-title"></h2>
+  <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download2"></a>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
 <footer>
   <div class="footer-logo">Aihoy!</div>
   <p class="footer-sub">The Vibematcher · 2026</p>
-    <div style="display:flex;gap:20px;justify-content:center;margin-bottom:20px;">
-    <a href="https://x.com/aihoy_app" target="_blank" rel="noopener" style="color:var(--textsec);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#00E5FF'" onmouseout="this.style.color='var(--textsec)'">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.733-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      @aihoy_app
-    </a>
-    <a href="https://www.instagram.com/aihoy.app" target="_blank" rel="noopener" style="color:var(--textsec);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#E1306C'" onmouseout="this.style.color='var(--textsec)'">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      @aihoy.app
-    </a>
-    <a href="https://www.facebook.com/profile.php?id=61589779041288" target="_blank" rel="noopener" style="color:var(--textsec);text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;transition:color 0.2s;" onmouseover="this.style.color='#1877F2'" onmouseout="this.style.color='var(--textsec)'">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      Facebook
-    </a>
+  <div class="footer-social">
+    <a href="https://x.com/aihoy_app" target="_blank" rel="noopener">@aihoy_app</a>
+    <a href="https://www.instagram.com/aihoy.app" target="_blank" rel="noopener">@aihoy.app</a>
+    <a href="https://www.facebook.com/profile.php?id=61589779041288" target="_blank" rel="noopener">Facebook</a>
   </div>
-  <a href="mailto:aihoy.app@gmail.com" class="footer-link">aihoy.app@gmail.com</a>
+  <div class="footer-links">
+    <a href="/privacy">Adatvédelem / Privacy</a> ·
+    <a href="/child-safety">Child Safety</a> ·
+    <a href="/delete-account">Fiók törlése / Delete account</a>
+  </div>
+  <a href="mailto:aihoy.app@gmail.com" class="footer-mail">aihoy.app@gmail.com</a>
 </footer>
 
 <script>
 const T = {
   hu: {
-    'hero-desc': 'Búvárkodás, horgászat, hajós naplemente, csoportos kirándulás — rengeteg élmény, amit <strong>nem mindegy kivel</strong> élsz meg. Egyedül drága, idegenekkel kockázatos.<br><br>Az Aihoy! összeköt azokkal akikkel <strong>tényleg érdemes elindulni.</strong>',
-    'btn-waitlist': '⚓ Feliratkozom',
-    'btn-learn': '📖 Tudj meg többet',
+    'subtagline': 'Nem kell hajó. Elég egy ötlet és egy dátum.',
+    'hero-desc': 'Búvárkodás, horgászat, hajós naplemente, közös kirándulás — élmények, amiket <strong>nem mindegy, kivel</strong> élsz meg. Egyedül drága, idegenekkel kockázatos.<br><br>Az Aihoy! összeköt azokkal, akikkel <strong>tényleg érdemes elindulni.</strong>',
+    'btn-download': '▶ Letöltés a Google Play-ről',
+    'btn-learn': '📖 Mit tud?',
+    'btn-anthem': '🎵 Aihoy! Anthem',
     'stat1': 'Jutalék<br>Teljesen ingyenes',
-    'stat2': 'Nyelven elérhető<br>hu / en / el / hr / ja',
-    'stat3': 'Ország<br>Már figyel minket',
+    'stat2': 'Nyelv<br>hu · en · de · it · el · hr · pl',
+    'stat3': 'Play Áruház<br>Most indult',
     'stat4': 'Lehetőség<br>Görög szigetek & Adria',
-    'wl-tag': '🚀 Hamarosan',
-    'wl-title': 'Legyél az elsők között!',
-    'wl-sub': 'Az Aihoy! hamarosan elérhető lesz az összes felhasználónak. Iratkozz fel és értesítünk az induláskor — elsőként!',
-    'counter-label': 'hajós & utazó\nmár várakozik',
-    'btn-join': '🔔 Értesíts engem',
-    'waitlist-success': '✅ Feliratkoztál! Értesítünk az induláskor. ⚓',
-    'beta-tag': '🧪 Beta tesztelők kerestetnek',
-    'beta-title': 'Alakítsd te az Aihoy! jövőjét!',
-    'beta-sub': 'Keresünk lelkes tesztelőket akik kipróbálják az appot és visszajelzést adnak. Cserébe korai hozzáférés és névjóváírás az appban.',
-    'perk1': '✅ Korai hozzáférés',
-    'perk2': '🏆 Névjóváírás az appban',
-    'perk3': '⚡ Direkt kapcsolat a fejlesztővel',
-    'btn-beta-mail': '📩 Jelentkezem beta tesztelőnek',
-    'section-tag': 'Kinek szól?',
-    'section-title': 'Válaszd ki a te perspektívádat',
-    'card1-title': 'Utazók &<br>Nyaralók',
-    'card1-desc': 'Búvárkodást, horgászatot, hajós programot tervezel? Keresed a megfelelő társaságot? Lásd hogyan találja meg az Aihoy! a hozzád illő embereket.',
-    'card1-link': 'Megnézem',
-    'card2-title': 'Hajótulajdonosok<br>& Szolgáltatók',
-    'card2-desc': 'Charteres, túraszervező vagy hajóbérlő? Nézd meg hogyan segít az Aihoy! a hajóid feltöltésében — jutalék nélkül.',
-    'card2-link': 'Megnézem',
+
+    'trav-tag': 'Utazóknak',
+    'trav-title': 'Nem kell hajó ahhoz, hogy elindulj',
+    'trav-lead': 'Keress programot a közeledben, csatlakozz máshoz, vagy szervezd meg a sajátodat. Elég egy ötlet és egy dátum.',
+    'tf1-t': 'Túrák a közeledben', 'tf1-d': 'GPS-alapú lista — azt látod, ami tényleg elérhető, nem egy végtelen globális katalógust.',
+    'tf2-t': 'Vagy szervezd te', 'tf2-d': 'Strandnap, kikötői vacsora, közös kirándulás — bármi lehet túra. Kiírod, és jönnek.',
+    'tf3-t': 'Aihoy! Radar', 'tf3-d': 'Nézd meg, ki van most a közeledben: utazók, hajósok, legénység.',
+    'tf4-t': 'Közös programok', 'tf4-d': 'Hangulat, érdeklődés és nyelv szerint párosít — azokkal, akikkel tényleg passzolsz.',
+    'tf5-t': 'Chat fordítóval', 'tf5-d': 'A másik a saját nyelvén ír, te a sajátodon olvasod. A nyelv nem akadály.',
+    'tf6-t': 'Diszkrét és védett', 'tf6-d': 'Románc? Csak ha mindketten bejelölitek — alapból baráti. Csak nőknek szóló túrák, bejelentés, letiltás, moderálás, 18+.',
+
+    'host-tag': 'Hajósoknak & Szervezőknek',
+    'host-title': 'Töltsd fel egyszer, menjen magától',
+    'host-lead': 'Charteres, túraszervező vagy hajóbérlő? Vidd fel a túráidat, a foglalást az app kezeli — jutalék nélkül.',
+    'hf1-t': 'Ismétlődő túrák', 'hf1-d': '14 nap × 3 turnus egy gombnyomással. Nem kell naponta újra felvinni.',
+    'hf2-t': 'Foglaláskezelés', 'hf2-d': 'Kérések, elfogadás, lemondás, létszám — minden egy helyen, értesítésekkel.',
+    'hf3-t': 'Hajó-galéria', 'hf3-d': 'Külön a személyes és a hajós képek. A képek többet adnak el, mint a szöveg.',
+    'hf4-t': 'Chat fordítóval', 'hf4-d': 'A német vagy lengyel vendég a saját nyelvén ír, te a sajátodon olvasod.',
+    'hf5-t': 'Kapitányos árazás', 'hf5-d': 'A kapitány és a legénység nem fizető hely — az ár/fő valósat mutat.',
+    'hf6-t': 'Nulla jutalék', 'hf6-d': 'Amit ma használsz, ingyenes is marad. A foglalásból nem vonunk el semmit.',
+
+    'pat-title': 'Most indult — legyél türelmes',
+    'pat-p1': 'Az első hetekben kevesen lesznek a radaron. Ez nem hiba, hanem a kezdet. Egy ilyen app olyan, mint egy új kocsma: <strong>attól lesz jó, hogy elkezdenek járni oda.</strong>',
+    'pat-p2': 'Ha tetszik, amit látsz: <strong>szólj egy embernek</strong>, aki idén a vízhez megy. Ennyi elég.',
+
+    'story-title': 'Egy régi ötlet, negyed század késéssel',
+    'story-p1': 'Huszonöt éve készítettem egy szállásfoglaló rendszert. Működött. Csak épp nem láttam, mekkora lehetőség van benne — évekkel később szembesültem vele, hogy a Booking.com egyszer nekem is megvolt, csak nem vettem észre.',
+    'story-p2': 'Nem nyomaszt. Elfogadtam, hogy akkor valamiért nem tudtam meglátni — így kellett lennie. De most, hogy másodszor is itt egy ötlet, nem akarom elengedni, amíg el nem jutok odáig, ahol már nem csak rajtam múlik.',
+    'story-p3': 'Egy dolgot szeretnék megtudni: <strong>működik-e.</strong>',
+    'story-p4': 'Az Aihoy!-t egyedül fejlesztem, esténként, munka és a kicsi mellett. Nincs mögötte cég, befektető, marketingbüdzsé — csak egy ember, aki választ keres.',
+
+    'sup-title': 'Ha szeretnéd, hogy menjen tovább',
+    'sup-p': 'Az Aihoy! ingyenes, és amit ma használsz, ingyenes is marad. Ha van kedved támogatni a fejlesztést, egy kávé sokat segít — havonta ennyiből marad üzemben.',
+    'btn-kofi': '☕ Támogatás — Ko-fi',
+    'sup-note': 'A támogatás önkéntes. Nem jár érte appon belüli fizetős funkció vagy előny.',
+
+    'pitch-tag': 'Mélyebben',
+    'pitch-title': 'Nézd meg a te perspektívádból',
+    'card1-title': 'Utazók & Nyaralók', 'card1-desc': 'Túrát, társaságot, közös programot keresel? Nézd meg, hogyan találja meg az Aihoy! a hozzád illő embereket.', 'card1-link': 'Megnézem →',
+    'card2-title': 'Hajósok & Szolgáltatók', 'card2-desc': 'Charteres, túraszervező vagy hajóbérlő? Nézd meg, hogyan segít az Aihoy! a túráid feltöltésében — jutalék nélkül.', 'card2-link': 'Megnézem →',
+
+    'dl-title': 'Készen állsz? Vízre!',
+    'btn-download2': '▶ Letöltés a Google Play-ről',
   },
   en: {
+    'subtagline': 'No boat needed. Just an idea and a date.',
     'hero-desc': 'Diving, fishing, sunset sailing, group adventures — experiences that are <strong>completely different</strong> depending on who you share them with. Solo is expensive. Strangers are a gamble.<br><br>Aihoy! connects you with people <strong>worth going with.</strong>',
-    'btn-waitlist': '⚓ Join the Waitlist',
-    'btn-learn': '📖 Learn more',
+    'btn-download': '▶ Get it on Google Play',
+    'btn-learn': '📖 What it does',
+    'btn-anthem': '🎵 Aihoy! Anthem',
     'stat1': 'Commission<br>Completely free',
-    'stat2': 'Languages<br>hu / en / el / hr / ja',
-    'stat3': 'Countries<br>Already watching',
+    'stat2': 'Languages<br>hu · en · de · it · el · hr · pl',
+    'stat3': 'Play Store<br>Just launched',
     'stat4': 'Possibilities<br>Greek Islands & Adriatic',
-    'wl-tag': '🚀 Coming Soon',
-    'wl-title': 'Be among the first!',
-    'wl-sub': 'Aihoy! is launching soon for all users. Sign up and we\'ll notify you the moment it\'s live — first in line!',
-    'counter-label': 'sailors & travelers\nalready waiting',
-    'btn-join': '🔔 Notify me',
-    'waitlist-success': '✅ You\'re on the list! We\'ll notify you at launch. ⚓',
-    'beta-tag': '🧪 Beta testers wanted',
-    'beta-title': 'Help shape the future of Aihoy!',
-    'beta-sub': 'We\'re looking for enthusiastic testers to try the app and share feedback. In return: early access and name credit in the app.',
-    'perk1': '✅ Early access',
-    'perk2': '🏆 Name credit in app',
-    'perk3': '⚡ Direct line to the developer',
-    'btn-beta-mail': '📩 Apply as beta tester',
-    'section-tag': 'Who is it for?',
-    'section-title': 'Choose your perspective',
-    'card1-title': 'Travelers &<br>Holiday makers',
-    'card1-desc': 'Planning to dive, fish or sail? Looking for the right crowd? See how Aihoy! finds people who match your vibe — by age, mood and interests.',
-    'card1-link': 'Learn more',
-    'card2-title': 'Boat owners<br>& Providers',
-    'card2-desc': 'Charter operator, tour organizer or boat rental? See how Aihoy! helps fill your boat — with no commission and no middleman.',
-    'card2-link': 'Learn more',
-  },
-  el: {
-    'hero-desc': 'Κατάδυση, ψάρεμα, ηλιοβασίλεμα στη θάλασσα, ομαδικές εξορμήσεις — εμπειρίες που αλλάζουν <strong>ανάλογα με την παρέα</strong>. Μόνος είναι ακριβό. Με άγνωστους, ρίσκο.<br><br>Το Aihoy! σε συνδέει με ανθρώπους <strong>που αξίζει να ταξιδέψεις μαζί τους.</strong>',
-    'btn-waitlist': '⚓ Εγγραφή',
-    'btn-learn': '📖 Μάθε περισσότερα',
-    'stat1': 'Προμήθεια<br>Εντελώς δωρεάν',
-    'stat2': 'Γλώσσες<br>hu / en / el / hr / ja',
-    'stat3': 'Χώρες<br>Ήδη μας παρακολουθούν',
-    'stat4': 'Δυνατότητες<br>Ελληνικά νησιά & Αδριατική',
-    'wl-tag': '🚀 Σύντομα',
-    'wl-title': 'Γίνε από τους πρώτους!',
-    'wl-sub': 'Το Aihoy! έρχεται σύντομα για όλους. Εγγράψου και θα σε ειδοποιήσουμε τη στιγμή της κυκλοφορίας!',
-    'counter-label': 'ναύτες & ταξιδιώτες\nπεριμένουν ήδη',
-    'btn-join': '🔔 Ειδοποίησέ με',
-    'waitlist-success': '✅ Είσαι στη λίστα! Θα σε ειδοποιήσουμε. ⚓',
-    'beta-tag': '🧪 Ζητούνται beta testers',
-    'beta-title': 'Διαμόρφωσε το μέλλον του Aihoy!',
-    'beta-sub': 'Ψάχνουμε για ενθουσιώδεις δοκιμαστές. Σε αντάλλαγμα: πρώιμη πρόσβαση και αναφορά ονόματος στην εφαρμογή.',
-    'perk1': '✅ Πρώιμη πρόσβαση',
-    'perk2': '🏆 Αναφορά στην εφαρμογή',
-    'perk3': '⚡ Άμεση επαφή με τον developer',
-    'btn-beta-mail': '📩 Κάνε αίτηση',
-    'section-tag': 'Για ποιον είναι;',
-    'section-title': 'Διάλεξε την οπτική σου',
-    'card1-title': 'Ταξιδιώτες &<br>Τουρίστες',
-    'card1-desc': 'Σχεδιάζεις κατάδυση, ψάρεμα ή βόλτα με σκάφος; Ψάχνεις για τη σωστή παρέα; Δες πώς το Aihoy! βρίσκει ανθρώπους που ταιριάζουν με τη διάθεσή σου.',
-    'card1-link': 'Μάθε περισσότερα',
-    'card2-title': 'Ιδιοκτήτες σκαφών<br>& Πάροχοι',
-    'card2-desc': 'Έχεις σκάφος ή οργανώνεις εκδρομές; Δες πώς το Aihoy! σε βοηθά να γεμίσεις το σκάφος σου χωρίς προμήθειες.',
-    'card2-link': 'Μάθε περισσότερα',
-  },
-  hr: {
-    'hero-desc': 'Ronjenje, ribolov, zalazak sunca na moru, grupske avanture — iskustva koja su <strong>potpuno drugačija</strong> ovisno o tome s kim ih dijeliš. Sam je skupo. S neznancima — rizik.<br><br>Aihoy! te povezuje s ljudima <strong>s kojima vrijedi krenuti.</strong>',
-    'btn-waitlist': '⚓ Prijavi se',
-    'btn-learn': '📖 Saznaj više',
-    'stat1': 'Provizija<br>Potpuno besplatno',
-    'stat2': 'Jezika<br>hu / en / el / hr / ja',
-    'stat3': 'Zemalja<br>Već nas prati',
-    'stat4': 'Mogućnosti<br>Grčki otoci & Jadran',
-    'wl-tag': '🚀 Uskoro',
-    'wl-title': 'Budi među prvima!',
-    'wl-sub': 'Aihoy! uskoro stiže za sve korisnike. Prijavi se i obavijestit ćemo te čim bude dostupno!',
-    'counter-label': 'mornara i putnika\nveć čeka',
-    'btn-join': '🔔 Obavijesti me',
-    'waitlist-success': '✅ Na listi si! Obavijestit ćemo te. ⚓',
-    'beta-tag': '🧪 Traže se beta testeri',
-    'beta-title': 'Oblikuj budućnost Aihoy!',
-    'beta-sub': 'Tražimo entuzijastične testere. Zauzvrat: rani pristup i ime u aplikaciji.',
-    'perk1': '✅ Rani pristup',
-    'perk2': '🏆 Ime u aplikaciji',
-    'perk3': '⚡ Direktan kontakt s developerom',
-    'btn-beta-mail': '📩 Prijavi se kao beta tester',
-    'section-tag': 'Za koga je?',
-    'section-title': 'Odaberi svoju perspektivu',
-    'card1-title': 'Putnici &<br>Ljetovatelji',
-    'card1-desc': 'Planiraš ronjenje, ribolov ili izlet brodom? Tražiš pravo društvo? Vidi kako Aihoy! pronalazi ljude koji odgovaraju tvojim interesima i vibeovima.',
-    'card1-link': 'Saznaj više',
-    'card2-title': 'Vlasnici brodova<br>& Pružatelji usluga',
-    'card2-desc': 'Charter, organizator tura ili najam broda? Vidi kako Aihoy! pomaže popuniti tvoj brod — bez provizije.',
-    'card2-link': 'Saznaj više',
-  },
-  ja: {
-    'hero-desc': 'ダイビング、釣り、夕日のセーリング、グループ冒険 — <strong>誰と行くかで</strong>まったく違う体験になる。一人では高すぎる。知らない人とでは賭けになる。<br><br>Aihoy!は<strong>一緒に行く価値のある人</strong>と繋げます。',
-    'btn-waitlist': '⚓ 登録する',
-    'btn-learn': '📖 もっと詳しく',
-    'stat1': '手数料<br>完全無料',
-    'stat2': '対応言語<br>hu / en / el / hr / ja',
-    'stat3': 'カ国<br>すでに注目中',
-    'stat4': '可能性<br>ギリシャ諸島 & アドリア海',
-    'wl-tag': '🚀 もうすぐ公開',
-    'wl-title': '最初のユーザーになろう！',
-    'wl-sub': 'Aihoy!はまもなく全ユーザーに公開されます。登録してリリース時に通知を受け取りましょう！',
-    'counter-label': '人の船乗り＆旅行者が\nすでに待っています',
-    'btn-join': '🔔 通知を受け取る',
-    'waitlist-success': '✅ 登録完了！リリース時にお知らせします。⚓',
-    'beta-tag': '🧪 ベータテスター募集中',
-    'beta-title': 'Aihoy!の未来を一緒に作ろう！',
-    'beta-sub': 'アプリをテストしてフィードバックをくれる方を募集しています。お礼として早期アクセスとアプリ内クレジットを提供します。',
-    'perk1': '✅ 早期アクセス',
-    'perk2': '🏆 アプリ内クレジット',
-    'perk3': '⚡ 開発者との直接連絡',
-    'btn-beta-mail': '📩 ベータテスターに応募',
-    'section-tag': '誰のためのアプリ？',
-    'section-title': 'あなたの視点を選んでください',
-    'card1-title': '旅行者 &<br>バカンス客',
-    'card1-desc': 'ダイビング、釣り、ボート旅行を計画中？ぴったりの仲間を探していますか？Aihoy!が年齢・気分・興味でマッチングします。',
-    'card1-link': '詳しく見る',
-    'card2-title': 'ボートオーナー<br>& サービス提供者',
-    'card2-desc': 'チャーター会社、ツアーオーガナイザー、レンタルボート？手数料なしでボートを満席にする方法をご覧ください。',
-    'card2-link': '詳しく見る',
-  },
-  pl: {
-    'hero-desc': 'Nurkowanie, wędkowanie, żeglowanie o zachodzie słońca, grupowe przygody — doświadczenia, które są <strong>zupełnie inne</strong> w zależności od tego, z kim je przeżywasz. Sam jest drogo. Z nieznajomymi — ryzyko.<br><br>Aihoy! łączy cię z ludźmi, <strong>z którymi warto ruszyć w drogę.</strong>',
-    'btn-waitlist': '⚓ Zapisz się',
-    'btn-learn': '📖 Dowiedz się więcej',
-    'stat1': 'Prowizja<br>Całkowicie bezpłatnie',
-    'stat2': 'Języków<br>hu / en / el / hr / ja / pl',
-    'stat3': 'Krajów<br>Już nas obserwuje',
-    'stat4': 'Możliwości<br>Greckie wyspy & Adriatyk',
-    'wl-tag': '🚀 Wkrótce',
-    'wl-title': 'Bądź wśród pierwszych!',
-    'wl-sub': 'Aihoy! pojawi się wkrótce dla wszystkich. Zapisz się i powiadomimy cię w chwili startu!',
-    'counter-label': 'żeglarzy i podróżników\nalready waiting',
-    'btn-join': '🔔 Powiadom mnie',
-    'waitlist-success': '✅ Jesteś na liście! Powiadomimy cię przy starcie. ⚓',
-    'beta-tag': '🧪 Szukamy beta testerów',
-    'beta-title': 'Kształtuj przyszłość Aihoy!',
-    'beta-sub': 'Szukamy entuzjastycznych testerów, którzy wypróbują aplikację i podzielą się opinią. W zamian: wczesny dostęp i wzmianka w aplikacji.',
-    'perk1': '✅ Wczesny dostęp',
-    'perk2': '🏆 Wzmianka w aplikacji',
-    'perk3': '⚡ Bezpośredni kontakt z developerem',
-    'btn-beta-mail': '📩 Zgłoś się jako beta tester',
-    'section-tag': 'Dla kogo?',
-    'section-title': 'Wybierz swoją perspektywę',
-    'card1-title': 'Podróżnicy &<br>Urlopowicze',
-    'card1-desc': 'Planujesz nurkowanie, wędkowanie lub rejs? Szukasz odpowiednich towarzyszy? Zobacz jak Aihoy! znajduje ludzi dopasowanych do twojego stylu.',
-    'card1-link': 'Dowiedz się więcej',
-    'card2-title': 'Właściciele łodzi<br>& Usługodawcy',
-    'card2-desc': 'Czarter, organizator wycieczek lub wynajem łodzi? Zobacz jak Aihoy! pomaga zapełnić twoją łódź — bez prowizji.',
-    'card2-link': 'Dowiedz się więcej',
+
+    'trav-tag': 'For travelers',
+    'trav-title': 'You don\'t need a boat to set off',
+    'trav-lead': 'Find something nearby, join someone else, or organise your own. All it takes is an idea and a date.',
+    'tf1-t': 'Trips near you', 'tf1-d': 'A GPS-based list — you see what\'s actually reachable, not an endless global catalogue.',
+    'tf2-t': 'Or organise it', 'tf2-d': 'A beach day, a harbour dinner, a shared trip — anything can be a trip. Post it and they\'ll come.',
+    'tf3-t': 'Aihoy! Radar', 'tf3-d': 'See who\'s nearby right now: travelers, sailors, crew.',
+    'tf4-t': 'Shared plans', 'tf4-d': 'Matched by vibe, interests and language — with people you actually click with.',
+    'tf5-t': 'Chat with translation', 'tf5-d': 'They write in their language, you read it in yours. Language is no barrier.',
+    'tf6-t': 'Discreet and safe', 'tf6-d': 'Romance? Only if you both opt in — friendly by default. Women-only trips, reporting, blocking, moderation, 18+.',
+
+    'host-tag': 'For sailors & hosts',
+    'host-title': 'Set it up once, let it run',
+    'host-lead': 'Charter, tour operator or boat rental? Post your trips and let the app handle bookings — with zero commission.',
+    'hf1-t': 'Recurring trips', 'hf1-d': '14 days × 3 slots with one tap. No need to re-enter them every day.',
+    'hf2-t': 'Booking management', 'hf2-d': 'Requests, approvals, cancellations, headcount — all in one place, with notifications.',
+    'hf3-t': 'Boat gallery', 'hf3-d': 'Separate personal and boat photos. Pictures sell better than words.',
+    'hf4-t': 'Chat with translation', 'hf4-d': 'Your German or Polish guest writes in their language, you read it in yours.',
+    'hf5-t': 'Captain pricing', 'hf5-d': 'The captain and crew aren\'t paying seats — so the per-person price is real.',
+    'hf6-t': 'Zero commission', 'hf6-d': 'What you use today stays free. We don\'t take a cut of your bookings.',
+
+    'pat-title': 'Just launched — be patient',
+    'pat-p1': 'In the first weeks the radar will be quiet. That\'s not a bug, it\'s the beginning. An app like this is like a new bar: <strong>it gets good once people start showing up.</strong>',
+    'pat-p2': 'If you like what you see: <strong>tell one person</strong> heading to the water this year. That\'s enough.',
+
+    'story-title': 'An old idea, a quarter century late',
+    'story-p1': 'Twenty-five years ago I built a hotel-booking system. It worked. I just never saw how big the opportunity was — years later it hit me that I\'d once had Booking.com in my hands, and hadn\'t noticed.',
+    'story-p2': 'It doesn\'t weigh on me. I\'ve made peace with the fact that back then I couldn\'t see it — it was meant to be. But now that there\'s a second idea in front of me, I don\'t want to let go until I get to the point where it no longer depends on me alone.',
+    'story-p3': 'There\'s one thing I want to find out: <strong>whether it works.</strong>',
+    'story-p4': 'I build Aihoy! alone, in the evenings, alongside work and a small child. No company, no investor, no marketing budget behind it — just one person looking for an answer.',
+
+    'sup-title': 'If you\'d like to see it continue',
+    'sup-p': 'Aihoy! is free, and what you use today stays free. If you feel like supporting the work, a coffee goes a long way — that\'s roughly what keeps it running each month.',
+    'btn-kofi': '☕ Support — Ko-fi',
+    'sup-note': 'Support is voluntary. It doesn\'t unlock any in-app paid feature or advantage.',
+
+    'pitch-tag': 'Go deeper',
+    'pitch-title': 'See it from your side',
+    'card1-title': 'Travelers & Holidaymakers', 'card1-desc': 'Looking for a trip, company, a shared plan? See how Aihoy! finds the right people for you.', 'card1-link': 'Take a look →',
+    'card2-title': 'Sailors & Providers', 'card2-desc': 'Charter, tour operator or boat rental? See how Aihoy! helps you post your trips — commission-free.', 'card2-link': 'Take a look →',
+
+    'dl-title': 'Ready? Set sail!',
+    'btn-download2': '▶ Get it on Google Play',
   }
 };
 
 function setLang(lang) {
-  try { localStorage.setItem('aihoy-lang', lang); } catch(e) {}
-  const t = T[lang];
-  if (!t) return;
-  Object.keys(t).forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = t[id];
-  });
-  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  const btn = document.getElementById('btn-' + lang);
-  if (btn) btn.classList.add('active');
+  const dict = T[lang] || T.hu;
+  for (const key in dict) {
+    const el = document.getElementById(key);
+    if (el) el.innerHTML = dict[key];
+  }
+  document.getElementById('btn-hu').classList.toggle('active', lang === 'hu');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
-  const betaBtn = document.getElementById('btn-beta-mail');
-  if (betaBtn) {
-    const subjects = {hu:'Beta tesztelő jelentkezés', en:'Beta tester application', el:'Αίτηση beta tester', hr:'Prijava beta testera', ja:'ベータテスター応募', pl:'Zgłoszenie beta testera'};
-    betaBtn.href = 'mailto:aihoy.app@gmail.com?subject=' + encodeURIComponent(subjects[lang] || 'Beta tester');
-  }
+  try { localStorage.setItem('aihoy_lang', lang); } catch(e) {}
 }
 
-function joinWaitlist() {
-  const email = document.getElementById('waitlist-email').value.trim();
-  if (!email || !email.includes('@')) {
-    document.getElementById('waitlist-email').style.borderColor = 'rgba(255,80,80,0.5)';
-    return;
-  }
-  document.getElementById('waitlist-email').style.borderColor = 'rgba(0,229,255,0.2)';
-  // Mailto fallback – emailt küld az aihoy.app@gmail.com-ra
-  window.location.href = 'mailto:aihoy.app@gmail.com?subject=Waitlist&body=Email:%20' + encodeURIComponent(email);
-  document.getElementById('waitlist-success').style.display = 'block';
-  document.getElementById('waitlist-email').value = '';
-  // Increment counter display
-  var num = document.getElementById('counter-num');
-  
-}
+// ── Anthem lejátszó ──
+const audio = document.getElementById('aihoy-audio');
+const player = document.getElementById('sticky-player');
+const spBtn = document.getElementById('sp-btn');
+const spFill = document.getElementById('sp-fill');
 
-// Animált számláló
-function animateCounter(el, target, suffix) {
-  var start = 0; var duration = 1500;
-  var step = Math.ceil(target / (duration / 16));
-  var interval = setInterval(function() {
-    start = Math.min(start + step, target);
-    el.textContent = start.toLocaleString() + (suffix || '');
-    if (start >= target) clearInterval(interval);
-  }, 16);
-}
-
-// Intersection Observer a számlálóhoz
-var counted = false;
-var observer = new IntersectionObserver(function(entries) {
-  if (entries[0].isIntersecting && !counted) {
-    counted = true;
-    animateCounter(document.getElementById('counter-num'), 48);
-  }
-}, { threshold: 0.5 });
-var counterEl = document.getElementById('counter-num');
-if (counterEl) observer.observe(counterEl);
-
-// Auto-detect language
-let savedLang = null;
-try { savedLang = localStorage.getItem('aihoy-lang'); } catch(e) {}
-const bl = (navigator.language || 'hu').slice(0,2);
-const langMap = {hu:'hu', en:'en', el:'el', hr:'hr', ja:'ja', pl:'pl'};
-setLang(savedLang || langMap[bl] || 'en');
-
-// ── Audio Player ──
-var audio = document.getElementById('aihoy-audio');
-var playBtn = document.getElementById('play-btn');
-var fill = document.getElementById('progress-fill');
-var timeCur = document.getElementById('time-cur');
-
-function fmt(s) { var m=Math.floor(s/60); return m+':'+('0'+Math.floor(s%60)).slice(-2); }
 function togglePlay() {
-  if (audio.paused) { audio.play(); playBtn.textContent='⏸'; }
-  else { audio.pause(); playBtn.textContent='▶'; }
+  if (audio.paused) { audio.play(); player.classList.add('visible'); spBtn.textContent = '⏸'; }
+  else { audio.pause(); spBtn.textContent = '▶'; }
 }
-document.addEventListener('DOMContentLoaded', function() {
-  audio.volume = 1;
-  var p = audio.play();
-  if (p !== undefined) { p.then(function(){ playBtn.textContent='⏸'; }).catch(function(){ playBtn.textContent='▶'; }); }
-});
-audio.addEventListener('timeupdate', function() {
-  if (!audio.duration) return;
-  fill.style.width=(audio.currentTime/audio.duration*100)+'%';
-  timeCur.textContent=fmt(audio.currentTime);
-});
-audio.addEventListener('ended', function(){ playBtn.textContent='▶'; fill.style.width='0%'; timeCur.textContent='0:00'; });
+function stopAnthem() { audio.pause(); audio.currentTime = 0; player.classList.remove('visible'); }
 function seek(e) {
-  var bar=document.getElementById('progress-bar');
-  var rect=bar.getBoundingClientRect();
-  audio.currentTime=((e.clientX-rect.left)/rect.width)*audio.duration;
+  const bar = document.getElementById('sp-bar');
+  const r = bar.getBoundingClientRect();
+  audio.currentTime = ((e.clientX - r.left) / r.width) * (audio.duration || 0);
 }
+audio.addEventListener('timeupdate', () => {
+  if (audio.duration) spFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+});
+audio.addEventListener('ended', () => { spBtn.textContent = '▶'; });
+
+// ── Indulás ──
+(function() {
+  let lang = 'hu';
+  try { lang = localStorage.getItem('aihoy_lang') || ''; } catch(e) {}
+  if (!lang) lang = (navigator.language || 'hu').slice(0,2) === 'en' ? 'en' : 'hu';
+  if (lang !== 'hu' && lang !== 'en') lang = 'en';
+  setLang(lang);
+})();
 </script>
+
 </body>
 </html>

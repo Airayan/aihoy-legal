@@ -3,726 +3,258 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aihoy! — Zakynthos Pitch</title>
+<title>Aihoy! — Hajósoknak & Szervezőknek | Töltsd meg a hajódat</title>
+<meta name="description" content="Aihoy! hajósoknak és túraszervezőknek: hirdesd a túráidat, a foglalást az app kezeli. Ismétlődő túrák, kapitányos árazás, chat fordítóval — jutalék nélkül.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://aihoy.app/pitch_business-2.html">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=DM+Sans:wght@300;400;500;600&display=swap');
+:root { --ocean:#0A1628; --ocean2:#0F1F35; --cyan:#00E5FF; --purple:#9D4EDD; --text:#E8F4FD; --textsec:#8BA8C8; --surface:#162440; --gold:#E8A020; }
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Outfit',sans-serif; background:var(--ocean); color:var(--text); overflow-x:hidden; }
+nav { position:fixed; top:0; left:0; right:0; z-index:200; background:rgba(10,22,40,0.95); backdrop-filter:blur(12px); border-bottom:1px solid rgba(0,229,255,0.08); padding:0 24px; height:58px; display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { font-family:'Fraunces',serif; font-size:22px; font-weight:900; background:linear-gradient(135deg,var(--cyan),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; text-decoration:none; }
+.nav-right { display:flex; align-items:center; gap:14px; }
+.nav-back { color:var(--textsec); text-decoration:none; font-size:14px; transition:color 0.2s; }
+.nav-back:hover { color:var(--cyan); }
+.lang-bar { display:flex; gap:4px; }
+.lang-btn { background:none; border:none; cursor:pointer; font-size:13px; font-weight:700; padding:4px 8px; border-radius:100px; color:var(--textsec); font-family:inherit; transition:background 0.2s,color 0.2s; }
+.lang-btn.active { background:rgba(0,229,255,0.15); color:var(--cyan); }
 
-  :root {
-    --sea: #0a4a6e;
-    --sea-light: #1a7aaa;
-    --sea-bright: #00b4d8;
-    --sand: #f4e4c1;
-    --sand-dark: #c9a96e;
-    --sunset: #e8533a;
-    --sunset2: #e8a020;
-    --white: #fefcf8;
-    --dark: #0a1a2a;
-    --text: #1a3a52;
-    --textsec: #5a8a9f;
-    --green: #2d8a5e;
-  }
+.hero { min-height:88vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:100px 24px 70px; background:radial-gradient(ellipse at 20% 40%,rgba(0,229,255,0.08) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(157,78,221,0.10) 0%,transparent 60%),var(--ocean); }
+.hero .badge { display:inline-flex; align-items:center; gap:8px; background:rgba(232,160,32,0.10); border:1px solid rgba(232,160,32,0.3); border-radius:100px; padding:7px 18px; font-size:13px; color:var(--gold); margin-bottom:28px; font-weight:600; }
+.hero h1 { font-family:'Fraunces',serif; font-size:clamp(40px,8vw,72px); font-weight:900; line-height:1.05; letter-spacing:-1.5px; margin-bottom:20px; max-width:820px; background:linear-gradient(135deg,var(--cyan) 0%,#7B8FFF 50%,var(--purple) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero .lead { max-width:600px; font-size:18px; line-height:1.7; color:var(--textsec); margin-bottom:40px; }
+.hero .lead strong { color:var(--text); font-weight:600; }
+.btn { padding:16px 34px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; transition:transform 0.2s,box-shadow 0.2s; display:inline-flex; align-items:center; gap:9px; cursor:pointer; border:none; font-family:inherit; }
+.btn:hover { transform:translateY(-2px); }
+.btn-primary { background:linear-gradient(135deg,var(--cyan),var(--purple)); color:white; box-shadow:0 8px 32px rgba(0,229,255,0.2); }
+.btn-primary:hover { box-shadow:0 12px 40px rgba(0,229,255,0.35); }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+.section { padding:80px 24px; max-width:1000px; margin:0 auto; }
+.section-tag { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--cyan); font-weight:700; margin-bottom:14px; text-align:center; }
+.section-title { font-family:'Fraunces',serif; font-size:clamp(26px,5vw,40px); font-weight:700; line-height:1.15; text-align:center; margin-bottom:16px; }
+.section-lead { font-size:17px; color:var(--textsec); line-height:1.7; text-align:center; max-width:640px; margin:0 auto 48px; }
+.alt { background:var(--ocean2); }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--white);
-    color: var(--text);
-    overflow-x: hidden;
-  }
+.problem-box { max-width:720px; margin:0 auto; background:var(--surface); border:1px solid rgba(224,85,107,0.2); border-radius:20px; padding:36px 32px; }
+.problem-box h3 { font-family:'Fraunces',serif; font-size:20px; color:#E0556B; margin-bottom:14px; }
+.problem-box p { font-size:16px; color:var(--textsec); line-height:1.8; margin-bottom:14px; }
+.problem-box p:last-child { margin-bottom:0; }
+.problem-box strong { color:var(--text); font-weight:600; }
 
-  /* HERO — ocean feel */
-  .hero {
-    background: linear-gradient(160deg, var(--dark) 0%, var(--sea) 50%, var(--sea-light) 100%);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 80px 24px;
-    position: relative;
-    overflow: hidden;
-  }
+.shield-box { max-width:720px; margin:32px auto 0; background:linear-gradient(135deg,rgba(0,229,255,0.06),rgba(157,78,221,0.06)); border:1px solid rgba(0,229,255,0.18); border-radius:20px; padding:36px 32px; }
+.shield-box h3 { font-family:'Fraunces',serif; font-size:20px; color:var(--cyan); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+.shield-box p { font-size:16px; color:var(--textsec); line-height:1.8; }
+.shield-box strong { color:var(--text); font-weight:600; }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 200px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200'%3E%3Cpath fill='%23fefcf8' fill-opacity='1' d='M0,128L48,112C96,96,192,64,288,64C384,64,480,96,576,106.7C672,117,768,107,864,90.7C960,75,1056,53,1152,58.7C1248,64,1344,96,1392,112L1440,128L1440,200L1392,200C1344,200,1248,200,1152,200C1056,200,960,200,864,200C768,200,672,200,576,200C480,200,384,200,288,200C192,200,96,200,48,200L0,200Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
-    background-size: cover;
-  }
+.feature-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px; }
+.feature { background:var(--surface); border:1px solid rgba(0,229,255,0.08); border-radius:16px; padding:26px; transition:transform 0.2s,border-color 0.2s; }
+.feature:hover { transform:translateY(-3px); border-color:rgba(0,229,255,0.25); }
+.feature .emoji { font-size:28px; display:block; margin-bottom:14px; }
+.feature h3 { font-size:16px; font-weight:700; margin-bottom:8px; color:var(--text); }
+.feature p { font-size:14px; color:var(--textsec); line-height:1.65; }
 
-  .hero-badge {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 100px;
-    padding: 8px 20px;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--sand);
-    margin-bottom: 32px;
-    backdrop-filter: blur(10px);
-  }
+.steps { max-width:760px; margin:0 auto; }
+.step { display:flex; gap:20px; margin-bottom:28px; align-items:flex-start; }
+.step-num { flex-shrink:0; width:44px; height:44px; border-radius:50%; background:linear-gradient(135deg,var(--cyan),var(--purple)); color:#06101f; font-weight:900; font-size:18px; display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; }
+.step-body h4 { font-size:17px; font-weight:700; margin-bottom:6px; color:var(--text); }
+.step-body p { font-size:15px; color:var(--textsec); line-height:1.7; }
 
-  .hero-anchor {
-    font-size: 72px;
-    margin-bottom: 16px;
-    display: block;
-    filter: drop-shadow(0 0 30px rgba(0,180,216,0.4));
-  }
+.cta { text-align:center; padding:80px 24px; background:var(--surface); border-top:1px solid rgba(0,229,255,0.08); }
+.cta h2 { font-family:'Fraunces',serif; font-size:clamp(26px,5vw,38px); font-weight:700; margin-bottom:16px; }
+.cta p { font-size:16px; color:var(--textsec); margin-bottom:32px; max-width:520px; margin-left:auto; margin-right:auto; }
 
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(56px, 10vw, 96px);
-    font-weight: 900;
-    color: white;
-    line-height: 0.9;
-    margin-bottom: 8px;
-    text-shadow: 0 4px 40px rgba(0,0,0,0.3);
-  }
-
-  .hero-tagline {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(16px, 3vw, 22px);
-    color: var(--sand);
-    margin-bottom: 40px;
-    font-style: italic;
-    opacity: 0.9;
-  }
-
-  .hero-desc {
-    font-size: 17px;
-    color: rgba(255,255,255,0.8);
-    max-width: 580px;
-    line-height: 1.7;
-    margin-bottom: 48px;
-  }
-
-  .hero-desc strong { color: var(--sand); }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 220px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: rgba(255,255,255,0.4);
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    animation: bounce 2s infinite;
-  }
-
-  @keyframes bounce {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
-  }
-
-  /* CONTAINER */
-  .container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 80px 24px;
-  }
-
-  /* SECTIONS */
-  .section { margin-bottom: 80px; }
-
-  .section-label {
-    font-size: 11px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--sea-bright);
-    margin-bottom: 12px;
-    font-weight: 600;
-  }
-
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(28px, 5vw, 42px);
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 20px;
-    line-height: 1.2;
-  }
-
-  .lead {
-    font-size: 18px;
-    color: var(--textsec);
-    line-height: 1.7;
-    margin-bottom: 40px;
-    max-width: 640px;
-  }
-
-  /* STORY CARDS */
-  .story-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-bottom: 48px;
-  }
-
-  .story-card {
-    background: linear-gradient(135deg, #f0f8ff, #e8f4f8);
-    border-radius: 20px;
-    padding: 32px;
-    border: 1px solid rgba(0,100,150,0.1);
-    position: relative;
-  }
-
-  .story-card.dark {
-    background: linear-gradient(135deg, var(--dark), var(--sea));
-    border-color: transparent;
-    color: white;
-  }
-
-  .story-card.dark .story-text { color: rgba(255,255,255,0.75); }
-  .story-card.dark h3 { color: var(--sand); }
-
-  .story-emoji {
-    font-size: 40px;
-    margin-bottom: 16px;
-    display: block;
-  }
-
-  .story-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--dark);
-  }
-
-  .story-text {
-    font-size: 14px;
-    color: var(--textsec);
-    line-height: 1.7;
-  }
-
-  /* SCENARIO */
-  .scenario {
-    background: linear-gradient(135deg, var(--sea), var(--sea-light));
-    border-radius: 24px;
-    padding: 48px;
-    color: white;
-    margin-bottom: 48px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .scenario::before {
-    content: '🎣';
-    position: absolute;
-    right: 32px;
-    top: 32px;
-    font-size: 80px;
-    opacity: 0.15;
-  }
-
-  .scenario h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    margin-bottom: 24px;
-    color: var(--sand);
-  }
-
-  .scenario-steps {
-    list-style: none;
-    display: grid;
-    gap: 16px;
-  }
-
-  .scenario-steps li {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-
-  .step-num {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 13px;
-    font-weight: 700;
-    flex-shrink: 0;
-    color: var(--sand);
-  }
-
-  .step-text {
-    font-size: 15px;
-    color: rgba(255,255,255,0.85);
-    line-height: 1.6;
-    padding-top: 4px;
-  }
-
-  .step-text strong { color: var(--sand); }
-
-  /* BENEFITS */
-  .benefits {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-  }
-
-  .benefit {
-    background: white;
-    border-radius: 16px;
-    padding: 24px;
-    border: 1px solid rgba(0,100,150,0.1);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-
-  .benefit-icon {
-    font-size: 28px;
-    flex-shrink: 0;
-  }
-
-  .benefit h4 {
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 6px;
-    color: var(--dark);
-  }
-
-  .benefit p {
-    font-size: 13px;
-    color: var(--textsec);
-    line-height: 1.6;
-  }
-
-  /* QUOTE */
-  .quote-block {
-    background: var(--sand);
-    border-radius: 20px;
-    padding: 40px 48px;
-    position: relative;
-    margin: 48px 0;
-  }
-
-  .quote-block::before {
-    content: '"';
-    font-family: 'Playfair Display', serif;
-    font-size: 120px;
-    color: var(--sand-dark);
-    position: absolute;
-    top: -20px;
-    left: 24px;
-    line-height: 1;
-    opacity: 0.4;
-  }
-
-  .quote-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    color: var(--dark);
-    line-height: 1.5;
-    font-style: italic;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* NUMBERS */
-  .numbers {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 48px;
-  }
-
-  .number-card {
-    text-align: center;
-    padding: 32px 16px;
-    background: white;
-    border-radius: 20px;
-    border: 1px solid rgba(0,100,150,0.1);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  }
-
-  .number-card .num {
-    font-family: 'Playfair Display', serif;
-    font-size: 40px;
-    font-weight: 900;
-    color: var(--sea);
-    display: block;
-    margin-bottom: 8px;
-    line-height: 1;
-  }
-
-  .number-card .num-label {
-    font-size: 13px;
-    color: var(--textsec);
-    line-height: 1.4;
-  }
-
-  /* EARLY ACCESS */
-  .early {
-    background: linear-gradient(135deg, #fff8e8, #fef0d0);
-    border-radius: 24px;
-    padding: 48px;
-    border: 2px solid var(--sand-dark);
-    margin-bottom: 48px;
-  }
-
-  .early h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    margin-bottom: 16px;
-    color: var(--dark);
-  }
-
-  .early-list {
-    list-style: none;
-    display: grid;
-    gap: 12px;
-  }
-
-  .early-list li {
-    display: flex;
-    gap: 12px;
-    align-items: flex-start;
-    font-size: 15px;
-    color: var(--text);
-    line-height: 1.5;
-  }
-
-  .early-list li::before {
-    content: '✓';
-    color: var(--green);
-    font-weight: 700;
-    font-size: 16px;
-    flex-shrink: 0;
-  }
-
-  /* CTA */
-  .cta {
-    background: linear-gradient(160deg, var(--dark), var(--sea));
-    border-radius: 28px;
-    padding: 64px 48px;
-    text-align: center;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta::after {
-    content: '⚓';
-    position: absolute;
-    right: -20px;
-    bottom: -20px;
-    font-size: 160px;
-    opacity: 0.05;
-  }
-
-  .cta h2 {
-    color: white;
-    font-size: clamp(28px, 5vw, 42px);
-    margin-bottom: 16px;
-  }
-
-  .cta p {
-    font-size: 17px;
-    color: rgba(255,255,255,0.75);
-    margin-bottom: 40px;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-  }
-
-  .cta-contact {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 100px;
-    padding: 14px 28px;
-    font-size: 15px;
-    color: var(--sand);
-    backdrop-filter: blur(10px);
-  }
-
-  /* DIVIDER */
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(0,100,150,0.15), transparent);
-    margin: 64px 0;
-  }
-
-  /* HIGHLIGHT */
-  .highlight {
-    color: var(--sea);
-    font-weight: 600;
-  }
-
-  @media (max-width: 600px) {
-    .story-grid, .benefits, .numbers { grid-template-columns: 1fr; }
-    .scenario { padding: 32px 24px; }
-    .cta { padding: 40px 24px; }
-    .early { padding: 32px 24px; }
-  }
+footer { text-align:center; padding:48px 24px; border-top:1px solid rgba(0,229,255,0.08); }
+.footer-logo { font-family:'Fraunces',serif; font-size:22px; font-weight:900; background:linear-gradient(135deg,var(--cyan),var(--purple)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:16px; }
+.footer-links { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-bottom:14px; }
+.footer-links a { color:var(--textsec); text-decoration:none; font-size:13px; }
+.footer-links a:hover { color:var(--cyan); }
+.footer-mail { color:var(--cyan); text-decoration:none; font-size:14px; }
 </style>
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7NXGL1PPX6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7NXGL1PPX6');
-</script>
 </head>
 <body>
 
+<nav>
+  <a href="/" class="nav-logo">Aihoy!</a>
+  <div class="nav-right">
+    <div class="lang-bar">
+      <button class="lang-btn active" id="btn-hu" onclick="setLang('hu')">HU</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="/" class="nav-back" id="nav-back"></a>
+  </div>
+</nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-badge" id="pb-badge">⚓ Aihoy! — Zakynthos Pilot Program</div>
-  <span class="hero-anchor">🚢</span>
-  <h1>Aihoy!</h1>
-  <div class="hero-tagline" id="pb-sub">Maxold ki a szezonod. Töltsd meg a hajódat.</div>
-  <p class="hero-desc" id="pb-hero-desc">
-    Az Aihoy! egy mobilapp ami <strong>összeköti a horgász- és hajóstúra-szervezőket</strong>
-    az olyan utazókkal, akik pontosan azt keresik amit te kínálsz —
-    <strong>kompatibilitás alapján</strong>, nem csak szabad hely alapján.
-  </p>
-  <div class="scroll-hint" id="pb-scroll">↓ görgess</div>
+<section class="hero">
+  <div class="badge" id="hero-badge"></div>
+  <h1 id="hero-title"></h1>
+  <p class="lead" id="hero-lead"></p>
+  <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="hero-cta"></a>
+</section>
+
+<!-- Probléma -->
+<section class="section">
+  <p class="section-tag" id="prob-tag"></p>
+  <h2 class="section-title" id="prob-title"></h2>
+  <div class="problem-box">
+    <h3 id="prob-h"></h3>
+    <p id="prob-p1"></p>
+    <p id="prob-p2"></p>
+  </div>
+  <div class="shield-box">
+    <h3 id="shield-h"></h3>
+    <p id="shield-p"></p>
+  </div>
+</section>
+
+<!-- Hogyan működik -->
+<section class="section alt" style="max-width:none;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <p class="section-tag" id="how-tag"></p>
+    <h2 class="section-title" id="how-title"></h2>
+    <p class="section-lead" id="how-lead"></p>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-body"><h4 id="s1-t"></h4><p id="s1-d"></p></div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-body"><h4 id="s2-t"></h4><p id="s2-d"></p></div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-body"><h4 id="s3-t"></h4><p id="s3-d"></p></div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-body"><h4 id="s4-t"></h4><p id="s4-d"></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Előnyök -->
+<section class="section">
+  <p class="section-tag" id="ben-tag"></p>
+  <h2 class="section-title" id="ben-title"></h2>
+  <p class="section-lead" id="ben-lead"></p>
+  <div class="feature-grid">
+    <div class="feature"><span class="emoji">🛡️</span><h3 id="b1-t"></h3><p id="b1-d"></p></div>
+    <div class="feature"><span class="emoji">🔁</span><h3 id="b2-t"></h3><p id="b2-d"></p></div>
+    <div class="feature"><span class="emoji">⚓</span><h3 id="b3-t"></h3><p id="b3-d"></p></div>
+    <div class="feature"><span class="emoji">💬</span><h3 id="b4-t"></h3><p id="b4-d"></p></div>
+    <div class="feature"><span class="emoji">🚤</span><h3 id="b5-t"></h3><p id="b5-d"></p></div>
+    <div class="feature"><span class="emoji">💸</span><h3 id="b6-t"></h3><p id="b6-d"></p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <h2 id="cta-title"></h2>
+  <p id="cta-p"></p>
+  <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="cta-btn"></a>
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="container">
-
-  <!-- STORY -->
-  <div class="section">
-    <div class="section-label" id="pb-s1">A probléma</div>
-    <h2 id="pb-h1">Ismerős helyzet?</h2>
-    <p class="lead" id="pb-lead1">Megvan a hajó, megvan a program, megvan a tudás. De a helyek felét üresre teszed ki — vagy rosszabb: feltöltöd olyanokkal akik nem illenek a csapatba.</p>
-
-    <div class="story-grid">
-      <div class="story-card dark">
-        <span class="story-emoji">😔</span>
-        <h3 id="pb-story1h">A legrosszabb forgatókönyv</h3>
-        <p class="story-text" id="pb-story1p">A társaság kibérel egy hajót. Valaki dohányzik, valaki nem bírja. Valaki bulizna, valaki pihenni jött. Konfliktus. Rossz hangulat. Hazaérnek — és a Google-ön nem egymást értékelik rosszul. Téged értékelnek rosszul. 1 csillag. Holott te csak a hajót adtad.</p>
-      </div>
-      <div class="story-card">
-        <span class="story-emoji">🛡️</span>
-        <h3 id="pb-story2h">Az Aihoy! véd ettől</h3>
-        <p class="story-text" id="pb-story2p">Ha a bérlők az appban találnak egymásra — előre szűrték egymást hangulat, korosztály, dohányzás, nyelv alapján. Ők választották egymást. A konfliktus esélye töredékére csökken. A jó élmény a te nevedhez kötődik.</p>
-      </div>
-    </div>
+<footer>
+  <div class="footer-logo">Aihoy!</div>
+  <div class="footer-links">
+    <a href="/">Home</a> ·
+    <a href="/pitch_user.html" id="foot-user"></a> ·
+    <a href="/privacy">Privacy</a> ·
+    <a href="/child-safety">Child Safety</a>
   </div>
+  <a href="mailto:aihoy.app@gmail.com" class="footer-mail">aihoy.app@gmail.com</a>
+</footer>
 
-  <div class="divider"></div>
-
-  <!-- SCENARIO -->
-  <div class="section">
-    <div class="section-label" id="pb-s2">Hogyan működik a gyakorlatban</div>
-    <h2 id="pb-h2">A te napi rutinod — Aihoy!-jal</h2>
-
-    <div class="scenario">
-      <h3>🎣 Hogyan működik a gyakorlatban</h3>
-      <ul class="scenario-steps">
-        <li>
-          <div class="step-num">1</div>
-          <div class="step-text" id="pb-step1">Feltöltöd a hajót egyszer: dátum, teljes ár, férőhely, hangulat, korosztály, dohányzás igen/nem. <strong>Ez az összes munka tőled.</strong> A többi az appra marad.</div>
-        </li>
-        <li>
-          <div class="step-num">2</div>
-          <div class="step-text" id="pb-step2">Az első bérlő megtalálja a hirdetést. Innentől <strong>ő dönt</strong>: befizeti a teljes árat és privátban megy — vagy beállítja ő maga milyen társakat keres, és az app segít összeszedni őket.</div>
-        </li>
-        <li>
-          <div class="step-num">3</div>
-          <div class="step-text" id="pb-step3">A társak <strong>egymást választják</strong> — hasonló érdeklődés, hangulat, korosztály alapján. Nem te rakod össze a csapatot. Nem kell koordinálnod. Az app végzi el.</div>
-        </li>
-        <li>
-          <div class="step-num">4</div>
-          <div class="step-text" id="pb-step4">Neked csak annyi dolgod van hogy <strong>kiadod a hajót</strong>. A csoport már ismeri egymást indulás előtt. Nincs meglepetés, nincs konfliktus — mert tudatosan álltak össze.</div>
-        </li>
-        <li>
-          <div class="step-num">5</div>
-          <div class="step-text" id="pb-step5">Visszafelé: elégedett vendégek, jó Google-értékelés — <strong>a te nevedre</strong>. Extra munka nélkül. A hajó kiadva, a pénz megvan, a reputáció nő.</div>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- QUOTE -->
-  <div class="quote-block">
-    <p class="quote-text" id="pb-quote">Egyszer kaptam 2 csillagot. Két ember összeveszett a hajón — én nem tehettem róla semmit. De a Google-értékelésem az enyém maradt. Az Aihoy!-jal ez nem fordulhat elő — ők választják egymást, nem én rakom össze őket.</p>
-  </div>
-
-  <!-- BENEFITS -->
-  <div class="section">
-    <div class="section-label" id="pb-s3">Miért jó neked</div>
-    <h2 id="pb-h3">A te előnyeid túraszervezőként</h2>
-    <div class="benefits">
-      <div class="benefit">
-        <div class="benefit-icon">🛡️</div>
-        <div>
-          <h4 id="pb-b1h">Véd a rossz értékeléstől</h4>
-          <p id="pb-b1p">Ha a csapat az appban állt össze — ők választották egymást. A fedélzeti konfliktus nem a te felelősséged. A Google-értékelésed megvéded.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">🚢</div>
-        <div>
-          <h4 id="pb-b2h">Teljesen új bérlők — akik eddig ki sem tudták fizetni</h4>
-          <p id="pb-b2p">Ketten vannak, de a hajó 4 főre van kiszámolva. Eddig lemondtak. Az Aihoy!-on megtalálják a hiányzó 2 főt — és a hajó kimegy. Ezek nem a meglévő vevőid: ezek új emberek akik nélkül a hajó üresen maradt volna a kikötőben.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">🌍</div>
-        <div>
-          <h4 id="pb-b3h">Nyelvi egyezés</h4>
-          <p id="pb-b3p">Ha csak angolul vagy magyarul szeretnél dolgozni — beállítod. Az app csak azokat hozza akikkel kommunikálni tudsz.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">⭐</div>
-        <div>
-          <h4 id="pb-b4h">Jobb értékelések — valódi okból</h4>
-          <p id="pb-b4p">Kompatibilis csoport = jobb élmény = jobb Google-értékelés. Nem véletlenszerű, hanem rendszerszintű javulás a reputációdban.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">😴</div>
-        <div>
-          <h4 id="pb-b5h">Extra munka nélkül</h4>
-          <p id="pb-b5p">Feltöltöd egyszer — az app elvégzi a többit. Nem kell csoportot szervezned, koordinálnod, ismeretleneket összeboronálnod. A bérlő maga intézi. Te csak a kulcsot adod oda.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">💳</div>
-        <div>
-          <h4 id="pb-b6h">Privát vagy megosztott — a bérlő dönti el</h4>
-          <p id="pb-b6p">Ha valaki vállalja a teljes árat, elmegy privátban. Ha nem, maga toboroz társakat az appban. Neked mindegy — a hajó kiadva, az ár megvan. Te nem foglalkozol a csoportszervezéssel.</p>
-        </div>
-      </div>
-      <div class="benefit">
-        <div class="benefit-icon">🗓️</div>
-        <div>
-          <h4 id="pb-b7h">Proaktív vendégszerzés</h4>
-          <p id="pb-b7p">Az Utazási Ablakkal látod ki tervez Zakynthosra érkezni és mit keres — még mielőtt ő keresne téged. Te írsz először.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- NUMBERS -->
-  <div class="section">
-    <div class="section-label" id="pb-s4">A piac</div>
-    <h2 id="pb-h4">Miért most, miért Zakynthos?</h2>
-    <div class="numbers">
-      <div class="number-card">
-        <span class="num">1M+</span>
-        <div class="num-label">turista évente<br>Zakynthosra</div>
-      </div>
-      <div class="number-card">
-        <span class="num">€0</span>
-        <div class="num-label">jutalék<br>jelenleg</div>
-      </div>
-      <div class="number-card">
-        <span class="num">Első</span>
-        <div class="num-label">ilyen platform<br>a régióban</div>
-      </div>
-    </div>
-    <p class="lead" id="pb-market-desc">Gondolj azokra akik <strong>eddig soha nem béreltek tőled</strong> — nem azért mert nem akartak, hanem mert ketten nem tudták kifizetni azt ami négyre volt kiszámolva. Az Aihoy! ezt a réteget hozza be a piacra. Ők nem ismernek más hajóst — csak téged, az első zakynthosi partnert.</p>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- EARLY ACCESS -->
-  <div class="section">
-    <div class="early">
-      <h3 id="pb-early-title">🎉 Early adopter előnyök — most még ingyenes</h3>
-      <p style="color: var(--textsec); margin-bottom: 24px; font-size: 15px; line-height: 1.6;">Az Aihoy! most indul. Aki most csatlakozik, ingyen használja azokat a funkciókat amelyek később prémiumba kerülnek.</p>
-      <ul class="early-list">
-        <li>Korlátlan túrafeltöltés — most és a jövőben is</li>
-        <li>Utazási Ablak — látod ki érkezik Zakynthosra és mit keres (fizetős lesz)</li>
-        <li>Verified Operator badge — elsők között vagy a platformon</li>
-        <li>Közvetlen visszajelzési csatorna a fejlesztőhöz — a te igényeid alakítják az appot</li>
-        <li>Nulla jutalék — most és az indulás utáni első évben</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- CTA -->
-  <div class="cta">
-    <h2 id="pb-cta-title">Legyen a hajód tele.<br>A vendégeid elégedett.</h2>
-    <p id="pb-cta-desc">Az Aihoy! most kerül a Play Store-ba. Ha szeretnél az első zakynthosi partner lenni — írj. Együtt teszteljük, együtt fejlesztjük.</p>
-    <a href="https://mail.google.com/mail/?view=cm&to=aihoy.app@gmail.com&su=Aihoy!+beta+tester" target="_blank" id="pb-tester" style="display:inline-block;margin:20px auto 12px;background:linear-gradient(135deg,rgba(0,229,255,0.15),rgba(157,78,221,0.15));border:1.5px solid rgba(0,229,255,0.5);color:#00E5FF;padding:14px 32px;border-radius:100px;text-decoration:none;font-weight:700;font-size:14px;">🧪 Jelentkezz ingyenes tesztelőnek</a>
-    <div class="cta-contact">
-      📧 aihoy.app@gmail.com
-    </div>
-  </div>
-
-</div>
-
-
-<div id="aihoy-langbar" style="position:fixed;top:16px;right:20px;z-index:9999;display:flex;gap:2px;align-items:center;background:rgba(0,10,30,0.95);backdrop-filter:blur(12px);border:2px solid rgba(0,229,255,0.5);border-radius:100px;padding:6px 12px;box-shadow:0 4px 20px rgba(0,0,0,0.5);">
-  <a href="index.html" style="text-decoration:none;font-size:16px;padding:3px 6px;border-radius:50%;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.3);line-height:1;color:white;" title="Home">⚓</a>
-  <span style="width:1px;height:18px;background:rgba(0,229,255,0.2);margin:0 3px;"></span>
-  <button id="lb-hu" onclick="aihoyLang('hu')" style="background:none;border:none;cursor:pointer;font-size:16px;padding:3px 5px;border-radius:50%;line-height:1;opacity:0.7;transition:opacity 0.2s;" title="Magyar">🇭🇺</button>
-  <button id="lb-en" onclick="aihoyLang('en')" style="background:none;border:none;cursor:pointer;font-size:16px;padding:3px 5px;border-radius:50%;line-height:1;opacity:0.7;transition:opacity 0.2s;" title="English">🇬🇧</button>
-  <button id="lb-el" onclick="aihoyLang('el')" style="background:none;border:none;cursor:pointer;font-size:16px;padding:3px 5px;border-radius:50%;line-height:1;opacity:0.7;transition:opacity 0.2s;" title="Ελληνικά">🇬🇷</button>
-  <button id="lb-hr" onclick="aihoyLang('hr')" style="background:none;border:none;cursor:pointer;font-size:16px;padding:3px 5px;border-radius:50%;line-height:1;opacity:0.7;transition:opacity 0.2s;" title="Hrvatski">🇭🇷</button>
-  <button id="lb-ja" onclick="aihoyLang('ja')" style="background:none;border:none;cursor:pointer;font-size:16px;padding:3px 5px;border-radius:50%;line-height:1;opacity:0.7;transition:opacity 0.2s;" title="日本語">🇯🇵</button>
-  <button id="lb-pl" onclick="aihoyLang('pl')" style="background:none;border:none;cursor:pointer;font-size:16px;padding:3px 5px;border-radius:50%;line-height:1;opacity:0.7;transition:opacity 0.2s;" title="Polski">🇵🇱</button>
-</div>
 <script>
-var TRANS = {"hu": {"pb-badge": "⚓ Aihoy! — Zakynthos Pilot Program", "pb-sub": "Maxold ki a szezonod. Töltsd meg a hajódat.", "pb-hero-desc": "Az Aihoy! összeköti a túraszervezőket az utazókkal — kompatibilitás alapján, nem csak szabad hely alapján.", "pb-s1": "A probléma", "pb-h1": "Ismerős helyzet?", "pb-lead1": "Megvan a hajó, megvan a program, megvan a tudás. De a helyek felét üresre teszed ki — vagy rosszabb: feltöltöd olyanokkal akik nem illenek a csapatba.", "pb-story1h": "A legrosszabb forgatókönyv", "pb-story1p": "A társaság kibérel egy hajót. Valaki dohányzik, valaki nem bírja. Valaki bulizna, valaki pihenni jött. Konfliktus. 1 csillag a Google-ön. Holott te csak a hajót adtad.", "pb-story2h": "Az Aihoy! véd ettől", "pb-story2p": "Ha a bérlők az appban találnak egymásra — előre szűrték egymást. Ők választották egymást. A konfliktus esélye töredékére csökken.", "pb-s2": "Hogyan működik", "pb-h2": "A te napi rutinod — Aihoy!-jal", "pb-step1": "Feltöltöd a hajót egyszer: dátum, ár, férőhely, hangulat, korosztály, dohányzás. Ez az összes munka tőled.", "pb-step2": "Az első bérlő megtalálja a hirdetést és eldönti: privátban megy vagy társakat keres.", "pb-step3": "A társak egymást választják — hasonló érdeklődés alapján. Nem te rakod össze a csapatot.", "pb-step4": "Neked csak annyi dolgod van hogy kiadod a hajót. Nincs meglepetés, nincs konfliktus.", "pb-step5": "Elégedett vendégek, jó Google-értékelés — a te nevedre. Extra munka nélkül.", "pb-quote": "Egyszer kaptam 2 csillagot. Két ember összeveszett a hajón — én nem tehettem róla. Az Aihoy!-jal ez nem fordulhat elő.", "pb-s3": "Miért jó neked", "pb-h3": "A te előnyeid túraszervezőként", "pb-b1h": "Véd a rossz értékeléstől", "pb-b1p": "Ha a csapat az appban állt össze — ők választották egymást. A fedélzeti konfliktus nem a te felelősséged.", "pb-b2h": "Új bérlők akik eddig ki sem tudták fizetni", "pb-b2p": "Ketten vannak de a hajó 4 főre van kiszámolva. Az Aihoy!-on megtalálják a hiányzó 2 főt — és a hajó kimegy.", "pb-b3h": "Nyelvi egyezés", "pb-b3p": "Ha csak angolul szeretnél dolgozni — beállítod. Az app csak azokat hozza akikkel kommunikálni tudsz.", "pb-b4h": "Jobb értékelések", "pb-b4p": "Kompatibilis csoport = jobb élmény = jobb Google-értékelés.", "pb-b5h": "Extra munka nélkül", "pb-b5p": "Feltöltöd egyszer — az app elvégzi a többit. Te csak a kulcsot adod oda.", "pb-b6h": "Privát vagy megosztott — a bérlő dönti el", "pb-b6p": "Ha valaki vállalja a teljes árat, elmegy privátban. Ha nem, maga toboroz társakat.", "pb-b7h": "Proaktív vendégszerzés", "pb-b7p": "Az Utazási Ablakkal látod ki tervez Zakynthosra érkezni — még mielőtt ő keresne téged.", "pb-s4": "A piac", "pb-h4": "Miért most, miért Zakynthos?", "pb-market-desc": "Gondolj azokra akik eddig soha nem béreltek tőled — mert ketten nem tudták kifizetni azt ami négyre volt kiszámolva. Az Aihoy! ezt a réteget hozza be.", "pb-early-title": "🎉 Early adopter előnyök — most még ingyenes", "pb-cta-title": "Legyen a hajód tele. A vendégeid elégedett.", "pb-cta-desc": "Az Aihoy! most kerül a Play Store-ba. Ha szeretnél az első zakynthosi partner lenni — írj."}, "en": {"pb-badge": "⚓ Aihoy! — Zakynthos Pilot Program", "pb-sub": "Maximize your season. Fill your boat.", "pb-hero-desc": "Aihoy! connects trip organizers with travelers based on compatibility — not just available seats.", "pb-s1": "The problem", "pb-h1": "Familiar situation?", "pb-lead1": "You have the boat, the program, the expertise. But half the seats go empty — or worse: you fill them with people who do not fit.", "pb-story1h": "The worst case scenario", "pb-story1p": "A group rents a boat. Someone smokes, someone cannot stand it. Someone wants to party, someone came to relax. Conflict. 1 star on Google. Even though you just provided the boat.", "pb-story2h": "Aihoy! protects you from this", "pb-story2p": "If the renters find each other through the app — they already filtered each other. They chose each other. The chance of conflict drops dramatically.", "pb-s2": "How it works", "pb-h2": "Your daily routine — with Aihoy!", "pb-step1": "You upload the boat once: date, price, capacity, mood, age, smoking. That is all the work from you.", "pb-step2": "The first renter finds the listing and decides: go private or find companions.", "pb-step3": "The companions choose each other based on similar interests. You do not assemble the team.", "pb-step4": "Your only job is to hand over the boat. No surprises, no conflict.", "pb-step5": "Satisfied guests, good Google rating — in your name. No extra work.", "pb-quote": "Once I got 2 stars. Two people argued on the boat — I had nothing to do with it. With Aihoy! this cannot happen.", "pb-s3": "Why it is good for you", "pb-h3": "Your advantages as a trip organizer", "pb-b1h": "Protects from bad reviews", "pb-b1p": "If the team came together in the app — they chose each other. The on-board conflict is not your responsibility.", "pb-b2h": "New renters who could not afford it before", "pb-b2p": "There are two of them but the boat is for 4. On Aihoy! they find the missing 2 — and the boat goes out.", "pb-b3h": "Language matching", "pb-b3p": "If you only want to work in English — you set it. The app only brings people you can communicate with.", "pb-b4h": "Better reviews", "pb-b4p": "Compatible group = better experience = better Google rating.", "pb-b5h": "No extra work", "pb-b5p": "You upload once — the app does the rest. You just hand over the key.", "pb-b6h": "Private or shared — the renter decides", "pb-b6p": "If someone pays the full price, they go private. If not, they recruit companions themselves.", "pb-b7h": "Proactive guest acquisition", "pb-b7p": "With the Travel Window you see who plans to come to Zakynthos — before they look for you.", "pb-s4": "The market", "pb-h4": "Why now, why Zakynthos?", "pb-market-desc": "Think of those who never rented from you — because two of them could not afford what was calculated for four. Aihoy! brings this segment in.", "pb-early-title": "🎉 Early adopter benefits — still free now", "pb-cta-title": "Keep your boat full. Your guests happy.", "pb-cta-desc": "Aihoy! is coming to the Play Store. If you want to be the first Zakynthos partner — reach out.", "pb-tester": "🧪 Join as a free tester"}, "el": {"pb-badge": "⚓ Aihoy! — Πρόγραμμα Πιλότ Ζάκυνθος", "pb-sub": "Μεγιστοποίησε την σεζόν σου. Γέμισε το σκάφος σου.", "pb-hero-desc": "Το Aihoy! συνδέει οργανωτές εκδρομών με ταξιδιώτες βάσει συμβατότητας — όχι μόνο διαθέσιμων θέσεων.", "pb-s1": "Το πρόβλημα", "pb-h1": "Σου φαίνεται οικεία;", "pb-lead1": "Έχεις το σκάφος, το πρόγραμμα, την εμπειρία. Αλλά τα μισά καθίσματα μένουν άδεια — ή τα γεμίζεις με άτομα που δεν ταιριάζουν.", "pb-story1h": "Το χειρότερο σενάριο", "pb-story1p": "Μια παρέα νοικιάζει σκάφος. Κάποιος καπνίζει, κάποιος δεν αντέχει. Σύγκρουση. 1 αστέρι στο Google. Ενώ εσύ απλώς έδωσες το σκάφος.", "pb-story2h": "Το Aihoy! σε προστατεύει από αυτό", "pb-story2p": "Αν οι ενοικιαστές βρεθούν μέσα από την εφαρμογή — έχουν ήδη φιλτράρει ο ένας τον άλλον. Η πιθανότητα σύγκρουσης μειώνεται δραστικά.", "pb-s2": "Πώς λειτουργεί", "pb-h2": "Η καθημερινή σου ρουτίνα — με το Aihoy!", "pb-step1": "Ανεβάζεις το σκάφος μια φορά: ημερομηνία, τιμή, χωρητικότητα, διάθεση, ηλικία, κάπνισμα. Αυτή είναι όλη η δουλειά σου.", "pb-step2": "Ο πρώτος ενοικιαστής βρίσκει την αγγελία και αποφασίζει: ιδιωτικά ή με συνοδοιπόρους.", "pb-step3": "Οι συνοδοιπόροι επιλέγουν ο ένας τον άλλον βάσει κοινών ενδιαφερόντων. Εσύ δεν συγκεντρώνεις την ομάδα.", "pb-step4": "Το μόνο που έχεις να κάνεις είναι να παραδώσεις το σκάφος. Καμία έκπληξη, καμία σύγκρουση.", "pb-step5": "Ικανοποιημένοι επισκέπτες, καλή αξιολόγηση Google — με το όνομά σου. Χωρίς επιπλέον δουλειά.", "pb-quote": "Μια φορά πήρα 2 αστέρια. Δύο άτομα μάλωσαν — εγώ δεν είχα σχέση. Με το Aihoy! αυτό δεν μπορεί να συμβεί.", "pb-s3": "Γιατί σου συμφέρει", "pb-h3": "Τα πλεονεκτήματά σου", "pb-b1h": "Προστατεύει από κακές αξιολογήσεις", "pb-b1p": "Αν η ομάδα συγκεντρώθηκε μέσα από την εφαρμογή — αυτοί επέλεξαν ο ένας τον άλλον.", "pb-b2h": "Νέοι ενοικιαστές που δεν μπορούσαν να το αντέξουν πριν", "pb-b2p": "Είναι δύο αλλά το σκάφος υπολογίζεται για 4. Στο Aihoy! βρίσκουν τα υπόλοιπα 2.", "pb-b3h": "Αντιστοίχιση γλώσσας", "pb-b3p": "Αν θέλεις να δουλεύεις μόνο στα ελληνικά — το ρυθμίζεις.", "pb-b4h": "Καλύτερες αξιολογήσεις", "pb-b4p": "Συμβατή ομάδα = καλύτερη εμπειρία = καλύτερη αξιολόγηση.", "pb-b5h": "Χωρίς επιπλέον δουλειά", "pb-b5p": "Ανεβάζεις μια φορά — η εφαρμογή κάνει τα υπόλοιπα.", "pb-b6h": "Ιδιωτικό ή κοινόχρηστο — ο ενοικιαστής αποφασίζει", "pb-b6p": "Αν κάποιος καλύψει την πλήρη τιμή πηγαίνει ιδιωτικά. Αν όχι, στρατολογεί ο ίδιος.", "pb-b7h": "Προενεργητική απόκτηση επισκεπτών", "pb-b7p": "Βλέπεις ποιος σχεδιάζει να έρθει στη Ζάκυνθο — πριν σε ψάξει εκείνος.", "pb-s4": "Η αγορά", "pb-h4": "Γιατί τώρα, γιατί Ζάκυνθος;", "pb-market-desc": "Σκέψου αυτούς που δεν έχουν νοικιάσει ποτέ — γιατί δύο άτομα δεν μπορούσαν να πληρώσουν αυτό που ήταν για τέσσερα.", "pb-early-title": "🎉 Πλεονεκτήματα πρώτων χρηστών — δωρεάν ακόμα", "pb-cta-title": "Γέμισε το σκάφος σου. Κράτησε τους επισκέπτες ευχαριστημένους.", "pb-cta-desc": "Το Aihoy! έρχεται στο Play Store. Αν θέλεις να γίνεις ο πρώτος partner στη Ζάκυνθο — επικοινώνησε.", "pb-tester": "🧪 Γίνε δωρεάν tester"}, "hr": {"pb-badge": "⚓ Aihoy! — Pilot Program Zakynthos", "pb-sub": "Maksimiziraj sezonu. Napuni brod.", "pb-hero-desc": "Aihoy! povezuje organizatore izleta s putnicima na temelju kompatibilnosti — ne samo slobodnih mjesta.", "pb-s1": "Problem", "pb-h1": "Poznata situacija?", "pb-lead1": "Imaš brod, program, znanje. Ali pola mjesta ostaje prazno — ili ih puniš s ljudima koji ne odgovaraju.", "pb-story1h": "Najgori scenarij", "pb-story1p": "Grupa iznajmi brod. Netko puši, netko ne može podnijeti. Sukob. 1 zvjezdica na Googleu. A ti si samo dao brod.", "pb-story2h": "Aihoy! te štiti od toga", "pb-story2p": "Ako najmodavci pronađu jedni druge kroz app — već su se međusobno filtrirali. Šansa za sukob dramatično pada.", "pb-s2": "Kako funkcionira", "pb-h2": "Tvoja dnevna rutina — s Aihoy!", "pb-step1": "Učitavaš brod jednom: datum, cijena, kapacitet, raspoloženje, dob, pušenje. To je sav posao od tebe.", "pb-step2": "Prvi najmodavac pronalazi oglas i odlučuje: privatno ili s pratnjom.", "pb-step3": "Pratnja biraju jedni druge prema sličnim interesima. Ti ne sastaviš tim.", "pb-step4": "Tvoj jedini posao je predati brod. Bez iznenađenja, bez sukoba.", "pb-step5": "Zadovoljni gosti, dobra Google ocjena — na tvoje ime. Bez dodatnog rada.", "pb-quote": "Jednom sam dobio 2 zvjezdice. Dvije osobe su se posvađale — ja nisam kriv. S Aihoy! to se ne može dogoditi.", "pb-s3": "Zašto ti odgovara", "pb-h3": "Tvoje prednosti kao organizatora", "pb-b1h": "Štiti od loših ocjena", "pb-b1p": "Ako se tim sastavio u appu — oni su izabrali jedni druge. Sukob na palubi nije tvoja odgovornost.", "pb-b2h": "Novi najmodavci koji si to ranije nisu mogli priuštiti", "pb-b2p": "Dvoje ih je ali brod je za 4. Na Aihoy! pronalaze nedostajuća 2 — i brod ide.", "pb-b3h": "Jezično podudaranje", "pb-b3p": "Ako želiš raditi samo na hrvatskom — postaviš. App donosi samo ljude s kojima možeš komunicirati.", "pb-b4h": "Bolje ocjene", "pb-b4p": "Kompatibilna grupa = bolje iskustvo = bolja Google ocjena.", "pb-b5h": "Bez dodatnog rada", "pb-b5p": "Učitavaš jednom — app radi ostatak. Ti samo predaješ ključ.", "pb-b6h": "Privatno ili zajedničko — najmodavac odlučuje", "pb-b6p": "Ako netko plati punu cijenu, ide privatno. Ako ne, sam regrutira pratnju.", "pb-b7h": "Proaktivno privlačenje gostiju", "pb-b7p": "S Prozorom putovanja vidiš tko planira doći na Zakynthos — prije nego te on potraži.", "pb-s4": "Tržište", "pb-h4": "Zašto sada, zašto Zakynthos?", "pb-market-desc": "Razmisli o onima koji nikad nisu iznajmili od tebe — jer dvoje nije moglo platiti ono što je izračunato za četvero.", "pb-early-title": "🎉 Prednosti ranih korisnika — još besplatno", "pb-cta-title": "Neka tvoj brod bude pun. Gosti zadovoljni.", "pb-cta-desc": "Aihoy! dolazi na Play Store. Ako želiš biti prvi partner na Zakynthosu — javi se.", "pb-tester": "🧪 Prijavi se kao besplatni tester"},
-"pl": {"pb-badge": "⚓ Aihoy! — Program Pilotażowy Zakynthos", "pb-sub": "Zmaksymalizuj sezon. Zapełnij łódź.", "pb-hero-desc": "Aihoy! łączy organizatorów wycieczek z podróżnikami na podstawie kompatibilności — nie tylko wolnych miejsc.", "pb-s1": "Problem", "pb-h1": "Znajoma sytuacja?", "pb-lead1": "Masz łódź, program, wiedzę. Ale połowa miejsc stoi pusta — albo co gorsza: wypełniasz ją ludźmi, którzy nie pasują.", "pb-story1h": "Najgorszy scenariusz", "pb-story1p": "Grupa wynajmuje łódź. Ktoś pali, ktoś nie znosi dymu. Konflikt. 1 gwiazdka w Google. A ty tylko dałeś łódź.", "pb-story2h": "Aihoy! chroni cię przed tym", "pb-story2p": "Jeśli najemcy znajdą się nawzajem przez aplikację — już się wcześniej odfiltrowali. Szansa na konflikt spada dramatycznie.", "pb-s2": "Jak to działa", "pb-h2": "Twoja codzienna rutyna — z Aihoy!", "pb-step1": "Wgrywasz łódź raz: data, cena, pojemność, nastrój, wiek, palenie. To cała praca z twojej strony.", "pb-step2": "Pierwszy najemca znajduje ogłoszenie i decyduje: prywatnie czy z towarzyszami.", "pb-step3": "Towarzysze wybierają się nawzajem na podstawie wspólnych zainteresowań. Ty nie składasz zespołu.", "pb-step4": "Twoje jedyne zadanie to oddać łódź. Bez niespodzianek, bez konfliktów.", "pb-step5": "Zadowoleni goście, dobra ocena Google — na twoje nazwisko. Bez dodatkowej pracy.", "pb-quote": "Raz dostałem 2 gwiazdki. Dwie osoby pokłóciły się — ja nie miałem z tym nic wspólnego. Z Aihoy! to nie może się zdarzyć.", "pb-s3": "Dlaczego to się opłaca", "pb-h3": "Twoje korzyści jako organizatora", "pb-b1h": "Ochrona przed złymi opiniami", "pb-b1p": "Jeśli zespół zebrał się w aplikacji — sami się wybrali. Konflikt na pokładzie to nie twoja odpowiedzialność.", "pb-b2h": "Nowi najemcy, którzy wcześniej nie mogli sobie pozwolić", "pb-b2p": "Jest ich dwoje, ale łódź jest na 4 osoby. Na Aihoy! znajdą brakujące 2 — i łódź wypływa.", "pb-b3h": "Dopasowanie językowe", "pb-b3p": "Jeśli chcesz pracować tylko po polsku — ustawiasz. Aplikacja przynosi tylko osoby, z którymi możesz się komunikować.", "pb-b4h": "Lepsze opinie", "pb-b4p": "Kompatybilna grupa = lepsze doświadczenie = lepsza ocena Google.", "pb-b5h": "Bez dodatkowej pracy", "pb-b5p": "Wgrywasz raz — aplikacja robi resztę. Ty tylko dajesz klucz.", "pb-b6h": "Prywatnie lub wspólnie — najemca decyduje", "pb-b6p": "Jeśli ktoś zapłaci pełną cenę, jedzie prywatnie. Jeśli nie, sam rekrutuje towarzyszy.", "pb-b7h": "Proaktywne pozyskiwanie gości", "pb-b7p": "Okno Podróży pokazuje kto planuje przyjechać na Zakynthos — zanim on zacznie cię szukać.", "pb-s4": "Rynek", "pb-h4": "Dlaczego teraz, dlaczego Zakynthos?", "pb-market-desc": "Pomyśl o tych, którzy nigdy od ciebie nie wynajęli — bo dwoje nie mogło zapłacić za to, co było wyliczone na czworo.", "pb-early-title": "🎉 Korzyści early adopter — jeszcze bezpłatnie", "pb-cta-title": "Niech twoja łódź będzie pełna. Goście zadowoleni.", "pb-cta-desc": "Aihoy! trafia na Play Store. Jeśli chcesz być pierwszym partnerem na Zakynthos — napisz.", "pb-tester": "🧪 Dołącz jako bezpłatny tester"},
-"ja": {"pb-badge": "⚓ Aihoy! — ザキントス パイロットプログラム", "pb-sub": "シーズンを最大限に。ボートを満員に。", "pb-hero-desc": "Aihoy!はツアーオーガナイザーと旅行者をマッチングします — 単なる空席ではなく相性で。", "pb-s1": "問題", "pb-h1": "よくある状況では？", "pb-lead1": "ボートも、プログラムも、知識もある。でも席の半分が空のまま — あるいは合わない人で埋めてしまう。", "pb-story1h": "最悪のシナリオ", "pb-story1p": "グループがボートを借りた。誰かが喫煙、誰かが我慢できない。衝突。Googleに1つ星。あなたはボートを提供しただけなのに。", "pb-story2h": "Aihoy!がこれから守る", "pb-story2p": "レンターがアプリで出会えば — すでにお互いをフィルタリングしている。衝突の可能性は劇的に下がる。", "pb-s2": "使い方", "pb-h2": "Aihoy!を使った日々のルーティン", "pb-step1": "ボートを一度登録：日付、価格、定員、気分、年齢、喫煙。これだけがあなたの作業。", "pb-step2": "最初のレンターがリストを見て決める：プライベートで行くか、仲間を探すか。", "pb-step3": "仲間たちは共通の興味でお互いを選ぶ。あなたがチームを組む必要なし。", "pb-step4": "あなたの仕事はボートを渡すだけ。サプライズなし、衝突なし。", "pb-step5": "満足したゲスト、良いGoogle評価 — あなたの名前で。余分な作業なし。", "pb-quote": "一度2つ星をもらった。2人が船上で言い争った — 私のせいじゃない。Aihoy!ならこれは起きない。", "pb-s3": "なぜあなたに良いか", "pb-h3": "ツアーオーガナイザーとしての利点", "pb-b1h": "悪いレビューから保護", "pb-b1p": "チームがアプリで集まれば — 彼らがお互いを選んだ。船上の衝突はあなたの責任ではない。", "pb-b2h": "以前は払えなかった新しいレンター", "pb-b2p": "2人しかいないがボートは4人用。Aihoy!で残り2人を見つける — そしてボートが出港できる。", "pb-b3h": "言語マッチング", "pb-b3p": "日本語だけで対応したい — そう設定すればOK。", "pb-b4h": "より良いレビュー", "pb-b4p": "相性の良いグループ = より良い体験 = より良いGoogle評価。", "pb-b5h": "余分な作業なし", "pb-b5p": "一度登録すればアプリが残りをやる。あなたは鍵を渡すだけ。", "pb-b6h": "プライベートかシェアか — レンターが決める", "pb-b6p": "全額払える人はプライベートで。そうでなければ自分で仲間を募集。", "pb-b7h": "プロアクティブなゲスト獲得", "pb-b7p": "トラベルウィンドウでザキントスに来る予定の人を事前に確認 — 彼らがあなたを探す前に。", "pb-s4": "市場", "pb-h4": "なぜ今、なぜザキントス？", "pb-market-desc": "4人分に設定されたボートを2人では払えなかった人たちを考えてみよう。Aihoy!がこの層を取り込む。", "pb-early-title": "🎉 アーリーアダプター特典 — 今はまだ無料", "pb-cta-title": "ボートを満員に。ゲストを満足させよう。", "pb-cta-desc": "Aihoy!はPlay Storeに登場予定。ザキントス初のパートナーになりたい方はご連絡を。", "pb-tester": "🧪 無料ベータテスターとして参加"}};
+const T = {
+  hu: {
+    'nav-back': '← Főoldal',
+    'hero-badge': '⚓ Hajósoknak & Szervezőknek',
+    'hero-title': 'Töltsd meg a hajódat — jutalék nélkül',
+    'hero-lead': 'Charteres, túraszervező vagy hajóbérlő? Hirdesd a túráidat az Aihoy!-on, a foglalást az app kezeli. A vendégek <strong>előre látják egymást</strong>, mielőtt egy hajóra szállnak.',
+    'hero-cta': '▶ Letöltés a Google Play-ről',
 
-function aihoyLang(lang) {
-  try { localStorage.setItem('aihoy-lang', lang); } catch(e) {}
-  var t = TRANS[lang];
-  if (!t) return;
-  Object.keys(t).forEach(function(id) {
-    var el = document.getElementById(id);
-    if (el) el.innerHTML = t[id];
-  });
-  ['hu','en','el','hr','ja','pl'].forEach(function(l) {
-    var btn = document.getElementById('lb-' + l);
-    if (btn) btn.style.opacity = (l === lang) ? '1' : '0.5';
-  });
+    'prob-tag': 'A probléma',
+    'prob-title': 'Ismerős helyzet?',
+    'prob-h': 'A rossz értékelés, amiről nem te tehetsz',
+    'prob-p1': 'Megvan a hajó, a program, a tudás. De a helyek felét üresre teszed ki — vagy rosszabb: feltöltöd olyanokkal, akik nem illenek össze. Valaki dohányzik, valaki bulizna, valaki pihenni jött.',
+    'prob-p2': 'A végén nem egymást értékelik rosszul. <strong>Téged értékelnek.</strong> Egy csillag — holott te csak a hajót adtad.',
+    'shield-h': '🛡️ Az Aihoy! véd ettől',
+    'shield-p': 'Ha a vendégek az appban találnak egymásra, <strong>előre látták egymás profilját</strong> — hangulat, érdeklődés, nyelv, korosztály. Kompatibilis emberek szállnak egy hajóra, nem véletlenszerű társaság. A jó élmény a te nevedhez kötődik.',
+
+    'how-tag': 'Hogyan működik',
+    'how-title': 'A te napi rutinod — Aihoy!-jal',
+    'how-lead': 'Feltöltöd egyszer, a többit az app viszi.',
+    's1-t': 'Töltsd fel a túrát', 's1-d': 'Dátum, teljes ár, férőhely, hangulat, korosztály. Ez az összes munka tőled — a többi az appra marad.',
+    's2-t': 'A vendégek foglalnak', 's2-d': 'A túrád megjelenik a közelben lévő, hozzád illő utazóknak. Ők foglalnak helyet, te elfogadod vagy elutasítod.',
+    's3-t': 'Kompatibilis csapat', 's3-d': 'A foglalók előre látják egymás profilját és a tiédet. Tudatosan szállnak fel — nem véletlenül kerülnek össze.',
+    's4-t': 'Elégedett vendégek', 's4-d': 'Jó élmény, jó értékelés — a te nevedre. Extra munka nélkül: a hajó kiadva, a pénz megvan, a reputáció nő.',
+
+    'ben-tag': 'Miért jó neked',
+    'ben-title': 'A te előnyeid szervezőként',
+    'ben-lead': 'Amit ma használsz, ingyenes is marad. A foglalásból nem vonunk el semmit.',
+    'b1-t': 'Véd a rossz értékeléstől', 'b1-d': 'Ha a csapat az appban állt össze, ők választották egymást. A fedélzeti konfliktus nem a te felelősséged.',
+    'b2-t': 'Ismétlődő túrák', 'b2-d': '14 nap × 3 turnus egy gombnyomással. Ugyanaz a program két hétre előre — nem kell naponta újra felvinni.',
+    'b3-t': 'Kapitányos árazás', 'b3-d': 'A kapitány és a legénység nem fizető hely — az ár/fő valósat mutat a vendégnek.',
+    'b4-t': 'Chat fordítóval', 'b4-d': 'A német vagy lengyel vendég a saját nyelvén ír, te a sajátodon olvasod. A nyelv nem akadály.',
+    'b5-t': 'Hajó-galéria', 'b5-d': 'Külön a személyes és a hajós képek. Bemutatod magad és a hajód — a képek többet adnak el, mint a szöveg.',
+    'b6-t': 'Nulla jutalék', 'b6-d': 'A túrahirdetés és a foglalás ingyenes. A vendéggel közvetlenül egyeztetsz, nincs közvetítői díj.',
+
+    'cta-title': 'Vidd fel az első túrád',
+    'cta-p': 'Töltsd le, állítsd be a hajós profilod, és tedd ki a túráidat. Percek alatt megvan.',
+    'cta-btn': '▶ Letöltés a Google Play-ről',
+
+    'foot-user': 'Utazóknak',
+  },
+  en: {
+    'nav-back': '← Home',
+    'hero-badge': '⚓ For sailors & hosts',
+    'hero-title': 'Fill your boat — commission-free',
+    'hero-lead': 'Charter, tour operator or boat rental? Post your trips on Aihoy! and let the app handle bookings. Guests <strong>see each other in advance</strong>, before they step aboard.',
+    'hero-cta': '▶ Get it on Google Play',
+
+    'prob-tag': 'The problem',
+    'prob-title': 'Sound familiar?',
+    'prob-h': 'The bad review that isn\'t your fault',
+    'prob-p1': 'You have the boat, the trip, the know-how. But half the seats go out empty — or worse: you fill them with people who don\'t fit together. One smokes, one wants to party, one came to rest.',
+    'prob-p2': 'In the end they don\'t rate each other badly. <strong>They rate you.</strong> One star — even though all you provided was the boat.',
+    'shield-h': '🛡️ Aihoy! protects you from this',
+    'shield-p': 'When guests find each other in the app, they\'ve <strong>already seen each other\'s profiles</strong> — vibe, interests, language, age. Compatible people board together, not a random crowd. The good experience is tied to your name.',
+
+    'how-tag': 'How it works',
+    'how-title': 'Your daily routine — with Aihoy!',
+    'how-lead': 'Set it up once, the app does the rest.',
+    's1-t': 'Post the trip', 's1-d': 'Date, full price, capacity, vibe, age range. That\'s all the work on your side — the rest is up to the app.',
+    's2-t': 'Guests book', 's2-d': 'Your trip shows up to nearby travelers who match you. They book a seat, you accept or decline.',
+    's3-t': 'A compatible crew', 's3-d': 'Bookers see each other\'s profiles and yours in advance. They board deliberately — not by chance.',
+    's4-t': 'Happy guests', 's4-d': 'Good experience, good review — under your name. With no extra work: boat booked, money in, reputation up.',
+
+    'ben-tag': 'Why it\'s good for you',
+    'ben-title': 'Your advantages as a host',
+    'ben-lead': 'What you use today stays free. We don\'t take a cut of your bookings.',
+    'b1-t': 'Protects your reviews', 'b1-d': 'If the crew came together in the app, they chose each other. On-board conflict isn\'t your responsibility.',
+    'b2-t': 'Recurring trips', 'b2-d': '14 days × 3 slots with one tap. The same trip two weeks ahead — no re-entering it every day.',
+    'b3-t': 'Captain pricing', 'b3-d': 'The captain and crew aren\'t paying seats — so the per-person price shown to guests is real.',
+    'b4-t': 'Chat with translation', 'b4-d': 'Your German or Polish guest writes in their language, you read it in yours. Language is no barrier.',
+    'b5-t': 'Boat gallery', 'b5-d': 'Separate personal and boat photos. Show yourself and your boat — pictures sell better than words.',
+    'b6-t': 'Zero commission', 'b6-d': 'Posting trips and taking bookings is free. You deal with the guest directly — no middleman fee.',
+
+    'cta-title': 'Post your first trip',
+    'cta-p': 'Download it, set up your host profile, and put your trips up. Done in minutes.',
+    'cta-btn': '▶ Get it on Google Play',
+
+    'foot-user': 'For travelers',
+  }
+};
+function setLang(lang) {
+  const dict = T[lang] || T.hu;
+  for (const key in dict) { const el = document.getElementById(key); if (el) el.innerHTML = dict[key]; }
+  document.getElementById('btn-hu').classList.toggle('active', lang === 'hu');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
+  try { localStorage.setItem('aihoy_lang', lang); } catch(e) {}
 }
-
-var _lang = null;
-try { _lang = localStorage.getItem('aihoy-lang'); } catch(e) {}
-if (!_lang) {
-  var _bl = (navigator.language || 'hu').slice(0,2);
-  _lang = ({'en':'en','el':'el','hr':'hr','ja':'ja','pl':'pl'})[_bl] || 'hu';
-}
-aihoyLang(_lang);
+(function() {
+  let lang = ''; try { lang = localStorage.getItem('aihoy_lang') || ''; } catch(e) {}
+  if (!lang) lang = (navigator.language || 'hu').slice(0,2) === 'en' ? 'en' : 'hu';
+  if (lang !== 'hu' && lang !== 'en') lang = 'en';
+  setLang(lang);
+})();
 </script>
-<div style="display:flex;gap:20px;justify-content:center;margin:24px 0 8px;flex-wrap:wrap;">
-    <a href="https://x.com/aihoy_app" target="_blank" rel="noopener" style="color:#8BA8C8;text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.733-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-      @aihoy_app
-    </a>
-    <a href="https://www.instagram.com/aihoy.app" target="_blank" rel="noopener" style="color:#8BA8C8;text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-      @aihoy.app
-    </a>
-    <a href="https://www.facebook.com/profile.php?id=61589779041288" target="_blank" rel="noopener" style="color:#8BA8C8;text-decoration:none;font-size:13px;display:flex;align-items:center;gap:6px;">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      Facebook
-    </a>
-  </div>
+
 </body>
 </html>
