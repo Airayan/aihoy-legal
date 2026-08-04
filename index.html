@@ -236,6 +236,34 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
 .ios-box .ios-msg { display: block; font-size: 13px; margin-top: 12px; min-height: 18px; color: var(--cyan); }
 .ios-box .ios-msg.err { color: var(--gold); }
 
+/* ── Képernyőkép-galéria ── */
+.shots {
+  background: var(--ocean2);
+  border-top: 1px solid rgba(0,229,255,0.08);
+  border-bottom: 1px solid rgba(0,229,255,0.08);
+  padding: 64px 0 68px;
+  overflow: hidden;
+}
+.shots h2 {
+  font-family: 'Fraunces', serif; font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700; text-align: center; margin-bottom: 40px; padding: 0 24px;
+}
+.shots-row {
+  display: flex; gap: 26px; justify-content: center; align-items: flex-start;
+  padding: 0 24px 12px; overflow-x: auto; scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.shots-row::-webkit-scrollbar { height: 5px; }
+.shots-row::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.2); border-radius: 5px; }
+.shot { flex: 0 0 auto; width: 240px; text-align: center; scroll-snap-align: center; }
+.shot img {
+  width: 100%; display: block; border-radius: 22px;
+  border: 1px solid rgba(0,229,255,0.18);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+  background: var(--ocean);
+}
+.shot figcaption { font-size: 13px; color: var(--textsec); line-height: 1.5; margin-top: 14px; }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 [data-i18n-lang].hidden { display: none; }
@@ -302,6 +330,31 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
       <button class="ios-submit" onclick="iosSignup(this)" id="ios-btn"></button>
     </div>
     <span class="ios-msg"></span>
+  </div>
+</section>
+
+<!-- ══════════ KÉPERNYŐKÉPEK ══════════ -->
+<section class="shots">
+  <h2 id="shots-title"></h2>
+  <div class="shots-row">
+
+    <figure class="shot">
+      <img src="/screen-radar.jpg" alt="Aihoy! Radar — szűrés nyelv, korosztály, szerep és létszám szerint" width="620" height="1241" loading="lazy">
+      <figcaption id="shot1-cap"></figcaption>
+    </figure>
+
+    <!-- HA KÉSZ A TOVÁBBI KÉT KÉP: töröld ezt a kommentnyitót és a lentebbi zárót
+    <figure class="shot">
+      <img src="/screen-tura.jpg" alt="Aihoy! — túralista dátummal és szabad helyekkel" width="620" height="1241" loading="lazy">
+      <figcaption id="shot2-cap"></figcaption>
+    </figure>
+
+    <figure class="shot">
+      <img src="/screen-chat.jpg" alt="Aihoy! — chat automatikus fordítással" width="620" height="1241" loading="lazy">
+      <figcaption id="shot3-cap"></figcaption>
+    </figure>
+    IDÁIG -->
+
   </div>
 </section>
 
@@ -489,6 +542,11 @@ const T = {
     'ios-btn': 'Szólj, ha kész',
     'ios-text2': '<strong>iPhone-od van?</strong> Az iOS-verzión még dolgozom. Hagyd itt a címed, és szólok, amint kész.',
     'ios-btn2': 'Szólj, ha kész',
+
+    'shots-title': 'Így néz ki belülről',
+    'shot1-cap': 'Radar — szűrj anyanyelv, korosztály, szerep és létszám szerint. Vagy nézd meg, ki van most 100 méteren belül.',
+    'shot2-cap': 'Túrák dátummal, szabad helyekkel és árral — egy helyen.',
+    'shot3-cap': 'Chat, ami fordít. A helyi hajós a saját nyelvén ír, te a sajátodon olvasod.',
   },
   en: {
     'subtagline': 'No boat needed. Just an idea and a date.',
@@ -548,6 +606,11 @@ const T = {
     'ios-btn': 'Notify me',
     'ios-text2': '<strong>On iPhone?</strong> The iOS version is still in the works. Leave your email and I\'ll let you know when it\'s ready.',
     'ios-btn2': 'Notify me',
+
+    'shots-title': 'What it looks like inside',
+    'shot1-cap': 'Radar — filter by language, age, role and group size. Or just see who\'s within 100 metres right now.',
+    'shot2-cap': 'Trips with dates, free seats and prices — all in one place.',
+    'shot3-cap': 'Chat that translates. The local skipper writes in their language, you read it in yours.',
   }
 };
 
