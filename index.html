@@ -7,7 +7,10 @@
 <meta name="description" content="Aihoy! — találj túrát, társaságot vagy legénységet a vízparton, vagy szervezd meg a sajátodat. GPS-radar, vibe-alapú párosítás, chat fordítóval. Görög szigetek és Adria. Android app.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://aihoy.app/">
-<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0A1628">
 
 <meta property="og:title" content="Aihoy! — Hajótúrák és programok a szigeteken">
 <meta property="og:description" content="Találj túrát, társaságot vagy legénységet a vízparton — vagy szervezd meg a sajátodat.">
@@ -46,6 +49,15 @@
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
   gtag('config', 'G-7NXGL1PPX6');
+</script>
+
+<!-- Supabase (iOS várólista) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // ⚠️ IDE ÍRD BE A SAJÁT ADATAIDAT (Supabase → Settings → API)
+  const SUPABASE_URL = https://seufpmzohygxjycpplli.supabase.co/rest/v1/;
+  const SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNldWZwbXpvaHlneGp5Y3BwbGxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNDU4OTUsImV4cCI6MjA4NDYyMTg5NX0.Ri93yqOit78F6DPEzWeAEO8eMWl7eKqSPWbxoYqlMi4;
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 </script>
 
 <style>
@@ -196,6 +208,34 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
 .footer-links a:hover { color: var(--cyan); }
 .footer-mail { color: var(--cyan); text-decoration: none; font-size: 14px; }
 
+/* ── iOS várólista ── */
+.ios-box {
+  max-width: 440px; margin: 26px auto 0; padding: 20px 22px;
+  background: var(--surface); border: 1px solid rgba(0,229,255,0.12);
+  border-radius: 16px; text-align: center;
+  animation: fadeUp 0.8s 0.45s ease both;
+}
+.ios-box.is-ios { border-color: rgba(0,229,255,0.4); box-shadow: 0 8px 32px rgba(0,229,255,0.12); }
+.ios-box p { font-size: 14px; color: var(--textsec); line-height: 1.6; margin-bottom: 14px; }
+.ios-box .ios-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.ios-box input {
+  flex: 1 1 200px; min-width: 0; padding: 12px 16px; border-radius: 100px;
+  border: 1px solid rgba(0,229,255,0.2); background: rgba(10,22,40,0.6);
+  color: var(--text); font-family: inherit; font-size: 14px;
+}
+.ios-box input::placeholder { color: rgba(139,168,200,0.6); }
+.ios-box input:focus { outline: none; border-color: var(--cyan); }
+.ios-box button {
+  padding: 12px 24px; border-radius: 100px; border: none; cursor: pointer;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  color: white; font-family: inherit; font-size: 14px; font-weight: 700;
+  transition: transform 0.2s;
+}
+.ios-box button:hover { transform: translateY(-2px); }
+.ios-box button:disabled { opacity: 0.5; cursor: default; transform: none; }
+.ios-box .ios-msg { display: block; font-size: 13px; margin-top: 12px; min-height: 18px; color: var(--cyan); }
+.ios-box .ios-msg.err { color: var(--gold); }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 [data-i18n-lang].hidden { display: none; }
@@ -250,10 +290,19 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
   <p class="subtagline" id="subtagline"></p>
   <p class="hero-desc" id="hero-desc"></p>
   <div class="cta-group">
-    <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download"></a>
+    <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download" onclick="trackPlay('hero')"></a>
     <a href="#travelers" class="btn btn-outline" id="btn-learn"></a>
   </div>
   <button class="btn btn-play-anthem" onclick="togglePlay()" id="btn-anthem"></button>
+
+  <div class="ios-box" id="ios-box-1">
+    <p id="ios-text"></p>
+    <div class="ios-row">
+      <input type="email" class="ios-email" placeholder="email@pelda.hu" autocomplete="email">
+      <button class="ios-submit" onclick="iosSignup(this)" id="ios-btn"></button>
+    </div>
+    <span class="ios-msg"></span>
+  </div>
 </section>
 
 <!-- ══════════ STATS ══════════ -->
@@ -351,7 +400,16 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
 <!-- ══════════ DOWNLOAD CTA ══════════ -->
 <div class="download-cta">
   <h2 id="dl-title"></h2>
-  <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download2"></a>
+  <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download2" onclick="trackPlay('bottom')"></a>
+
+  <div class="ios-box" id="ios-box-2">
+    <p id="ios-text2"></p>
+    <div class="ios-row">
+      <input type="email" class="ios-email" placeholder="email@pelda.hu" autocomplete="email">
+      <button class="ios-submit" onclick="iosSignup(this)" id="ios-btn2"></button>
+    </div>
+    <span class="ios-msg"></span>
+  </div>
 </div>
 
 <!-- ══════════ FOOTER ══════════ -->
@@ -426,6 +484,11 @@ const T = {
 
     'dl-title': 'Készen állsz? Vízre!',
     'btn-download2': '▶ Letöltés a Google Play-ről',
+
+    'ios-text': '<strong>iPhone-od van?</strong> Az iOS-verzión még dolgozom. Hagyd itt a címed, és szólok, amint kész.',
+    'ios-btn': 'Szólj, ha kész',
+    'ios-text2': '<strong>iPhone-od van?</strong> Az iOS-verzión még dolgozom. Hagyd itt a címed, és szólok, amint kész.',
+    'ios-btn2': 'Szólj, ha kész',
   },
   en: {
     'subtagline': 'No boat needed. Just an idea and a date.',
@@ -480,8 +543,69 @@ const T = {
 
     'dl-title': 'Ready? Set sail!',
     'btn-download2': '▶ Get it on Google Play',
+
+    'ios-text': '<strong>On iPhone?</strong> The iOS version is still in the works. Leave your email and I\'ll let you know when it\'s ready.',
+    'ios-btn': 'Notify me',
+    'ios-text2': '<strong>On iPhone?</strong> The iOS version is still in the works. Leave your email and I\'ll let you know when it\'s ready.',
+    'ios-btn2': 'Notify me',
   }
 };
+
+// ── iOS várólista ──
+const IOS_MSG = {
+  hu: { ok: 'Megvan — szólok, amint kész! ⚓', bad: 'Ez nem tűnik érvényes címnek.', err: 'Valami elakadt. Próbáld újra kicsit később.' },
+  en: { ok: 'Got it — I\'ll be in touch! ⚓', bad: 'That doesn\'t look like a valid address.', err: 'Something went wrong. Please try again later.' }
+};
+let CURRENT_LANG = 'hu';
+
+async function iosSignup(btn) {
+  const box = btn.closest('.ios-box');
+  const input = box.querySelector('.ios-email');
+  const msg = box.querySelector('.ios-msg');
+  const m = IOS_MSG[CURRENT_LANG] || IOS_MSG.hu;
+  const email = input.value.trim();
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+    msg.textContent = m.bad; msg.classList.add('err'); return;
+  }
+
+  btn.disabled = true;
+  msg.classList.remove('err');
+  msg.textContent = '…';
+
+  try {
+    const { error } = await sb.from('ios_waitlist').insert({
+      email: email,
+      lang: CURRENT_LANG,
+      source: box.id
+    });
+    if (error) throw error;
+    msg.textContent = m.ok;
+    input.value = '';
+    gtag('event', 'ios_signup', { source: box.id });
+  } catch (e) {
+    console.error(e);
+    msg.textContent = m.err;
+    msg.classList.add('err');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function trackPlay(where) {
+  gtag('event', 'play_store_click', { source: where });
+}
+
+// iOS-eszköz felismerése — csak kiemeli a dobozt, nem rejt el semmit
+(function() {
+  const ua = navigator.userAgent || '';
+  const isIOS = /iPad|iPhone|iPod/.test(ua) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (isIOS) {
+    document.querySelectorAll('.ios-box').forEach(b => b.classList.add('is-ios'));
+    gtag('event', 'ios_visitor');
+  }
+})();
 
 function setLang(lang) {
   const dict = T[lang] || T.hu;
@@ -492,6 +616,7 @@ function setLang(lang) {
   document.getElementById('btn-hu').classList.toggle('active', lang === 'hu');
   document.getElementById('btn-en').classList.toggle('active', lang === 'en');
   document.documentElement.lang = lang;
+  CURRENT_LANG = lang;
   try { localStorage.setItem('aihoy_lang', lang); } catch(e) {}
 }
 
