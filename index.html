@@ -270,6 +270,51 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
   .shots-row { gap: 14px; }
 }
 
+/* ── Az árszámtan ── */
+.math { padding: 70px 24px 76px; background: var(--ocean); }
+.math h2 {
+  font-family: 'Fraunces', serif; font-size: clamp(24px, 5vw, 38px);
+  font-weight: 700; text-align: center; margin-bottom: 12px; line-height: 1.15;
+}
+.math .math-lead {
+  text-align: center; color: var(--textsec); font-size: 16px; line-height: 1.7;
+  max-width: 560px; margin: 0 auto 44px;
+}
+.math-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px; max-width: 900px; margin: 0 auto;
+}
+.math-card {
+  background: var(--surface); border: 1px solid rgba(0,229,255,0.10);
+  border-radius: 18px; padding: 26px 22px; text-align: center;
+}
+.math-card.win {
+  border-color: rgba(0,229,255,0.45);
+  box-shadow: 0 10px 40px rgba(0,229,255,0.14);
+  background: linear-gradient(160deg, rgba(0,229,255,0.07), var(--surface));
+}
+.math-card .mc-label {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--textsec); font-weight: 700; margin-bottom: 14px;
+}
+.math-card.win .mc-label { color: var(--cyan); }
+.math-card .mc-num {
+  font-family: 'Fraunces', serif; font-size: clamp(28px, 6vw, 40px);
+  font-weight: 900; line-height: 1; margin-bottom: 4px; color: var(--text);
+}
+.math-card.win .mc-num {
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.math-card .mc-unit { font-size: 13px; color: var(--textsec); margin-bottom: 16px; }
+.math-card .mc-note { font-size: 13.5px; color: var(--textsec); line-height: 1.6; }
+.math-foot {
+  text-align: center; max-width: 620px; margin: 40px auto 0;
+  font-size: 15px; color: var(--textsec); line-height: 1.75;
+}
+.math-foot strong { color: var(--text); }
+.math-src { display: block; margin-top: 14px; font-size: 12.5px; opacity: 0.65; }
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 [data-i18n-lang].hidden { display: none; }
@@ -337,6 +382,33 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
     </div>
     <span class="ios-msg"></span>
   </div>
+</section>
+
+<!-- ══════════ ÁRSZÁMTAN ══════════ -->
+<section class="math">
+  <h2 id="math-title"></h2>
+  <p class="math-lead" id="math-lead"></p>
+  <div class="math-row">
+    <div class="math-card">
+      <div class="mc-label" id="mc1-l"></div>
+      <div class="mc-num" id="mc1-n"></div>
+      <div class="mc-unit" id="mc1-u"></div>
+      <div class="mc-note" id="mc1-note"></div>
+    </div>
+    <div class="math-card">
+      <div class="mc-label" id="mc2-l"></div>
+      <div class="mc-num" id="mc2-n"></div>
+      <div class="mc-unit" id="mc2-u"></div>
+      <div class="mc-note" id="mc2-note"></div>
+    </div>
+    <div class="math-card win">
+      <div class="mc-label" id="mc3-l"></div>
+      <div class="mc-num" id="mc3-n"></div>
+      <div class="mc-unit" id="mc3-u"></div>
+      <div class="mc-note" id="mc3-note"></div>
+    </div>
+  </div>
+  <p class="math-foot" id="math-foot"></p>
 </section>
 
 <!-- ══════════ KÉPERNYŐKÉPEK ══════════ -->
@@ -492,7 +564,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
 const T = {
   hu: {
     'subtagline': 'Nem kell hajó. Elég egy ötlet és egy dátum.',
-    'hero-desc': 'Búvárkodás, horgászat, hajós naplemente, közös kirándulás — élmények, amiket <strong>nem mindegy, kivel</strong> élsz meg. Egyedül drága, idegenekkel kockázatos.<br><br>Az Aihoy! összeköt azokkal, akikkel <strong>tényleg érdemes elindulni.</strong>',
+    'hero-desc': 'A privát hajó szép — csak kettőre nem éri meg. A nagy hajón meg ott ülsz negyvenedmagaddal, füstben, árnyék nélkül.<br><br>Az Aihoy! a kettő közti hiányzó lépés: megmutatja, <strong>ki lesz ugyanakkor ugyanott</strong> — és ha összejöttök hatan, a privát hajó fejenként annyi, mint a zsúfolt.',
     'btn-download': '▶ Letöltés a Google Play-ről',
     'btn-learn': '📖 Mit tud?',
     'btn-anthem': '🎵 Aihoy! Anthem',
@@ -500,6 +572,16 @@ const T = {
     'stat2': 'Nyelv<br>hu · en · de · it · el · hr · pl',
     'stat3': 'Play Áruház<br>Most indult',
     'stat4': 'Lehetőség<br>Görög szigetek & Adria',
+
+    'math-title': 'Ugyanaz a hajó. Ugyanaz a nap. Más ár.',
+    'math-lead': 'Egy hajó nagyjából ugyanannyiba kerül négy embernek, mint kettőnek. A különbség nem a hajóban van, hanem abban, hányan osztoztok rajta.',
+    'mc1-l': 'Nagy hajó', 'mc1-n': '9–20 e Ft', 'mc1-u': 'fejenként',
+    'mc1-note': 'Negyvenen a fedélzeten. „Ha szerencséd van, a családod mellé ülhetsz."',
+    'mc2-l': 'Privát, kettesben', 'mc2-n': '~33 e Ft', 'mc2-u': 'fejenként',
+    'mc2-note': 'Szép lenne. Csak épp ránézel, és inkább nem mentek sehova.',
+    'mc3-l': 'Privát, hatan-heten', 'mc3-n': '~9,5 e Ft', 'mc3-u': 'fejenként',
+    'mc3-note': 'Ugyanannyi, mint a zsúfolt nagy hajón. Csak épp nem ülnek az emberek a tetőn.',
+    'math-foot': 'Már csak az a kérdés, honnan lesz meg a másik négy. <strong>Erre csináltam az Aihoy!-t.</strong> Beállítod, mikor és hol nyaralsz, és látod, ki lesz ugyanakkor ugyanott — és mit keres.<span class="math-src">A számok egy valódi zadari privát túrából: 66 917 Ft, max 7 főig.</span>',
 
     'trav-tag': 'Utazóknak',
     'trav-title': 'Nem kell hajó ahhoz, hogy elindulj',
@@ -556,7 +638,7 @@ const T = {
   },
   en: {
     'subtagline': 'No boat needed. Just an idea and a date.',
-    'hero-desc': 'Diving, fishing, sunset sailing, group adventures — experiences that are <strong>completely different</strong> depending on who you share them with. Solo is expensive. Strangers are a gamble.<br><br>Aihoy! connects you with people <strong>worth going with.</strong>',
+    'hero-desc': 'A private boat is lovely — it just doesn\'t add up for two. And on the big boat you\'re one of forty, in the smoke, with no shade.<br><br>Aihoy! is the missing step between the two: it shows you <strong>who\'ll be there at the same time</strong> — and once six of you get together, the private boat costs the same per head as the crowded one.',
     'btn-download': '▶ Get it on Google Play',
     'btn-learn': '📖 What it does',
     'btn-anthem': '🎵 Aihoy! Anthem',
@@ -564,6 +646,16 @@ const T = {
     'stat2': 'Languages<br>hu · en · de · it · el · hr · pl',
     'stat3': 'Play Store<br>Just launched',
     'stat4': 'Possibilities<br>Greek Islands & Adriatic',
+
+    'math-title': 'Same boat. Same day. Different price.',
+    'math-lead': 'A boat costs roughly the same for four people as for two. The difference isn\'t in the boat — it\'s in how many of you share it.',
+    'mc1-l': 'Big boat', 'mc1-n': '\u20ac25\u201350', 'mc1-u': 'per person',
+    'mc1-note': 'Forty people on deck. \u201cIf you\'re lucky, you get to sit next to your own family.\u201d',
+    'mc2-l': 'Private, just the two of you', 'mc2-n': '~\u20ac85', 'mc2-u': 'per person',
+    'mc2-note': 'It would be lovely. You look at the price, and end up going nowhere.',
+    'mc3-l': 'Private, six or seven', 'mc3-n': '~\u20ac25', 'mc3-u': 'per person',
+    'mc3-note': 'The same as the crowded big boat. Except nobody\'s sitting on the roof.',
+    'math-foot': 'The only question left is where the other four come from. <strong>That\'s why I built Aihoy!</strong> Set where and when you\'ll be, and see who else will be there \u2014 and what they\'re after.<span class=\"math-src\">Figures from a real private trip in Zadar: \u20ac170 total, up to 7 people.</span>',
 
     'trav-tag': 'For travelers',
     'trav-title': 'You don\'t need a boat to set off',
