@@ -1,0 +1,140 @@
+// functions/trip/[id].js  →  aihoy.app/trip/<uuid>
+//
+// A túra NYERS id-vel érhető el, token nélkül: a túra hirdetés, és tudatos
+// döntés, hogy nem csak a szervező oszthatja tovább. (2026-08-04)
+
+import {
+  callRpc, esc, clip, fmtDateTime, renderPage, renderGone, PLAY_URL,
+} from '../_shared.js';
+
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+const MODE_LABEL = {
+  skippered: 'Vitorlás bérlés kapitánnyal',
+  bareboat: 'Hajóbérlés kapitány nélkül',
+  crew_finding: 'Legénységet keres',
+  charter_host: 'Charter program',
+};
+
+export async function onRequestGet({ params, env }) {
+  const id = String(params.id || '');
+
+  // Formai szűrés MÉG a DB előtt: értelmetlen kérésekkel ne terheljük.
+  if (!UUID_RE.test(id)) return renderGone('trip');
+
+  let t;
+  try {
+    t = await callRpc(env, 'get_public_trip', { p_trip_id: id });
+  } catch (e) {
+    // Ne bukjon némán, de a felhasználó se lásson technikai részletet.
+    console.error('[trip]', e.message);
+    return renderGone('trip');
+  }
+
+  // Üres válasz = nincs ilyen túra, VAGY lejárt (end_date + 12 óra).
+  if (!t) return renderGone('trip');
+
+  const when = fmtDateTime(t.start_date);
+  const place = t.port_name || t.destination || '';
+  const mode = MODE_LABEL[t.trip_mode] || '';
+
+  // ── Ár ───────────────────────────────────────────────────────────────────
+  // A price a TELJES hajó ára, a price_per_person ebből számolt becslés teli
+  // hajóra. Ezt őszintén ki kell írni, különben a "75 €/fő" garantált árnak
+  // látszik, pedig nem az.
+  const sign = t.currency === 'EUR' ? '€' : t.currency || '';
+  let priceHtml = '';
+  if (t.price > 0) {
+    priceHtml = `
+      <div class="price">
+        <div class="big">${esc(Math.round(t.price))} ${esc(sign)} / hajó</div>
+        ${
+          t.price_per_person
+            ? `<div class="note">kb. ${esc(t.price_per_person)} ${esc(sign)}/fő teljes hajó esetén</div>`
+            : ''
+        }
+      </div>`;
+  }
+
+  // ── Tényszerű jelzések ───────────────────────────────────────────────────
+  // Ezek TÁJÉKOZTATNAK, nem szűrnek. A weboldal soha nem mond nemet: aki nem
+  // illik bele, azt majd az app szűri — itt csak lássa előre, mire számítson.
+  const tags = [];
+  if (mode) tags.push(mode);
+  if (t.smoking_policy === 'no') tags.push('🚭 nemdohányzó');
+  if (Array.isArray(t.child_age_groups) && t.child_age_groups.length > 0) {
+    tags.push('👶 gyerekbarát');
+  }
+  if (t.license_required) tags.push('📄 jogosítvány szükséges');
+  if (t.gender_preference === 'women_only') tags.push('♀ csak nőknek');
+  if (Array.isArray(t.languages) && t.languages.length > 0) {
+    tags.push('🗣 ' + t.languages.join(', '));
+  }
+
+  const rows = [];
+  if (when) rows.push(['📅', when]);
+  // A port_name szabad szöveg, néha nagyon hosszú — a kártyán rövidítjük,
+  // a teljes szöveg úgyis ott van a leírásban.
+  if (place) rows.push(['🧭', clip(place, 90)]);
+  if (typeof t.free_seats === 'number') {
+    rows.push([
+      '👥',
+      t.free_seats > 0
+        ? `${t.free_seats} szabad hely a ${t.capacity ?? '?'} főből`
+        : 'Betelt',
+    ]);
+  }
+  if (t.organizer_name) rows.push(['👤', `Szervező: ${t.organizer_name}`]);
+
+  const inner = `
+    <div class="card">
+      ${
+        t.image_url
+          ? `<img class="hero" src="${esc(t.image_url)}" alt="" loading="lazy">`
+          : ''
+      }
+      <div class="body">
+        <h1>${esc(t.title)}</h1>
+        ${mode ? `<div class="sub">${esc(mode)}</div>` : ''}
+        <div class="rows">
+          ${rows
+            .map(
+              ([ico, val]) =>
+                `<div class="row"><span class="ico">${ico}</span><span class="val">${esc(val)}</span></div>`
+            )
+            .join('')}
+        </div>
+        ${priceHtml}
+        ${t.description ? `<div class="desc">${esc(t.description)}</div>` : ''}
+        ${
+          tags.length
+            ? `<div class="tags">${tags.map((x) => `<span class="tag">${esc(x)}</span>`).join('')}</div>`
+            : ''
+        }
+        <a class="cta" href="${PLAY_URL}">Megnyitás az Aihoy! appban</a>
+        <div class="cta-note">Jelentkezés és üzenetváltás az appban.</div>
+      </div>
+    </div>`;
+
+  // OG-leírás: a legfontosabb tények egy sorban, mert a Facebook ennyit mutat.
+  const ogDesc = [
+    when,
+    place ? clip(place, 40) : '',
+    typeof t.free_seats === 'number' && t.free_seats > 0
+      ? `${t.free_seats} szabad hely`
+      : '',
+    t.price > 0 && t.price_per_person ? `kb. ${t.price_per_person} ${sign}/fő` : '',
+  ]
+    .filter(Boolean)
+    .join(' · ');
+
+  return renderPage({
+    title: `${t.title} — Aihoy!`,
+    ogTitle: t.title,
+    ogDesc: ogDesc || 'Nézd meg ezt a programot az Aihoy!-ban.',
+    ogImage: t.image_url,
+    ogUrl: `https://aihoy.app/trip/${id}`,
+    inner,
+  });
+}
