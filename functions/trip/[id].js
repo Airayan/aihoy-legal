@@ -67,9 +67,11 @@ export async function onRequestGet({ params, env }) {
     tags.push('👶 gyerekbarát');
   }
   if (t.license_required) tags.push('📄 jogosítvány szükséges');
-  if (t.gender_preference === 'women_only') tags.push('♀ csak nőknek');
+  // ♀️ és 🗣️ — variánsjelölővel (U+FE0F), különben a böngésző
+  // fekete-fehér szimbólumként rajzolja őket, nem színes emojiként.
+  if (t.gender_preference === 'women_only') tags.push('♀️ csak nőknek');
   if (Array.isArray(t.languages) && t.languages.length > 0) {
-    tags.push('🗣 ' + t.languages.join(', '));
+    tags.push('🗣️ ' + t.languages.join(', '));
   }
 
   const rows = [];
@@ -85,6 +87,10 @@ export async function onRequestGet({ params, env }) {
         : 'Betelt',
     ]);
   }
+  // Cégnév a szervező FÖLÖTT: a cég az entitás, a személy a kapcsolattartó.
+  // Magánszemélynél az RPC NULL-t ad (25_public_sharing_names.sql), így a sor
+  // magától kimarad — nem kell külön ág.
+  if (t.company_name) rows.push(['🏢', clip(t.company_name, 60)]);
   if (t.organizer_name) rows.push(['👤', `Szervező: ${t.organizer_name}`]);
 
   const inner = `
@@ -118,13 +124,24 @@ export async function onRequestGet({ params, env }) {
     </div>`;
 
   // OG-leírás: a legfontosabb tények egy sorban, mert a Facebook ennyit mutat.
+  //
+  // A port_name SZÁNDÉKOSAN nincs benne. Az az űrlapon kötelező, szabad szöveges
+  // TALÁLKOZÁSI PONT ("a büfé előtt a gesztenyefánál"), tehát működési részlet,
+  // nem csábító információ — az előnézetben csak elvenné a helyet a lényeg elől.
+  // Az oldalon természetesen ott marad a 🧭 sorban.
+  // A túra neve amúgy is a legkiemeltebb elem: az az og:title.
   const ogDesc = [
     when,
-    place ? clip(place, 40) : '',
+    // A destination (város/térség) viszont mehet, ha ki van töltve: az valódi
+    // helyinformáció, nem útbaigazítás.
+    t.destination ? clip(t.destination, 40) : '',
     typeof t.free_seats === 'number' && t.free_seats > 0
       ? `${t.free_seats} szabad hely`
       : '',
     t.price > 0 && t.price_per_person ? `kb. ${t.price_per_person} ${sign}/fő` : '',
+    // Cégnév UTOLSÓNAK: bizalmi jel, de a dátumnál és az árnál kevésbé
+    // csábító. Ha az előnézet túl hosszúra nyúlik, EZT a sort vedd ki elsőként.
+    t.company_name ? clip(t.company_name, 30) : '',
   ]
     .filter(Boolean)
     .join(' · ');
