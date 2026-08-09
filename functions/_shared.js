@@ -105,10 +105,16 @@ const CSS = `
   }
   .wrap{width:100%;max-width:560px}
   .brand{
-    display:flex;align-items:center;gap:8px;
+    display:flex;align-items:center;gap:10px;
     font-weight:800;letter-spacing:.5px;color:#4FC3F7;
-    margin-bottom:20px;font-size:15px;text-decoration:none;
+    margin-bottom:20px;font-size:17px;text-decoration:none;
   }
+  /* A logó háttere ugyanaz a sötétkék, mint az oldalé, ezért nincs körülötte
+     látható doboz. A border-radius csak a PNG sarkait kerekíti le. */
+  .brand img{
+    width:30px;height:30px;border-radius:8px;display:block;flex:none;
+  }
+  .brand:hover span{text-decoration:underline}
   .card{
     background:#12233A;border:1px solid #1E3A5C;border-radius:20px;
     overflow:hidden;
@@ -142,6 +148,16 @@ const CSS = `
     font-weight:800;font-size:16px;text-decoration:none;
   }
   .cta-note{text-align:center;color:#8FA8C0;font-size:12px;margin-top:10px}
+  /* Másodlagos kijárat: aki még nem ismeri az appot, előbb megnézné.
+     SZÁNDÉKOSAN keretes, nem kitöltött — a kék CTA marad a fő gomb.
+     Két egyforma súlyú gomb közt az emberek nem választanak, hanem elmennek. */
+  .learn{
+    display:block;margin-top:16px;padding:13px;border-radius:14px;
+    background:transparent;border:1px solid #2A4A70;
+    color:#4FC3F7;text-align:center;
+    font-weight:600;font-size:15px;text-decoration:none;
+  }
+  .learn:hover{background:#12233A}
   .gone{text-align:center;padding:44px 20px}
   .gone .em{font-size:44px;margin-bottom:14px}
   .gone h1{margin-bottom:8px}
@@ -172,8 +188,9 @@ ${ogUrl ? `<meta property="og:url" content="${esc(ogUrl)}">` : ''}
 </head>
 <body>
 <div class="wrap">
-  <a class="brand" href="/">⛵ Aihoy!</a>
+  <a class="brand" href="/"><img src="/logo_512.png" alt="" width="30" height="30"><span>Aihoy!</span></a>
   ${inner}
+  <a class="learn" href="/">Mi az az Aihoy? → aihoy.app</a>
   <footer>
     <a href="/privacy.html">Adatvédelem</a> ·
     <a href="/">aihoy.app</a>
