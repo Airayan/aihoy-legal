@@ -39,6 +39,24 @@ export async function onRequestGet({ params, env }) {
   const place = t.port_name || t.destination || '';
   const mode = MODE_LABEL[t.trip_mode] || '';
 
+  // Ha a cím maga a módozat (gyakori: "Vitorlás bérlés kapitánnyal"), az alcím
+  // csak megismételné. Egyszer kiírni elég.
+  const showMode = mode && mode.trim() !== String(t.title || '').trim();
+
+  // ── ELINDULT-E MÁR? ──────────────────────────────────────────────────────
+  // A link end_date + 12 óráig él, de többnapos túránál keletkezik egy ablak,
+  // amikor a hajó már kint van a vízen, a linket viszont még osztogatják.
+  // Ott a "4 szabad hely" + foglalásra hívó gomb hazugság lenne.
+  //
+  // A képlet SZÁNDÉKOSAN azonos a trip_details_sheet.dart:1320 sorával:
+  //     trip.startTime.toUtc().isBefore(DateTime.now().toUtc())
+  // Az időzóna-pontatlanságot (a start_date a helyszín faliórája UTC-nek
+  // álcázva) NEM javítjuk ki itt: ha a weboldal más eredményre jutna, mint az
+  // app, az rosszabb lenne, mint maga a pontatlanság.
+  const started = t.start_date
+    ? Date.parse(t.start_date) < Date.now()
+    : false;
+
   // ── Ár ───────────────────────────────────────────────────────────────────
   // A price a TELJES hajó ára, a price_per_person ebből számolt becslés teli
   // hajóra. Ezt őszintén ki kell írni, különben a "75 €/fő" garantált árnak
@@ -61,7 +79,9 @@ export async function onRequestGet({ params, env }) {
   // Ezek TÁJÉKOZTATNAK, nem szűrnek. A weboldal soha nem mond nemet: aki nem
   // illik bele, azt majd az app szűri — itt csak lássa előre, mire számítson.
   const tags = [];
-  if (mode) tags.push(mode);
+  // A módozat NEM kerül a címkék közé: már ott van alcímként, közvetlenül a
+  // cím alatt. Kétszer kiírva zajjá válik a többi, valóban új információt
+  // hordozó jelzés (nemdohányzó, gyerekbarát, nyelvek) mellett.
   if (t.smoking_policy === 'no') tags.push('🚭 nemdohányzó');
   if (Array.isArray(t.child_age_groups) && t.child_age_groups.length > 0) {
     tags.push('👶 gyerekbarát');
@@ -79,7 +99,11 @@ export async function onRequestGet({ params, env }) {
   // A port_name szabad szöveg, néha nagyon hosszú — a kártyán rövidítjük,
   // a teljes szöveg úgyis ott van a leírásban.
   if (place) rows.push(['🧭', clip(place, 90)]);
-  if (typeof t.free_seats === 'number') {
+  if (started) {
+    // Elindult túránál a szabad helyek száma félrevezető: az app amúgy sem
+    // enged rá foglalni (blocked = isPast || isFull).
+    rows.push(['🚩', 'Ez a túra már elindult']);
+  } else if (typeof t.free_seats === 'number') {
     rows.push([
       '👥',
       t.free_seats > 0
@@ -102,7 +126,7 @@ export async function onRequestGet({ params, env }) {
       }
       <div class="body">
         <h1>${esc(t.title)}</h1>
-        ${mode ? `<div class="sub">${esc(mode)}</div>` : ''}
+        ${showMode ? `<div class="sub">${esc(mode)}</div>` : ''}
         <div class="rows">
           ${rows
             .map(
@@ -118,8 +142,13 @@ export async function onRequestGet({ params, env }) {
             ? `<div class="tags">${tags.map((x) => `<span class="tag">${esc(x)}</span>`).join('')}</div>`
             : ''
         }
-        <a class="cta" href="${PLAY_URL}">Megnyitás az Aihoy! appban</a>
-        <div class="cta-note">Jelentkezés és üzenetváltás az appban.</div>
+        ${
+          started
+            ? `<a class="cta" href="${PLAY_URL}">Aktuális programok az Aihoy!-ban</a>
+        <div class="cta-note">Erre a túrára már nem lehet jelentkezni.</div>`
+            : `<a class="cta" href="${PLAY_URL}">Megnyitás az Aihoy! appban</a>
+        <div class="cta-note">Jelentkezés és üzenetváltás az appban.</div>`
+        }
       </div>
     </div>`;
 
@@ -135,9 +164,11 @@ export async function onRequestGet({ params, env }) {
     // A destination (város/térség) viszont mehet, ha ki van töltve: az valódi
     // helyinformáció, nem útbaigazítás.
     t.destination ? clip(t.destination, 40) : '',
-    typeof t.free_seats === 'number' && t.free_seats > 0
-      ? `${t.free_seats} szabad hely`
-      : '',
+    started
+      ? 'Már elindult'
+      : typeof t.free_seats === 'number' && t.free_seats > 0
+        ? `${t.free_seats} szabad hely`
+        : '',
     t.price > 0 && t.price_per_person ? `kb. ${t.price_per_person} ${sign}/fő` : '',
     // Cégnév UTOLSÓNAK: bizalmi jel, de a dátumnál és az árnál kevésbé
     // csábító. Ha az előnézet túl hosszúra nyúlik, EZT a sort vedd ki elsőként.
