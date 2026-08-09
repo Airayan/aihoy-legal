@@ -13,15 +13,27 @@ import {
 
 const TOKEN_RE = /^[0-9a-f]{8,64}$/i;
 
+// A kulcsoknak a Flutter _activityOptions listájával kell egyezniük
+// (lib/screens/travel_window_screen.dart). Ha ott új tevékenység kerül be,
+// ide is fel kell venni — különben a weboldalon a nyers angol kulcs jelenik
+// meg (pl. "nightlife") a magyar címke helyett.
 const ACTIVITY_LABEL = {
+  sailing: '⛵ Hajózás',
   diving: '🤿 Búvárkodás',
-  whale: '🐋 Bálnales',
-  beach: '🏖 Strand',
-  kayak: '🛶 Kajak',
+  snorkeling: '🥽 Snorkeling',
   fishing: '🎣 Horgászat',
-  sailing: '⛵ Vitorlázás',
+  whale: '🐋 Bálnales',
+  kayak: '🛶 Kajak',
+  beach: '🏖 Strand',
+  culture: '🏛 Kultúra',
+  ruins: '🏺 Romkereső',
+  hiking: '🥾 Gyaloglás',
+  food: '🍽 Gasztro',
+  nightlife: '🎉 Szórakozás',
+  baby: '👶 Kisgyerekes',
+  // Régi értékek: már nem választhatók az appban, de meglévő sorokban
+  // még szerepelhetnek. Megtartva, hogy azok se essenek vissza nyers kulcsra.
   party: '🎉 Buli',
-  hiking: '🥾 Túrázás',
   surf: '🏄 Szörf',
   wakeboard: '🏄 Wakeboard',
 };
@@ -47,7 +59,12 @@ export async function onRequestGet({ params, env }) {
   const to = fmtDate(w.date_to);
   const range = from && to ? (from === to ? from : `${from} – ${to}`) : from || to;
 
-  const who = w.first_name ? `${w.first_name} utazása` : 'Utazás';
+  // Elsődlegesen a felhasználónév (display_name), ha a user beállított ilyet.
+  // A first_name fallback KELL: a 25-ös migráció előtti RPC csak azt adta
+  // vissza, és a userek kétharmadának nincs felhasználóneve (2026-08: 16/46) —
+  // az ő esetükben a display_name maga is a keresztnevet hozza a szerverről.
+  const displayName = w.display_name || w.first_name || '';
+  const who = displayName ? `${displayName} utazása` : 'Utazás';
 
   const rows = [];
   if (w.destination) rows.push(['📍', clip(w.destination, 90)]);
