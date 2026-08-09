@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.aihoy.app",
+      "sha256_cert_fingerprints": [
+        "F0:C7:0E:6D:CE:B7:7A:96:88:E1:D1:9D:B9:86:EE:30:14:CF:D4:63:A4:AE:FF:8E:FD:6C:62:E5:BB:6C:A1:07",
+        "B3:03:43:6F:F5:44:61:0D:4B:3C:49:AB:41:33:D1:0B:4D:1B:20:3F:12:81:39:61:29:A6:40:E5:C1:61:BE:6E"
+      ]
+    }
+  }
+]
