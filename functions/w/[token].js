@@ -17,6 +17,10 @@ const TOKEN_RE = /^[0-9a-f]{8,64}$/i;
 // (lib/screens/travel_window_screen.dart). Ha ott új tevékenység kerül be,
 // ide is fel kell venni — különben a weboldalon a nyers angol kulcs jelenik
 // meg (pl. "nightlife") a magyar címke helyett.
+//
+// ⚠️ EMOJI: a 🏖️ 🏛️ 🍽️ karakterek után KELL a variánsjelölő (U+FE0F),
+// különben a böngésző fekete-fehér szimbólumként rajzolja őket, nem színes
+// emojiként. Ha ide új címkét másolsz, az appból másold — ott helyesen van.
 const ACTIVITY_LABEL = {
   sailing: '⛵ Hajózás',
   diving: '🤿 Búvárkodás',
@@ -24,11 +28,12 @@ const ACTIVITY_LABEL = {
   fishing: '🎣 Horgászat',
   whale: '🐋 Bálnales',
   kayak: '🛶 Kajak',
-  beach: '🏖 Strand',
-  culture: '🏛 Kultúra',
+  beach: '🏖️ Strand',
+  culture: '🏛️ Kultúra',
   ruins: '🏺 Romkereső',
   hiking: '🥾 Gyaloglás',
-  food: '🍽 Gasztro',
+  cycling: '🚴 Kerékpározás',
+  food: '🍽️ Gasztro',
   nightlife: '🎉 Szórakozás',
   baby: '👶 Kisgyerekes',
   // Régi értékek: már nem választhatók az appban, de meglévő sorokban
@@ -70,7 +75,8 @@ export async function onRequestGet({ params, env }) {
   if (w.destination) rows.push(['📍', clip(w.destination, 90)]);
   if (range) rows.push(['📅', range]);
   if (Array.isArray(w.languages) && w.languages.length > 0) {
-    rows.push(['🗣', w.languages.join(', ')]);
+    // 🗣️ — variánsjelölővel, lásd a fenti megjegyzést.
+    rows.push(['🗣️', w.languages.join(', ')]);
   }
 
   const acts = Array.isArray(w.activities)
