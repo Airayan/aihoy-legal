@@ -2,46 +2,45 @@
 //
 // A túra NYERS id-vel érhető el, token nélkül: a túra hirdetés, és tudatos
 // döntés, hogy nem csak a szervező oszthatja tovább. (2026-08-04)
+//
+// NYELV (2026-08-18): az oldal a LÁTOGATÓ böngészőnyelvén jelenik meg
+// (Accept-Language → pickLang). A szervező saját szövege (cím, leírás,
+// találkozási pont) marad úgy, ahogy beírták. Lásd _shared.js fejléc.
 
 import {
   callRpc, esc, clip, fmtDateTime, renderPage, renderGone, PLAY_URL,
+  pickLang, t, modeLabel,
 } from '../_shared.js';
 
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-const MODE_LABEL = {
-  skippered: 'Vitorlás bérlés kapitánnyal',
-  bareboat: 'Hajóbérlés kapitány nélkül',
-  crew_finding: 'Legénységet keres',
-  charter_host: 'Charter program',
-};
-
-export async function onRequestGet({ params, env }) {
+export async function onRequestGet({ params, env, request }) {
+  const lang = pickLang(request);
   const id = String(params.id || '');
 
   // Formai szűrés MÉG a DB előtt: értelmetlen kérésekkel ne terheljük.
-  if (!UUID_RE.test(id)) return renderGone('trip');
+  if (!UUID_RE.test(id)) return renderGone('trip', lang);
 
-  let t;
+  let tr;
   try {
-    t = await callRpc(env, 'get_public_trip', { p_trip_id: id });
+    tr = await callRpc(env, 'get_public_trip', { p_trip_id: id });
   } catch (e) {
     // Ne bukjon némán, de a felhasználó se lásson technikai részletet.
     console.error('[trip]', e.message);
-    return renderGone('trip');
+    return renderGone('trip', lang);
   }
 
   // Üres válasz = nincs ilyen túra, VAGY lejárt (end_date + 12 óra).
-  if (!t) return renderGone('trip');
+  if (!tr) return renderGone('trip', lang);
 
-  const when = fmtDateTime(t.start_date);
-  const place = t.port_name || t.destination || '';
-  const mode = MODE_LABEL[t.trip_mode] || '';
+  const when = fmtDateTime(tr.start_date);
+  const place = tr.port_name || tr.destination || '';
+  const mode = modeLabel(lang, tr.trip_mode);
 
   // Ha a cím maga a módozat (gyakori: "Vitorlás bérlés kapitánnyal"), az alcím
   // csak megismételné. Egyszer kiírni elég.
-  const showMode = mode && mode.trim() !== String(t.title || '').trim();
+  const showMode = mode && mode.trim() !== String(tr.title || '').trim();
 
   // ── ELINDULT-E MÁR? ──────────────────────────────────────────────────────
   // A link end_date + 12 óráig él, de többnapos túránál keletkezik egy ablak,
@@ -53,23 +52,23 @@ export async function onRequestGet({ params, env }) {
   // Az időzóna-pontatlanságot (a start_date a helyszín faliórája UTC-nek
   // álcázva) NEM javítjuk ki itt: ha a weboldal más eredményre jutna, mint az
   // app, az rosszabb lenne, mint maga a pontatlanság.
-  const started = t.start_date
-    ? Date.parse(t.start_date) < Date.now()
+  const started = tr.start_date
+    ? Date.parse(tr.start_date) < Date.now()
     : false;
 
   // ── Ár ───────────────────────────────────────────────────────────────────
   // A price a TELJES hajó ára, a price_per_person ebből számolt becslés teli
   // hajóra. Ezt őszintén ki kell írni, különben a "75 €/fő" garantált árnak
   // látszik, pedig nem az.
-  const sign = t.currency === 'EUR' ? '€' : t.currency || '';
+  const sign = tr.currency === 'EUR' ? '€' : tr.currency || '';
   let priceHtml = '';
-  if (t.price > 0) {
+  if (tr.price > 0) {
     priceHtml = `
       <div class="price">
-        <div class="big">${esc(Math.round(t.price))} ${esc(sign)} / hajó</div>
+        <div class="big">${esc(Math.round(tr.price))} ${esc(sign)} ${esc(t(lang, 'tripPerBoat'))}</div>
         ${
-          t.price_per_person
-            ? `<div class="note">kb. ${esc(t.price_per_person)} ${esc(sign)}/fő teljes hajó esetén</div>`
+          tr.price_per_person
+            ? `<div class="note">${esc(t(lang, 'tripPerPersonNote', { price: tr.price_per_person, sign }))}</div>`
             : ''
         }
       </div>`;
@@ -82,16 +81,16 @@ export async function onRequestGet({ params, env }) {
   // A módozat NEM kerül a címkék közé: már ott van alcímként, közvetlenül a
   // cím alatt. Kétszer kiírva zajjá válik a többi, valóban új információt
   // hordozó jelzés (nemdohányzó, gyerekbarát, nyelvek) mellett.
-  if (t.smoking_policy === 'no') tags.push('🚭 nemdohányzó');
-  if (Array.isArray(t.child_age_groups) && t.child_age_groups.length > 0) {
-    tags.push('👶 gyerekbarát');
+  if (tr.smoking_policy === 'no') tags.push(t(lang, 'tagNoSmoking'));
+  if (Array.isArray(tr.child_age_groups) && tr.child_age_groups.length > 0) {
+    tags.push(t(lang, 'tagChildFriendly'));
   }
-  if (t.license_required) tags.push('📄 jogosítvány szükséges');
+  if (tr.license_required) tags.push(t(lang, 'tagLicense'));
   // ♀️ és 🗣️ — variánsjelölővel (U+FE0F), különben a böngésző
   // fekete-fehér szimbólumként rajzolja őket, nem színes emojiként.
-  if (t.gender_preference === 'women_only') tags.push('♀️ csak nőknek');
-  if (Array.isArray(t.languages) && t.languages.length > 0) {
-    tags.push('🗣️ ' + t.languages.join(', '));
+  if (tr.gender_preference === 'women_only') tags.push(t(lang, 'tagWomenOnly'));
+  if (Array.isArray(tr.languages) && tr.languages.length > 0) {
+    tags.push('🗣️ ' + tr.languages.join(', '));
   }
 
   const rows = [];
@@ -102,30 +101,30 @@ export async function onRequestGet({ params, env }) {
   if (started) {
     // Elindult túránál a szabad helyek száma félrevezető: az app amúgy sem
     // enged rá foglalni (blocked = isPast || isFull).
-    rows.push(['🚩', 'Ez a túra már elindult']);
-  } else if (typeof t.free_seats === 'number') {
+    rows.push(['🚩', t(lang, 'tripStarted')]);
+  } else if (typeof tr.free_seats === 'number') {
     rows.push([
       '👥',
-      t.free_seats > 0
-        ? `${t.free_seats} szabad hely a ${t.capacity ?? '?'} főből`
-        : 'Betelt',
+      tr.free_seats > 0
+        ? t(lang, 'tripFreeSeats', { free: tr.free_seats, cap: tr.capacity ?? '?' })
+        : t(lang, 'tripFull'),
     ]);
   }
   // Cégnév a szervező FÖLÖTT: a cég az entitás, a személy a kapcsolattartó.
   // Magánszemélynél az RPC NULL-t ad (25_public_sharing_names.sql), így a sor
   // magától kimarad — nem kell külön ág.
-  if (t.company_name) rows.push(['🏢', clip(t.company_name, 60)]);
-  if (t.organizer_name) rows.push(['👤', `Szervező: ${t.organizer_name}`]);
+  if (tr.company_name) rows.push(['🏢', clip(tr.company_name, 60)]);
+  if (tr.organizer_name) rows.push(['👤', t(lang, 'tripOrganizer', { name: tr.organizer_name })]);
 
   const inner = `
     <div class="card">
       ${
-        t.image_url
-          ? `<img class="hero" src="${esc(t.image_url)}" alt="" loading="lazy">`
+        tr.image_url
+          ? `<img class="hero" src="${esc(tr.image_url)}" alt="" loading="lazy">`
           : ''
       }
       <div class="body">
-        <h1>${esc(t.title)}</h1>
+        <h1>${esc(tr.title)}</h1>
         ${showMode ? `<div class="sub">${esc(mode)}</div>` : ''}
         <div class="rows">
           ${rows
@@ -136,7 +135,7 @@ export async function onRequestGet({ params, env }) {
             .join('')}
         </div>
         ${priceHtml}
-        ${t.description ? `<div class="desc">${esc(t.description)}</div>` : ''}
+        ${tr.description ? `<div class="desc">${esc(tr.description)}</div>` : ''}
         ${
           tags.length
             ? `<div class="tags">${tags.map((x) => `<span class="tag">${esc(x)}</span>`).join('')}</div>`
@@ -144,10 +143,10 @@ export async function onRequestGet({ params, env }) {
         }
         ${
           started
-            ? `<a class="cta" href="${PLAY_URL}">Aktuális programok az Aihoy!-ban</a>
-        <div class="cta-note">Erre a túrára már nem lehet jelentkezni.</div>`
-            : `<a class="cta" href="${PLAY_URL}">Megnyitás az Aihoy! appban</a>
-        <div class="cta-note">Jelentkezés és üzenetváltás az appban.</div>`
+            ? `<a class="cta" href="${PLAY_URL}">${esc(t(lang, 'tripCtaStarted'))}</a>
+        <div class="cta-note">${esc(t(lang, 'tripCtaStartedNote'))}</div>`
+            : `<a class="cta" href="${PLAY_URL}">${esc(t(lang, 'tripCtaOpen'))}</a>
+        <div class="cta-note">${esc(t(lang, 'tripCtaOpenNote'))}</div>`
         }
       </div>
     </div>`;
@@ -163,25 +162,28 @@ export async function onRequestGet({ params, env }) {
     when,
     // A destination (város/térség) viszont mehet, ha ki van töltve: az valódi
     // helyinformáció, nem útbaigazítás.
-    t.destination ? clip(t.destination, 40) : '',
+    tr.destination ? clip(tr.destination, 40) : '',
     started
-      ? 'Már elindult'
-      : typeof t.free_seats === 'number' && t.free_seats > 0
-        ? `${t.free_seats} szabad hely`
+      ? t(lang, 'tripStartedShort')
+      : typeof tr.free_seats === 'number' && tr.free_seats > 0
+        ? t(lang, 'tripFreeSeatsShort', { free: tr.free_seats })
         : '',
-    t.price > 0 && t.price_per_person ? `kb. ${t.price_per_person} ${sign}/fő` : '',
+    tr.price > 0 && tr.price_per_person
+      ? t(lang, 'tripPerPersonShort', { price: tr.price_per_person, sign })
+      : '',
     // Cégnév UTOLSÓNAK: bizalmi jel, de a dátumnál és az árnál kevésbé
     // csábító. Ha az előnézet túl hosszúra nyúlik, EZT a sort vedd ki elsőként.
-    t.company_name ? clip(t.company_name, 30) : '',
+    tr.company_name ? clip(tr.company_name, 30) : '',
   ]
     .filter(Boolean)
     .join(' · ');
 
   return renderPage({
-    title: `${t.title} — Aihoy!`,
-    ogTitle: t.title,
-    ogDesc: ogDesc || 'Nézd meg ezt a programot az Aihoy!-ban.',
-    ogImage: t.image_url,
+    lang,
+    title: `${tr.title} — Aihoy!`,
+    ogTitle: tr.title,
+    ogDesc: ogDesc || t(lang, 'tripOgFallback'),
+    ogImage: tr.image_url,
     ogUrl: `https://aihoy.app/trip/${id}`,
     inner,
   });
