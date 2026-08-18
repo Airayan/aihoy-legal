@@ -11,59 +11,36 @@
 // feltölthet egy KÜLÖN, csak erre az ablakra szánt képet (photo_url) — az
 // NEM a profilkép, tudatos, ablakonkénti döntés, és MEGJELENIK a linken, ha
 // van. Ha nincs feltöltve, a viselkedés változatlan (nincs kép).
+//
+// NYELV (2026-08-18): az oldal a LÁTOGATÓ böngészőnyelvén jelenik meg
+// (Accept-Language → pickLang), nem a létrehozóén. A felhasználó saját
+// szövege (úti cél, leírás) természetesen marad úgy, ahogy beírták.
+// Részletes indoklás: _shared.js fejléc.
 
 import {
   callRpc, esc, clip, fmtDate, renderPage, renderGone, PLAY_URL,
+  pickLang, t, activityLabel,
 } from '../_shared.js';
 
 const TOKEN_RE = /^[0-9a-f]{8,64}$/i;
 
-// A kulcsoknak a Flutter _activityOptions listájával kell egyezniük
-// (lib/screens/travel_window_screen.dart). Ha ott új tevékenység kerül be,
-// ide is fel kell venni — különben a weboldalon a nyers angol kulcs jelenik
-// meg (pl. "nightlife") a magyar címke helyett.
-//
-// ⚠️ EMOJI: a 🏖️ 🏛️ 🍽️ karakterek után KELL a variánsjelölő (U+FE0F),
-// különben a böngésző fekete-fehér szimbólumként rajzolja őket, nem színes
-// emojiként. Ha ide új címkét másolsz, az appból másold — ott helyesen van.
-const ACTIVITY_LABEL = {
-  sailing: '⛵ Hajózás',
-  diving: '🤿 Búvárkodás',
-  snorkeling: '🥽 Snorkeling',
-  fishing: '🎣 Horgászat',
-  whale: '🐋 Bálnales',
-  kayak: '🛶 Kajak',
-  beach: '🏖️ Strand',
-  culture: '🏛️ Kultúra',
-  ruins: '🏺 Romkereső',
-  hiking: '🥾 Gyaloglás',
-  cycling: '🚴 Kerékpározás',
-  food: '🍽️ Gasztro',
-  nightlife: '🎉 Szórakozás',
-  baby: '👶 Kisgyerekes',
-  // Régi értékek: már nem választhatók az appban, de meglévő sorokban
-  // még szerepelhetnek. Megtartva, hogy azok se essenek vissza nyers kulcsra.
-  party: '🎉 Buli',
-  surf: '🏄 Szörf',
-  wakeboard: '🏄 Wakeboard',
-};
-
-export async function onRequestGet({ params, env }) {
+export async function onRequestGet({ params, env, request }) {
+  const lang = pickLang(request);
   const token = String(params.token || '');
 
-  if (!TOKEN_RE.test(token)) return renderGone('window');
+  if (!TOKEN_RE.test(token)) return renderGone('window', lang);
 
   let w;
   try {
     w = await callRpc(env, 'get_public_window', { p_token: token });
   } catch (e) {
     console.error('[window]', e.message);
-    return renderGone('window');
+    return renderGone('window', lang);
   }
 
   // Üres = nincs ilyen token, visszavonták, kikapcsolták, vagy lejárt.
   // Szándékosan nem különböztetjük meg — kívülről mindegy.
-  if (!w) return renderGone('window');
+  if (!w) return renderGone('window', lang);
 
   const from = fmtDate(w.date_from);
   const to = fmtDate(w.date_to);
@@ -74,18 +51,21 @@ export async function onRequestGet({ params, env }) {
   // vissza, és a userek kétharmadának nincs felhasználóneve (2026-08: 16/46) —
   // az ő esetükben a display_name maga is a keresztnevet hozza a szerverről.
   const displayName = w.display_name || w.first_name || '';
-  const who = displayName ? `${displayName} utazása` : 'Utazás';
+  const who = displayName
+    ? t(lang, 'windowWho', { name: displayName })
+    : t(lang, 'windowWhoFallback');
 
   const rows = [];
   if (w.destination) rows.push(['📍', clip(w.destination, 90)]);
   if (range) rows.push(['📅', range]);
   if (Array.isArray(w.languages) && w.languages.length > 0) {
-    // 🗣️ — variánsjelölővel, lásd a fenti megjegyzést.
+    // 🗣️ — variánsjelölővel (U+FE0F), különben a böngésző fekete-fehér
+    // szimbólumként rajzolja, nem színes emojiként.
     rows.push(['🗣️', w.languages.join(', ')]);
   }
 
   const acts = Array.isArray(w.activities)
-    ? w.activities.map((a) => ACTIVITY_LABEL[a] || a)
+    ? w.activities.map((a) => activityLabel(lang, a))
     : [];
 
   const inner = `
@@ -97,7 +77,7 @@ export async function onRequestGet({ params, env }) {
       }
       <div class="body">
         <h1>${esc(who)}</h1>
-        <div class="sub">Utazási ablak — ki lesz ott ugyanakkor?</div>
+        <div class="sub">${esc(t(lang, 'windowSub'))}</div>
         <div class="rows">
           ${rows
             .map(
@@ -112,8 +92,8 @@ export async function onRequestGet({ params, env }) {
             ? `<div class="tags">${acts.map((x) => `<span class="tag">${esc(x)}</span>`).join('')}</div>`
             : ''
         }
-        <a class="cta" href="${PLAY_URL}">Csatlakozom az Aihoy!-hoz</a>
-        <div class="cta-note">Az appban látod, ki lesz még ott ugyanekkor.</div>
+        <a class="cta" href="${PLAY_URL}">${esc(t(lang, 'windowCta'))}</a>
+        <div class="cta-note">${esc(t(lang, 'windowCtaNote'))}</div>
       </div>
     </div>`;
 
@@ -122,12 +102,13 @@ export async function onRequestGet({ params, env }) {
     .join(' · ');
 
   return renderPage({
+    lang,
     title: `${who} — Aihoy!`,
     ogTitle: w.destination ? `${who}: ${clip(w.destination, 45)}` : who,
-    ogDesc: ogDesc || 'Nézd meg az Aihoy!-ban.',
+    ogDesc: ogDesc || t(lang, 'windowOgFallback'),
     // Ha a létrehozó feltöltött egy ablak-képet (photo_url), AZ megy ki
-    // social-előnézetnek is — ha nincs, marad az arculati kép (renderPage
-    // esik vissza rá, lásd shell() a _shared.js-ben).
+    // social-előnézetnek is — ha nincs, marad az arculati kép (a shell()
+    // esik vissza rá a _shared.js-ben).
     ogImage: w.photo_url || null,
     ogUrl: `https://aihoy.app/w/${token}`,
     // A megosztott ablak ne kerüljön keresőbe: a link címzetteknek szól.
