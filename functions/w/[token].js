@@ -6,6 +6,11 @@
 // FIGYELEM, hogy ne legyen félreértés: ez azt garantálja, hogy a linket csak a
 // létrehozó tudja LÉTREHOZNI. A továbbküldését nem akadályozza meg semmi —
 // épp ezért nem megy ki profilkép, koordináta, hangulat és korpreferencia.
+//
+// KIVÉTEL (2026-08-18, 30_travel_window_photo.sql): a létrehozó opcionálisan
+// feltölthet egy KÜLÖN, csak erre az ablakra szánt képet (photo_url) — az
+// NEM a profilkép, tudatos, ablakonkénti döntés, és MEGJELENIK a linken, ha
+// van. Ha nincs feltöltve, a viselkedés változatlan (nincs kép).
 
 import {
   callRpc, esc, clip, fmtDate, renderPage, renderGone, PLAY_URL,
@@ -85,6 +90,11 @@ export async function onRequestGet({ params, env }) {
 
   const inner = `
     <div class="card">
+      ${
+        w.photo_url
+          ? `<img class="hero" src="${esc(w.photo_url)}" alt="" loading="lazy">`
+          : ''
+      }
       <div class="body">
         <h1>${esc(who)}</h1>
         <div class="sub">Utazási ablak — ki lesz ott ugyanakkor?</div>
@@ -115,8 +125,10 @@ export async function onRequestGet({ params, env }) {
     title: `${who} — Aihoy!`,
     ogTitle: w.destination ? `${who}: ${clip(w.destination, 45)}` : who,
     ogDesc: ogDesc || 'Nézd meg az Aihoy!-ban.',
-    // Utazási ablaknál SOSEM megy ki személyes kép — mindig az arculati kép.
-    ogImage: null,
+    // Ha a létrehozó feltöltött egy ablak-képet (photo_url), AZ megy ki
+    // social-előnézetnek is — ha nincs, marad az arculati kép (renderPage
+    // esik vissza rá, lásd shell() a _shared.js-ben).
+    ogImage: w.photo_url || null,
     ogUrl: `https://aihoy.app/w/${token}`,
     // A megosztott ablak ne kerüljön keresőbe: a link címzetteknek szól.
     noindex: true,
