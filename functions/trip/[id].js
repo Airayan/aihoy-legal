@@ -60,9 +60,19 @@ export async function onRequestGet({ params, env, request }) {
   // A price a TELJES hajó ára, a price_per_person ebből számolt becslés teli
   // hajóra. Ezt őszintén ki kell írni, különben a "75 €/fő" garantált árnak
   // látszik, pedig nem az.
+  // SÁVOS ÁRAZÁSNÁL (is_tiered) a nyers `price` csak a LEGELSŐ sáv ára —
+  // „a hajó díja"-ként kiírva félrevezető lenne. Ilyenkor a kiemelt szám a
+  // legolcsóbb ár/fő „-tól" jelöléssel, alatta a magyarázat, hogy a hajó
+  // díja a létszámtól függ. (2026-08-18, 35_public_trip_price_tiers.sql)
   const sign = tr.currency === 'EUR' ? '€' : tr.currency || '';
   let priceHtml = '';
-  if (tr.price > 0) {
+  if (tr.is_tiered && tr.price_per_person) {
+    priceHtml = `
+      <div class="price">
+        <div class="big">${esc(t(lang, 'tripFromPerPerson', { price: tr.price_per_person, sign }))}</div>
+        <div class="note">${esc(t(lang, 'tripTieredNote'))}</div>
+      </div>`;
+  } else if (tr.price > 0) {
     priceHtml = `
       <div class="price">
         <div class="big">${esc(Math.round(tr.price))} ${esc(sign)} ${esc(t(lang, 'tripPerBoat'))}</div>
@@ -168,8 +178,11 @@ export async function onRequestGet({ params, env, request }) {
       : typeof tr.free_seats === 'number' && tr.free_seats > 0
         ? t(lang, 'tripFreeSeatsShort', { free: tr.free_seats })
         : '',
-    tr.price > 0 && tr.price_per_person
-      ? t(lang, 'tripPerPersonShort', { price: tr.price_per_person, sign })
+    // Social-előnézet: sávos árazásnál is a „-tól" alak megy ki, hogy a
+    // Facebook-kártya ugyanazt mondja, mint az oldal.
+    tr.price_per_person
+      ? t(lang, tr.is_tiered ? 'tripFromPerPersonShort' : 'tripPerPersonShort',
+          { price: tr.price_per_person, sign })
       : '',
     // Cégnév UTOLSÓNAK: bizalmi jel, de a dátumnál és az árnál kevésbé
     // csábító. Ha az előnézet túl hosszúra nyúlik, EZT a sort vedd ki elsőként.
