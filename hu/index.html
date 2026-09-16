@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aihoy! — Oszd meg a hajót, feleződik az ár | Találd meg, kivel</title>
+<meta name="description" content="A privát hajó kettőre nem éri meg. Az Aihoy! megmutatja, ki lesz ugyanakkor ugyanott — ha összejöttök hatan, a privát hajó fejenként annyiba kerül, mint a zsúfolt nagy hajó. Ingyenes Android app: görög szigetek, Adria, Baleárok.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://aihoy.app/hu/">
+<link rel="alternate" hreflang="en" href="https://aihoy.app/">
+<link rel="alternate" hreflang="hu" href="https://aihoy.app/hu/">
+<link rel="alternate" hreflang="x-default" href="https://aihoy.app/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0A1628">
+
+<meta property="og:site_name" content="Aihoy!">
+<meta property="og:title" content="Aihoy! — Oszd meg a hajót, feleződik az ár">
+<meta property="og:description" content="Nézd meg, ki lesz ugyanakkor ugyanott. Ha hatan összejöttök, a privát hajó fejenként annyi, mint a zsúfolt.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="hu_HU">
+<meta property="og:url" content="https://aihoy.app/hu/">
+<meta property="og:image" content="https://aihoy.app/og-image.png">
+<meta property="og:image:alt" content="Aihoy!">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@aihoy_app">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Aihoy!",
+  "alternateName": "Aihoy! The Vibematcher",
+  "applicationCategory": "TravelApplication",
+  "operatingSystem": "Android",
+  "url": "https://aihoy.app/",
+  "downloadUrl": "https://play.google.com/store/apps/details?id=com.aihoy.app",
+  "description": "Hajómegosztó és programkereső app: beírod, mikor és hol nyaralsz, és látod, ki lesz ugyanakkor ugyanott — így a privát hajót meg lehet osztani és az árat elosztani egymás közt. Görög szigetek, Adria, Baleárok.",
+  "inLanguage": ["hu", "en", "de", "it", "el", "hr", "pl"],
+  "isAccessibleForFree": true,
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+  "author": {
+    "@type": "Person",
+    "name": "Arany István",
+    "url": "https://aihoy.app/",
+    "sameAs": ["https://x.com/aihoy_app", "https://www.instagram.com/aihoy.app"]
+  }
+}
+</script>
+
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-7NXGL1PPX6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7NXGL1PPX6');
+</script>
+
+<!-- Supabase (iOS várólista) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // ⚠️ IDE ÍRD BE A SAJÁT ADATAIDAT (Supabase → Settings → API)
+  const SUPABASE_URL = 'https://seufpmzohygxjycpplli.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNldWZwbXpvaHlneGp5Y3BwbGxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNDU4OTUsImV4cCI6MjA4NDYyMTg5NX0.Ri93yqOit78F6DPEzWeAEO8eMWl7eKqSPWbxoYqlMi4';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+</script>
+
+<style>
+:root {
+  --ocean: #0A1628; --ocean2: #0F1F35; --cyan: #00E5FF;
+  --purple: #9D4EDD; --text: #E8F4FD; --textsec: #8BA8C8; --surface: #162440;
+  --gold: #E8A020;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', sans-serif; background: var(--ocean); color: var(--text); overflow-x: hidden; }
+
+/* ── Nyelvváltó ── */
+.lang-bar {
+  position: fixed; top: 14px; right: 16px; z-index: 300;
+  display: flex; gap: 4px;
+  background: rgba(15,31,53,0.9); backdrop-filter: blur(12px);
+  border: 1px solid rgba(0,229,255,0.15); border-radius: 100px; padding: 5px 8px;
+}
+.lang-btn { background: none; border: none; cursor: pointer; font-size: 18px; padding: 3px 6px; border-radius: 100px; transition: background 0.2s, transform 0.2s; line-height: 1; color: var(--textsec); font-weight: 700; font-family: inherit; }
+.lang-btn { text-decoration: none; display: inline-flex; align-items: center; }
+.lang-btn:hover { background: rgba(0,229,255,0.1); transform: scale(1.08); }
+.lang-btn.active { background: rgba(0,229,255,0.15); color: var(--cyan); }
+
+/* ── Hero ── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 80px 24px 60px; position: relative;
+  background: radial-gradient(ellipse at 20% 50%, rgba(0,229,255,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(157,78,221,0.10) 0%, transparent 60%),
+              var(--ocean);
+  overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300E5FF' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.logo-wrapper { margin-bottom: 32px; animation: fadeUp 0.8s ease both; }
+.logo-fallback {
+  width: 100px; height: 100px; border-radius: 24px;
+  background: linear-gradient(135deg, var(--ocean2), var(--surface));
+  border: 2px solid rgba(0,229,255,0.25);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto; font-size: 48px;
+}
+h1 {
+  font-family: 'Fraunces', serif; font-size: clamp(60px, 14vw, 116px);
+  font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin-bottom: 8px;
+  background: linear-gradient(135deg, var(--cyan) 0%, #7B8FFF 50%, var(--purple) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: fadeUp 0.8s 0.1s ease both;
+}
+.tagline { font-family: 'Fraunces', serif; font-size: clamp(16px, 3vw, 22px); color: var(--textsec); font-style: italic; font-weight: 300; margin-bottom: 6px; animation: fadeUp 0.8s 0.2s ease both; }
+.subtagline { font-size: clamp(14px, 2vw, 17px); color: var(--text); font-weight: 500; margin-bottom: 40px; animation: fadeUp 0.8s 0.25s ease both; }
+.hero-desc { max-width: 560px; font-size: 17px; line-height: 1.8; color: var(--textsec); margin-bottom: 44px; animation: fadeUp 0.8s 0.3s ease both; }
+.hero-desc strong { color: var(--text); font-weight: 600; }
+.cta-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.8s 0.4s ease both; }
+.btn { padding: 16px 34px; border-radius: 100px; font-size: 15px; font-weight: 700; text-decoration: none; letter-spacing: 0.3px; transition: transform 0.2s, box-shadow 0.2s; display: inline-flex; align-items: center; gap: 9px; cursor: pointer; border: none; font-family: inherit; }
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: white; box-shadow: 0 8px 32px rgba(0,229,255,0.2); }
+.btn-primary:hover { box-shadow: 0 12px 40px rgba(0,229,255,0.35); }
+.btn-outline { background: transparent; color: var(--cyan); border: 1.5px solid rgba(0,229,255,0.4); }
+.btn-outline:hover { background: rgba(0,229,255,0.05); }
+.btn-play-anthem { background: rgba(22,36,64,0.6); color: var(--textsec); border: 1px solid rgba(0,229,255,0.12); font-size: 13px; padding: 10px 20px; margin-top: 28px; animation: fadeUp 0.8s 0.5s ease both; }
+.btn-play-anthem:hover { color: var(--cyan); border-color: rgba(0,229,255,0.3); transform: none; }
+
+/* ── Anthem sticky sáv (rejtett, amíg nem szól) ── */
+#sticky-player {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 400;
+  background: rgba(10,22,40,0.96); backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0,229,255,0.15);
+  padding: 8px 16px; display: none; align-items: center; gap: 12px;
+}
+#sticky-player.visible { display: flex; }
+#sticky-player .p-btn { width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer; background: linear-gradient(135deg, var(--cyan), var(--purple)); color: #06101f; font-size: 15px; flex-shrink: 0; }
+#sticky-player .p-label { font-size: 11px; color: var(--textsec); letter-spacing: 1px; text-transform: uppercase; }
+#sticky-player .p-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; position: relative; }
+#sticky-player .p-fill { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--purple)); border-radius: 3px; width: 0%; }
+#sticky-player .p-close { background: none; border: none; color: var(--textsec); cursor: pointer; font-size: 18px; flex-shrink: 0; }
+
+/* ── Stats ── */
+.stats { background: var(--surface); border-top: 1px solid rgba(0,229,255,0.08); border-bottom: 1px solid rgba(0,229,255,0.08); padding: 56px 24px; }
+.stats-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 28px; text-align: center; }
+.stat-num { font-family: 'Fraunces', serif; font-size: clamp(32px, 6vw, 46px); font-weight: 900; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; line-height: 1; margin-bottom: 8px; }
+.stat-label { font-size: 13px; color: var(--textsec); line-height: 1.5; }
+
+/* ── Általános szekció ── */
+.section { padding: 88px 24px; max-width: 1000px; margin: 0 auto; }
+.section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); font-weight: 700; margin-bottom: 14px; text-align: center; }
+.section-title { font-family: 'Fraunces', serif; font-size: clamp(28px, 5vw, 42px); font-weight: 700; line-height: 1.15; text-align: center; margin-bottom: 16px; }
+.section-lead { font-size: 17px; color: var(--textsec); line-height: 1.7; text-align: center; max-width: 620px; margin: 0 auto 48px; }
+.alt { background: var(--ocean2); }
+
+/* ── Feature rács ── */
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+.feature { background: var(--surface); border: 1px solid rgba(0,229,255,0.08); border-radius: 16px; padding: 26px; transition: transform 0.2s, border-color 0.2s; }
+.feature:hover { transform: translateY(-3px); border-color: rgba(0,229,255,0.25); }
+.feature .emoji { font-size: 28px; display: block; margin-bottom: 14px; }
+.feature h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+.feature p { font-size: 14px; color: var(--textsec); line-height: 1.65; }
+
+/* ── Türelem-blokk ── */
+.patience { background: radial-gradient(ellipse at center, rgba(157,78,221,0.08) 0%, transparent 70%), var(--ocean); text-align: center; }
+.patience .box { max-width: 640px; margin: 0 auto; background: var(--surface); border: 1px solid rgba(157,78,221,0.22); border-radius: 20px; padding: 40px 32px; }
+.patience h2 { font-family: 'Fraunces', serif; font-size: clamp(24px, 4vw, 34px); font-weight: 700; margin-bottom: 20px; }
+.patience p { font-size: 16px; color: var(--textsec); line-height: 1.8; margin-bottom: 16px; }
+.patience p:last-child { margin-bottom: 0; }
+.patience strong { color: var(--text); font-weight: 600; }
+
+/* ── Történet ── */
+.story { max-width: 680px; margin: 0 auto; }
+.story h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 4.5vw, 38px); font-weight: 700; margin-bottom: 28px; line-height: 1.2; text-align: center; }
+.story p { font-size: 17px; color: var(--textsec); line-height: 1.85; margin-bottom: 20px; }
+.story p strong { color: var(--text); font-weight: 600; }
+.story .signature { font-family: 'Fraunces', serif; font-style: italic; color: var(--textsec); text-align: center; margin-top: 8px; }
+
+/* ── Támogatás ── */
+.support { text-align: center; }
+.support .box { max-width: 560px; margin: 0 auto; background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(157,78,221,0.06)); border: 1px solid rgba(0,229,255,0.15); border-radius: 20px; padding: 40px 32px; }
+.support h2 { font-family: 'Fraunces', serif; font-size: clamp(22px, 4vw, 30px); font-weight: 700; margin-bottom: 14px; }
+.support p { font-size: 16px; color: var(--textsec); line-height: 1.7; margin-bottom: 28px; }
+.btn-kofi { background: linear-gradient(135deg, var(--gold), var(--purple)); color: white; box-shadow: 0 8px 32px rgba(232,160,32,0.25); }
+.btn-kofi:hover { box-shadow: 0 12px 40px rgba(232,160,32,0.4); }
+.support .note { font-size: 12px; color: var(--textsec); margin-top: 20px; margin-bottom: 0; opacity: 0.7; }
+
+/* ── Pitch kártyák ── */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.card { background: var(--surface); border: 1px solid rgba(0,229,255,0.08); border-radius: 20px; padding: 32px; text-decoration: none; transition: transform 0.2s, border-color 0.2s; display: block; }
+.card:hover { transform: translateY(-4px); border-color: rgba(0,229,255,0.3); }
+.card-emoji { font-size: 36px; display: block; margin-bottom: 16px; }
+.card-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.2; }
+.card-desc { font-size: 14px; color: var(--textsec); line-height: 1.65; margin-bottom: 16px; }
+.card-link { color: var(--cyan); font-size: 14px; font-weight: 700; }
+
+/* ── Download CTA sáv ── */
+.download-cta { background: var(--surface); border-top: 1px solid rgba(0,229,255,0.08); text-align: center; padding: 72px 24px; }
+.download-cta h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 5vw, 40px); font-weight: 700; margin-bottom: 24px; }
+
+/* ── Footer ── */
+footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,229,255,0.08); }
+.footer-logo { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 900; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; }
+.footer-sub { color: var(--textsec); font-size: 13px; margin-bottom: 24px; }
+.footer-social { display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; }
+.footer-social a { color: var(--textsec); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+.footer-social a:hover { color: var(--cyan); }
+.footer-links { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+.footer-links a { color: var(--textsec); text-decoration: none; font-size: 13px; }
+.footer-links a:hover { color: var(--cyan); }
+.footer-mail { color: var(--cyan); text-decoration: none; font-size: 14px; }
+
+/* ── iOS várólista ── */
+.ios-box {
+  max-width: 440px; margin: 26px auto 0; padding: 20px 22px;
+  background: var(--surface); border: 1px solid rgba(0,229,255,0.12);
+  border-radius: 16px; text-align: center;
+  animation: fadeUp 0.8s 0.45s ease both;
+}
+.ios-box.is-ios { border-color: rgba(0,229,255,0.4); box-shadow: 0 8px 32px rgba(0,229,255,0.12); }
+.ios-box p { font-size: 14px; color: var(--textsec); line-height: 1.6; margin-bottom: 14px; }
+.ios-box .ios-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.ios-box input {
+  flex: 1 1 200px; min-width: 0; padding: 12px 16px; border-radius: 100px;
+  border: 1px solid rgba(0,229,255,0.2); background: rgba(10,22,40,0.6);
+  color: var(--text); font-family: inherit; font-size: 14px;
+}
+.ios-box input::placeholder { color: rgba(139,168,200,0.6); }
+.ios-box input:focus { outline: none; border-color: var(--cyan); }
+.ios-box button {
+  padding: 12px 24px; border-radius: 100px; border: none; cursor: pointer;
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  color: white; font-family: inherit; font-size: 14px; font-weight: 700;
+  transition: transform 0.2s;
+}
+.ios-box button:hover { transform: translateY(-2px); }
+.ios-box button:disabled { opacity: 0.5; cursor: default; transform: none; }
+.ios-box .ios-msg { display: block; font-size: 13px; margin-top: 12px; min-height: 18px; color: var(--cyan); }
+.ios-box .ios-msg.err { color: var(--gold); }
+
+/* ── Képernyőkép-galéria ── */
+.shots {
+  background: var(--ocean2);
+  border-top: 1px solid rgba(0,229,255,0.08);
+  border-bottom: 1px solid rgba(0,229,255,0.08);
+  padding: 56px 0 60px;
+}
+.shots h2 {
+  font-family: 'Fraunces', serif; font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700; text-align: center; margin-bottom: 36px; padding: 0 24px;
+}
+.shots-row {
+  display: flex; gap: 22px; justify-content: center; align-items: flex-start;
+  flex-wrap: wrap; padding: 0 24px; max-width: 900px; margin: 0 auto;
+}
+.shot { width: 190px; text-align: center; }
+.shot img {
+  display: block;
+  width: 190px;
+  height: 380px;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 18px;
+  border: 1px solid rgba(0,229,255,0.18);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.5);
+  background: var(--ocean);
+}
+.shot figcaption { font-size: 12.5px; color: var(--textsec); line-height: 1.5; margin-top: 12px; }
+@media (max-width: 640px) {
+  .shot { width: 150px; }
+  .shot img { width: 150px; height: 300px; }
+  .shots-row { gap: 14px; }
+}
+
+/* ── Az árszámtan ── */
+.math { padding: 70px 24px 76px; background: var(--ocean); }
+.math h2 {
+  font-family: 'Fraunces', serif; font-size: clamp(24px, 5vw, 38px);
+  font-weight: 700; text-align: center; margin-bottom: 12px; line-height: 1.15;
+}
+.math .math-lead {
+  text-align: center; color: var(--textsec); font-size: 16px; line-height: 1.7;
+  max-width: 560px; margin: 0 auto 44px;
+}
+.math-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 18px; max-width: 900px; margin: 0 auto;
+}
+.math-card {
+  background: var(--surface); border: 1px solid rgba(0,229,255,0.10);
+  border-radius: 18px; padding: 26px 22px; text-align: center;
+}
+.math-card.win {
+  border-color: rgba(0,229,255,0.45);
+  box-shadow: 0 10px 40px rgba(0,229,255,0.14);
+  background: linear-gradient(160deg, rgba(0,229,255,0.07), var(--surface));
+}
+.math-card .mc-label {
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--textsec); font-weight: 700; margin-bottom: 14px;
+}
+.math-card.win .mc-label { color: var(--cyan); }
+.math-card .mc-num {
+  font-family: 'Fraunces', serif; font-size: clamp(28px, 6vw, 40px);
+  font-weight: 900; line-height: 1; margin-bottom: 4px; color: var(--text);
+}
+.math-card.win .mc-num {
+  background: linear-gradient(135deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.math-card .mc-unit { font-size: 13px; color: var(--textsec); margin-bottom: 16px; }
+.math-card .mc-note { font-size: 13.5px; color: var(--textsec); line-height: 1.6; }
+.math-foot {
+  text-align: center; max-width: 620px; margin: 40px auto 0;
+  font-size: 15px; color: var(--textsec); line-height: 1.75;
+}
+.math-foot strong { color: var(--text); }
+.math-src { display: block; margin-top: 14px; font-size: 12.5px; opacity: 0.65; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+[data-i18n-lang].hidden { display: none; }
+</style>
+
+</head>
+<body>
+
+<audio id="aihoy-audio" src="/Aihoy!%20(Remastered).mp3" preload="none" loop></audio>
+
+<!-- Anthem sticky sáv (csak lejátszáskor jelenik meg) -->
+<div id="sticky-player">
+  <button class="p-btn" id="sp-btn" onclick="togglePlay()">⏸</button>
+  <span class="p-label">🎵 Aihoy! Anthem</span>
+  <div class="p-bar" id="sp-bar" onclick="seek(event)"><div class="p-fill" id="sp-fill"></div></div>
+  <button class="p-close" onclick="stopAnthem()" title="Bezárás">✕</button>
+</div>
+
+<!-- Nyelvváltó -->
+<div class="lang-bar">
+  <span class="lang-btn active" aria-current="page">HU</span>
+  <a class="lang-btn" href="/" hreflang="en" lang="en">EN</a>
+</div>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="logo-wrapper"><div class="logo-fallback">⚓</div></div>
+  <h1>Aihoy!</h1>
+  <p class="tagline">The Vibematcher</p>
+  <p class="subtagline" id="subtagline">Nem kell hajó. Elég egy ötlet és egy dátum.</p>
+  <p class="hero-desc" id="hero-desc">A privát hajó szép — csak kettőre nem éri meg. A nagy hajón meg ott ülsz negyvenedmagaddal, füstben, árnyék nélkül.<br><br>Az Aihoy! a kettő közti hiányzó lépés: megmutatja, <strong>ki lesz ugyanakkor ugyanott</strong> — és ha összejöttök hatan, a privát hajó fejenként annyi, mint a zsúfolt.</p>
+  <div class="cta-group">
+    <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download" onclick="trackPlay('hero')">▶ Letöltés a Google Play-ről</a>
+    <a href="#travelers" class="btn btn-outline" id="btn-learn">📖 Mit tud?</a>
+  </div>
+  <button class="btn btn-play-anthem" onclick="togglePlay()" id="btn-anthem">🎵 Aihoy! Anthem</button>
+
+  <div class="ios-box" id="ios-box-1">
+    <p id="ios-text"><strong>iPhone-od van?</strong> Az iOS-verzión még dolgozom. Hagyd itt a címed, és szólok, amint kész.</p>
+    <div class="ios-row">
+      <input type="email" class="ios-email" placeholder="email@pelda.hu" autocomplete="email">
+      <button class="ios-submit" onclick="iosSignup(this)" id="ios-btn">Szólj, ha kész</button>
+    </div>
+    <span class="ios-msg"></span>
+  </div>
+</section>
+
+<!-- ══════════ ÁRSZÁMTAN ══════════ -->
+<section class="math">
+  <h2 id="math-title">Ugyanaz a hajó. Ugyanaz a nap. Más ár.</h2>
+  <p class="math-lead" id="math-lead">Egy hajó nagyjából ugyanannyiba kerül négy embernek, mint kettőnek. A különbség nem a hajóban van, hanem abban, hányan osztoztok rajta.</p>
+  <div class="math-row">
+    <div class="math-card">
+      <div class="mc-label" id="mc1-l">Nagy hajó</div>
+      <div class="mc-num" id="mc1-n">9–20 e Ft</div>
+      <div class="mc-unit" id="mc1-u">fejenként</div>
+      <div class="mc-note" id="mc1-note">Negyvenen a fedélzeten. „Ha szerencséd van, a családod mellé ülhetsz."</div>
+    </div>
+    <div class="math-card">
+      <div class="mc-label" id="mc2-l">Privát, kettesben</div>
+      <div class="mc-num" id="mc2-n">~33 e Ft</div>
+      <div class="mc-unit" id="mc2-u">fejenként</div>
+      <div class="mc-note" id="mc2-note">Szép lenne. Csak épp ránézel, és inkább nem mentek sehova.</div>
+    </div>
+    <div class="math-card win">
+      <div class="mc-label" id="mc3-l">Privát, hatan-heten</div>
+      <div class="mc-num" id="mc3-n">~9,5 e Ft</div>
+      <div class="mc-unit" id="mc3-u">fejenként</div>
+      <div class="mc-note" id="mc3-note">Ugyanannyi, mint a zsúfolt nagy hajón. Csak épp nem ülnek az emberek a tetőn.</div>
+    </div>
+  </div>
+  <p class="math-foot" id="math-foot">Már csak az a kérdés, honnan lesz meg a másik négy. <strong>Erre csináltam az Aihoy!-t.</strong> Beállítod, mikor és hol nyaralsz, és látod, ki lesz ugyanakkor ugyanott — és mit keres.<span class="math-src">A számok egy valódi zadari privát túrából: 66 917 Ft, max 7 főig.</span></p>
+</section>
+
+<!-- ══════════ KÉPERNYŐKÉPEK ══════════ -->
+<section class="shots">
+  <h2 id="shots-title">Így néz ki belülről</h2>
+  <div class="shots-row">
+
+    <figure class="shot">
+      <img src="/screen-radar.jpg" alt="Aihoy! Radar — szűrés nyelv, korosztály, szerep és létszám szerint" loading="lazy">
+      <figcaption id="shot1-cap">Radar — szűrj anyanyelv, korosztály, szerep és létszám szerint, akár 250 méteres sugárral. (Nulla találat: most indultunk. Te lehetsz az első a környékeden.)</figcaption>
+    </figure>
+
+    <!-- HA KÉSZ A TOVÁBBI KÉT KÉP: töröld ezt a kommentnyitót és a lentebbi zárót
+    <figure class="shot">
+      <img src="/screen-tura.jpg" alt="Aihoy! — túralista dátummal és szabad helyekkel" loading="lazy">
+      <figcaption id="shot2-cap">Túrák dátummal, szabad helyekkel és árral — egy helyen.</figcaption>
+    </figure>
+
+    <figure class="shot">
+      <img src="/screen-chat.jpg" alt="Aihoy! — chat automatikus fordítással" loading="lazy">
+      <figcaption id="shot3-cap">Chat, ami fordít. A helyi hajós a saját nyelvén ír, te a sajátodon olvasod.</figcaption>
+    </figure>
+    IDÁIG -->
+
+  </div>
+</section>
+
+<!-- ══════════ STATS ══════════ -->
+<div class="stats">
+  <div class="stats-inner">
+    <div><span class="stat-num">0€</span><span class="stat-label" id="stat1">Jutalék<br>Teljesen ingyenes</span></div>
+    <div><span class="stat-num">7</span><span class="stat-label" id="stat2">Nyelv<br>hu · en · de · it · el · hr · pl</span></div>
+    <div><span class="stat-num">⚓</span><span class="stat-label" id="stat3">Play Áruház<br>Most indult</span></div>
+    <div><span class="stat-num">∞</span><span class="stat-label" id="stat4">Lehetőség<br>Görög szigetek & Adria</span></div>
+  </div>
+</div>
+
+<!-- ══════════ UTAZÓKNAK ══════════ -->
+<section class="section" id="travelers">
+  <p class="section-tag" id="trav-tag">Utazóknak</p>
+  <h2 class="section-title" id="trav-title">Nem kell hajó ahhoz, hogy elindulj</h2>
+  <p class="section-lead" id="trav-lead">Keress programot a közeledben, csatlakozz máshoz, vagy szervezd meg a sajátodat. Elég egy ötlet és egy dátum.</p>
+  <div class="feature-grid">
+    <div class="feature"><span class="emoji">🔍</span><h3 id="tf1-t">Túrák a közeledben</h3><p id="tf1-d">GPS-alapú lista — azt látod, ami tényleg elérhető, nem egy végtelen globális katalógust.</p></div>
+    <div class="feature"><span class="emoji">✍️</span><h3 id="tf2-t">Vagy szervezd te</h3><p id="tf2-d">Strandnap, kikötői vacsora, közös kirándulás — bármi lehet túra. Kiírod, és jönnek.</p></div>
+    <div class="feature"><span class="emoji">📡</span><h3 id="tf3-t">Aihoy! Radar</h3><p id="tf3-d">Nézd meg, ki van most a közeledben: utazók, hajósok, legénység.</p></div>
+    <div class="feature"><span class="emoji">🤝</span><h3 id="tf4-t">Közös programok</h3><p id="tf4-d">Hangulat, érdeklődés és nyelv szerint párosít — azokkal, akikkel tényleg passzolsz.</p></div>
+    <div class="feature"><span class="emoji">💬</span><h3 id="tf5-t">Chat fordítóval</h3><p id="tf5-d">A másik a saját nyelvén ír, te a sajátodon olvasod. A nyelv nem akadály.</p></div>
+    <div class="feature"><span class="emoji">🛡️</span><h3 id="tf6-t">Diszkrét és védett</h3><p id="tf6-d">Románc? Csak ha mindketten bejelölitek — alapból baráti. Csak nőknek szóló túrák, bejelentés, letiltás, moderálás, 18+.</p></div>
+    <div class="feature"><span class="emoji">🔗</span><h3 id="tf7-t">Oszd meg egy linkkel</h3><p id="tf7-d">Egy túrát vagy az utazási ablakodat egyetlen linkkel elküldheted bárkinek — WhatsAppon, Facebook-csoportban. Aki megnyitja, app nélkül is látja a lényeget, és egy koppintással csatlakozhat.</p></div>
+  </div>
+</section>
+
+<!-- ══════════ HAJÓSOKNAK ══════════ -->
+<section class="section alt" style="max-width:none;">
+  <div style="max-width:1000px;margin:0 auto;">
+    <p class="section-tag" id="host-tag">Hajósoknak & Szervezőknek</p>
+    <h2 class="section-title" id="host-title">Töltsd fel egyszer, menjen magától</h2>
+    <p class="section-lead" id="host-lead">Charteres, túraszervező vagy hajóbérlő? Vidd fel a túráidat, a foglalást az app kezeli — jutalék nélkül.</p>
+    <div class="feature-grid">
+      <div class="feature"><span class="emoji">🔁</span><h3 id="hf1-t">Ismétlődő túrák</h3><p id="hf1-d">14 nap × 3 turnus egy gombnyomással. Nem kell naponta újra felvinni.</p></div>
+      <div class="feature"><span class="emoji">📋</span><h3 id="hf2-t">Foglaláskezelés</h3><p id="hf2-d">Kérések, elfogadás, lemondás, létszám — minden egy helyen, értesítésekkel.</p></div>
+      <div class="feature"><span class="emoji">🚤</span><h3 id="hf3-t">Hajó-galéria</h3><p id="hf3-d">Külön a személyes és a hajós képek. A képek többet adnak el, mint a szöveg.</p></div>
+      <div class="feature"><span class="emoji">💬</span><h3 id="hf4-t">Chat fordítóval</h3><p id="hf4-d">A német vagy lengyel vendég a saját nyelvén ír, te a sajátodon olvasod.</p></div>
+      <div class="feature"><span class="emoji">⚓</span><h3 id="hf5-t">Kapitányos árazás</h3><p id="hf5-d">A kapitány és a legénység nem fizető hely — az ár/fő valósat mutat.</p></div>
+      <div class="feature"><span class="emoji">💸</span><h3 id="hf6-t">Nulla jutalék</h3><p id="hf6-d">Amit ma használsz, ingyenes is marad. A foglalásból nem vonunk el semmit.</p></div>
+      <div class="feature"><span class="emoji">🔗</span><h3 id="hf7-t">Saját link minden túrához</h3><p id="hf7-d">Minden túrád kap egy megosztható linket — kiteheted Facebook-csoportba vagy elküldheted WhatsAppon. Aki megnyitja, azonnal látja az árat, az időpontot és a szabad helyeket, app nélkül is.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TÜRELEM ══════════ -->
+<section class="section patience" style="max-width:none;">
+  <div class="box">
+    <h2 id="pat-title">Most indult — legyél türelmes</h2>
+    <p id="pat-p1">Az első hetekben kevesen lesznek a radaron. Ez nem hiba, hanem a kezdet. Egy ilyen app olyan, mint egy új kocsma: <strong>attól lesz jó, hogy elkezdenek járni oda.</strong></p>
+    <p id="pat-p2">Ha tetszik, amit látsz: <strong>szólj egy embernek</strong>, aki idén a vízhez megy. Ennyi elég.</p>
+  </div>
+</section>
+
+<!-- ══════════ TÖRTÉNET ══════════ -->
+<section class="section">
+  <div class="story">
+    <h2 id="story-title">Egy régi ötlet, negyed század késéssel</h2>
+    <p id="story-p1">Huszonöt éve készítettem egy szállásfoglaló rendszert. Működött. Csak épp nem láttam, mekkora lehetőség van benne — évekkel később szembesültem vele, hogy a Booking.com egyszer nekem is megvolt, csak nem vettem észre.</p>
+    <p id="story-p2">Nem nyomaszt. Elfogadtam, hogy akkor valamiért nem tudtam meglátni — így kellett lennie. De most, hogy másodszor is itt egy ötlet, nem akarom elengedni, amíg el nem jutok odáig, ahol már nem csak rajtam múlik.</p>
+    <p id="story-p3">Egy dolgot szeretnék megtudni: <strong>működik-e.</strong></p>
+    <p id="story-p4">Az Aihoy!-t egyedül fejlesztem, esténként, munka és a kicsi mellett. Nincs mögötte cég, befektető, marketingbüdzsé — csak egy ember, aki választ keres.</p>
+  </div>
+</section>
+
+<!-- ══════════ TÁMOGATÁS ══════════ -->
+<section class="section support alt" style="max-width:none;">
+  <div class="box">
+    <h2 id="sup-title">Ha szeretnéd, hogy menjen tovább</h2>
+    <p id="sup-p">Az Aihoy! ingyenes, és amit ma használsz, ingyenes is marad. Ha van kedved támogatni a fejlesztést, egy kávé sokat segít — havonta ennyiből marad üzemben.</p>
+    <a href="https://ko-fi.com/aihoy" target="_blank" rel="noopener" class="btn btn-kofi" id="btn-kofi">☕ Támogatás — Ko-fi</a>
+    <p class="note" id="sup-note">A támogatás önkéntes. Nem jár érte appon belüli fizetős funkció vagy előny.</p>
+  </div>
+</section>
+
+<!-- ══════════ PITCH KÁRTYÁK ══════════ -->
+<section class="section">
+  <p class="section-tag" id="pitch-tag">Mélyebben</p>
+  <h2 class="section-title" id="pitch-title">Nézd meg a te perspektívádból</h2>
+  <div class="cards" style="margin-top:40px;">
+    <a href="/pitch_user.html" class="card">
+      <span class="card-emoji">🧳</span>
+      <h3 class="card-title" id="card1-title">Utazók & Nyaralók</h3>
+      <p class="card-desc" id="card1-desc">Túrát, társaságot, közös programot keresel? Nézd meg, hogyan találja meg az Aihoy! a hozzád illő embereket.</p>
+      <span class="card-link" id="card1-link">Megnézem →</span>
+    </a>
+    <a href="/pitch_business-2.html" class="card">
+      <span class="card-emoji">⛵</span>
+      <h3 class="card-title" id="card2-title">Hajósok & Szolgáltatók</h3>
+      <p class="card-desc" id="card2-desc">Charteres, túraszervező vagy hajóbérlő? Nézd meg, hogyan segít az Aihoy! a túráid feltöltésében — jutalék nélkül.</p>
+      <span class="card-link" id="card2-link">Megnézem →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ══════════ DOWNLOAD CTA ══════════ -->
+<div class="download-cta">
+  <h2 id="dl-title">Készen állsz? Vízre!</h2>
+  <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download2" onclick="trackPlay('bottom')">▶ Letöltés a Google Play-ről</a>
+
+  <div class="ios-box" id="ios-box-2">
+    <p id="ios-text2"><strong>iPhone-od van?</strong> Az iOS-verzión még dolgozom. Hagyd itt a címed, és szólok, amint kész.</p>
+    <div class="ios-row">
+      <input type="email" class="ios-email" placeholder="email@pelda.hu" autocomplete="email">
+      <button class="ios-submit" onclick="iosSignup(this)" id="ios-btn2">Szólj, ha kész</button>
+    </div>
+    <span class="ios-msg"></span>
+  </div>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-logo">Aihoy!</div>
+  <p class="footer-sub">The Vibematcher · 2026</p>
+  <div class="footer-social">
+    <a href="https://x.com/aihoy_app" target="_blank" rel="noopener">@aihoy_app</a>
+    <a href="https://www.instagram.com/aihoy.app" target="_blank" rel="noopener">@aihoy.app</a>
+    <a href="https://www.facebook.com/profile.php?id=61589779041288" target="_blank" rel="noopener">Facebook</a>
+  </div>
+  <div class="footer-links">
+    <a href="/privacy">Adatvédelem</a> ·
+    <a href="/child-safety">Child Safety</a> ·
+    <a href="/delete-account">Fiók törlése</a>
+  </div>
+  <a href="mailto:aihoy.app@gmail.com" class="footer-mail">aihoy.app@gmail.com</a>
+</footer>
+
+<script>
+// ── iOS várólista ──
+const IOS_MSG = {
+  hu: { ok: 'Megvan — szólok, amint kész! ⚓', bad: 'Ez nem tűnik érvényes címnek.', err: 'Valami elakadt. Próbáld újra kicsit később.' },
+  en: { ok: 'Got it — I\'ll be in touch! ⚓', bad: 'That doesn\'t look like a valid address.', err: 'Something went wrong. Please try again later.' }
+};
+const CURRENT_LANG = 'hu';
+
+async function iosSignup(btn) {
+  const box = btn.closest('.ios-box');
+  const input = box.querySelector('.ios-email');
+  const msg = box.querySelector('.ios-msg');
+  const m = IOS_MSG[CURRENT_LANG] || IOS_MSG.hu;
+  const email = input.value.trim();
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+    msg.textContent = m.bad; msg.classList.add('err'); return;
+  }
+
+  btn.disabled = true;
+  msg.classList.remove('err');
+  msg.textContent = '…';
+
+  try {
+    const { error } = await sb.from('ios_waitlist').insert({
+      email: email,
+      lang: CURRENT_LANG,
+      source: box.id
+    });
+    if (error) throw error;
+    msg.textContent = m.ok;
+    input.value = '';
+    gtag('event', 'ios_signup', { source: box.id });
+  } catch (e) {
+    console.error(e);
+    msg.textContent = m.err;
+    msg.classList.add('err');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+function trackPlay(where) {
+  gtag('event', 'play_store_click', { source: where });
+}
+
+// iOS-eszköz felismerése — csak kiemeli a dobozt, nem rejt el semmit
+(function() {
+  const ua = navigator.userAgent || '';
+  const isIOS = /iPad|iPhone|iPod/.test(ua) ||
+                (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  if (isIOS) {
+    document.querySelectorAll('.ios-box').forEach(b => b.classList.add('is-ios'));
+    gtag('event', 'ios_visitor');
+  }
+})();
+
+
+// ── Anthem lejátszó ──
+const audio = document.getElementById('aihoy-audio');
+const player = document.getElementById('sticky-player');
+const spBtn = document.getElementById('sp-btn');
+const spFill = document.getElementById('sp-fill');
+
+function togglePlay() {
+  if (audio.paused) { audio.play(); player.classList.add('visible'); spBtn.textContent = '⏸'; }
+  else { audio.pause(); spBtn.textContent = '▶'; }
+}
+function stopAnthem() { audio.pause(); audio.currentTime = 0; player.classList.remove('visible'); }
+function seek(e) {
+  const bar = document.getElementById('sp-bar');
+  const r = bar.getBoundingClientRect();
+  audio.currentTime = ((e.clientX - r.left) / r.width) * (audio.duration || 0);
+}
+audio.addEventListener('timeupdate', () => {
+  if (audio.duration) spFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+});
+audio.addEventListener('ended', () => { spBtn.textContent = '▶'; });
+
+</script>
+
+</body>
+</html>
