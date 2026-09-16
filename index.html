@@ -28,6 +28,9 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,700;0,900;1,300&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- Hero-kép előtöltése (mobilon a függőleges vágat) -->
+<link rel="preload" as="image" type="image/webp" imagesrcset="/img/hero-m-720.webp 720w, /img/hero-m-1080.webp 1080w" imagesizes="100vw" media="(max-width: 700px)" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" imagesrcset="/img/hero-1280.webp 1280w, /img/hero-1920.webp 1920w, /img/hero-2560.webp 2560w" imagesizes="100vw" media="(min-width: 701px)" fetchpriority="high">
 
 <script type="application/ld+json">
 {
@@ -72,107 +75,151 @@
 
 <style>
 :root {
-  --ocean: #0A1628; --ocean2: #0F1F35; --cyan: #00E5FF;
-  --purple: #9D4EDD; --text: #E8F4FD; --textsec: #8BA8C8; --surface: #162440;
-  --gold: #E8A020;
+  /* Alapszínek — sötét tengerkék marad */
+  --ocean: #0A1628; --ocean2: #0E1C30; --surface: #13233A;
+  --text: #EAF1F5; --textsec: #9BAFC0;
+  /* Egyetlen akcentus: mély türkiz. Ritkán használjuk. */
+  --accent: #147A71;        /* gomb-kitöltés (fehér szöveggel 5.2:1) */
+  --accent-hover: #106B63;
+  --accent-ink: #3BAE9F;    /* ugyanez az árnyalat szövegként sötét háttéren (5.8:1 felett) */
+  --line: rgba(234,241,245,0.09);
+  --line-strong: rgba(234,241,245,0.18);
+  --shade: 6,14,26;         /* fotó-átfedés alapszíne (rgba-hoz) */
+  --gold: #E8A020;          /* csak hibaüzenethez */
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: 'Outfit', sans-serif; background: var(--ocean); color: var(--text); overflow-x: hidden; }
+body { font-family: 'Outfit', sans-serif; background: var(--ocean); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
+:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 3px; }
+
+/* ── Vonalas ikonok (SVG sprite a body elején) ── */
+.ic { width: 1em; height: 1em; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.ic-solid { fill: currentColor; }
 
 /* ── Nyelvváltó ── */
 .lang-bar {
   position: fixed; top: 14px; right: 16px; z-index: 300;
-  display: flex; gap: 4px;
-  background: rgba(15,31,53,0.9); backdrop-filter: blur(12px);
-  border: 1px solid rgba(0,229,255,0.15); border-radius: 100px; padding: 5px 8px;
+  display: flex; gap: 2px; padding: 4px;
+  background: rgba(10,22,40,0.62); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--line-strong); border-radius: 100px;
 }
-.lang-btn { background: none; border: none; cursor: pointer; font-size: 18px; padding: 3px 6px; border-radius: 100px; transition: background 0.2s, transform 0.2s; line-height: 1; color: var(--textsec); font-weight: 700; font-family: inherit; }
-.lang-btn { text-decoration: none; display: inline-flex; align-items: center; }
-.lang-btn:hover { background: rgba(0,229,255,0.1); transform: scale(1.08); }
-.lang-btn.active { background: rgba(0,229,255,0.15); color: var(--cyan); }
+.lang-btn {
+  display: inline-flex; align-items: center; padding: 6px 11px; border-radius: 100px;
+  font-family: inherit; font-size: 12.5px; font-weight: 600; letter-spacing: 0.08em; line-height: 1;
+  color: var(--textsec); text-decoration: none; transition: background 0.2s, color 0.2s;
+}
+.lang-btn:hover { color: var(--text); background: rgba(234,241,245,0.08); }
+.lang-btn.active { color: var(--text); background: rgba(234,241,245,0.14); }
 
-/* ── Hero ── */
+/* ── Hero (fotós háttér, sötét átfedés) ── */
 .hero {
-  min-height: 100vh; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; text-align: center;
-  padding: 80px 24px 60px; position: relative;
-  background: radial-gradient(ellipse at 20% 50%, rgba(0,229,255,0.08) 0%, transparent 60%),
-              radial-gradient(ellipse at 80% 20%, rgba(157,78,221,0.10) 0%, transparent 60%),
-              var(--ocean);
-  overflow: hidden;
+  position: relative; isolation: isolate; overflow: hidden;
+  min-height: 100vh; min-height: 100svh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  padding: 96px 24px 84px; background: var(--ocean);
 }
-.hero::before {
-  content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2300E5FF' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+.hero-media { position: absolute; inset: 0; z-index: -1; }
+.hero-media img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 45% 40%; }
+.hero-media::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 62% 56% at 50% 52%, rgba(var(--shade),0.58) 0%, rgba(var(--shade),0) 74%),
+    linear-gradient(180deg, rgba(var(--shade),0.60) 0%, rgba(var(--shade),0.36) 28%, rgba(var(--shade),0.52) 66%, var(--ocean) 100%);
 }
-.logo-wrapper { margin-bottom: 32px; animation: fadeUp 0.8s ease both; }
-.logo-fallback {
-  width: 100px; height: 100px; border-radius: 24px;
-  background: linear-gradient(135deg, var(--ocean2), var(--surface));
-  border: 2px solid rgba(0,229,255,0.25);
-  display: flex; align-items: center; justify-content: center;
-  margin: 0 auto; font-size: 48px;
+.logo-wrapper { margin-bottom: 28px; animation: fadeUp 0.8s ease both; }
+.logo-mark {
+  display: block; width: 72px; height: 72px; margin: 0 auto; border-radius: 18px;
+  border: 1px solid var(--line-strong); box-shadow: 0 12px 32px rgba(0,0,0,0.35);
 }
 h1 {
   font-family: 'Fraunces', serif; font-size: clamp(60px, 14vw, 116px);
-  font-weight: 900; line-height: 0.9; letter-spacing: -3px; margin-bottom: 8px;
-  background: linear-gradient(135deg, var(--cyan) 0%, #7B8FFF 50%, var(--purple) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  font-weight: 900; line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 12px;
+  color: #fff; text-shadow: 0 2px 30px rgba(0,0,0,0.35);
   animation: fadeUp 0.8s 0.1s ease both;
 }
-.tagline { font-family: 'Fraunces', serif; font-size: clamp(16px, 3vw, 22px); color: var(--textsec); font-style: italic; font-weight: 300; margin-bottom: 6px; animation: fadeUp 0.8s 0.2s ease both; }
-.subtagline { font-size: clamp(14px, 2vw, 17px); color: var(--text); font-weight: 500; margin-bottom: 40px; animation: fadeUp 0.8s 0.25s ease both; }
-.hero-desc { max-width: 560px; font-size: 17px; line-height: 1.8; color: var(--textsec); margin-bottom: 44px; animation: fadeUp 0.8s 0.3s ease both; }
-.hero-desc strong { color: var(--text); font-weight: 600; }
-.cta-group { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.8s 0.4s ease both; }
-.btn { padding: 16px 34px; border-radius: 100px; font-size: 15px; font-weight: 700; text-decoration: none; letter-spacing: 0.3px; transition: transform 0.2s, box-shadow 0.2s; display: inline-flex; align-items: center; gap: 9px; cursor: pointer; border: none; font-family: inherit; }
-.btn:hover { transform: translateY(-2px); }
-.btn-primary { background: linear-gradient(135deg, var(--cyan), var(--purple)); color: white; box-shadow: 0 8px 32px rgba(0,229,255,0.2); }
-.btn-primary:hover { box-shadow: 0 12px 40px rgba(0,229,255,0.35); }
-.btn-outline { background: transparent; color: var(--cyan); border: 1.5px solid rgba(0,229,255,0.4); }
-.btn-outline:hover { background: rgba(0,229,255,0.05); }
-.btn-play-anthem { background: rgba(22,36,64,0.6); color: var(--textsec); border: 1px solid rgba(0,229,255,0.12); font-size: 13px; padding: 10px 20px; margin-top: 28px; animation: fadeUp 0.8s 0.5s ease both; }
-.btn-play-anthem:hover { color: var(--cyan); border-color: rgba(0,229,255,0.3); transform: none; }
+.tagline { font-family: 'Fraunces', serif; font-size: clamp(16px, 3vw, 22px); color: rgba(234,241,245,0.8); font-style: italic; font-weight: 300; margin-bottom: 10px; text-shadow: 0 1px 14px rgba(0,0,0,0.45); animation: fadeUp 0.8s 0.2s ease both; }
+.subtagline { font-size: clamp(15px, 2vw, 18px); color: #fff; font-weight: 500; margin-bottom: 30px; text-shadow: 0 1px 14px rgba(0,0,0,0.45); animation: fadeUp 0.8s 0.25s ease both; }
+.hero-desc { max-width: 580px; font-size: 17px; line-height: 1.75; color: rgba(234,241,245,0.88); margin-bottom: 40px; text-shadow: 0 1px 14px rgba(0,0,0,0.5); animation: fadeUp 0.8s 0.3s ease both; }
+.hero-desc strong { color: #fff; font-weight: 600; }
+
+/* ── Gombok ── */
+.cta-group { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.8s 0.4s ease both; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 15px 30px; border-radius: 100px; border: 1px solid transparent;
+  font-family: inherit; font-size: 15px; font-weight: 600; line-height: 1.2; letter-spacing: 0.2px;
+  text-decoration: none; cursor: pointer;
+  transition: transform 0.2s, background 0.2s, border-color 0.2s, color 0.2s;
+}
+.btn .ic { width: 18px; height: 18px; }
+.btn:hover { transform: translateY(-1px); }
+.btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 20px rgba(0,0,0,0.25); }
+.btn-primary:hover { background: var(--accent-hover); }
+.btn-outline { background: rgba(var(--shade),0.28); color: #fff; border-color: rgba(234,241,245,0.42); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.btn-outline:hover { background: rgba(234,241,245,0.1); border-color: rgba(234,241,245,0.7); }
+.btn-play-anthem {
+  background: rgba(var(--shade),0.35); color: rgba(234,241,245,0.8); border-color: rgba(234,241,245,0.16);
+  font-size: 13px; padding: 9px 18px; gap: 8px; margin-top: 26px;
+  animation: fadeUp 0.8s 0.5s ease both;
+}
+.btn-play-anthem .ic { width: 15px; height: 15px; }
+.btn-play-anthem:hover { color: #fff; border-color: rgba(234,241,245,0.35); transform: none; }
 
 /* ── Anthem sticky sáv (rejtett, amíg nem szól) ── */
 #sticky-player {
   position: fixed; top: 0; left: 0; right: 0; z-index: 400;
-  background: rgba(10,22,40,0.96); backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(0,229,255,0.15);
+  background: rgba(10,22,40,0.96); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--line);
   padding: 8px 16px; display: none; align-items: center; gap: 12px;
 }
 #sticky-player.visible { display: flex; }
-#sticky-player .p-btn { width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer; background: linear-gradient(135deg, var(--cyan), var(--purple)); color: #06101f; font-size: 15px; flex-shrink: 0; }
-#sticky-player .p-label { font-size: 11px; color: var(--textsec); letter-spacing: 1px; text-transform: uppercase; }
+#sticky-player .p-btn { width: 34px; height: 34px; border-radius: 50%; border: none; cursor: pointer; background: var(--accent); color: #fff; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; }
+#sticky-player .p-btn .ic { width: 14px; height: 14px; }
+#sticky-player .p-btn .i-play { display: none; }
+#sticky-player .p-btn.is-paused .i-play { display: block; }
+#sticky-player .p-btn.is-paused .i-pause { display: none; }
+#sticky-player .p-label { font-size: 11px; color: var(--textsec); letter-spacing: 1px; text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+#sticky-player .p-label .ic { width: 13px; height: 13px; }
 #sticky-player .p-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.1); border-radius: 3px; cursor: pointer; position: relative; }
-#sticky-player .p-fill { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--purple)); border-radius: 3px; width: 0%; }
-#sticky-player .p-close { background: none; border: none; color: var(--textsec); cursor: pointer; font-size: 18px; flex-shrink: 0; }
+#sticky-player .p-fill { height: 100%; background: var(--accent-ink); border-radius: 3px; width: 0%; }
+#sticky-player .p-close { background: none; border: none; color: var(--textsec); cursor: pointer; flex-shrink: 0; display: inline-flex; padding: 4px; }
+#sticky-player .p-close .ic { width: 18px; height: 18px; }
+#sticky-player .p-close:hover { color: var(--text); }
 
 /* ── Stats ── */
-.stats { background: var(--surface); border-top: 1px solid rgba(0,229,255,0.08); border-bottom: 1px solid rgba(0,229,255,0.08); padding: 56px 24px; }
+.stats { background: var(--ocean2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 52px 24px; }
 .stats-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 28px; text-align: center; }
-.stat-num { font-family: 'Fraunces', serif; font-size: clamp(32px, 6vw, 46px); font-weight: 900; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; line-height: 1; margin-bottom: 8px; }
+.stat-num { font-family: 'Fraunces', serif; font-size: clamp(32px, 6vw, 46px); font-weight: 700; color: var(--text); display: block; line-height: 1; height: 1em; margin-bottom: 10px; }
+.stat-num .ic { width: 0.8em; height: 0.8em; stroke-width: 1.5; vertical-align: -0.02em; }
 .stat-label { font-size: 13px; color: var(--textsec); line-height: 1.5; }
 
 /* ── Általános szekció ── */
-.section { padding: 88px 24px; max-width: 1000px; margin: 0 auto; }
-.section-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--cyan); font-weight: 700; margin-bottom: 14px; text-align: center; }
-.section-title { font-family: 'Fraunces', serif; font-size: clamp(28px, 5vw, 42px); font-weight: 700; line-height: 1.15; text-align: center; margin-bottom: 16px; }
-.section-lead { font-size: 17px; color: var(--textsec); line-height: 1.7; text-align: center; max-width: 620px; margin: 0 auto 48px; }
+.section { padding: 96px 24px; max-width: 1000px; margin: 0 auto; }
+.section-tag { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-ink); font-weight: 600; margin-bottom: 14px; text-align: center; }
+.section-title { font-family: 'Fraunces', serif; font-size: clamp(28px, 5vw, 44px); font-weight: 700; line-height: 1.12; letter-spacing: -0.01em; text-align: center; margin-bottom: 16px; }
+.section-lead { font-size: 17px; color: var(--textsec); line-height: 1.7; text-align: center; max-width: 620px; margin: 0 auto 52px; }
 .alt { background: var(--ocean2); }
 
 /* ── Feature rács ── */
-.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
-.feature { background: var(--surface); border: 1px solid rgba(0,229,255,0.08); border-radius: 16px; padding: 26px; transition: transform 0.2s, border-color 0.2s; }
-.feature:hover { transform: translateY(-3px); border-color: rgba(0,229,255,0.25); }
-.feature .emoji { font-size: 28px; display: block; margin-bottom: 14px; }
-.feature h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
-.feature p { font-size: 14px; color: var(--textsec); line-height: 1.65; }
+.feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.feature { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px 24px 26px; transition: transform 0.2s, border-color 0.2s; }
+.feature:hover { transform: translateY(-2px); border-color: var(--line-strong); }
+.f-ic { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 11px; border: 1px solid var(--line-strong); color: var(--text); margin-bottom: 18px; }
+.f-ic .ic { width: 20px; height: 20px; }
+.feature h3 { font-size: 16.5px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+.feature p { font-size: 14.5px; color: var(--textsec); line-height: 1.65; }
+
+/* ── Szekció-háttérfotó (türelem-blokk, letöltés-sáv) ── */
+.sec-media { position: absolute; inset: 0; z-index: -1; }
+.sec-media img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.sec-media::after { content: ''; position: absolute; inset: 0; }
 
 /* ── Türelem-blokk ── */
-.patience { background: radial-gradient(ellipse at center, rgba(157,78,221,0.08) 0%, transparent 70%), var(--ocean); text-align: center; }
-.patience .box { max-width: 640px; margin: 0 auto; background: var(--surface); border: 1px solid rgba(157,78,221,0.22); border-radius: 20px; padding: 40px 32px; }
+.patience { position: relative; isolation: isolate; overflow: hidden; text-align: center; background: var(--ocean); padding-top: 140px; padding-bottom: 140px; }
+.patience .sec-media img { object-position: 50% 55%; }
+.patience .sec-media::after { background: linear-gradient(180deg, var(--ocean2) 0, rgba(var(--shade),0.42) 110px, rgba(var(--shade),0.42) calc(100% - 110px), var(--ocean) 100%); }
+.patience .box { max-width: 640px; margin: 0 auto; background: rgba(10,22,40,0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid var(--line-strong); border-radius: 18px; padding: 40px 34px; }
 .patience h2 { font-family: 'Fraunces', serif; font-size: clamp(24px, 4vw, 34px); font-weight: 700; margin-bottom: 20px; }
 .patience p { font-size: 16px; color: var(--textsec); line-height: 1.8; margin-bottom: 16px; }
 .patience p:last-child { margin-bottom: 0; }
@@ -187,152 +234,157 @@ h1 {
 
 /* ── Támogatás ── */
 .support { text-align: center; }
-.support .box { max-width: 560px; margin: 0 auto; background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(157,78,221,0.06)); border: 1px solid rgba(0,229,255,0.15); border-radius: 20px; padding: 40px 32px; }
+.support .box { max-width: 560px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 40px 32px; }
 .support h2 { font-family: 'Fraunces', serif; font-size: clamp(22px, 4vw, 30px); font-weight: 700; margin-bottom: 14px; }
 .support p { font-size: 16px; color: var(--textsec); line-height: 1.7; margin-bottom: 28px; }
-.btn-kofi { background: linear-gradient(135deg, var(--gold), var(--purple)); color: white; box-shadow: 0 8px 32px rgba(232,160,32,0.25); }
-.btn-kofi:hover { box-shadow: 0 12px 40px rgba(232,160,32,0.4); }
-.support .note { font-size: 12px; color: var(--textsec); margin-top: 20px; margin-bottom: 0; opacity: 0.7; }
+.btn-kofi { background: var(--text); color: var(--ocean); }
+.btn-kofi:hover { background: #fff; }
+.support .note { font-size: 12px; color: var(--textsec); margin-top: 20px; margin-bottom: 0; opacity: 0.75; }
 
 /* ── Pitch kártyák ── */
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-.card { background: var(--surface); border: 1px solid rgba(0,229,255,0.08); border-radius: 20px; padding: 32px; text-decoration: none; transition: transform 0.2s, border-color 0.2s; display: block; }
-.card:hover { transform: translateY(-4px); border-color: rgba(0,229,255,0.3); }
-.card-emoji { font-size: 36px; display: block; margin-bottom: 16px; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 30px; text-decoration: none; transition: transform 0.2s, border-color 0.2s; display: block; }
+.card:hover { transform: translateY(-3px); border-color: var(--line-strong); }
+.card-ic { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 12px; border: 1px solid var(--line-strong); color: var(--text); margin-bottom: 20px; }
+.card-ic .ic { width: 24px; height: 24px; }
 .card-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 10px; line-height: 1.2; }
-.card-desc { font-size: 14px; color: var(--textsec); line-height: 1.65; margin-bottom: 16px; }
-.card-link { color: var(--cyan); font-size: 14px; font-weight: 700; }
+.card-desc { font-size: 14.5px; color: var(--textsec); line-height: 1.65; margin-bottom: 18px; }
+.card-link { color: var(--accent-ink); font-size: 14px; font-weight: 600; }
 
-/* ── Download CTA sáv ── */
-.download-cta { background: var(--surface); border-top: 1px solid rgba(0,229,255,0.08); text-align: center; padding: 72px 24px; }
-.download-cta h2 { font-family: 'Fraunces', serif; font-size: clamp(26px, 5vw, 40px); font-weight: 700; margin-bottom: 24px; }
+/* ── Download CTA sáv (fotós háttér) ── */
+.download-cta { position: relative; isolation: isolate; overflow: hidden; background: var(--ocean); text-align: center; padding: 132px 24px 100px; }
+.download-cta .sec-media img { object-position: 50% 62%; }
+.download-cta .sec-media::after {
+  background:
+    radial-gradient(ellipse 55% 50% at 50% 50%, rgba(var(--shade),0.42) 0%, rgba(var(--shade),0) 75%),
+    linear-gradient(180deg, var(--ocean) 0, rgba(var(--shade),0.56) 120px, rgba(var(--shade),0.64) calc(100% - 100px), var(--ocean) 100%);
+}
+.download-cta h2 { font-family: 'Fraunces', serif; font-size: clamp(30px, 6vw, 48px); font-weight: 700; margin-bottom: 28px; color: #fff; text-shadow: 0 2px 24px rgba(0,0,0,0.45); }
 
 /* ── Footer ── */
-footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,229,255,0.08); }
-.footer-logo { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 900; background: linear-gradient(135deg, var(--cyan), var(--purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 6px; }
+footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--line); }
+.footer-logo { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 900; color: var(--text); margin-bottom: 6px; }
 .footer-sub { color: var(--textsec); font-size: 13px; margin-bottom: 24px; }
-.footer-social { display: flex; gap: 20px; justify-content: center; margin-bottom: 20px; }
+.footer-social { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
 .footer-social a { color: var(--textsec); text-decoration: none; font-size: 13px; transition: color 0.2s; }
-.footer-social a:hover { color: var(--cyan); }
-.footer-links { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; }
+.footer-social a:hover { color: var(--text); }
+.footer-links { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px; color: var(--textsec); }
 .footer-links a { color: var(--textsec); text-decoration: none; font-size: 13px; }
-.footer-links a:hover { color: var(--cyan); }
-.footer-mail { color: var(--cyan); text-decoration: none; font-size: 14px; }
+.footer-links a:hover { color: var(--text); }
+.footer-mail { color: var(--accent-ink); text-decoration: none; font-size: 14px; }
 
 /* ── iOS várólista ── */
 .ios-box {
-  max-width: 440px; margin: 26px auto 0; padding: 20px 22px;
-  background: var(--surface); border: 1px solid rgba(0,229,255,0.12);
-  border-radius: 16px; text-align: center;
+  max-width: 440px; margin: 28px auto 0; padding: 20px 22px;
+  background: rgba(10,22,40,0.62); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line-strong); border-radius: 16px; text-align: center;
   animation: fadeUp 0.8s 0.45s ease both;
 }
-.ios-box.is-ios { border-color: rgba(0,229,255,0.4); box-shadow: 0 8px 32px rgba(0,229,255,0.12); }
-.ios-box p { font-size: 14px; color: var(--textsec); line-height: 1.6; margin-bottom: 14px; }
+.ios-box.is-ios { border-color: rgba(59,174,159,0.6); }
+.ios-box p { font-size: 14px; color: rgba(234,241,245,0.8); line-height: 1.6; margin-bottom: 14px; }
+.ios-box p strong { color: #fff; }
 .ios-box .ios-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
 .ios-box input {
   flex: 1 1 200px; min-width: 0; padding: 12px 16px; border-radius: 100px;
-  border: 1px solid rgba(0,229,255,0.2); background: rgba(10,22,40,0.6);
+  border: 1px solid var(--line-strong); background: rgba(var(--shade),0.55);
   color: var(--text); font-family: inherit; font-size: 14px;
 }
-.ios-box input::placeholder { color: rgba(139,168,200,0.6); }
-.ios-box input:focus { outline: none; border-color: var(--cyan); }
+.ios-box input::placeholder { color: rgba(155,175,192,0.7); }
+.ios-box input:focus { outline: none; border-color: var(--accent-ink); }
 .ios-box button {
-  padding: 12px 24px; border-radius: 100px; border: none; cursor: pointer;
-  background: linear-gradient(135deg, var(--cyan), var(--purple));
-  color: white; font-family: inherit; font-size: 14px; font-weight: 700;
-  transition: transform 0.2s;
+  padding: 12px 22px; border-radius: 100px; cursor: pointer;
+  background: transparent; color: var(--text); border: 1px solid rgba(234,241,245,0.4);
+  font-family: inherit; font-size: 14px; font-weight: 600;
+  transition: background 0.2s, border-color 0.2s;
 }
-.ios-box button:hover { transform: translateY(-2px); }
-.ios-box button:disabled { opacity: 0.5; cursor: default; transform: none; }
-.ios-box .ios-msg { display: block; font-size: 13px; margin-top: 12px; min-height: 18px; color: var(--cyan); }
+.ios-box button:hover { background: rgba(234,241,245,0.1); border-color: rgba(234,241,245,0.7); }
+.ios-box button:disabled { opacity: 0.5; cursor: default; }
+.ios-box .ios-msg { display: block; font-size: 13px; margin-top: 12px; min-height: 18px; color: var(--accent-ink); }
 .ios-box .ios-msg.err { color: var(--gold); }
 
 /* ── Képernyőkép-galéria ── */
-.shots {
-  background: var(--ocean2);
-  border-top: 1px solid rgba(0,229,255,0.08);
-  border-bottom: 1px solid rgba(0,229,255,0.08);
-  padding: 56px 0 60px;
-}
-.shots h2 {
-  font-family: 'Fraunces', serif; font-size: clamp(22px, 4vw, 32px);
-  font-weight: 700; text-align: center; margin-bottom: 36px; padding: 0 24px;
-}
-.shots-row {
-  display: flex; gap: 22px; justify-content: center; align-items: flex-start;
-  flex-wrap: wrap; padding: 0 24px; max-width: 900px; margin: 0 auto;
-}
+.shots { background: var(--ocean2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 64px 0 68px; }
+.shots h2 { font-family: 'Fraunces', serif; font-size: clamp(22px, 4vw, 32px); font-weight: 700; text-align: center; margin-bottom: 36px; padding: 0 24px; }
+.shots-row { display: flex; gap: 22px; justify-content: center; align-items: flex-start; flex-wrap: wrap; padding: 0 24px; max-width: 900px; margin: 0 auto; }
 .shot { width: 190px; text-align: center; }
 .shot img {
-  display: block;
-  width: 190px;
-  height: 380px;
-  object-fit: cover;
-  object-position: top center;
-  border-radius: 18px;
-  border: 1px solid rgba(0,229,255,0.18);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.5);
-  background: var(--ocean);
+  display: block; width: 190px; height: 380px;
+  object-fit: cover; object-position: top center;
+  border-radius: 18px; border: 1px solid var(--line-strong);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.5); background: var(--ocean);
 }
 .shot figcaption { font-size: 12.5px; color: var(--textsec); line-height: 1.5; margin-top: 12px; }
+
+/* ── Az árszámtan ── */
+.math { padding: 80px 24px 84px; background: var(--ocean); }
+.math h2 { font-family: 'Fraunces', serif; font-size: clamp(24px, 5vw, 38px); font-weight: 700; text-align: center; margin-bottom: 12px; line-height: 1.15; }
+.math .math-lead { text-align: center; color: var(--textsec); font-size: 16px; line-height: 1.7; max-width: 560px; margin: 0 auto 44px; }
+.math-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; max-width: 900px; margin: 0 auto; }
+.math-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px 22px; text-align: center; }
+.math-card.win { border-color: rgba(59,174,159,0.55); }
+.math-card .mc-label { font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--textsec); font-weight: 600; margin-bottom: 14px; }
+.math-card.win .mc-label { color: var(--accent-ink); }
+.math-card .mc-num { font-family: 'Fraunces', serif; font-size: clamp(28px, 6vw, 40px); font-weight: 700; line-height: 1; margin-bottom: 4px; color: var(--text); }
+.math-card.win .mc-num { color: var(--accent-ink); }
+.math-card .mc-unit { font-size: 13px; color: var(--textsec); margin-bottom: 16px; }
+.math-card .mc-note { font-size: 13.5px; color: var(--textsec); line-height: 1.6; }
+.math-foot { text-align: center; max-width: 620px; margin: 40px auto 0; font-size: 15px; color: var(--textsec); line-height: 1.75; }
+.math-foot strong { color: var(--text); }
+.math-src { display: block; margin-top: 14px; font-size: 12.5px; opacity: 0.7; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── Mobil ── */
+@media (max-width: 700px) {
+  .hero { padding: 88px 20px 64px; }
+  .hero-media img { object-position: 50% 30%; }
+  .hero-desc { font-size: 16px; margin-bottom: 34px; }
+  .section { padding: 72px 20px; }
+  .patience { padding-top: 104px; padding-bottom: 104px; }
+  .patience .box { padding: 32px 22px; }
+  .download-cta { padding: 104px 20px 80px; }
+}
 @media (max-width: 640px) {
+  .stats-inner { grid-template-columns: repeat(2,1fr); gap: 32px 16px; }
   .shot { width: 150px; }
   .shot img { width: 150px; height: 300px; }
   .shots-row { gap: 14px; }
 }
-
-/* ── Az árszámtan ── */
-.math { padding: 70px 24px 76px; background: var(--ocean); }
-.math h2 {
-  font-family: 'Fraunces', serif; font-size: clamp(24px, 5vw, 38px);
-  font-weight: 700; text-align: center; margin-bottom: 12px; line-height: 1.15;
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
-.math .math-lead {
-  text-align: center; color: var(--textsec); font-size: 16px; line-height: 1.7;
-  max-width: 560px; margin: 0 auto 44px;
-}
-.math-row {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 18px; max-width: 900px; margin: 0 auto;
-}
-.math-card {
-  background: var(--surface); border: 1px solid rgba(0,229,255,0.10);
-  border-radius: 18px; padding: 26px 22px; text-align: center;
-}
-.math-card.win {
-  border-color: rgba(0,229,255,0.45);
-  box-shadow: 0 10px 40px rgba(0,229,255,0.14);
-  background: linear-gradient(160deg, rgba(0,229,255,0.07), var(--surface));
-}
-.math-card .mc-label {
-  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--textsec); font-weight: 700; margin-bottom: 14px;
-}
-.math-card.win .mc-label { color: var(--cyan); }
-.math-card .mc-num {
-  font-family: 'Fraunces', serif; font-size: clamp(28px, 6vw, 40px);
-  font-weight: 900; line-height: 1; margin-bottom: 4px; color: var(--text);
-}
-.math-card.win .mc-num {
-  background: linear-gradient(135deg, var(--cyan), var(--purple));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.math-card .mc-unit { font-size: 13px; color: var(--textsec); margin-bottom: 16px; }
-.math-card .mc-note { font-size: 13.5px; color: var(--textsec); line-height: 1.6; }
-.math-foot {
-  text-align: center; max-width: 620px; margin: 40px auto 0;
-  font-size: 15px; color: var(--textsec); line-height: 1.75;
-}
-.math-foot strong { color: var(--text); }
-.math-src { display: block; margin-top: 14px; font-size: 12.5px; opacity: 0.65; }
-
-@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 [data-i18n-lang].hidden { display: none; }
 </style>
 
 </head>
 <body>
+
+<!-- Vonalas ikonok — Lucide (ISC licenc), https://lucide.dev -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.376 3.622a1 1 0 0 1 3.002 3.002L7.368 18.635a2 2 0 0 1-.855.506l-2.872.838a.5.5 0 0 1-.62-.62l.838-2.872a2 2 0 0 1 .506-.854z"/></symbol>
+  <symbol id="i-radar" viewBox="0 0 24 24"><path d="M19.07 4.93A10 10 0 0 0 6.99 3.34"/><path d="M4 6h.01"/><path d="M2.29 9.62A10 10 0 1 0 21.31 8.35"/><path d="M16.24 7.76A6 6 0 1 0 8.23 16.67"/><path d="M12 18h.01"/><path d="M17.99 11.66A6 6 0 0 1 15.77 16.67"/><circle cx="12" cy="12" r="2"/><path d="m13.41 10.59 5.66-5.66"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-languages" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24"><path d="m17 2 4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="m7 22-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></symbol>
+  <symbol id="i-images" viewBox="0 0 24 24"><path d="M18 22H4a2 2 0 0 1-2-2V6"/><path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18"/><circle cx="12" cy="8" r="2"/><rect width="16" height="16" x="6" y="2" rx="2"/></symbol>
+  <symbol id="i-wheel" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 2v7.5"/><path d="m19 5-5.23 5.23"/><path d="M22 12h-7.5"/><path d="m19 19-5.23-5.23"/><path d="M12 14.5V22"/><path d="M10.23 13.77 5 19"/><path d="M9.5 12H2"/><path d="M10.23 10.23 5 5"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="i-percent" viewBox="0 0 24 24"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/><path d="m15 9-6 6"/><path d="M9 9h.01"/><path d="M15 15h.01"/></symbol>
+  <symbol id="i-anchor" viewBox="0 0 24 24"><path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/></symbol>
+  <symbol id="i-luggage" viewBox="0 0 24 24"><path d="M6 20a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2"/><path d="M8 18V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v14"/><path d="M10 20h4"/><circle cx="16" cy="20" r="2"/><circle cx="8" cy="20" r="2"/></symbol>
+  <symbol id="i-sailboat" viewBox="0 0 24 24"><path d="M22 18H2a4 4 0 0 0 4 4h12a4 4 0 0 0 4-4Z"/><path d="M21 14 10 2 3 14h18Z"/><path d="M10 2v16"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21 6 3"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><rect x="14" y="4" width="4" height="16" rx="1"/><rect x="6" y="4" width="4" height="16" rx="1"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
+  <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></symbol>
+</svg>
 
 <script>
 /* Magyar böngésző a gyökéren -> /hu/. Egyszer fut, a ?lang=en felülírja.
@@ -354,10 +406,10 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
 
 <!-- Anthem sticky sáv (csak lejátszáskor jelenik meg) -->
 <div id="sticky-player">
-  <button class="p-btn" id="sp-btn" onclick="togglePlay()">⏸</button>
-  <span class="p-label">🎵 Aihoy! Anthem</span>
+  <button class="p-btn" id="sp-btn" onclick="togglePlay()" title="Play / pause" aria-label="Play / pause"><svg class="ic ic-solid i-pause" aria-hidden="true"><use href="#i-pause"/></svg><svg class="ic ic-solid i-play" aria-hidden="true"><use href="#i-play"/></svg></button>
+  <span class="p-label"><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg>Aihoy! Anthem</span>
   <div class="p-bar" id="sp-bar" onclick="seek(event)"><div class="p-fill" id="sp-fill"></div></div>
-  <button class="p-close" onclick="stopAnthem()" title="Close">✕</button>
+  <button class="p-close" onclick="stopAnthem()" title="Close" aria-label="Close"><svg class="ic" aria-hidden="true"><use href="#i-x"/></svg></button>
 </div>
 
 <!-- Nyelvváltó -->
@@ -368,16 +420,24 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
 
 <!-- ══════════ HERO ══════════ -->
 <section class="hero">
-  <div class="logo-wrapper"><div class="logo-fallback">⚓</div></div>
+  <div class="hero-media" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 700px)" type="image/webp" srcset="/img/hero-m-720.webp 720w, /img/hero-m-1080.webp 1080w" sizes="100vw">
+      <source media="(max-width: 700px)" srcset="/img/hero-m-1080.jpg">
+      <source type="image/webp" srcset="/img/hero-1280.webp 1280w, /img/hero-1920.webp 1920w, /img/hero-2560.webp 2560w" sizes="100vw">
+      <img src="/img/hero-1920.jpg" alt="" width="1920" height="1081" fetchpriority="high">
+    </picture>
+  </div>
+  <div class="logo-wrapper"><img class="logo-mark" src="/favicon-192.png" width="72" height="72" alt=""></div>
   <h1>Aihoy!</h1>
   <p class="tagline">The Vibematcher</p>
   <p class="subtagline" id="subtagline">No boat needed. Just an idea and a date.</p>
   <p class="hero-desc" id="hero-desc">A private boat is lovely — it just doesn't add up for two. And on the big boat you're one of forty, in the smoke, with no shade.<br><br>Aihoy! is the missing step between the two: it shows you <strong>who'll be there at the same time</strong> — and once six of you get together, the private boat costs the same per head as the crowded one.</p>
   <div class="cta-group">
-    <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download" onclick="trackPlay('hero')">▶ Get it on Google Play</a>
-    <a href="#travelers" class="btn btn-outline" id="btn-learn">📖 What it does</a>
+    <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download" onclick="trackPlay('hero')"><svg class="ic ic-solid" aria-hidden="true"><use href="#i-play"/></svg>Get it on Google Play</a>
+    <a href="#travelers" class="btn btn-outline" id="btn-learn">What it does<svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
   </div>
-  <button class="btn btn-play-anthem" onclick="togglePlay()" id="btn-anthem">🎵 Aihoy! Anthem</button>
+  <button class="btn btn-play-anthem" onclick="togglePlay()" id="btn-anthem"><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg>Aihoy! Anthem</button>
 
   <div class="ios-box" id="ios-box-1">
     <p id="ios-text"><strong>On iPhone?</strong> The iOS version is still in the works. Leave your email and I'll let you know when it's ready.</p>
@@ -446,7 +506,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
   <div class="stats-inner">
     <div><span class="stat-num">0€</span><span class="stat-label" id="stat1">Commission<br>Completely free</span></div>
     <div><span class="stat-num">7</span><span class="stat-label" id="stat2">Languages<br>hu · en · de · it · el · hr · pl</span></div>
-    <div><span class="stat-num">⚓</span><span class="stat-label" id="stat3">Play Store<br>Just launched</span></div>
+    <div><span class="stat-num"><svg class="ic" aria-hidden="true"><use href="#i-anchor"/></svg></span><span class="stat-label" id="stat3">Play Store<br>Just launched</span></div>
     <div><span class="stat-num">∞</span><span class="stat-label" id="stat4">Possibilities<br>Greek Islands & Adriatic</span></div>
   </div>
 </div>
@@ -457,13 +517,13 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
   <h2 class="section-title" id="trav-title">You don't need a boat to set off</h2>
   <p class="section-lead" id="trav-lead">Find something nearby, join someone else, or organise your own. All it takes is an idea and a date.</p>
   <div class="feature-grid">
-    <div class="feature"><span class="emoji">🔍</span><h3 id="tf1-t">Trips near you</h3><p id="tf1-d">A GPS-based list — you see what's actually reachable, not an endless global catalogue.</p></div>
-    <div class="feature"><span class="emoji">✍️</span><h3 id="tf2-t">Or organise it</h3><p id="tf2-d">A beach day, a harbour dinner, a shared trip — anything can be a trip. Post it and they'll come.</p></div>
-    <div class="feature"><span class="emoji">📡</span><h3 id="tf3-t">Aihoy! Radar</h3><p id="tf3-d">See who's nearby right now: travelers, sailors, crew.</p></div>
-    <div class="feature"><span class="emoji">🤝</span><h3 id="tf4-t">Shared plans</h3><p id="tf4-d">Matched by vibe, interests and language — with people you actually click with.</p></div>
-    <div class="feature"><span class="emoji">💬</span><h3 id="tf5-t">Chat with translation</h3><p id="tf5-d">They write in their language, you read it in yours. Language is no barrier.</p></div>
-    <div class="feature"><span class="emoji">🛡️</span><h3 id="tf6-t">Discreet and safe</h3><p id="tf6-d">Romance? Only if you both opt in — friendly by default. Women-only trips, reporting, blocking, moderation, 18+.</p></div>
-    <div class="feature"><span class="emoji">🔗</span><h3 id="tf7-t">Share with one link</h3><p id="tf7-d">Send a trip or your travel window to anyone with a single link — WhatsApp, a Facebook group, wherever. Whoever opens it sees what matters without the app, and can join with one tap.</p></div>
+    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span><h3 id="tf1-t">Trips near you</h3><p id="tf1-d">A GPS-based list — you see what's actually reachable, not an endless global catalogue.</p></div>
+    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></span><h3 id="tf2-t">Or organise it</h3><p id="tf2-d">A beach day, a harbour dinner, a shared trip — anything can be a trip. Post it and they'll come.</p></div>
+    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-radar"/></svg></span><h3 id="tf3-t">Aihoy! Radar</h3><p id="tf3-d">See who's nearby right now: travelers, sailors, crew.</p></div>
+    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span><h3 id="tf4-t">Shared plans</h3><p id="tf4-d">Matched by vibe, interests and language — with people you actually click with.</p></div>
+    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg></span><h3 id="tf5-t">Chat with translation</h3><p id="tf5-d">They write in their language, you read it in yours. Language is no barrier.</p></div>
+    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span><h3 id="tf6-t">Discreet and safe</h3><p id="tf6-d">Romance? Only if you both opt in — friendly by default. Women-only trips, reporting, blocking, moderation, 18+.</p></div>
+    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg></span><h3 id="tf7-t">Share with one link</h3><p id="tf7-d">Send a trip or your travel window to anyone with a single link — WhatsApp, a Facebook group, wherever. Whoever opens it sees what matters without the app, and can join with one tap.</p></div>
   </div>
 </section>
 
@@ -474,19 +534,25 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
     <h2 class="section-title" id="host-title">Set it up once, let it run</h2>
     <p class="section-lead" id="host-lead">Charter, tour operator or boat rental? Post your trips and let the app handle bookings — with zero commission.</p>
     <div class="feature-grid">
-      <div class="feature"><span class="emoji">🔁</span><h3 id="hf1-t">Recurring trips</h3><p id="hf1-d">14 days × 3 slots with one tap. No need to re-enter them every day.</p></div>
-      <div class="feature"><span class="emoji">📋</span><h3 id="hf2-t">Booking management</h3><p id="hf2-d">Requests, approvals, cancellations, headcount — all in one place, with notifications.</p></div>
-      <div class="feature"><span class="emoji">🚤</span><h3 id="hf3-t">Boat gallery</h3><p id="hf3-d">Separate personal and boat photos. Pictures sell better than words.</p></div>
-      <div class="feature"><span class="emoji">💬</span><h3 id="hf4-t">Chat with translation</h3><p id="hf4-d">Your German or Polish guest writes in their language, you read it in yours.</p></div>
-      <div class="feature"><span class="emoji">⚓</span><h3 id="hf5-t">Captain pricing</h3><p id="hf5-d">The captain and crew aren't paying seats — so the per-person price is real.</p></div>
-      <div class="feature"><span class="emoji">💸</span><h3 id="hf6-t">Zero commission</h3><p id="hf6-d">What you use today stays free. We don't take a cut of your bookings.</p></div>
-      <div class="feature"><span class="emoji">🔗</span><h3 id="hf7-t">Every trip gets a link</h3><p id="hf7-d">Every trip gets its own shareable link — post it to a Facebook group or send it on WhatsApp. Whoever opens it sees the price, the date and the free seats right away, no app required.</p></div>
+      <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-repeat"/></svg></span><h3 id="hf1-t">Recurring trips</h3><p id="hf1-d">14 days × 3 slots with one tap. No need to re-enter them every day.</p></div>
+      <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-clipboard"/></svg></span><h3 id="hf2-t">Booking management</h3><p id="hf2-d">Requests, approvals, cancellations, headcount — all in one place, with notifications.</p></div>
+      <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-images"/></svg></span><h3 id="hf3-t">Boat gallery</h3><p id="hf3-d">Separate personal and boat photos. Pictures sell better than words.</p></div>
+      <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg></span><h3 id="hf4-t">Chat with translation</h3><p id="hf4-d">Your German or Polish guest writes in their language, you read it in yours.</p></div>
+      <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-wheel"/></svg></span><h3 id="hf5-t">Captain pricing</h3><p id="hf5-d">The captain and crew aren't paying seats — so the per-person price is real.</p></div>
+      <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-percent"/></svg></span><h3 id="hf6-t">Zero commission</h3><p id="hf6-d">What you use today stays free. We don't take a cut of your bookings.</p></div>
+      <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg></span><h3 id="hf7-t">Every trip gets a link</h3><p id="hf7-d">Every trip gets its own shareable link — post it to a Facebook group or send it on WhatsApp. Whoever opens it sees the price, the date and the free seats right away, no app required.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ══════════ TÜRELEM ══════════ -->
 <section class="section patience" style="max-width:none;">
+  <div class="sec-media" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="/img/cove-960.webp 960w, /img/cove-1600.webp 1600w" sizes="(max-width: 700px) 170vw, 100vw">
+      <img src="/img/cove-1600.jpg" alt="" width="1600" height="901" loading="lazy" decoding="async">
+    </picture>
+  </div>
   <div class="box">
     <h2 id="pat-title">Just launched — be patient</h2>
     <p id="pat-p1">In the first weeks the radar will be quiet. That's not a bug, it's the beginning. An app like this is like a new bar: <strong>it gets good once people start showing up.</strong></p>
@@ -510,7 +576,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
   <div class="box">
     <h2 id="sup-title">If you'd like to see it continue</h2>
     <p id="sup-p">Aihoy! is free, and what you use today stays free. If you feel like supporting the work, a coffee goes a long way — that's roughly what keeps it running each month.</p>
-    <a href="https://ko-fi.com/aihoy" target="_blank" rel="noopener" class="btn btn-kofi" id="btn-kofi">☕ Support — Ko-fi</a>
+    <a href="https://ko-fi.com/aihoy" target="_blank" rel="noopener" class="btn btn-kofi" id="btn-kofi"><svg class="ic" aria-hidden="true"><use href="#i-coffee"/></svg>Support — Ko-fi</a>
     <p class="note" id="sup-note">Support is voluntary. It doesn't unlock any in-app paid feature or advantage.</p>
   </div>
 </section>
@@ -521,13 +587,13 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
   <h2 class="section-title" id="pitch-title">See it from your side</h2>
   <div class="cards" style="margin-top:40px;">
     <a href="/pitch_user.html" class="card">
-      <span class="card-emoji">🧳</span>
+      <span class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-luggage"/></svg></span>
       <h3 class="card-title" id="card1-title">Travelers & Holidaymakers</h3>
       <p class="card-desc" id="card1-desc">Looking for a trip, company, a shared plan? See how Aihoy! finds the right people for you.</p>
       <span class="card-link" id="card1-link">Take a look →</span>
     </a>
     <a href="/pitch_business-2.html" class="card">
-      <span class="card-emoji">⛵</span>
+      <span class="card-ic"><svg class="ic" aria-hidden="true"><use href="#i-sailboat"/></svg></span>
       <h3 class="card-title" id="card2-title">Sailors & Providers</h3>
       <p class="card-desc" id="card2-desc">Charter, tour operator or boat rental? See how Aihoy! helps you post your trips — commission-free.</p>
       <span class="card-link" id="card2-link">Take a look →</span>
@@ -537,8 +603,14 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
 
 <!-- ══════════ DOWNLOAD CTA ══════════ -->
 <div class="download-cta">
+  <div class="sec-media" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="/img/boats-960.webp 960w, /img/boats-1600.webp 1600w" sizes="(max-width: 700px) 170vw, 100vw">
+      <img src="/img/boats-1600.jpg" alt="" width="1600" height="1181" loading="lazy" decoding="async">
+    </picture>
+  </div>
   <h2 id="dl-title">Ready? Set sail!</h2>
-  <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download2" onclick="trackPlay('bottom')">▶ Get it on Google Play</a>
+  <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download2" onclick="trackPlay('bottom')"><svg class="ic ic-solid" aria-hidden="true"><use href="#i-play"/></svg>Get it on Google Play</a>
 
   <div class="ios-box" id="ios-box-2">
     <p id="ios-text2"><strong>On iPhone?</strong> The iOS version is still in the works. Leave your email and I'll let you know when it's ready.</p>
@@ -570,8 +642,8 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid rgba(0,22
 <script>
 // ── iOS várólista ──
 const IOS_MSG = {
-  hu: { ok: 'Megvan — szólok, amint kész! ⚓', bad: 'Ez nem tűnik érvényes címnek.', err: 'Valami elakadt. Próbáld újra kicsit később.' },
-  en: { ok: 'Got it — I\'ll be in touch! ⚓', bad: 'That doesn\'t look like a valid address.', err: 'Something went wrong. Please try again later.' }
+  hu: { ok: 'Megvan — szólok, amint kész!', bad: 'Ez nem tűnik érvényes címnek.', err: 'Valami elakadt. Próbáld újra kicsit később.' },
+  en: { ok: 'Got it — I\'ll be in touch!', bad: 'That doesn\'t look like a valid address.', err: 'Something went wrong. Please try again later.' }
 };
 const CURRENT_LANG = 'en';
 
@@ -632,8 +704,8 @@ const spBtn = document.getElementById('sp-btn');
 const spFill = document.getElementById('sp-fill');
 
 function togglePlay() {
-  if (audio.paused) { audio.play(); player.classList.add('visible'); spBtn.textContent = '⏸'; }
-  else { audio.pause(); spBtn.textContent = '▶'; }
+  if (audio.paused) { audio.play(); player.classList.add('visible'); spBtn.classList.remove('is-paused'); }
+  else { audio.pause(); spBtn.classList.add('is-paused'); }
 }
 function stopAnthem() { audio.pause(); audio.currentTime = 0; player.classList.remove('visible'); }
 function seek(e) {
@@ -644,7 +716,7 @@ function seek(e) {
 audio.addEventListener('timeupdate', () => {
   if (audio.duration) spFill.style.width = (audio.currentTime / audio.duration * 100) + '%';
 });
-audio.addEventListener('ended', () => { spBtn.textContent = '▶'; });
+audio.addEventListener('ended', () => { spBtn.classList.add('is-paused'); });
 
 </script>
 
