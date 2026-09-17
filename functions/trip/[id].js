@@ -9,7 +9,7 @@
 
 import {
   callRpc, esc, clip, fmtDateTime, renderPage, renderGone, PLAY_URL,
-  pickLang, t, modeLabel,
+  pickLang, t, modeLabel, icon, plainLabel,
 } from '../_shared.js';
 
 const UUID_RE =
@@ -96,25 +96,25 @@ export async function onRequestGet({ params, env, request }) {
     tags.push(t(lang, 'tagChildFriendly'));
   }
   if (tr.license_required) tags.push(t(lang, 'tagLicense'));
-  // ♀️ és 🗣️ — variánsjelölővel (U+FE0F), különben a böngésző
-  // fekete-fehér szimbólumként rajzolja őket, nem színes emojiként.
+  // A címke-szövegek vezető emojiját a megjelenítés veszi le (plainLabel);
+  // a nyelvek címkéje vonalas ikont kap. (2026-09-17, új arculat)
   if (tr.gender_preference === 'women_only') tags.push(t(lang, 'tagWomenOnly'));
   if (Array.isArray(tr.languages) && tr.languages.length > 0) {
-    tags.push('🗣️ ' + tr.languages.join(', '));
+    tags.push({ ico: 'languages', text: tr.languages.join(', ') });
   }
 
   const rows = [];
-  if (when) rows.push(['📅', when]);
+  if (when) rows.push(['calendar', when]);
   // A port_name szabad szöveg, néha nagyon hosszú — a kártyán rövidítjük,
   // a teljes szöveg úgyis ott van a leírásban.
-  if (place) rows.push(['🧭', clip(place, 90)]);
+  if (place) rows.push(['compass', clip(place, 90)]);
   if (started) {
     // Elindult túránál a szabad helyek száma félrevezető: az app amúgy sem
     // enged rá foglalni (blocked = isPast || isFull).
-    rows.push(['🚩', t(lang, 'tripStarted')]);
+    rows.push(['flag', t(lang, 'tripStarted')]);
   } else if (typeof tr.free_seats === 'number') {
     rows.push([
-      '👥',
+      'users',
       tr.free_seats > 0
         ? t(lang, 'tripFreeSeats', { free: tr.free_seats, cap: tr.capacity ?? '?' })
         : t(lang, 'tripFull'),
@@ -123,8 +123,8 @@ export async function onRequestGet({ params, env, request }) {
   // Cégnév a szervező FÖLÖTT: a cég az entitás, a személy a kapcsolattartó.
   // Magánszemélynél az RPC NULL-t ad (25_public_sharing_names.sql), így a sor
   // magától kimarad — nem kell külön ág.
-  if (tr.company_name) rows.push(['🏢', clip(tr.company_name, 60)]);
-  if (tr.organizer_name) rows.push(['👤', t(lang, 'tripOrganizer', { name: tr.organizer_name })]);
+  if (tr.company_name) rows.push(['building', clip(tr.company_name, 60)]);
+  if (tr.organizer_name) rows.push(['user', t(lang, 'tripOrganizer', { name: tr.organizer_name })]);
 
   const inner = `
     <div class="card">
@@ -140,7 +140,7 @@ export async function onRequestGet({ params, env, request }) {
           ${rows
             .map(
               ([ico, val]) =>
-                `<div class="row"><span class="ico">${ico}</span><span class="val">${esc(val)}</span></div>`
+                `<div class="row"><span class="ico">${icon(ico)}</span><span class="val">${esc(val)}</span></div>`
             )
             .join('')}
         </div>
@@ -148,7 +148,9 @@ export async function onRequestGet({ params, env, request }) {
         ${tr.description ? `<div class="desc">${esc(tr.description)}</div>` : ''}
         ${
           tags.length
-            ? `<div class="tags">${tags.map((x) => `<span class="tag">${esc(x)}</span>`).join('')}</div>`
+            ? `<div class="tags">${tags.map((x) => typeof x === 'string'
+                ? `<span class="tag">${esc(plainLabel(x))}</span>`
+                : `<span class="tag">${icon(x.ico)}${esc(x.text)}</span>`).join('')}</div>`
             : ''
         }
         ${
@@ -166,7 +168,7 @@ export async function onRequestGet({ params, env, request }) {
   // A port_name SZÁNDÉKOSAN nincs benne. Az az űrlapon kötelező, szabad szöveges
   // TALÁLKOZÁSI PONT ("a büfé előtt a gesztenyefánál"), tehát működési részlet,
   // nem csábító információ — az előnézetben csak elvenné a helyet a lényeg elől.
-  // Az oldalon természetesen ott marad a 🧭 sorban.
+  // Az oldalon természetesen ott marad az iránytű-ikonos sorban.
   // A túra neve amúgy is a legkiemeltebb elem: az az og:title.
   const ogDesc = [
     when,

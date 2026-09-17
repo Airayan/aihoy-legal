@@ -19,7 +19,7 @@
 
 import {
   callRpc, esc, clip, fmtDate, renderPage, renderGone, PLAY_URL,
-  pickLang, t, activityLabel,
+  pickLang, t, activityLabel, icon, plainLabel,
 } from '../_shared.js';
 
 const TOKEN_RE = /^[0-9a-f]{8,64}$/i;
@@ -56,16 +56,14 @@ export async function onRequestGet({ params, env, request }) {
     : t(lang, 'windowWhoFallback');
 
   const rows = [];
-  if (w.destination) rows.push(['📍', clip(w.destination, 90)]);
-  if (range) rows.push(['📅', range]);
+  if (w.destination) rows.push(['pin', clip(w.destination, 90)]);
+  if (range) rows.push(['calendar', range]);
   if (Array.isArray(w.languages) && w.languages.length > 0) {
-    // 🗣️ — variánsjelölővel (U+FE0F), különben a böngésző fekete-fehér
-    // szimbólumként rajzolja, nem színes emojiként.
-    rows.push(['🗣️', w.languages.join(', ')]);
+    rows.push(['languages', w.languages.join(', ')]);
   }
 
   const acts = Array.isArray(w.activities)
-    ? w.activities.map((a) => activityLabel(lang, a))
+    ? w.activities.map((a) => plainLabel(activityLabel(lang, a)))
     : [];
 
   const inner = `
@@ -82,7 +80,7 @@ export async function onRequestGet({ params, env, request }) {
           ${rows
             .map(
               ([ico, val]) =>
-                `<div class="row"><span class="ico">${ico}</span><span class="val">${esc(val)}</span></div>`
+                `<div class="row"><span class="ico">${icon(ico)}</span><span class="val">${esc(val)}</span></div>`
             )
             .join('')}
         </div>

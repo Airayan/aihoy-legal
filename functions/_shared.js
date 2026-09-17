@@ -30,7 +30,7 @@ const PLAY_URL =
 
 // Ha egy túrának nincs fotója, ez az arculati kép megy az előnézetbe.
 // (A repó gyökerében már ott van.)
-const FALLBACK_OG = 'https://aihoy.app/og-image.png';
+const FALLBACK_OG = 'https://aihoy.app/og-image.jpg';
 
 // A 7 app-nyelv — SZÁNDÉKOSAN ugyanaz a lista, mint a main.dart
 // supportedLocales-e. Ha ott bővül, ide is fel kell venni.
@@ -526,76 +526,128 @@ export function fmtDate(iso) {
   return `${m[1]}. ${m[2]}. ${m[3]}.`;
 }
 
+// ── Vonalas ikonok (Lucide, ISC licenc) ─────────────────────────────────────
+// A sorok és címkék ikonjai. Belső, fix jelölők — nem felhasználói szöveg,
+// ezért nem mennek át az esc()-en.
+const ICONS = {
+  calendar: '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+  compass: '<path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/>',
+  pin: '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
+  flag: '<path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" x2="4" y1="22" y2="15"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  building: '<rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/>',
+  user: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  languages: '<path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>',
+  anchor: '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>',
+};
+
+/** Ikon inline SVG-ként. Ismeretlen név → üres string. */
+export function icon(name) {
+  const body = ICONS[name];
+  return body
+    ? `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${body}</svg>`
+    : '';
+}
+
+/**
+ * Címke-szövegből leveszi a vezető emojit (a szótárban és az app
+ * tevékenység-címkéiben megmaradnak, a weboldal vonalas stílusa miatt
+ * itt nem jelennek meg). Csak az elejéről vág, a szöveg többi része marad.
+ */
+export function plainLabel(s) {
+  return String(s ?? '').replace(/^(?:[\p{Extended_Pictographic}♀♂️‍]+\s*)+/u, '');
+}
+
 const CSS = `
   *{box-sizing:border-box;margin:0;padding:0}
   body{
-    background:#0A1628;color:#E8EEF5;
-    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    background:#0A1628;color:#EAF1F5;
+    font-family:'Outfit',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+    -webkit-font-smoothing:antialiased;
     line-height:1.55;min-height:100vh;
     display:flex;flex-direction:column;align-items:center;
-    padding:24px 16px 48px;
+    padding:24px 16px 48px;position:relative;isolation:isolate;
+  }
+  /* Arculati fotósáv a lap tetején, lefelé a háttérbe olvad. */
+  body::before{
+    content:'';position:absolute;left:0;right:0;top:0;height:300px;z-index:-1;
+    background:
+      linear-gradient(180deg,rgba(6,14,26,.55) 0%,rgba(6,14,26,.7) 55%,#0A1628 100%),
+      url('/img/hero-1280.webp') center 40%/cover no-repeat;
   }
   .wrap{width:100%;max-width:560px}
   .brand{
     display:flex;align-items:center;gap:10px;
-    font-weight:800;letter-spacing:.5px;color:#4FC3F7;
-    margin-bottom:20px;font-size:17px;text-decoration:none;
+    font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:22px;
+    letter-spacing:-.01em;color:#fff;
+    margin-bottom:22px;text-decoration:none;
   }
-  /* A logó háttere ugyanaz a sötétkék, mint az oldalé, ezért nincs körülötte
-     látható doboz. A border-radius csak a PNG sarkait kerekíti le. */
   .brand img{
-    width:30px;height:30px;border-radius:8px;display:block;flex:none;
+    width:34px;height:34px;border-radius:9px;display:block;flex:none;
+    border:1px solid rgba(234,241,245,.18);
   }
   .brand:hover span{text-decoration:underline}
   .card{
-    background:#12233A;border:1px solid #1E3A5C;border-radius:20px;
-    overflow:hidden;
+    background:#13233A;border:1px solid rgba(234,241,245,.09);border-radius:20px;
+    overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.35);
   }
-  .hero{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#1E3A5C}
-  .body{padding:20px}
-  h1{font-size:21px;font-weight:800;line-height:1.3;margin-bottom:6px}
-  .sub{color:#8FA8C0;font-size:13px;margin-bottom:16px}
-  .rows{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
-  .row{display:flex;gap:10px;font-size:15px;align-items:flex-start}
-  .row .ico{width:22px;flex:none;text-align:center}
+  .hero{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;background:#0E1C30}
+  .body{padding:22px}
+  h1{font-family:'Fraunces',Georgia,serif;font-size:25px;font-weight:700;line-height:1.2;letter-spacing:-.01em;margin-bottom:6px;color:#fff}
+  .sub{color:#9BAFC0;font-size:13.5px;margin-bottom:18px}
+  .rows{display:flex;flex-direction:column;gap:11px;margin-bottom:18px}
+  .row{display:flex;gap:12px;font-size:15px;align-items:flex-start}
+  .row .ico{width:20px;height:22px;flex:none;display:flex;align-items:center;justify-content:center;color:#3BAE9F}
   .row .val{flex:1}
+  .ic{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
   .price{
-    background:#0A1628;border:1px solid #1E3A5C;border-radius:12px;
-    padding:12px 14px;margin-bottom:16px;
+    background:#0E1C30;border:1px solid rgba(234,241,245,.09);border-radius:14px;
+    padding:13px 16px;margin-bottom:18px;
   }
-  .price .big{font-size:20px;font-weight:800;color:#4FC3F7}
-  .price .note{font-size:12px;color:#8FA8C0;margin-top:2px}
+  .price .big{font-family:'Fraunces',Georgia,serif;font-size:24px;font-weight:700;color:#3BAE9F}
+  .price .note{font-size:12.5px;color:#9BAFC0;margin-top:2px}
   .desc{
-    color:#C3D3E3;font-size:14px;white-space:pre-wrap;
-    border-top:1px solid #1E3A5C;padding-top:14px;margin-bottom:4px;
+    color:rgba(234,241,245,.82);font-size:14.5px;white-space:pre-wrap;
+    border-top:1px solid rgba(234,241,245,.09);padding-top:16px;margin-bottom:4px;
   }
-  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
   .tag{
-    background:#0A1628;border:1px solid #1E3A5C;border-radius:999px;
-    padding:4px 11px;font-size:12px;color:#8FA8C0;
+    display:inline-flex;align-items:center;gap:6px;
+    border:1px solid rgba(234,241,245,.18);border-radius:999px;
+    padding:4px 11px;font-size:12.5px;color:#C9D5DE;
   }
+  .tag .ic{width:13px;height:13px}
   .cta{
-    display:block;margin-top:20px;padding:15px;border-radius:14px;
-    background:#4FC3F7;color:#06121F;text-align:center;
-    font-weight:800;font-size:16px;text-decoration:none;
+    display:block;margin-top:22px;padding:15px;border-radius:999px;
+    background:#147A71;color:#fff;text-align:center;
+    font-weight:600;font-size:16px;text-decoration:none;
+    box-shadow:0 6px 20px rgba(0,0,0,.25);transition:background .2s;
   }
-  .cta-note{text-align:center;color:#8FA8C0;font-size:12px;margin-top:10px}
+  .cta:hover{background:#106B63}
+  .cta-note{text-align:center;color:#9BAFC0;font-size:12.5px;margin-top:10px}
   /* Másodlagos kijárat: aki még nem ismeri az appot, előbb megnézné.
-     SZÁNDÉKOSAN keretes, nem kitöltött — a kék CTA marad a fő gomb.
+     SZÁNDÉKOSAN keretes, nem kitöltött — a türkiz CTA marad a fő gomb.
      Két egyforma súlyú gomb közt az emberek nem választanak, hanem elmennek. */
   .learn{
-    display:block;margin-top:16px;padding:13px;border-radius:14px;
-    background:transparent;border:1px solid #2A4A70;
-    color:#4FC3F7;text-align:center;
-    font-weight:600;font-size:15px;text-decoration:none;
+    display:block;margin-top:16px;padding:13px;border-radius:999px;
+    background:transparent;border:1px solid rgba(234,241,245,.3);
+    color:#EAF1F5;text-align:center;
+    font-weight:500;font-size:15px;text-decoration:none;transition:background .2s;
   }
-  .learn:hover{background:#12233A}
-  .gone{text-align:center;padding:44px 20px}
-  .gone .em{font-size:44px;margin-bottom:14px}
+  .learn:hover{background:rgba(234,241,245,.08)}
+  .gone{text-align:center;padding:44px 22px}
+  .gone .em{
+    width:60px;height:60px;margin:0 auto 18px;border-radius:50%;
+    border:1px solid rgba(234,241,245,.18);color:#EAF1F5;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .gone .em .ic{width:26px;height:26px}
   .gone h1{margin-bottom:8px}
-  .gone p{color:#8FA8C0;font-size:15px}
-  footer{margin-top:28px;text-align:center;color:#5E7A96;font-size:12px}
-  footer a{color:#8FA8C0}
+  .gone p{color:#9BAFC0;font-size:15px}
+  footer{margin-top:28px;text-align:center;color:#6B8196;font-size:12.5px}
+  footer a{color:#9BAFC0;text-decoration:none}
+  footer a:hover{color:#EAF1F5}
+  :focus-visible{outline:2px solid #3BAE9F;outline-offset:3px}
 `;
 
 function shell({ lang, title, ogTitle, ogDesc, ogImage, ogUrl, noindex, inner }) {
@@ -616,13 +668,17 @@ ${noindex ? '<meta name="robots" content="noindex">' : ''}
 <meta property="og:image" content="${esc(ogImage || FALLBACK_OG)}">
 ${ogUrl ? `<meta property="og:url" content="${esc(ogUrl)}">` : ''}
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0A1628">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
 <style>${CSS}</style>
 </head>
 <body>
 <div class="wrap">
-  <a class="brand" href="/"><img src="/logo_512.png" alt="" width="30" height="30"><span>Aihoy!</span></a>
+  <a class="brand" href="/"><img src="/favicon-192.png" alt="" width="34" height="34"><span>Aihoy!</span></a>
   ${inner}
   <a class="learn" href="/">${esc(t(l, 'learnMore'))}</a>
   <footer>
@@ -668,7 +724,7 @@ export function renderGone(kind, lang) {
     inner: `
       <div class="card">
         <div class="body gone">
-          <div class="em">⚓</div>
+          <div class="em">${icon('anchor')}</div>
           <h1>${esc(t(l, isTrip ? 'goneTitleTrip' : 'goneTitleWindow'))}</h1>
           <p>${esc(t(l, 'goneBody'))}</p>
           <a class="cta" href="${PLAY_URL}">${esc(t(l, 'goneCta'))}</a>

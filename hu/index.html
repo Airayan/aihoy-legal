@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aihoy! — Oszd meg a hajót, feleződik az ár | Találd meg, kivel</title>
-<meta name="description" content="A privát hajó kettőre nem éri meg. Az Aihoy! megmutatja, ki lesz ugyanakkor ugyanott — ha összejöttök hatan, a privát hajó fejenként annyiba kerül, mint a zsúfolt nagy hajó. Ingyenes Android app: görög szigetek, Adria, Baleárok.">
+<title>Aihoy! — Egy hajónap szép. És a többi hét? | Útitársak a közeledben</title>
+<meta name="description" content="Nem hajót ad, hanem társaságot: az Aihoy! megkeresi a közeledben, kivel oszthatod meg a hajótúrát, a búvárkodást, a kirándulást vagy csak egy szabad délelőttöt. Együtt az is belefér, ami kettőnek túl drága. Ingyenes Android app: görög szigetek, Adria, Baleárok.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://aihoy.app/hu/">
 <link rel="alternate" hreflang="en" href="https://aihoy.app/">
@@ -16,13 +16,15 @@
 <meta name="theme-color" content="#0A1628">
 
 <meta property="og:site_name" content="Aihoy!">
-<meta property="og:title" content="Aihoy! — Oszd meg a hajót, feleződik az ár">
-<meta property="og:description" content="Nézd meg, ki lesz ugyanakkor ugyanott. Ha hatan összejöttök, a privát hajó fejenként annyi, mint a zsúfolt.">
+<meta property="og:title" content="Aihoy! — Egy hajónap szép. És a többi hét?">
+<meta property="og:description" content="Az app megkeresi a közeledben, kivel oszthatod meg a hajót, a búvártúrát, a kirándulást vagy egy szabad délelőttöt — és együtt az is belefér, ami kettőnek túl drága.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hu_HU">
 <meta property="og:url" content="https://aihoy.app/hu/">
-<meta property="og:image" content="https://aihoy.app/og-image.png">
-<meta property="og:image:alt" content="Aihoy!">
+<meta property="og:image" content="https://aihoy.app/og-image-hu.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aihoy! — Egy hajónap szép. És a többi hét?">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@aihoy_app">
 
@@ -71,6 +73,17 @@
   const SUPABASE_URL = 'https://seufpmzohygxjycpplli.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNldWZwbXpvaHlneGp5Y3BwbGxpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkwNDU4OTUsImV4cCI6MjA4NDYyMTg5NX0.Ri93yqOit78F6DPEzWeAEO8eMWl7eKqSPWbxoYqlMi4';
   const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+</script>
+
+<script>
+/* Eszköz szerinti hero-gomb: iPhone -> feliratkozás elöl, Android -> Play gomb. Gépen mindkettő. */
+(function () {
+  try {
+    var u = navigator.userAgent || '', d = document.documentElement;
+    if (/iPad|iPhone|iPod/.test(u) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) d.classList.add('is-ios');
+    else if (/Android/i.test(u)) d.classList.add('is-android');
+  } catch (e) {}
+})();
 </script>
 
 <style>
@@ -127,21 +140,28 @@ img { max-width: 100%; }
     radial-gradient(ellipse 62% 56% at 50% 52%, rgba(var(--shade),0.58) 0%, rgba(var(--shade),0) 74%),
     linear-gradient(180deg, rgba(var(--shade),0.60) 0%, rgba(var(--shade),0.36) 28%, rgba(var(--shade),0.52) 66%, var(--ocean) 100%);
 }
-.logo-wrapper { margin-bottom: 28px; animation: fadeUp 0.8s ease both; }
-.logo-mark {
-  display: block; width: 72px; height: 72px; margin: 0 auto; border-radius: 18px;
-  border: 1px solid var(--line-strong); box-shadow: 0 12px 32px rgba(0,0,0,0.35);
-}
+.hero-brand { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 30px; animation: fadeUp 0.8s ease both; }
+.logo-mark { display: block; width: 44px; height: 44px; border-radius: 12px; border: 1px solid var(--line-strong); box-shadow: 0 8px 24px rgba(0,0,0,0.35); }
+.hero-wordmark { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 900; letter-spacing: -0.02em; color: #fff; line-height: 1; }
+.hero-tagline { font-family: 'Fraunces', serif; font-size: 16px; font-style: italic; font-weight: 300; color: rgba(234,241,245,0.75); line-height: 1; padding-left: 12px; border-left: 1px solid var(--line-strong); }
+.hero-where { font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; color: rgba(234,241,245,0.8); margin-bottom: 18px; text-shadow: 0 1px 12px rgba(0,0,0,0.5); animation: fadeUp 0.8s 0.1s ease both; }
 h1 {
-  font-family: 'Fraunces', serif; font-size: clamp(60px, 14vw, 116px);
-  font-weight: 900; line-height: 0.9; letter-spacing: -0.03em; margin-bottom: 12px;
-  color: #fff; text-shadow: 0 2px 30px rgba(0,0,0,0.35);
-  animation: fadeUp 0.8s 0.1s ease both;
+  font-family: 'Fraunces', serif; font-size: clamp(42px, 7.4vw, 86px);
+  font-weight: 900; line-height: 1.02; letter-spacing: -0.025em; margin-bottom: 24px; max-width: 900px;
+  color: #fff; text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+  animation: fadeUp 0.8s 0.15s ease both;
 }
-.tagline { font-family: 'Fraunces', serif; font-size: clamp(16px, 3vw, 22px); color: rgba(234,241,245,0.8); font-style: italic; font-weight: 300; margin-bottom: 10px; text-shadow: 0 1px 14px rgba(0,0,0,0.45); animation: fadeUp 0.8s 0.2s ease both; }
-.subtagline { font-size: clamp(15px, 2vw, 18px); color: #fff; font-weight: 500; margin-bottom: 30px; text-shadow: 0 1px 14px rgba(0,0,0,0.45); animation: fadeUp 0.8s 0.25s ease both; }
-.hero-desc { max-width: 580px; font-size: 17px; line-height: 1.75; color: rgba(234,241,245,0.88); margin-bottom: 40px; text-shadow: 0 1px 14px rgba(0,0,0,0.5); animation: fadeUp 0.8s 0.3s ease both; }
+.hero-desc { max-width: 600px; font-size: 18px; line-height: 1.7; color: rgba(234,241,245,0.9); margin-bottom: 26px; text-shadow: 0 1px 14px rgba(0,0,0,0.5); animation: fadeUp 0.8s 0.25s ease both; }
 .hero-desc strong { color: #fff; font-weight: 600; }
+.hero-points { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 760px; margin-bottom: 36px; animation: fadeUp 0.8s 0.3s ease both; }
+.hero-points li {
+  display: inline-flex; align-items: center; gap: 9px; text-align: left;
+  padding: 8px 14px; border-radius: 100px; font-size: 14px; line-height: 1.35; color: #fff;
+  background: rgba(var(--shade),0.45); border: 1px solid var(--line-strong);
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.hero-points .ic { width: 17px; height: 17px; color: var(--accent-ink); }
+.hero-actions { display: flex; flex-direction: column; align-items: center; width: 100%; }
 
 /* ── Gombok ── */
 .cta-group { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.8s 0.4s ease both; }
@@ -315,6 +335,34 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
 }
 .shot figcaption { font-size: 12.5px; color: var(--textsec); line-height: 1.5; margin-top: 12px; }
 
+/* ── Eszköz szerinti hero-gomb (a <html> osztályát egy korai script állítja) ── */
+.is-android .hero .ios-box { display: none; }
+.is-ios #btn-download, .is-ios #btn-download2 { display: none; }
+.is-ios .hero-actions .ios-box { order: -1; margin: 0 auto 18px; }
+.is-ios .ios-box button { background: var(--accent); border-color: var(--accent); color: #fff; }
+.is-ios .ios-box button:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.is-ios .download-cta .ios-box { margin-top: 0; }
+
+/* ── Mit tud az app ── */
+.cans { padding: 92px 24px; background: var(--ocean2); border-bottom: 1px solid var(--line); }
+.cans-inner { max-width: 1000px; margin: 0 auto; }
+.cans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 16px; }
+.can { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px 24px 28px; transition: transform 0.2s, border-color 0.2s; }
+.can:hover { transform: translateY(-2px); border-color: var(--line-strong); }
+.can h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+.can p { font-size: 14.5px; color: var(--textsec); line-height: 1.65; }
+
+/* ── Hogyan működik ── */
+.how { padding: 92px 24px; background: var(--ocean2); border-top: 1px solid var(--line); }
+.how-inner { max-width: 1000px; margin: 0 auto; }
+.how-steps { list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 16px; counter-reset: how; }
+.how-step { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 26px 24px 28px; }
+.how-num { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line-strong); font-family: 'Fraunces', serif; font-weight: 700; font-size: 18px; color: var(--text); margin-bottom: 18px; }
+.how-step h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+.how-step p { font-size: 14.5px; color: var(--textsec); line-height: 1.65; }
+.how-step:last-child { border-color: rgba(59,174,159,0.55); }
+.how-step:last-child .how-num { border-color: var(--accent-ink); color: var(--accent-ink); }
+
 /* ── Az árszámtan ── */
 .math { padding: 80px 24px 84px; background: var(--ocean); }
 .math h2 { font-family: 'Fraunces', serif; font-size: clamp(24px, 5vw, 38px); font-weight: 700; text-align: center; margin-bottom: 12px; line-height: 1.15; }
@@ -336,9 +384,16 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
 
 /* ── Mobil ── */
 @media (max-width: 700px) {
-  .hero { padding: 88px 20px 64px; }
+  .hero { padding: 76px 20px 56px; }
   .hero-media img { object-position: 50% 30%; }
-  .hero-desc { font-size: 16px; margin-bottom: 34px; }
+  h1 { font-size: clamp(34px, 9.4vw, 44px); margin-bottom: 18px; }
+  .hero-desc { font-size: 15.5px; line-height: 1.6; margin-bottom: 18px; }
+  .hero-brand { margin-bottom: 18px; }
+  .hero-tagline { display: none; }
+  .hero-where { font-size: 11px; margin-bottom: 14px; }
+  .hero-points { flex-direction: column; align-items: stretch; gap: 6px; margin-bottom: 24px; width: 100%; }
+  .hero-points li { border-radius: 12px; font-size: 13.5px; padding: 7px 12px; }
+  .how, .cans { padding: 72px 20px; }
   .section { padding: 72px 20px; }
   .patience { padding-top: 104px; padding-bottom: 104px; }
   .patience .box { padding: 32px 22px; }
@@ -384,6 +439,12 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
   <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></symbol>
   <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
+  <symbol id="i-calendar-range" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M7 14h4"/><path d="M13 18h4"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></symbol>
 </svg>
 
 <audio id="aihoy-audio" src="/Aihoy!%20(Remastered).mp3" preload="none" loop></audio>
@@ -412,17 +473,20 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
       <img src="/img/hero-1920.jpg" alt="" width="1920" height="1081" fetchpriority="high">
     </picture>
   </div>
-  <div class="logo-wrapper"><img class="logo-mark" src="/favicon-192.png" width="72" height="72" alt=""></div>
-  <h1>Aihoy!</h1>
-  <p class="tagline">The Vibematcher</p>
-  <p class="subtagline" id="subtagline">Nem kell hajó. Elég egy ötlet és egy dátum.</p>
-  <p class="hero-desc" id="hero-desc">A privát hajó szép — csak kettőre nem éri meg. A nagy hajón meg ott ülsz negyvenedmagaddal, füstben, árnyék nélkül.<br><br>Az Aihoy! a kettő közti hiányzó lépés: megmutatja, <strong>ki lesz ugyanakkor ugyanott</strong> — és ha összejöttök hatan, a privát hajó fejenként annyi, mint a zsúfolt.</p>
+  <div class="hero-brand"><img class="logo-mark" src="/favicon-192.png" width="44" height="44" alt=""><span class="hero-wordmark">Aihoy!</span><span class="hero-tagline">The Vibematcher</span></div>
+  <p class="hero-where">Görög szigetek · Adria · Baleárok</p>
+  <h1 id="hero-title">Egy hajónap szép.<br>És a többi hét?</h1>
+  <p class="hero-desc" id="hero-desc">Az Aihoy! nem hajót ad, hanem társaságot: megmondod, mikor hol leszel és mihez lenne kedved, az app pedig megkeresi a közeledben, <strong>kivel jön össze</strong> — legyen az hajótúra, búvárkodás, kirándulás vagy csak egy szabad délelőtt.</p>
+  <ul class="hero-points">
+    <li><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg><span>A közeledben, akár pár száz méteren belül</span></li>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg><span>Hasonló érdeklődés, közös nyelv — a chat fordít</span></li>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg><span>Együtt az is belefér, ami kettőnek túl drága</span></li>
+  </ul>
+  <div class="hero-actions">
   <div class="cta-group">
     <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download" onclick="trackPlay('hero')"><svg class="ic ic-solid" aria-hidden="true"><use href="#i-play"/></svg>Letöltés a Google Play-ről</a>
-    <a href="#travelers" class="btn btn-outline" id="btn-learn">Mit tud?<svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
+    <a href="#what" class="btn btn-outline" id="btn-learn">Mit tud az app?<svg class="ic" aria-hidden="true"><use href="#i-arrow-down"/></svg></a>
   </div>
-  <button class="btn btn-play-anthem" onclick="togglePlay()" id="btn-anthem"><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg>Aihoy! Anthem</button>
-
   <div class="ios-box" id="ios-box-1">
     <p id="ios-text"><strong>iPhone-od van?</strong> Az iOS-verzión még dolgozom. Hagyd itt a címed, és szólok, amint kész.</p>
     <div class="ios-row">
@@ -430,6 +494,24 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
       <button class="ios-submit" onclick="iosSignup(this)" id="ios-btn">Szólj, ha kész</button>
     </div>
     <span class="ios-msg"></span>
+  </div>
+  <button class="btn btn-play-anthem" onclick="togglePlay()" id="btn-anthem"><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg>Aihoy! Anthem</button>
+  </div>
+</section>
+
+<!-- ══════════ MIT TUD AZ APP ══════════ -->
+<section class="cans" id="what">
+  <div class="cans-inner">
+    <p class="section-tag" id="can-tag">Mit tud az app</p>
+    <h2 class="section-title" id="can-title">Nem csak hajó, és nem csak egy napra</h2>
+    <p class="section-lead" id="can-lead">Egy hajóbérlés a nyolc napból egy. Az Aihoy! a többihez is ad társaságot — és ötféleképpen keres.</p>
+    <div class="cans-grid">
+      <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span><h3 id="can1-t">Túrák a közeledben</h3><p id="can1-d">Dátum, ár és szabad helyek szerint böngészve — azt látod, ami a környéken tényleg elérhető, nem egy végtelen globális katalógust.</p></div>
+      <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></span><h3 id="can2-t">Vagy hangulat szerint</h3><p id="can2-d">Ugyanaz a lista, csak arra szűrve, ami hozzád illik: stílus, érdeklődés, korosztály, nyelv. Nem több találat, hanem jobb.</p></div>
+      <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></span><h3 id="can3-t">Nincs kiírva? Írd ki te</h3><p id="can3-d">Kiszemeltél egy hatszemélyes kishajót a strandon, vagy csak lenne egy ötleted? Kiírod, és jönnek, akiknek pont ez kell.</p></div>
+      <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-calendar-range"/></svg></span><h3 id="can4-t">Utazási ablak — a Facebook-poszt helyett</h3><p id="can4-d">Beírod, mikor hol leszel. Csak azok látják, akiknek a dátuma fedésben van a tiéddel és a szűrésedbe illenek — nem az egész csoport, akik közül a többség amúgy sem akkor megy.</p></div>
+      <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-radar"/></svg></span><h3 id="can5-t">Radar — a felszabadult órákra</h3><p id="can5-d">Két szabad órád van, vagy szembejön egy kishajó a parton? Megnézed, ki van a közelben, aki épp ugyanígy. Három nappal korábban értem Zakynthosra, és egyedül lézengtem a városban — pont erre van a Radar.</p></div>
+    </div>
   </div>
 </section>
 
@@ -458,6 +540,20 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
     </div>
   </div>
   <p class="math-foot" id="math-foot">Már csak az a kérdés, honnan lesz meg a másik négy. <strong>Erre csináltam az Aihoy!-t.</strong> Beállítod, mikor és hol nyaralsz, és látod, ki lesz ugyanakkor ugyanott — és mit keres.<span class="math-src">A számok egy valódi zadari privát túrából: 66 917 Ft, max 7 főig.</span></p>
+</section>
+
+<!-- ══════════ HOGYAN MŰKÖDIK ══════════ -->
+<section class="how" id="how">
+  <div class="how-inner">
+    <p class="section-tag" id="how-tag">Hogyan működik</p>
+    <h2 class="section-title" id="how-title">Nem neked kell keresgélni</h2>
+    <p class="section-lead" id="how-lead">Nem a találatok száma számít, hanem hogy akit találsz, az hozzád illjen.</p>
+    <ol class="how-steps">
+    <li class="how-step"><span class="how-num">1</span><h3 id="how1-t">Megmondod, mit szeretnél</h3><p id="how1-d">Mikor és hol nyaralsz, és mi érdekel: vitorlázás, búvárkodás, horgászat, strandnap, kirándulás. Pár perc az egész.</p></li>
+    <li class="how-step"><span class="how-num">2</span><h3 id="how2-t">Az app keres helyetted</h3><p id="how2-d">A közeledben lévő utazók és túrák közül azokat mutatja, akikkel stílusban, nyelvben és érdeklődésben összeilletek. Nem száz ajánlatot, hanem a jókat.</p></li>
+    <li class="how-step"><span class="how-num">3</span><h3 id="how3-t">Összeálltok, és indultok</h3><p id="how3-d">Megbeszélitek a chatben — ha kell, fordít —, és mehettek. Hatan a privát hajó fejenként annyi, mint a zsúfolt nagy hajón.</p></li>
+    </ol>
+  </div>
 </section>
 
 <!-- ══════════ KÉPERNYŐKÉPEK ══════════ -->
@@ -501,12 +597,9 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   <h2 class="section-title" id="trav-title">Nem kell hajó ahhoz, hogy elindulj</h2>
   <p class="section-lead" id="trav-lead">Keress programot a közeledben, csatlakozz máshoz, vagy szervezd meg a sajátodat. Elég egy ötlet és egy dátum.</p>
   <div class="feature-grid">
-    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span><h3 id="tf1-t">Túrák a közeledben</h3><p id="tf1-d">GPS-alapú lista — azt látod, ami tényleg elérhető, nem egy végtelen globális katalógust.</p></div>
-    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></span><h3 id="tf2-t">Vagy szervezd te</h3><p id="tf2-d">Strandnap, kikötői vacsora, közös kirándulás — bármi lehet túra. Kiírod, és jönnek.</p></div>
-    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-radar"/></svg></span><h3 id="tf3-t">Aihoy! Radar</h3><p id="tf3-d">Nézd meg, ki van most a közeledben: utazók, hajósok, legénység.</p></div>
-    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span><h3 id="tf4-t">Közös programok</h3><p id="tf4-d">Hangulat, érdeklődés és nyelv szerint párosít — azokkal, akikkel tényleg passzolsz.</p></div>
+    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span><h3 id="tf4-t">Közös programok</h3><p id="tf4-d">Hangulat, érdeklődés és nyelv alapján hoz össze azokkal, akikkel tényleg passzolsz.</p></div>
     <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg></span><h3 id="tf5-t">Chat fordítóval</h3><p id="tf5-d">A másik a saját nyelvén ír, te a sajátodon olvasod. A nyelv nem akadály.</p></div>
-    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span><h3 id="tf6-t">Diszkrét és védett</h3><p id="tf6-d">Románc? Csak ha mindketten bejelölitek — alapból baráti. Csak nőknek szóló túrák, bejelentés, letiltás, moderálás, 18+.</p></div>
+    <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></span><h3 id="tf6-t">Biztonságos közeg</h3><p id="tf6-d">Baráti közeg, világos szabályokkal. Csak nőknek szóló túrák, bejelentés, letiltás, moderálás, 18+.</p></div>
     <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg></span><h3 id="tf7-t">Oszd meg egy linkkel</h3><p id="tf7-d">Egy túrát vagy az utazási ablakodat egyetlen linkkel elküldheted bárkinek — WhatsAppon, Facebook-csoportban. Aki megnyitja, app nélkül is látja a lényeget, és egy koppintással csatlakozhat.</p></div>
   </div>
 </section>
