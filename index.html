@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aihoy! — A holiday is a week, not a day | Travel company nearby</title>
-<meta name="description" content="Aihoy! doesn't just give you a boat, it gives you company: it finds who nearby you can share a boat trip, a dive, a hike — or just a free morning — with. Together, what's too pricey for two adds up. Free Android app for the Greek islands, the Adriatic and the Balearics.">
+<title>Aihoy! — Everything's easier in good company | Company nearby</title>
+<meta name="description" content="In good company it's not just hiring a boat that's easier — it's every other plan too: Aihoy! finds who nearby you can share a boat trip, a dive, a hike or just a free afternoon with, anywhere, anytime. If it clicks, the radar leads you there. Free Android app.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://aihoy.app/">
 <link rel="alternate" hreflang="en" href="https://aihoy.app/">
@@ -16,15 +16,15 @@
 <meta name="theme-color" content="#0A1628">
 
 <meta property="og:site_name" content="Aihoy!">
-<meta property="og:title" content="Aihoy! — A boat day is lovely. A holiday is a week.">
-<meta property="og:description" content="The app finds who nearby you can share the boat, the dive trip, the hike or a free morning with — and together, what's too pricey for two adds up.">
+<meta property="og:title" content="Aihoy! — Everything's easier in good company. Even hiring a boat.">
+<meta property="og:description" content="The app finds who nearby you can share the boat, the dive trip, the hike or a free afternoon with — anywhere, anytime.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
 <meta property="og:url" content="https://aihoy.app/">
 <meta property="og:image" content="https://aihoy.app/og-image-en.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Aihoy! — A boat day is lovely. A holiday is a week.">
+<meta property="og:image:alt" content="Aihoy! — Everything's easier in good company. Even hiring a boat.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@aihoy_app">
 
@@ -44,7 +44,7 @@
   "operatingSystem": "Android",
   "url": "https://aihoy.app/",
   "downloadUrl": "https://play.google.com/store/apps/details?id=com.aihoy.app",
-  "description": "Boat sharing and trip app: enter where and when you will be travelling and see who else will be there at the same time, so a private boat can be shared and the cost split between you. Greek islands, Adriatic and Balearics.",
+  "description": "Boat sharing and free-time company app: enter where and when you will be and see who else will be there at the same time — anywhere, anytime. Share a private boat and split the cost, and when you are close, the radar leads you to each other.",
   "inLanguage": ["hu", "en", "de", "it", "el", "hr", "pl"],
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
@@ -328,8 +328,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
 .shots-row { display: flex; gap: 22px; justify-content: center; align-items: flex-start; flex-wrap: wrap; padding: 0 24px; max-width: 900px; margin: 0 auto; }
 .shot { width: 190px; text-align: center; }
 .shot img {
-  display: block; width: 190px; height: 380px;
-  object-fit: cover; object-position: top center;
+  display: block; width: 190px; height: auto;
   border-radius: 18px; border: 1px solid var(--line-strong);
   box-shadow: 0 14px 40px rgba(0,0,0,0.5); background: var(--ocean);
 }
@@ -380,6 +379,61 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
 .math-foot strong { color: var(--text); }
 .math-src { display: block; margin-top: 14px; font-size: 12.5px; opacity: 0.7; }
 
+/* ── Aihoy! — a találkozás (új funkció, 2026-09-24) ── */
+.meet { padding: 92px 24px; background: var(--ocean); border-bottom: 1px solid var(--line); }
+.meet-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; }
+.meet-media { display: flex; justify-content: center; }
+.meet-media img { display: block; width: 100%; max-width: 380px; height: auto; border-radius: 50%; box-shadow: 0 0 0 1px var(--line-strong), 0 24px 70px rgba(0,0,0,0.55), 0 0 90px rgba(59,174,159,0.16); }
+.meet .section-tag, .meet .section-title { text-align: left; }
+.meet .section-lead { text-align: left; margin: 0 0 30px; max-width: none; }
+.meet-sub { display: block; font-size: clamp(17px, 0.5em, 24px); line-height: 1.25; letter-spacing: 0; color: var(--accent-ink); margin-top: 10px; }
+.meet-points { list-style: none; display: grid; gap: 18px; }
+.meet-points li { display: flex; gap: 16px; align-items: flex-start; }
+.meet-points .f-ic { flex: 0 0 auto; margin-bottom: 0; }
+.meet-points h3 { font-size: 16.5px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+.meet-points p { font-size: 14.5px; color: var(--textsec); line-height: 1.65; }
+.can p a { color: var(--accent-ink); font-weight: 600; text-decoration: none; }
+.can p a:hover { text-decoration: underline; }
+
+/* ── Nem azért készült, hogy pörgesd (2026-09-24 — Arany: „ez a legfontosabb üzenet") ── */
+.putdown { padding: 96px 24px; background: var(--ocean); border-bottom: 1px solid var(--line); text-align: center; }
+.putdown-inner { max-width: 700px; margin: 0 auto; }
+.putdown .section-title { margin-bottom: 26px; }
+.putdown .pd-p { font-size: 17px; line-height: 1.8; color: var(--textsec); margin-bottom: 16px; text-wrap: pretty; }
+.putdown .pd-p strong { color: var(--text); font-weight: 600; }
+.putdown .kicker { margin-top: 30px; font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(21px, 2.8vw, 27px); line-height: 1.35; color: var(--text); text-wrap: balance; }
+.putdown .kicker span { color: var(--accent-ink); }
+
+/* ── Idézet: egyedül a nyaraláson (2026-09-24) ── */
+.quote-band { position: relative; isolation: isolate; overflow: hidden; background: var(--ocean); padding: 132px 24px; text-align: center; }
+.quote-band .sec-media img { object-position: 50% 58%; }
+.quote-band .sec-media::after {
+  background:
+    radial-gradient(ellipse 60% 64% at 50% 50%, rgba(var(--shade),0.5) 0%, rgba(var(--shade),0) 78%),
+    linear-gradient(180deg, var(--ocean2) 0, rgba(var(--shade),0.6) 120px, rgba(var(--shade),0.6) calc(100% - 120px), var(--ocean) 100%);
+}
+.quote { max-width: 780px; margin: 0 auto; }
+.quote blockquote p { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: clamp(25px, 3.6vw, 38px); line-height: 1.32; color: #fff; text-shadow: 0 2px 26px rgba(0,0,0,0.5); text-wrap: balance; }
+.quote-cite { margin-top: 20px; font-size: 12.5px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: rgba(234,241,245,0.8); text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
+.quote-more { max-width: 600px; margin: 26px auto 0; font-size: 16.5px; line-height: 1.75; color: rgba(234,241,245,0.92); text-shadow: 0 1px 14px rgba(0,0,0,0.55); text-wrap: pretty; }
+@media (max-width: 820px) {
+  .meet-inner { grid-template-columns: 1fr; gap: 36px; }
+  .meet .section-tag, .meet .section-title, .meet .section-lead { text-align: center; }
+  .meet .section-lead { margin: 0 auto 28px; max-width: 560px; }
+  .meet-media img { max-width: 280px; }
+}
+
+/* Alacsony asztali ablak (pl. 1366×768-as vagy 125%-os nagyítású laptop: a böngészőben
+   ~650–730 px magas): a háromsoros főcím mellett is látsszon a letöltés gomb. */
+@media (min-width: 701px) and (max-height: 760px) {
+  .hero { padding-top: 64px; padding-bottom: 48px; }
+  .hero-brand { margin-bottom: 18px; }
+  .hero-where { margin-bottom: 12px; }
+  h1 { font-size: clamp(38px, 5.9vw, 58px); margin-bottom: 18px; }
+  .hero-desc { margin-bottom: 20px; }
+  .hero-points { margin-bottom: 24px; }
+}
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ── Mobil ── */
@@ -393,7 +447,9 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   .hero-where { font-size: 11px; margin-bottom: 14px; }
   .hero-points { flex-direction: column; align-items: stretch; gap: 6px; margin-bottom: 24px; width: 100%; }
   .hero-points li { border-radius: 12px; font-size: 13.5px; padding: 7px 12px; }
-  .how, .cans { padding: 72px 20px; }
+  .how, .cans, .meet, .putdown { padding: 72px 20px; }
+  .putdown .pd-p { font-size: 16px; }
+  .quote-band { padding: 96px 20px; }
   .section { padding: 72px 20px; }
   .patience { padding-top: 104px; padding-bottom: 104px; }
   .patience .box { padding: 32px 22px; }
@@ -402,7 +458,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
 @media (max-width: 640px) {
   .stats-inner { grid-template-columns: repeat(2,1fr); gap: 32px 16px; }
   .shot { width: 150px; }
-  .shot img { width: 150px; height: 300px; }
+  .shot img { width: 150px; height: auto; }
   .shots-row { gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -490,11 +546,11 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
     </picture>
   </div>
   <div class="hero-brand"><img class="logo-mark" src="/favicon-192.png" width="44" height="44" alt=""><span class="hero-wordmark">Aihoy!</span><span class="hero-tagline">The Vibematcher</span></div>
-  <p class="hero-where">Greek islands · Adriatic · Balearics</p>
-  <h1 id="hero-title">A boat day is lovely.<br>A holiday is a week.</h1>
-  <p class="hero-desc" id="hero-desc">Aihoy! doesn't just give you a boat, it gives you company: say when and where you'll be and what you're up for, and the app finds <strong>who nearby it works out with</strong> — a boat trip, a dive, a hike, or just one free morning.</p>
+  <p class="hero-where">Greek islands · Adriatic · anywhere, anytime</p>
+  <h1 id="hero-title">Everything's easier<br>in good&nbsp;company.<br>Even hiring a&nbsp;boat.</h1>
+  <p class="hero-desc" id="hero-desc">Aihoy! doesn't just give you a boat, it gives you company: say when and where you'll be and what you're up for, and the app finds <strong>who nearby it works out with</strong>&nbsp;— a boat trip, a dive, a hike, or just a free&nbsp;afternoon.</p>
   <ul class="hero-points">
-    <li><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg><span>Nearby — down to a few hundred metres</span></li>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg><span>Nearby — and the radar leads the way</span></li>
     <li><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg><span>Similar interests, a shared language — the chat translates</span></li>
     <li><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg><span>Together, what's too pricey for two adds up</span></li>
   </ul>
@@ -515,18 +571,69 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   </div>
 </section>
 
+<!-- ══════════ NEM AZÉRT KÉSZÜLT, HOGY PÖRGESD (2026-09-24) ══════════ -->
+<section class="putdown" id="elv">
+  <div class="putdown-inner">
+    <p class="section-tag" id="pd-tag">Less screen time</p>
+    <h2 class="section-title" id="pd-title">Not made to keep you scrolling</h2>
+    <p class="pd-p" id="pd-p1">Aihoy! won't pile on screen time, and it isn't an album of strangers nearby to flick through. If you'd like to scroll all day, dating apps and social feeds are there for that — we'd rather point you to the beach.</p>
+    <p class="pd-p" id="pd-p2">I'm building it to be as simple as possible, so it gives <strong>the most accurate match with the least use</strong>. Filter well, or post your travel window in time, and it finds who or what you're looking for straight away — and off you go.</p>
+    <p class="kicker" id="pd-kicker">A few taps, then go and live.<br><span>Look at the view, the sea. You can put the phone&nbsp;down.</span></p>
+  </div>
+</section>
+
 <!-- ══════════ MIT TUD AZ APP ══════════ -->
 <section class="cans" id="what">
   <div class="cans-inner">
     <p class="section-tag" id="can-tag">What the app does</p>
     <h2 class="section-title" id="can-title">Not just boats, and not just for one day</h2>
-    <p class="section-lead" id="can-lead">A boat rental is one day out of eight. Aihoy! finds company for the rest too — in five ways.</p>
+    <p class="section-lead" id="can-lead">A boat rental is one day out of eight. Aihoy! finds company for the rest too — anywhere, anytime. It searches in five ways.</p>
     <div class="cans-grid">
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span><h3 id="can1-t">Trips near you</h3><p id="can1-d">Browse by date, price and seats left — you see what is actually reachable nearby, not an endless global catalogue.</p></div>
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></span><h3 id="can2-t">Or by vibe</h3><p id="can2-d">The same list, filtered to what suits you: style, interests, age range, language. Not more results — better ones.</p></div>
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></span><h3 id="can3-t">Nothing posted? Post it yourself</h3><p id="can3-d">Spotted a six-seater down on the beach, or just got an idea? Put it up, and the people who want exactly that turn up.</p></div>
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-calendar-range"/></svg></span><h3 id="can4-t">Travel window — instead of a Facebook post</h3><p id="can4-d">Enter when and where you'll be. Only people whose dates overlap yours and who match your filters see it — not a whole group, most of whom aren't even going then.</p></div>
-      <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-radar"/></svg></span><h3 id="can5-t">Radar — for the hours that open up</h3><p id="can5-d">Two free hours, or a small boat going spare on the beach? See who's nearby in the same situation. I once arrived on Zakynthos three days early and wandered the town alone — that's what the Radar is for.</p></div>
+      <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-radar"/></svg></span><h3 id="can5-t">Radar — for the hours that open up</h3><p id="can5-d">Two free hours, on holiday or at home? A small boat going spare on the beach? See who's nearby in the same situation. I once arrived on Zakynthos three days early and wandered the town alone — that's what the Radar is for. And if it clicks, <a href="#aihoy">give them an Aihoy!</a> — the radar leads you there.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ IDÉZET — egyedül a nyaraláson (2026-09-24) ══════════ -->
+<section class="quote-band">
+  <div class="sec-media" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 700px)" type="image/webp" srcset="/img/bay-m-720.webp 720w, /img/bay-m-1080.webp 1080w" sizes="100vw">
+      <source media="(max-width: 700px)" srcset="/img/bay-m-1080.jpg">
+      <source type="image/webp" srcset="/img/bay-1280.webp 1280w, /img/bay-1920.webp 1920w, /img/bay-2560.webp 2560w" sizes="100vw">
+      <img src="/img/bay-1920.jpg" alt="" width="1920" height="1081" loading="lazy" decoding="async">
+    </picture>
+  </div>
+  <div class="quote">
+    <blockquote id="q-text"><p>“Sometimes a holiday is too hard to spend alone — and sometimes it's too good to enjoy alone.”</p></blockquote>
+    <p class="quote-cite" id="q-cite">Elizabeth Gilbert's line, translated into holiday</p>
+    <p class="quote-more" id="q-more">Your partner falls ill, or they're joining you a few days later — and there you are, on your own. And a good dive is too good not to share with someone who's on your wavelength anyway.</p>
+  </div>
+</section>
+
+<!-- ══════════ AIHOY! — a találkozás, új funkció (2026-09-24) ══════════ -->
+<section class="meet" id="aihoy">
+  <div class="meet-inner">
+    <div class="meet-media">
+      <picture>
+        <source type="image/webp" srcset="/img/megvagy-dial-720.webp">
+        <img src="/img/megvagy-dial-720.jpg" width="720" height="720" loading="lazy" alt="The Aihoy! dial at the moment you meet: both phones celebrate at once">
+      </picture>
+    </div>
+    <div class="meet-text">
+      <p class="section-tag" id="meet-tag">New</p>
+      <h2 class="section-title" id="meet-title">Give them an Aihoy!<span class="meet-sub">The radar leads you there.</span></h2>
+      <p class="section-lead" id="meet-lead">Matched with someone on the radar, and you're a few hundred metres apart? No dictating addresses or squinting at maps: the app shows you which way. (Ahoy! is how sailors hail each other.)</p>
+      <ul class="meet-points">
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span><div><h3 id="meet1-t">Only if you both say yes</h3><p id="meet1-d">One of you offers, the other accepts. It runs on a timer, and either of you can stop it.</p></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg></span><div><h3 id="meet2-t">Compass and distance</h3><p id="meet2-d">The dial points to where the other person is and zooms in as you get closer — right down to 20 metres. The ping speeds up as you go.</p></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg></span><div><h3 id="meet3-t">Aihoy!</h3><p id="meet3-d">Once you can see each other, you both tap Aihoy!: the two phones count down together and the Aihoy! Anthem plays on both at once.</p></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-eye-off"/></svg></span><div><h3 id="meet4-t">Nobody sees coordinates</h3><p id="meet4-d">The other person only sees distance and direction, never your exact location. When the game ends, the location data is deleted.</p></div></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -578,18 +685,23 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   <div class="shots-row">
 
     <figure class="shot">
-      <img src="/screen-radar.jpg" alt="Aihoy! Radar — filter by language, age, role and group size" loading="lazy">
-      <figcaption id="shot1-cap">Radar — filter by language, age, role and group size, down to a 250-metre radius. (Zero hits: we've just launched. You could be the first in your area.)</figcaption>
+      <img src="/screen-radar.jpg" width="620" height="1058" alt="Aihoy! Radar — filter by language, age, role and group size" loading="lazy">
+      <figcaption id="shot1-cap">Radar — filter by language, age, role and group size, from 100 metres to 150 km. (No one nearby? We've just launched — you could be the first in your area.)</figcaption>
+    </figure>
+
+    <figure class="shot">
+      <img src="/screen-megvagy.jpg" width="620" height="1116" alt="Aihoy! — the dial points to the other person, 5 metres away" loading="lazy">
+      <figcaption id="shot4-cap">Aihoy! — the dial points to the other person and zooms in as you close in. Five metres: time to say hi.</figcaption>
     </figure>
 
     <!-- HA KÉSZ A TOVÁBBI KÉT KÉP: töröld ezt a kommentnyitót és a lentebbi zárót
     <figure class="shot">
-      <img src="/screen-tura.jpg" alt="Aihoy! — túralista dátummal és szabad helyekkel" loading="lazy">
+      <img src="/screen-tura.jpg" alt="Aihoy! — trip list with dates and free seats" loading="lazy">
       <figcaption id="shot2-cap">Trips with dates, free seats and prices — all in one place.</figcaption>
     </figure>
 
     <figure class="shot">
-      <img src="/screen-chat.jpg" alt="Aihoy! — chat automatikus fordítással" loading="lazy">
+      <img src="/screen-chat.jpg" alt="Aihoy! — chat with automatic translation" loading="lazy">
       <figcaption id="shot3-cap">Chat that translates. The local skipper writes in their language, you read it in yours.</figcaption>
     </figure>
     IDÁIG -->
@@ -603,7 +715,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
     <div><span class="stat-num">0€</span><span class="stat-label" id="stat1">Commission<br>Completely free</span></div>
     <div><span class="stat-num">7</span><span class="stat-label" id="stat2">Languages<br>hu · en · de · it · el · hr · pl</span></div>
     <div><span class="stat-num"><svg class="ic" aria-hidden="true"><use href="#i-anchor"/></svg></span><span class="stat-label" id="stat3">Play Store<br>Just launched</span></div>
-    <div><span class="stat-num">∞</span><span class="stat-label" id="stat4">Possibilities<br>Greek Islands & Adriatic</span></div>
+    <div><span class="stat-num">∞</span><span class="stat-label" id="stat4">Possibilities<br>Anywhere, anytime</span></div>
   </div>
 </div>
 
@@ -649,7 +761,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   <div class="box">
     <h2 id="pat-title">Just launched — be patient</h2>
     <p id="pat-p1">In the first weeks the radar will be quiet. That's not a bug, it's the beginning. An app like this is like a new bar: <strong>it gets good once people start showing up.</strong></p>
-    <p id="pat-p2">If you like what you see: <strong>tell one person</strong> heading to the water this year. That's enough.</p>
+    <p id="pat-p2">If you like what you see: <strong>tell one person</strong> you'd happily go somewhere with. That's enough.</p>
   </div>
 </section>
 

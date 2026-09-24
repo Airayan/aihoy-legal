@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aihoy! — A nyaralás nem egy nap | Útitársak a közeledben</title>
-<meta name="description" content="Nem csak hajót ad, hanem társaságot is: az Aihoy! megkeresi a közeledben, kivel oszthatod meg a hajótúrát, a búvárkodást, a kirándulást vagy csak egy szabad délelőttöt. Együtt az is belefér, ami kettőnek túl drága. Ingyenes Android app: görög szigetek, Adria, Baleárok.">
+<title>Aihoy! — Jó társaságban minden könnyebb | Társaság a közeledben</title>
+<meta name="description" content="Jó társaságban nem csak a hajóbérlés könnyebb, hanem minden más program is: az Aihoy! megkeresi a közeledben, kivel oszthatod meg a hajótúrát, a búvárkodást, a kirándulást vagy csak egy szabad délutánt — bárhol, bármikor. Ha összejön, a radar oda is vezet hozzá. Ingyenes Android app.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://aihoy.app/hu/">
 <link rel="alternate" hreflang="en" href="https://aihoy.app/">
@@ -16,15 +16,15 @@
 <meta name="theme-color" content="#0A1628">
 
 <meta property="og:site_name" content="Aihoy!">
-<meta property="og:title" content="Aihoy! — Egy hajós nap szép. De a nyaralás nem egy nap.">
-<meta property="og:description" content="Az app megkeresi a közeledben, kivel oszthatod meg a hajót, a búvártúrát, a kirándulást vagy egy szabad délelőttöt — és együtt az is belefér, ami kettőnek túl drága.">
+<meta property="og:title" content="Aihoy! — Jó társaságban minden könnyebb. A hajóbérlés is.">
+<meta property="og:description" content="Az app megkeresi a közeledben, kivel oszthatod meg a hajót, a búvártúrát, a kirándulást vagy egy szabad délutánt — bárhol, bármikor.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hu_HU">
 <meta property="og:url" content="https://aihoy.app/hu/">
 <meta property="og:image" content="https://aihoy.app/og-image-hu.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Aihoy! — Egy hajós nap szép. De a nyaralás nem egy nap.">
+<meta property="og:image:alt" content="Aihoy! — Jó társaságban minden könnyebb. A hajóbérlés is.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@aihoy_app">
 
@@ -44,7 +44,7 @@
   "operatingSystem": "Android",
   "url": "https://aihoy.app/",
   "downloadUrl": "https://play.google.com/store/apps/details?id=com.aihoy.app",
-  "description": "Hajómegosztó és programkereső app: beírod, mikor és hol nyaralsz, és látod, ki lesz ugyanakkor ugyanott — így a privát hajót meg lehet osztani és az árat elosztani egymás közt. Görög szigetek, Adria, Baleárok.",
+  "description": "Hajómegosztó és szabadidős társaságkereső app: beírod, mikor és hol leszel, és látod, ki lesz ugyanakkor ugyanott — bárhol, bármikor. A privát hajót meg lehet osztani és az árat elosztani, és ha a közelben vagytok, a radar oda is vezet egymáshoz.",
   "inLanguage": ["hu", "en", "de", "it", "el", "hr", "pl"],
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
@@ -328,8 +328,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
 .shots-row { display: flex; gap: 22px; justify-content: center; align-items: flex-start; flex-wrap: wrap; padding: 0 24px; max-width: 900px; margin: 0 auto; }
 .shot { width: 190px; text-align: center; }
 .shot img {
-  display: block; width: 190px; height: 380px;
-  object-fit: cover; object-position: top center;
+  display: block; width: 190px; height: auto;
   border-radius: 18px; border: 1px solid var(--line-strong);
   box-shadow: 0 14px 40px rgba(0,0,0,0.5); background: var(--ocean);
 }
@@ -380,6 +379,61 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
 .math-foot strong { color: var(--text); }
 .math-src { display: block; margin-top: 14px; font-size: 12.5px; opacity: 0.7; }
 
+/* ── Aihoy! — a találkozás (új funkció, 2026-09-24) ── */
+.meet { padding: 92px 24px; background: var(--ocean); border-bottom: 1px solid var(--line); }
+.meet-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; }
+.meet-media { display: flex; justify-content: center; }
+.meet-media img { display: block; width: 100%; max-width: 380px; height: auto; border-radius: 50%; box-shadow: 0 0 0 1px var(--line-strong), 0 24px 70px rgba(0,0,0,0.55), 0 0 90px rgba(59,174,159,0.16); }
+.meet .section-tag, .meet .section-title { text-align: left; }
+.meet .section-lead { text-align: left; margin: 0 0 30px; max-width: none; }
+.meet-sub { display: block; font-size: clamp(17px, 0.5em, 24px); line-height: 1.25; letter-spacing: 0; color: var(--accent-ink); margin-top: 10px; }
+.meet-points { list-style: none; display: grid; gap: 18px; }
+.meet-points li { display: flex; gap: 16px; align-items: flex-start; }
+.meet-points .f-ic { flex: 0 0 auto; margin-bottom: 0; }
+.meet-points h3 { font-size: 16.5px; font-weight: 600; margin-bottom: 4px; color: var(--text); }
+.meet-points p { font-size: 14.5px; color: var(--textsec); line-height: 1.65; }
+.can p a { color: var(--accent-ink); font-weight: 600; text-decoration: none; }
+.can p a:hover { text-decoration: underline; }
+
+/* ── Nem azért készült, hogy pörgesd (2026-09-24 — Arany: „ez a legfontosabb üzenet") ── */
+.putdown { padding: 96px 24px; background: var(--ocean); border-bottom: 1px solid var(--line); text-align: center; }
+.putdown-inner { max-width: 700px; margin: 0 auto; }
+.putdown .section-title { margin-bottom: 26px; }
+.putdown .pd-p { font-size: 17px; line-height: 1.8; color: var(--textsec); margin-bottom: 16px; text-wrap: pretty; }
+.putdown .pd-p strong { color: var(--text); font-weight: 600; }
+.putdown .kicker { margin-top: 30px; font-family: 'Fraunces', serif; font-weight: 700; font-size: clamp(21px, 2.8vw, 27px); line-height: 1.35; color: var(--text); text-wrap: balance; }
+.putdown .kicker span { color: var(--accent-ink); }
+
+/* ── Idézet: egyedül a nyaraláson (2026-09-24) ── */
+.quote-band { position: relative; isolation: isolate; overflow: hidden; background: var(--ocean); padding: 132px 24px; text-align: center; }
+.quote-band .sec-media img { object-position: 50% 58%; }
+.quote-band .sec-media::after {
+  background:
+    radial-gradient(ellipse 60% 64% at 50% 50%, rgba(var(--shade),0.5) 0%, rgba(var(--shade),0) 78%),
+    linear-gradient(180deg, var(--ocean2) 0, rgba(var(--shade),0.6) 120px, rgba(var(--shade),0.6) calc(100% - 120px), var(--ocean) 100%);
+}
+.quote { max-width: 780px; margin: 0 auto; }
+.quote blockquote p { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: clamp(25px, 3.6vw, 38px); line-height: 1.32; color: #fff; text-shadow: 0 2px 26px rgba(0,0,0,0.5); text-wrap: balance; }
+.quote-cite { margin-top: 20px; font-size: 12.5px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; color: rgba(234,241,245,0.8); text-shadow: 0 1px 12px rgba(0,0,0,0.5); }
+.quote-more { max-width: 600px; margin: 26px auto 0; font-size: 16.5px; line-height: 1.75; color: rgba(234,241,245,0.92); text-shadow: 0 1px 14px rgba(0,0,0,0.55); text-wrap: pretty; }
+@media (max-width: 820px) {
+  .meet-inner { grid-template-columns: 1fr; gap: 36px; }
+  .meet .section-tag, .meet .section-title, .meet .section-lead { text-align: center; }
+  .meet .section-lead { margin: 0 auto 28px; max-width: 560px; }
+  .meet-media img { max-width: 280px; }
+}
+
+/* Alacsony asztali ablak (pl. 1366×768-as vagy 125%-os nagyítású laptop: a böngészőben
+   ~650–730 px magas): a háromsoros főcím mellett is látsszon a letöltés gomb. */
+@media (min-width: 701px) and (max-height: 760px) {
+  .hero { padding-top: 64px; padding-bottom: 48px; }
+  .hero-brand { margin-bottom: 18px; }
+  .hero-where { margin-bottom: 12px; }
+  h1 { font-size: clamp(38px, 5.9vw, 58px); margin-bottom: 18px; }
+  .hero-desc { margin-bottom: 20px; }
+  .hero-points { margin-bottom: 24px; }
+}
+
 @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ── Mobil ── */
@@ -393,7 +447,9 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   .hero-where { font-size: 11px; margin-bottom: 14px; }
   .hero-points { flex-direction: column; align-items: stretch; gap: 6px; margin-bottom: 24px; width: 100%; }
   .hero-points li { border-radius: 12px; font-size: 13.5px; padding: 7px 12px; }
-  .how, .cans { padding: 72px 20px; }
+  .how, .cans, .meet, .putdown { padding: 72px 20px; }
+  .putdown .pd-p { font-size: 16px; }
+  .quote-band { padding: 96px 20px; }
   .section { padding: 72px 20px; }
   .patience { padding-top: 104px; padding-bottom: 104px; }
   .patience .box { padding: 32px 22px; }
@@ -402,7 +458,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
 @media (max-width: 640px) {
   .stats-inner { grid-template-columns: repeat(2,1fr); gap: 32px 16px; }
   .shot { width: 150px; }
-  .shot img { width: 150px; height: 300px; }
+  .shot img { width: 150px; height: auto; }
   .shots-row { gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -474,11 +530,11 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
     </picture>
   </div>
   <div class="hero-brand"><img class="logo-mark" src="/favicon-192.png" width="44" height="44" alt=""><span class="hero-wordmark">Aihoy!</span><span class="hero-tagline">The Vibematcher</span></div>
-  <p class="hero-where">Görög szigetek · Adria · Baleárok</p>
-  <h1 id="hero-title">Egy hajós nap szép.<br>De a nyaralás nem&nbsp;egy&nbsp;nap.</h1>
-  <p class="hero-desc" id="hero-desc">Az Aihoy! nem csak hajót ad, hanem társaságot is: megmondod, mikor hol leszel és mihez lenne kedved, az app pedig megkeresi a közeledben, <strong>kivel jön össze</strong> — legyen az hajótúra, búvárkodás, kirándulás vagy csak egy szabad délelőtt.</p>
+  <p class="hero-where">Görög szigetek · Adria · és bárhol, bármikor a világban</p>
+  <h1 id="hero-title">Jó társaságban<br>minden könnyebb.<br>A hajóbérlés&nbsp;is.</h1>
+  <p class="hero-desc" id="hero-desc">Az Aihoy! nem csak hajót ad, hanem társaságot is: megmondod, mikor hol leszel és mihez lenne kedved, az app pedig megkeresi a közeledben, <strong>kivel jön össze</strong>&nbsp;— legyen az hajótúra, búvárkodás, kirándulás vagy csak egy szabad&nbsp;délután.</p>
   <ul class="hero-points">
-    <li><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg><span>A közeledben, akár pár száz méteren belül</span></li>
+    <li><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg><span>A közeledben — és a radar oda is vezet</span></li>
     <li><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg><span>Hasonló érdeklődés, közös nyelv — a chat fordít</span></li>
     <li><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg><span>Együtt az is belefér, ami kettőnek túl drága</span></li>
   </ul>
@@ -499,18 +555,69 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   </div>
 </section>
 
+<!-- ══════════ NEM AZÉRT KÉSZÜLT, HOGY PÖRGESD (2026-09-24) ══════════ -->
+<section class="putdown" id="elv">
+  <div class="putdown-inner">
+    <p class="section-tag" id="pd-tag">Kevesebb képernyő</p>
+    <h2 class="section-title" id="pd-title">Nem azért készült, hogy pörgesd</h2>
+    <p class="pd-p" id="pd-p1">Az Aihoy! nem növeli a képernyőidődet, és nem egy album, amiben a környékbeli idegenek között lapozgatsz. Aki egész nap görgetni szeretne, annak ott vannak a társkeresők és a közösségi oldalak — mi inkább a strandot ajánljuk helyettük.</p>
+    <p class="pd-p" id="pd-p2">Úgy fejlesztem, hogy minél egyszerűbb legyen, és <strong>minél kevesebb használattal minél pontosabb találatot adjon</strong>. Ha jól szűrsz, vagy időben felteszed az utazási ablakodat, egyből megtalálja, akit vagy amit keresel — és mehet tovább a szabadság.</p>
+    <p class="kicker" id="pd-kicker">Pár koppintás, és éld az életed.<br><span>Nézd a tájat, a tengert. A telefont le is&nbsp;teheted.</span></p>
+  </div>
+</section>
+
 <!-- ══════════ MIT TUD AZ APP ══════════ -->
 <section class="cans" id="what">
   <div class="cans-inner">
     <p class="section-tag" id="can-tag">Mit tud az app</p>
     <h2 class="section-title" id="can-title">Nem csak hajó, és nem csak egy napra</h2>
-    <p class="section-lead" id="can-lead">Egy hajóbérlés a nyolc napból egy. Az Aihoy! a többihez is ad társaságot — és ötféleképpen keres.</p>
+    <p class="section-lead" id="can-lead">Egy hajóbérlés a nyolc napból egy. Az Aihoy! a többihez is ad társaságot — bárhol, bármikor. Ötféleképpen keres.</p>
     <div class="cans-grid">
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span><h3 id="can1-t">Túrák a közeledben</h3><p id="can1-d">Dátum, ár és szabad helyek szerint böngészve — azt látod, ami a környéken tényleg elérhető, nem egy végtelen globális katalógust.</p></div>
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></span><h3 id="can2-t">Vagy hangulat szerint</h3><p id="can2-d">Ugyanaz a lista, csak arra szűrve, ami hozzád illik: stílus, érdeklődés, korosztály, nyelv. Nem több találat, hanem jobb.</p></div>
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></span><h3 id="can3-t">Nincs kiírva? Írd ki te</h3><p id="can3-d">Kiszemeltél egy hatszemélyes kishajót a strandon, vagy csak lenne egy ötleted? Kiírod, és jönnek, akiknek pont ez kell.</p></div>
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-calendar-range"/></svg></span><h3 id="can4-t">Utazási ablak — a Facebook-poszt helyett</h3><p id="can4-d">Beírod, mikor hol leszel. Csak azok látják, akiknek a dátuma fedésben van a tiéddel és a szűrésedbe illenek — nem az egész csoport, akik közül a többség amúgy sem akkor megy.</p></div>
-      <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-radar"/></svg></span><h3 id="can5-t">Radar — a felszabadult órákra</h3><p id="can5-d">Két szabad órád van, vagy szembejön egy kishajó a parton? Megnézed, ki van a közelben, aki épp ugyanígy. Három nappal korábban értem Zakynthosra, és egyedül lézengtem a városban — pont erre van a Radar.</p></div>
+      <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-radar"/></svg></span><h3 id="can5-t">Radar — a felszabadult órákra</h3><p id="can5-d">Két szabad órád van, nyaraláson vagy itthon? Szembejön egy kishajó a parton? Megnézed, ki van a közelben, aki épp ugyanígy. Három nappal korábban értem Zakynthosra, és egyedül lézengtem a városban — pont erre van a Radar. És ha összejön, <a href="#aihoy">Aihoy!-ozd meg</a>: a radar oda is vezet hozzá.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ IDÉZET — egyedül a nyaraláson (2026-09-24) ══════════ -->
+<section class="quote-band">
+  <div class="sec-media" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 700px)" type="image/webp" srcset="/img/bay-m-720.webp 720w, /img/bay-m-1080.webp 1080w" sizes="100vw">
+      <source media="(max-width: 700px)" srcset="/img/bay-m-1080.jpg">
+      <source type="image/webp" srcset="/img/bay-1280.webp 1280w, /img/bay-1920.webp 1920w, /img/bay-2560.webp 2560w" sizes="100vw">
+      <img src="/img/bay-1920.jpg" alt="" width="1920" height="1081" loading="lazy" decoding="async">
+    </picture>
+  </div>
+  <div class="quote">
+    <blockquote id="q-text"><p>„Egy nyaralás néha túl nehéz ahhoz, hogy egyedül légy — és néha túl szép ahhoz, hogy egyedül éld át.”</p></blockquote>
+    <p class="quote-cite" id="q-cite">Elizabeth Gilbert gondolata, nyaralásra fordítva</p>
+    <p class="quote-more" id="q-more">Ha a társad lebetegszik, vagy csak pár nappal később jön utánad, ott maradsz egyedül. Egy jó merülés pedig túl jó ahhoz, hogy ne legyen ott valaki, akivel amúgy is egy hullámhosszon vagy.</p>
+  </div>
+</section>
+
+<!-- ══════════ AIHOY! — a találkozás, új funkció (2026-09-24) ══════════ -->
+<section class="meet" id="aihoy">
+  <div class="meet-inner">
+    <div class="meet-media">
+      <picture>
+        <source type="image/webp" srcset="/img/megvagy-dial-720.webp">
+        <img src="/img/megvagy-dial-720.jpg" width="720" height="720" loading="lazy" alt="Az Aihoy! tárcsa a találkozás pillanatában: a két telefon egyszerre ünnepel">
+      </picture>
+    </div>
+    <div class="meet-text">
+      <p class="section-tag" id="meet-tag">Új funkció</p>
+      <h2 class="section-title" id="meet-title">Aihoy!-ozd meg!<span class="meet-sub">A radar elvezet hozzá.</span></h2>
+      <p class="section-lead" id="meet-lead">Összejött valakivel a radaron, és pár száz méterre vagytok egymástól? Nem kell címet diktálni és térképet nézegetni: az app megmutatja, merre van.</p>
+      <ul class="meet-points">
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg></span><div><h3 id="meet1-t">Csak ha mindketten igent mondtok</h3><p id="meet1-d">Az egyikőtök felajánlja, a másik elfogadja. Időre szól, és bármelyikőtök leállíthatja.</p></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg></span><div><h3 id="meet2-t">Iránytű és távolság</h3><p id="meet2-d">A tárcsa arra mutat, amerre a másik van, és ahogy közeledtek, nagyít — egészen 20 méterig. A ping közben egyre sűrűbb.</p></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg></span><div><h3 id="meet3-t">Aihoy!</h3><p id="meet3-d">Ha már látjátok egymást, mindketten megnyomjátok az Aihoy! gombot: a két telefon együtt számol vissza, és egyszerre szól rajtuk az Aihoy! Anthem.</p></div></li>
+        <li><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-eye-off"/></svg></span><div><h3 id="meet4-t">Koordinátát senki nem lát</h3><p id="meet4-d">A másik csak a távolságot és az irányt látja, a pontos helyedet soha. A játék végén a helyadatok törlődnek.</p></div></li>
+      </ul>
     </div>
   </div>
 </section>
@@ -562,8 +669,13 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   <div class="shots-row">
 
     <figure class="shot">
-      <img src="/screen-radar.jpg" alt="Aihoy! Radar — szűrés nyelv, korosztály, szerep és létszám szerint" loading="lazy">
-      <figcaption id="shot1-cap">Radar — szűrj anyanyelv, korosztály, szerep és létszám szerint, akár 250 méteres sugárral. (Nulla találat: most indultunk. Te lehetsz az első a környékeden.)</figcaption>
+      <img src="/screen-radar.jpg" width="620" height="1058" alt="Aihoy! Radar — szűrés nyelv, korosztály, szerep és létszám szerint" loading="lazy">
+      <figcaption id="shot1-cap">Radar — szűrj anyanyelv, korosztály, szerep és létszám szerint, 100 métertől 150 kilométerig. (Senki a közelben? Most indultunk — te lehetsz az első a környékeden.)</figcaption>
+    </figure>
+
+    <figure class="shot">
+      <img src="/screen-megvagy.jpg" width="620" height="1116" alt="Aihoy! — a tárcsa a másik felé mutat, 5 méterre" loading="lazy">
+      <figcaption id="shot4-cap">Aihoy! — a tárcsa a másik felé mutat, és ahogy közeledtek, nagyít. Öt méter: már csak köszönni kell.</figcaption>
     </figure>
 
     <!-- HA KÉSZ A TOVÁBBI KÉT KÉP: töröld ezt a kommentnyitót és a lentebbi zárót
@@ -587,7 +699,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
     <div><span class="stat-num">0€</span><span class="stat-label" id="stat1">Jutalék<br>Teljesen ingyenes</span></div>
     <div><span class="stat-num">7</span><span class="stat-label" id="stat2">Nyelv<br>hu · en · de · it · el · hr · pl</span></div>
     <div><span class="stat-num"><svg class="ic" aria-hidden="true"><use href="#i-anchor"/></svg></span><span class="stat-label" id="stat3">Play Áruház<br>Most indult</span></div>
-    <div><span class="stat-num">∞</span><span class="stat-label" id="stat4">Lehetőség<br>Görög szigetek & Adria</span></div>
+    <div><span class="stat-num">∞</span><span class="stat-label" id="stat4">Lehetőség<br>Bárhol, bármikor</span></div>
   </div>
 </div>
 
@@ -633,7 +745,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   <div class="box">
     <h2 id="pat-title">Most indult — legyél türelmes</h2>
     <p id="pat-p1">Az első hetekben kevesen lesznek a radaron. Ez nem hiba, hanem a kezdet. Egy ilyen app olyan, mint egy új kocsma: <strong>attól lesz jó, hogy elkezdenek járni oda.</strong></p>
-    <p id="pat-p2">Ha tetszik, amit látsz: <strong>szólj egy embernek</strong>, aki idén a vízhez megy. Ennyi elég.</p>
+    <p id="pat-p2">Ha tetszik, amit látsz: <strong>szólj egy embernek</strong>, akivel szívesen elmennél valahova. Ennyi elég.</p>
   </div>
 </section>
 
