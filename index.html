@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aihoy! — Everything's easier in good company | Company nearby</title>
-<meta name="description" content="In good company it's not just hiring a boat that's easier — it's every other plan too: Aihoy! finds who nearby you can share a boat trip, a dive, a hike or just a free afternoon with, anywhere, anytime. If it clicks, the radar leads you there. Free Android app.">
+<meta name="description" content="Everything's easier in good company — but don't scroll all day: in a few minutes Aihoy! finds who nearby you can share a boat trip, a hike, a dive or just a free afternoon with, anywhere, anytime. If it clicks, the radar leads you there. Free Android app.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://aihoy.app/">
 <link rel="alternate" hreflang="en" href="https://aihoy.app/">
@@ -16,7 +16,7 @@
 <meta name="theme-color" content="#0A1628">
 
 <meta property="og:site_name" content="Aihoy!">
-<meta property="og:title" content="Aihoy! — Everything's easier in good company. Even hiring a boat.">
+<meta property="og:title" content="Aihoy! — Everything's easier in good company. Don't scroll all day — a few minutes of Aihoy! is enough.">
 <meta property="og:description" content="The app finds who nearby you can share the boat, the dive trip, the hike or a free afternoon with — anywhere, anytime.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_GB">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://aihoy.app/og-image-en.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Aihoy! — Everything's easier in good company. Even hiring a boat.">
+<meta property="og:image:alt" content="Aihoy! — Everything's easier in good company. Don't scroll all day — a few minutes of Aihoy! is enough.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@aihoy_app">
 
@@ -44,7 +44,7 @@
   "operatingSystem": "Android",
   "url": "https://aihoy.app/",
   "downloadUrl": "https://play.google.com/store/apps/details?id=com.aihoy.app",
-  "description": "Boat sharing and free-time company app: enter where and when you will be and see who else will be there at the same time — anywhere, anytime. Share a private boat and split the cost, and when you are close, the radar leads you to each other.",
+  "description": "Free-time company and boat sharing app: enter where and when you will be and in a few minutes see who else will be there at the same time — anywhere, anytime. No need to scroll all day. Share a private boat and split the cost, and when you are close, the radar leads you to each other.",
   "inLanguage": ["hu", "en", "de", "it", "el", "hr", "pl"],
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
@@ -151,6 +151,9 @@ h1 {
   color: #fff; text-shadow: 0 2px 30px rgba(0,0,0,0.4);
   animation: fadeUp 0.8s 0.15s ease both;
 }
+/* 4. változat: a főcím második szintje — „Ne görgess egész nap…" (a h1 része,
+   de kisebb, türkiz; asztalon egy sorban, mobilon legalább 20 px). */
+.hero-sub { display: block; margin-top: 16px; font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: var(--accent-ink); text-wrap: balance; }
 .hero-desc { max-width: 640px; font-size: 18px; line-height: 1.7; color: rgba(234,241,245,0.9); margin-bottom: 26px; text-shadow: 0 1px 14px rgba(0,0,0,0.5); animation: fadeUp 0.8s 0.25s ease both; }
 .hero-desc strong { color: #fff; font-weight: 600; }
 .hero-points { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 760px; margin-bottom: 36px; animation: fadeUp 0.8s 0.3s ease both; }
@@ -546,9 +549,9 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
     </picture>
   </div>
   <div class="hero-brand"><img class="logo-mark" src="/favicon-192.png" width="44" height="44" alt=""><span class="hero-wordmark">Aihoy!</span><span class="hero-tagline">The Vibematcher</span></div>
-  <p class="hero-where">Greek islands · Adriatic · anywhere, anytime</p>
-  <h1 id="hero-title">Everything's easier<br>in good&nbsp;company.<br>Even hiring a&nbsp;boat.</h1>
-  <p class="hero-desc" id="hero-desc">Aihoy! doesn't just give you a boat, it gives you company: say when and where you'll be and what you're up for, and the app finds <strong>who nearby it works out with</strong>&nbsp;— a boat trip, a dive, a hike, or just a free&nbsp;afternoon.</p>
+  <p class="hero-where">Company nearby&nbsp;· anywhere,&nbsp;anytime</p>
+  <h1 id="hero-title">Everything's easier<br>in good&nbsp;company. <span class="hero-sub">Don't scroll all day&nbsp;— a&nbsp;few&nbsp;minutes of Aihoy! is&nbsp;enough.</span></h1>
+  <p class="hero-desc" id="hero-desc">Say when and where you'll be and what you're up for — a boat trip, a hike, a dive or just a free afternoon — and Aihoy! finds <strong>who nearby it works out with</strong>. Then you're on your&nbsp;way.</p>
   <ul class="hero-points">
     <li><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg><span>Nearby — and the radar leads the way</span></li>
     <li><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg><span>Similar interests, a shared language — the chat translates</span></li>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aihoy! — Jó társaságban minden könnyebb | Társaság a közeledben</title>
-<meta name="description" content="Jó társaságban nem csak a hajóbérlés könnyebb, hanem minden más program is: az Aihoy! megkeresi a közeledben, kivel oszthatod meg a hajótúrát, a búvárkodást, a kirándulást vagy csak egy szabad délutánt — bárhol, bármikor. Ha összejön, a radar oda is vezet hozzá. Ingyenes Android app.">
+<meta name="description" content="Jó társaságban minden könnyebb — de ne görgess egész nap: az Aihoy! pár perc alatt megkeresi a közeledben, kivel oszthatod meg a hajótúrát, a kirándulást, a merülést vagy csak egy szabad délutánt — bárhol, bármikor. Ha összejön, a radar oda is vezet hozzá. Ingyenes Android app.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://aihoy.app/hu/">
 <link rel="alternate" hreflang="en" href="https://aihoy.app/">
@@ -16,7 +16,7 @@
 <meta name="theme-color" content="#0A1628">
 
 <meta property="og:site_name" content="Aihoy!">
-<meta property="og:title" content="Aihoy! — Jó társaságban minden könnyebb. A hajóbérlés is.">
+<meta property="og:title" content="Aihoy! — Jó társaságban minden könnyebb. Ne görgess egész nap — Aihoy!-ozz pár percet.">
 <meta property="og:description" content="Az app megkeresi a közeledben, kivel oszthatod meg a hajót, a búvártúrát, a kirándulást vagy egy szabad délutánt — bárhol, bármikor.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="hu_HU">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://aihoy.app/og-image-hu.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Aihoy! — Jó társaságban minden könnyebb. A hajóbérlés is.">
+<meta property="og:image:alt" content="Aihoy! — Jó társaságban minden könnyebb. Ne görgess egész nap — Aihoy!-ozz pár percet.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@aihoy_app">
 
@@ -44,7 +44,7 @@
   "operatingSystem": "Android",
   "url": "https://aihoy.app/",
   "downloadUrl": "https://play.google.com/store/apps/details?id=com.aihoy.app",
-  "description": "Hajómegosztó és szabadidős társaságkereső app: beírod, mikor és hol leszel, és látod, ki lesz ugyanakkor ugyanott — bárhol, bármikor. A privát hajót meg lehet osztani és az árat elosztani, és ha a közelben vagytok, a radar oda is vezet egymáshoz.",
+  "description": "Szabadidős társaságkereső és hajómegosztó app: beírod, mikor és hol leszel, és pár perc alatt látod, ki lesz ugyanakkor ugyanott — bárhol, bármikor. Nem kell egész nap görgetni. A privát hajót meg lehet osztani és az árat elosztani, és ha a közelben vagytok, a radar oda is vezet egymáshoz.",
   "inLanguage": ["hu", "en", "de", "it", "el", "hr", "pl"],
   "isAccessibleForFree": true,
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
@@ -151,6 +151,9 @@ h1 {
   color: #fff; text-shadow: 0 2px 30px rgba(0,0,0,0.4);
   animation: fadeUp 0.8s 0.15s ease both;
 }
+/* 4. változat: a főcím második szintje — „Ne görgess egész nap…" (a h1 része,
+   de kisebb, türkiz; asztalon egy sorban, mobilon legalább 20 px). */
+.hero-sub { display: block; margin-top: 16px; font-size: clamp(20px, 2.4vw, 28px); font-weight: 700; line-height: 1.25; letter-spacing: -0.01em; color: var(--accent-ink); text-wrap: balance; }
 .hero-desc { max-width: 640px; font-size: 18px; line-height: 1.7; color: rgba(234,241,245,0.9); margin-bottom: 26px; text-shadow: 0 1px 14px rgba(0,0,0,0.5); animation: fadeUp 0.8s 0.25s ease both; }
 .hero-desc strong { color: #fff; font-weight: 600; }
 .hero-points { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; max-width: 760px; margin-bottom: 36px; animation: fadeUp 0.8s 0.3s ease both; }
@@ -530,9 +533,9 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
     </picture>
   </div>
   <div class="hero-brand"><img class="logo-mark" src="/favicon-192.png" width="44" height="44" alt=""><span class="hero-wordmark">Aihoy!</span><span class="hero-tagline">The Vibematcher</span></div>
-  <p class="hero-where">Görög szigetek · Adria · és bárhol, bármikor a világban</p>
-  <h1 id="hero-title">Jó társaságban<br>minden könnyebb.<br>A hajóbérlés&nbsp;is.</h1>
-  <p class="hero-desc" id="hero-desc">Az Aihoy! nem csak hajót ad, hanem társaságot is: megmondod, mikor hol leszel és mihez lenne kedved, az app pedig megkeresi a közeledben, <strong>kivel jön össze</strong>&nbsp;— legyen az hajótúra, búvárkodás, kirándulás vagy csak egy szabad&nbsp;délután.</p>
+  <p class="hero-where">Társaság a közeledben&nbsp;· bárhol,&nbsp;bármikor</p>
+  <h1 id="hero-title">Jó társaságban<br>minden könnyebb. <span class="hero-sub">Ne görgess egész nap&nbsp;— Aihoy!-ozz pár&nbsp;percet.</span></h1>
+  <p class="hero-desc" id="hero-desc">Megmondod, mikor hol leszel és mihez lenne kedved — hajótúra, kirándulás, merülés vagy csak egy szabad délután —, az Aihoy! pedig megkeresi a közeledben, <strong>kivel jön össze</strong>. Aztán már mehetsz&nbsp;is.</p>
   <ul class="hero-points">
     <li><svg class="ic" aria-hidden="true"><use href="#i-map-pin"/></svg><span>A közeledben — és a radar oda is vezet</span></li>
     <li><svg class="ic" aria-hidden="true"><use href="#i-languages"/></svg><span>Hasonló érdeklődés, közös nyelv — a chat fordít</span></li>
