@@ -876,10 +876,12 @@ async function iosSignup(btn) {
       lang: CURRENT_LANG,
       source: box.id
     });
-    if (error) throw error;
+    // 23505 = ez a cím már a listán van → ugyanaz a „megvan" üzenet (nem hiba, és így
+    // az sem derül ki idegennek, hogy egy cím fent van-e már).
+    if (error && error.code !== '23505') throw error;
     msg.textContent = m.ok;
     input.value = '';
-    gtag('event', 'ios_signup', { source: box.id });
+    if (!error) gtag('event', 'ios_signup', { source: box.id }); // az ismételt feliratkozást nem számoljuk
   } catch (e) {
     console.error(e);
     msg.textContent = m.err;
