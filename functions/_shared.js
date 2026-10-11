@@ -682,7 +682,7 @@ ${ogUrl ? `<meta property="og:url" content="${esc(ogUrl)}">` : ''}
   ${inner}
   <a class="learn" href="/">${esc(t(l, 'learnMore'))}</a>
   <footer>
-    <a href="/privacy.html">${esc(t(l, 'privacy'))}</a> ·
+    <a href="/privacy">${esc(t(l, 'privacy'))}</a> ·
     <a href="/">aihoy.app</a>
   </footer>
 </div>
