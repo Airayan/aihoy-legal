@@ -144,7 +144,7 @@ footer a:hover { color: var(--text); text-decoration: none; }
     <h2>3. How we use your data</h2>
     <ul>
       <li>To provide the core Service: matching, messaging, trips, bookings</li>
-      <li>To keep the platform safe: reviewing reports, enforcing our rules, removing harmful content or accounts</li>
+      <li>To keep the platform safe: reviewing reports (with the help of AI, see section 5), enforcing our rules, removing harmful content or accounts</li>
       <li>To send you notifications relevant to your activity (messages, bookings, matches)</li>
       <li>To maintain, troubleshoot, and improve the Service</li>
       <li>To comply with legal obligations</li>
@@ -156,20 +156,42 @@ footer a:hover { color: var(--text); text-decoration: none; }
       <li><strong>Performance of a contract</strong> — to provide the Service you sign up for</li>
       <li><strong>Consent</strong> — for location access and any optional communications; you can withdraw consent at any time</li>
       <li><strong>Explicit consent</strong> (GDPR Article 9(2)(a)) — for the optional Secret Bay mode (see section 2); you can withdraw it at any time by switching Secret Bay off</li>
-      <li><strong>Legitimate interests</strong> — to keep the platform safe (including protecting minors and women-only spaces, and the 30-day lock described in section 8) and to improve the Service</li>
+      <li><strong>Legitimate interests</strong> — to keep the platform safe (including the AI-assisted review of reports described in section 5, protecting minors and women-only spaces, and the 30-day lock described in section 8) and to improve the Service</li>
       <li><strong>Legal obligation</strong> — where we are required to retain or disclose data by law</li>
     </ul>
 
     <h2>5. AI-assisted features and translation</h2>
     <p>
       Some features use a third-party AI provider (<strong>Anthropic</strong>, the "Claude" API) to generate
-      short match introductions and trip descriptions, to power the in-app assistant, and to check short public
-      status texts against our rules before they are shown. Only the limited data
+      short match introductions and trip descriptions, to power the in-app assistant, to check short public
+      status texts against our rules before they are shown, and to help review safety reports (see below). Only the limited data
       needed for the feature (such as selected profile or mood attributes) is sent to the provider to produce the
       result. If you have switched on Secret Bay, this can include that a match is in a romantic context and the
       genders involved — only so that the text is phrased appropriately. This data is not used to train the
       provider's models for general use.
     </p>
+
+    <h3>AI-assisted review of reports</h3>
+    <p>
+      When someone reports a user, a trip or a message, our server asks the same AI provider (Anthropic) for a
+      first assessment. For this it sends the report (the reason and the reporter's comment) and the reported
+      content: the reported message together with the messages around it in the same chat (in a trip's group
+      chat this can include messages from other participants), the reported trip, or the reported profile
+      (texts and photos). For a reported user or trip it also sends the most recent messages that the reporter
+      and the reported user exchanged with each other (in direct, booking or shared trip chats), and a short
+      summary of earlier reports and moderation decisions about the reported user. A few photos from this
+      material may be included. Other private conversations are not sent.
+    </p>
+    <ul>
+      <li>On its own, the AI can only close a report when it finds no breach of our rules, send a warning, or
+        remove the single reported message — and only when it is highly confident and the case is not serious.
+        Suspensions, bans and the removal of trips or profiles are always decided by a person.</li>
+      <li>Serious cases, and every report marked as a child-safety concern, always go to a person. Photos from
+        child-safety reports are never sent to the AI provider.</li>
+      <li>If a decision about you or about your report was made automatically, the app tells you so. You can ask
+        for a review by a person at <a href="mailto:aihoy.app@gmail.com">aihoy.app@gmail.com</a>.</li>
+      <li>The AI's assessment is stored with the report and kept for as long as the report (see section 8).</li>
+    </ul>
     <p>
       <strong>Message translation</strong> is provided by <strong>DeepL SE</strong> (Cologne, Germany). When you
       translate a chat message, only the text of that message and the target language are sent to DeepL through
@@ -182,10 +204,10 @@ footer a:hover { color: var(--text); text-decoration: none; }
     <ul>
       <li><strong>Supabase</strong> — database, authentication, and file storage hosting</li>
       <li><strong>Google Firebase Cloud Messaging</strong> — push notification delivery</li>
-      <li><strong>Anthropic</strong> — AI text generation (see section 5)</li>
+      <li><strong>Anthropic</strong> — AI text generation and AI-assisted review of reports (see section 5)</li>
       <li><strong>DeepL</strong> — chat message translation (see section 5)</li>
       <li><strong>Google Sign-In</strong> — optional sign-in with your Google account</li>
-      <li><strong>Resend</strong> — email delivery of safety-report notifications to the operator</li>
+      <li><strong>Resend</strong> — email delivery of safety-report notifications and moderation summaries to the operator</li>
       <li><strong>Google Analytics</strong> — aggregated usage analytics</li>
       <li><strong>Cloudflare</strong> — hosting of this website</li>
     </ul>
@@ -224,8 +246,9 @@ footer a:hover { color: var(--text); text-decoration: none; }
       keeping the platform safe.
     </p>
     <p>
-      Safety reports may be kept for as long as needed to handle them and to prevent repeated abuse, and we
-      retain records where the law requires us to.
+      Safety reports — together with the moderation decisions and AI assessments made about them — may be kept
+      for as long as needed to handle them and to prevent repeated abuse, and we retain records where the law
+      requires us to.
     </p>
 
     <h2>9. Your rights</h2>
