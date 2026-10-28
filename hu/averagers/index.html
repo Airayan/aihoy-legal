@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Averagers – átlagsebesség-segéd</title>
+<meta name="description" content="Tartsd a beállított átlagsebességet: zöld alatta, piros felette. Ingyenes, fiók és reklám nélkül.">
+<link rel="canonical" href="https://aihoy.app/hu/averagers">
+<link rel="alternate" hreflang="en" href="https://aihoy.app/averagers">
+<link rel="alternate" hreflang="hu" href="https://aihoy.app/hu/averagers">
+<link rel="alternate" hreflang="x-default" href="https://aihoy.app/averagers">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0A1628">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Averagers – átlagsebesség-segéd">
+<meta property="og:description" content="Tartsd a beállított átlagsebességet: zöld alatta, piros felette. Ingyenes, fiók és reklám nélkül.">
+<meta property="og:url" content="https://aihoy.app/hu/averagers">
+<meta property="og:image" content="https://aihoy.app/averagers/og-hu.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" sizes="192x192" href="/averagers/icon-192.png">
+<link rel="apple-touch-icon" href="/averagers/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ocean:#0A1628;--ocean2:#0E1C30;--surface:#13233A;--text:#EAF1F5;--textsec:#9BAFC0;--accent:#FFC233;--green:#1E7A3C;--red:#B3261E;--line:rgba(234,241,245,.09);--teal:#3BAE9F}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--ocean);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.top{position:sticky;top:0;z-index:10;background:rgba(10,22,40,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top .wrap{height:58px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;font-family:'Fraunces',serif;font-weight:900;font-size:21px}
+.brand img{width:32px;height:32px;border-radius:8px}
+.brand:hover{text-decoration:none}
+.top nav{display:flex;gap:18px;font-size:14px}.top nav a{color:var(--textsec)}.top nav a:hover{color:var(--text);text-decoration:none}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:64px 0 40px}
+.tag{display:inline-block;padding:6px 14px;border-radius:100px;border:1px solid rgba(255,194,51,.4);color:var(--accent);font-size:13px;font-weight:600;margin-bottom:18px}
+h1{font-family:'Fraunces',serif;font-size:clamp(38px,6vw,64px);line-height:1.05;font-weight:900;color:#fff;letter-spacing:-.015em}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{color:rgba(234,241,245,.85);font-size:18px;line-height:1.65;margin:20px 0 28px;max-width:34em}
+.cta{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#111;font-weight:700;font-size:17px;padding:14px 22px;border-radius:14px}
+.cta:hover{text-decoration:none;filter:brightness(1.05)}
+.cta svg{width:22px;height:22px}
+.meta{color:var(--textsec);font-size:14px;margin-top:14px}
+.phones{position:relative;height:460px}
+.phone{position:absolute;width:210px;height:430px;border-radius:32px;border:6px solid #1c2733;box-shadow:0 24px 60px rgba(0,0,0,.45);padding:18px 14px;display:flex;flex-direction:column;color:#fff;overflow:hidden}
+.phone.g{background:var(--green);left:6%;top:0;transform:rotate(-4deg)}
+.phone.r{background:var(--red);right:4%;top:40px;transform:rotate(5deg)}
+.ph-top{font-size:10px;color:rgba(255,255,255,.75);display:flex;justify-content:space-between}
+.ph-lab{margin-top:26px;text-align:center;font-weight:800;letter-spacing:2px;font-size:12px}
+.ph-num{text-align:center;font-size:96px;font-weight:900;line-height:1;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+.ph-cap{text-align:center;font-size:10px;color:rgba(255,255,255,.75)}
+.ph-bar{height:5px;border-radius:3px;background:rgba(0,0,0,.25);margin:22px 0 10px;overflow:hidden}.ph-bar i{display:block;height:100%;background:#fff}
+.ph-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ph-tile{background:rgba(0,0,0,.22);border-radius:9px;padding:6px 8px}.ph-tile b{display:block;font-size:15px}.ph-tile span{font-size:9px;color:rgba(255,255,255,.75)}
+.phone.shot{padding:0;background:#000;height:auto;aspect-ratio:600/1144}
+.phone.shot picture,.phone.shot img{display:block;width:100%;height:100%;object-fit:cover}
+section{padding:48px 0}
+h2{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,40px);font-weight:900;color:#fff;margin-bottom:24px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
+.card svg{width:28px;height:28px;stroke:var(--accent);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-bottom:12px}
+.card h3{font-size:18px;font-weight:700;margin-bottom:6px;color:#fff}
+.card p{color:rgba(234,241,245,.78);font-size:15px;line-height:1.6}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.box{border-radius:18px;padding:26px;border:1px solid var(--line);background:var(--ocean2)}
+.box h3{font-family:'Fraunces',serif;font-size:22px;color:#fff;margin-bottom:10px}
+.box p{color:rgba(234,241,245,.82);line-height:1.7;font-size:15.5px}
+.box.warn{border-color:rgba(255,194,51,.45)}.box.warn h3{color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:28px 0 48px;color:var(--textsec);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 16px}footer a{color:var(--textsec)}footer a:hover{color:var(--text)}
+@media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:40px}.phones{height:400px;max-width:440px;margin:0 auto;width:100%}.phone{width:180px;height:370px}.ph-num{font-size:80px}.grid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}}
+@media (max-width:560px){.wrap{padding:0 16px}.top nav .hide{display:none}.grid{grid-template-columns:1fr}.phone{width:150px;height:250px;padding:14px 10px;border-radius:26px}.ph-num{font-size:62px}.ph-grid{display:none}.ph-lab{margin-top:18px}.phones{height:290px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/hu/averagers"><img src="/averagers/icon-192.png" alt="" width="32" height="32">Averagers</a>
+  <nav><a class="hide" href="/hu/averagers/terms">Felhasználási feltételek</a><a class="hide" href="/hu/averagers/privacy">Adatkezelési tájékoztató</a><a href="https://aihoy.app/averagers" hreflang="en">English</a></nav>
+</div></header>
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <span class="tag">Átlagsebesség-segéd autósoknak és motorosoknak</span>
+      <h1>Tartsd a beállított átlagot.</h1>
+      <p class="lead">Beállítod a cél átlagot és a távot. Az Averagers mutatja, mi lesz a végátlagod, ha így haladsz tovább — zöld, ha a cél alatt vagy, piros, ha fölé mennél.</p>
+      <a class="cta" href="https://play.google.com/store/apps/details?id=hu.averagers.averagers" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.6 2.2c-.3.3-.4.7-.4 1.2v17.2c0 .5.1.9.4 1.2l9.6-9.8-9.6-9.8Zm10.6 10.8 2.7 2.8-11.7 6.7c-.4.2-.8.3-1.1.2l10.1-9.7Zm0-2L4.1 1.3c.3-.1.7 0 1.1.2l11.7 6.7-2.7 2.8Zm3.7 3.8-3.1-3.2 3.1-3.1 3.6 2c1 .6 1 1.6 0 2.2l-3.6 2.1Z"/></svg>Letöltés a Google Playről</a>
+      <p class="meta">Ingyenes · Fiók nélkül · Reklám nélkül · 11 nyelven</p>
+    </div>
+    <div class="phones">
+      <div class="phone g" aria-hidden="true">
+        <div class="ph-top"><span>Cél: 90 km/h · 10 km</span><span>✕</span></div>
+        <div class="ph-lab">CÉL ALATT</div><div class="ph-num">88</div><div class="ph-cap">várható végátlag · km/h</div>
+        <div class="ph-bar"><i style="width:58%"></i></div>
+        <div class="ph-grid"><div class="ph-tile"><span>Pillanatnyi</span><b>92 km/h</b></div><div class="ph-tile"><span>Eddigi átlag</span><b>87 km/h</b></div>
+        <div class="ph-tile"><span>Hátralévő</span><b>4,21 km</b></div><div class="ph-tile"><span>Idő</span><b>03:28</b></div></div></div>
+      <div class="phone r" aria-hidden="true">
+        <div class="ph-top"><span>Cél: 90 km/h · 10 km</span><span>✕</span></div>
+        <div class="ph-lab">CÉL FELETT</div><div class="ph-num">96</div><div class="ph-cap">várható végátlag · km/h</div>
+        <div class="ph-bar"><i style="width:41%"></i></div>
+        <div class="ph-grid"><div class="ph-tile"><span>Pillanatnyi</span><b>118 km/h</b></div><div class="ph-tile"><span>Eddigi átlag</span><b>91 km/h</b></div>
+        <div class="ph-tile"><span>Hátralévő</span><b>5,90 km</b></div><div class="ph-tile"><span>Idő</span><b>02:39</b></div></div></div>
+    </div>
+  </div>
+  <section aria-labelledby="f"><h2 id="f">Mit tud</h2><div class="grid"><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12 16 8"/><path d="M3.3 16a9 9 0 1 1 17.4 0"/></svg><h3>Várható végátlag</h3><p>Egy pillantással látod, mi lesz az átlagod a táv végén, ha így haladsz tovább.</p></div><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><h3>Zöld vagy piros</h3><p>Zöld, amíg a cél alatt vagy, piros, ha fölé mennél. Tartóból is jól olvasható.</p></div><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg><h3>Hang és rezgés</h3><p>Sípol, ha pirosra vált, rezeg, ha tartósan gyorsabban mész a célnál. Mindkettő kikapcsolható.</p></div><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg><h3>Magától indul</h3><p>Az óra akkor indul, amikor ténylegesen elindulsz, nem a gombnyomásra.</p></div><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z"/><circle cx="12" cy="9" r="2.5"/></svg><h3>Háttérben is mér</h3><p>Kikapcsolt kijelzővel, navigáció vagy zene mellett is mér tovább.</p></div><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><h3>Közösségi ajánlás</h3><p>Ahol már többen mértek, egy gombbal indíthatod a leggyakoribb beállítással.</p></div></div></section>
+  <section class="two">
+    <div class="box"><h3>Adatvédelem elsőként</h3><p>Nincs fiók, nincs reklám, nincs követés. A helyadatodat a telefonod dolgozza fel. A közösségi ajánláshoz csak a kerekített kezdő- és végpont és a választott cél kerül névtelenül megosztásra — bármikor kikapcsolhatod és törölheted.</p></div>
+    <div class="box warn"><h3>Fontos</h3><p>Az Averagers átlagsebesség-számoló segédeszköz — nem arra szolgál, hogy a szabályok megszegésében segítsen. Mindig tartsd be a KRESZ-t, és az útviszonyoknak megfelelően vezess; a jelzőtáblák és a sebességkorlátozások mindig elsőbbséget élveznek. A GPS-alapú adatok tájékoztató jellegűek. Az appot indulás előtt állítsd be, vezetés közben ne kezeld a telefont.</p></div>
+  </section>
+</main>
+<footer><div class="wrap">
+  <span>© 2026 Averagers · készítette: <a href="https://aihoy.app/hu/">Aihoy!</a></span>
+  <nav><a href="/hu/averagers/terms">Felhasználási feltételek</a><a href="/hu/averagers/privacy">Adatkezelési tájékoztató</a><a href="/hu/averagers/delete-data">Adataid törlése</a><a href="mailto:aihoy.app@gmail.com">Kapcsolat</a></nav>
+</div></footer>
+</body>
+</html>
