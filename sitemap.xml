@@ -76,4 +76,24 @@
     <priority>0.3</priority>
   </url>
 
+  <url>
+    <loc>https://aihoy.app/averagers</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aihoy.app/averagers"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://aihoy.app/hu/averagers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aihoy.app/averagers"/>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://aihoy.app/hu/averagers</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://aihoy.app/averagers"/>
+    <xhtml:link rel="alternate" hreflang="hu" href="https://aihoy.app/hu/averagers"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aihoy.app/averagers"/>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>

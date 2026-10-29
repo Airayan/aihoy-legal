@@ -75,6 +75,25 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 16px}footer a{color:var(--textsec
 @media (max-width:860px){.hero{grid-template-columns:1fr;padding-top:40px}.phones{height:400px;max-width:440px;margin:0 auto;width:100%}.phone{width:180px;height:370px}.ph-num{font-size:80px}.grid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}}
 @media (max-width:560px){.wrap{padding:0 16px}.top nav .hide{display:none}.grid{grid-template-columns:1fr}.phone{width:150px;height:250px;padding:14px 10px;border-radius:26px}.ph-num{font-size:62px}.ph-grid{display:none}.ph-lab{margin-top:18px}.phones{height:290px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.phone.shot{aspect-ratio:600/1167}
+.shots-cap{color:var(--textsec);font-size:13px;margin-top:10px;text-align:center}
+.float{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.float .tag{margin-bottom:14px}
+.float p{color:rgba(234,241,245,.85);font-size:17px;line-height:1.7}
+.float-shots{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.float-shots figure{border-radius:20px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 44px rgba(0,0,0,.35);background:#eee}
+.float-shots img{display:block;width:100%;height:auto}
+.float-src{grid-column:1/-1;color:var(--textsec);font-size:12px;text-align:right}
+.sister{padding:8px 0 56px}
+.sister-card{display:flex;align-items:center;gap:20px;padding:22px 24px;border-radius:20px;background:linear-gradient(135deg,#123a52,#0E1C30 70%);border:1px solid rgba(59,174,159,.35);color:var(--text)}
+.sister-card:hover{text-decoration:none;border-color:var(--teal)}
+.sister-card img{width:64px;height:64px;border-radius:16px;flex-shrink:0}
+.sister-card .kick{display:block;color:var(--teal);font-size:13px;font-weight:600;letter-spacing:.02em;margin-bottom:2px}
+.sister-card h3{font-family:'Fraunces',serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:4px}
+.sister-card p{color:rgba(234,241,245,.8);font-size:15px;line-height:1.55}
+.sister-card .go{margin-left:auto;flex-shrink:0;background:var(--teal);color:#06231f;font-weight:700;font-size:15px;padding:11px 16px;border-radius:12px;white-space:nowrap}
+@media (max-width:860px){.float{grid-template-columns:1fr;gap:24px}}
+@media (max-width:560px){.sister-card{flex-wrap:wrap;gap:14px}.sister-card .go{margin-left:0}.phones{height:350px}}
 </style>
 </head>
 <body>
@@ -91,26 +110,36 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 16px}footer a{color:var(--textsec
       <a class="cta" href="https://play.google.com/store/apps/details?id=hu.averagers.averagers" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.6 2.2c-.3.3-.4.7-.4 1.2v17.2c0 .5.1.9.4 1.2l9.6-9.8-9.6-9.8Zm10.6 10.8 2.7 2.8-11.7 6.7c-.4.2-.8.3-1.1.2l10.1-9.7Zm0-2L4.1 1.3c.3-.1.7 0 1.1.2l11.7 6.7-2.7 2.8Zm3.7 3.8-3.1-3.2 3.1-3.1 3.6 2c1 .6 1 1.6 0 2.2l-3.6 2.1Z"/></svg>Get it on Google Play</a>
       <p class="meta">Free · No account · No ads · 11 languages</p>
     </div>
-    <div class="phones">
-      <div class="phone g" aria-hidden="true">
-        <div class="ph-top"><span>Target: 90 km/h · 10 km</span><span>✕</span></div>
-        <div class="ph-lab">UNDER TARGET</div><div class="ph-num">88</div><div class="ph-cap">projected average · km/h</div>
-        <div class="ph-bar"><i style="width:58%"></i></div>
-        <div class="ph-grid"><div class="ph-tile"><span>Current</span><b>92 km/h</b></div><div class="ph-tile"><span>Average so far</span><b>87 km/h</b></div>
-        <div class="ph-tile"><span>Remaining</span><b>4.21 km</b></div><div class="ph-tile"><span>Time</span><b>03:28</b></div></div></div>
-      <div class="phone r" aria-hidden="true">
-        <div class="ph-top"><span>Target: 90 km/h · 10 km</span><span>✕</span></div>
-        <div class="ph-lab">OVER TARGET</div><div class="ph-num">96</div><div class="ph-cap">projected average · km/h</div>
-        <div class="ph-bar"><i style="width:41%"></i></div>
-        <div class="ph-grid"><div class="ph-tile"><span>Current</span><b>118 km/h</b></div><div class="ph-tile"><span>Average so far</span><b>91 km/h</b></div>
-        <div class="ph-tile"><span>Remaining</span><b>5.90 km</b></div><div class="ph-tile"><span>Time</span><b>02:39</b></div></div></div>
+    <div>
+      <div class="phones">
+        <div class="phone g shot"><picture><source srcset="/averagers/shot-green.webp" type="image/webp"><img src="/averagers/shot-green.jpg" alt="Averagers measuring screen, green: projected average 78 km/h, under the 80 km/h target" width="600" height="1167"></picture></div>
+        <div class="phone r shot"><picture><source srcset="/averagers/shot-red.webp" type="image/webp"><img src="/averagers/shot-red.jpg" alt="Averagers measuring screen, red: projected average 81 km/h, over the 80 km/h target" width="600" height="1167" loading="lazy"></picture></div>
+      </div>
+      <p class="shots-cap">Shown with the Hungarian interface — the app speaks your phone’s language (11 languages).</p>
     </div>
   </div>
   <section aria-labelledby="f"><h2 id="f">What it does</h2><div class="grid"><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 12 16 8"/><path d="M3.3 16a9 9 0 1 1 17.4 0"/></svg><h3>Projected average</h3><p>At a glance: the average you’ll have at the end of the distance if you keep going like this.</p></div><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></svg><h3>Green or red</h3><p>Green while you’re under your target, red when you’d go over. Readable from the mount.</p></div><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a10 10 0 0 1 0 14"/></svg><h3>Sound and vibration</h3><p>A beep when it turns red, a vibration if you keep going faster than your target. Both can be switched off.</p></div><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg><h3>Starts by itself</h3><p>The timer starts when you actually start moving, not when you press the button.</p></div><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z"/><circle cx="12" cy="9" r="2.5"/></svg><h3>Works in the background</h3><p>Keeps measuring with the screen off, next to your navigation or music.</p></div><div class="card"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><h3>Community suggestions</h3><p>Where several drivers measured, start with the most common setting in one tap.</p></div></div></section>
+  <section class="float" aria-labelledby="fl">
+    <div>
+      <span class="tag">Pro feature · free during testing · Android</span>
+      <h2 id="fl">Floating window over your navigation</h2>
+      <p>Switch to your map or navigation app while measuring, and a small window keeps showing the projected average and the highest speed you can still keep. Drag it anywhere, set its size and transparency, tap it to come back. The background turns green or red just like in the app.</p>
+    </div>
+    <div class="float-shots">
+      <figure><picture><source srcset="/averagers/overlay-green.webp" type="image/webp"><img src="/averagers/overlay-green.jpg" alt="Floating window over a map: 76 km/h, max 85, green" width="640" height="1119" loading="lazy"></picture></figure>
+      <figure><picture><source srcset="/averagers/overlay-red.webp" type="image/webp"><img src="/averagers/overlay-red.jpg" alt="Floating window over a map: 82 km/h, max 85, red" width="640" height="1119" loading="lazy"></picture></figure>
+      <span class="float-src">Map: © OpenStreetMap contributors</span>
+    </div>
+  </section>
   <section class="two">
     <div class="box"><h3>Privacy first</h3><p>No account, no ads, no tracking. Your location is processed on your phone. For community suggestions only rounded start and end points and the target you chose are shared anonymously — you can switch it off and delete it any time.</p></div>
     <div class="box warn"><h3>Important</h3><p>Averagers is a tool for calculating average speed — it is not meant to help anyone break traffic rules. Always follow the traffic rules and drive according to road conditions; road signs and speed limits always take priority. GPS-based data is for information only. Set up the app before you drive and don’t use your phone while driving.</p></div>
   </section>
+  <section class="sister"><a class="sister-card" href="https://aihoy.app/">
+    <img src="/favicon-192.png" alt="" width="64" height="64" loading="lazy">
+    <div><span class="kick">Another app from us</span><h3>Aihoy!</h3><p>Travelling? Find people nearby to share a boat trip, a hike or a free afternoon — and split the cost.</p></div>
+    <span class="go">Visit Aihoy! →</span>
+  </a></section>
 </main>
 <footer><div class="wrap">
   <span>© 2026 Averagers · by <a href="https://aihoy.app/">Aihoy!</a></span>
