@@ -92,6 +92,25 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 16px}footer a{color:var(--textsec
 .sister-card h3{font-family:'Fraunces',serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:4px}
 .sister-card p{color:rgba(234,241,245,.8);font-size:15px;line-height:1.55}
 .sister-card .go{margin-left:auto;flex-shrink:0;background:var(--teal);color:#06231f;font-weight:700;font-size:15px;padding:11px 16px;border-radius:12px;white-space:nowrap}
+.ios-link{display:inline-block;margin-top:8px;font-size:14px;color:var(--teal)}
+.extra{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:8px 0 24px}
+.xcard{scroll-margin-top:80px;border-radius:20px;padding:24px;border:1px solid var(--line);background:var(--surface);display:flex;flex-direction:column}
+.xcard .kick{color:var(--accent);font-size:13px;font-weight:600;margin-bottom:4px}
+.xcard h3{font-family:'Fraunces',serif;font-size:24px;font-weight:900;color:#fff;margin-bottom:8px}
+.xcard p{color:rgba(234,241,245,.82);font-size:15px;line-height:1.6;margin-bottom:16px}
+.xcard.is-ios{border-color:rgba(255,194,51,.6)}
+.ios-form{display:flex;gap:8px;flex-wrap:wrap}
+.ios-form input{flex:1 1 200px;min-width:0;padding:12px 14px;border-radius:12px;border:1px solid rgba(234,241,245,.25);background:var(--ocean);color:var(--text);font:inherit;font-size:16px}
+.ios-form input:focus{outline:none;border-color:var(--accent)}
+.ios-form button,.kofi-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:12px;border:0;background:var(--accent);color:#111;font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+.ios-form button:disabled{opacity:.55;cursor:default}
+.ios-msg{display:block;min-height:20px;margin-top:10px;font-size:14px;color:var(--teal)}
+.ios-msg.err{color:var(--accent)}
+.xcard small{color:var(--textsec);font-size:12.5px;margin-top:2px}
+.kofi-btn{margin-top:auto;align-self:flex-start;background:#fff}
+.kofi-btn:hover{text-decoration:none;filter:brightness(.95)}
+.kofi-btn svg{width:20px;height:20px}
+@media (max-width:860px){.extra{grid-template-columns:1fr}}
 @media (max-width:860px){.float{grid-template-columns:1fr;gap:24px}}
 @media (max-width:560px){.sister-card{flex-wrap:wrap;gap:14px}.sister-card .go{margin-left:0}.phones{height:350px}}
 </style>
@@ -109,6 +128,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 16px}footer a{color:var(--textsec
       <p class="lead">Beállítod a cél átlagot és a távot. Az Averagers mutatja, mi lesz a végátlagod, ha így haladsz tovább — zöld, ha a cél alatt vagy, piros, ha fölé mennél.</p>
       <a class="cta" href="https://play.google.com/store/apps/details?id=hu.averagers.averagers" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3.6 2.2c-.3.3-.4.7-.4 1.2v17.2c0 .5.1.9.4 1.2l9.6-9.8-9.6-9.8Zm10.6 10.8 2.7 2.8-11.7 6.7c-.4.2-.8.3-1.1.2l10.1-9.7Zm0-2L4.1 1.3c.3-.1.7 0 1.1.2l11.7 6.7-2.7 2.8Zm3.7 3.8-3.1-3.2 3.1-3.1 3.6 2c1 .6 1 1.6 0 2.2l-3.6 2.1Z"/></svg>Letöltés a Google Playről</a>
       <p class="meta">Ingyenes · Fiók nélkül · Reklám nélkül · 11 nyelven</p>
+      <a class="ios-link" href="#ios">iPhone-od van? Szólunk, ha kész ↓</a>
     </div>
     <div>
       <div class="phones">
@@ -135,6 +155,25 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 16px}footer a{color:var(--textsec
     <div class="box"><h3>Adatvédelem elsőként</h3><p>Nincs fiók, nincs reklám, nincs követés. A helyadatodat a telefonod dolgozza fel. A közösségi ajánláshoz csak a kerekített kezdő- és végpont és a választott cél kerül névtelenül megosztásra — bármikor kikapcsolhatod és törölheted.</p></div>
     <div class="box warn"><h3>Fontos</h3><p>Az Averagers átlagsebesség-számoló segédeszköz — nem arra szolgál, hogy a szabályok megszegésében segítsen. Mindig tartsd be a KRESZ-t, és az útviszonyoknak megfelelően vezess; a jelzőtáblák és a sebességkorlátozások mindig elsőbbséget élveznek. A GPS-alapú adatok tájékoztató jellegűek. Az appot indulás előtt állítsd be, vezetés közben ne kezeld a telefont.</p></div>
   </section>
+  <section class="extra" aria-label="iOS · Ko-fi">
+    <div class="xcard" id="ios">
+      <span class="kick">iPhone-od van?</span>
+      <h3>Jön az iOS-változat</h3>
+      <p>Az Averagers egyelőre csak Androidra érhető el. Add meg az e-mail-címed, és szólunk, amint kész az iPhone-os változat — mást nem küldünk, hírlevél sincs.</p>
+      <form class="ios-form" id="ios-form" novalidate>
+        <input type="email" id="ios-email" name="email" placeholder="email@example.com" autocomplete="email" required maxlength="254" aria-label="Email">
+        <button type="submit" id="ios-btn">Értesíts</button>
+      </form>
+      <span class="ios-msg" id="ios-msg" role="status" aria-live="polite"></span>
+      <small>Csak erre az egy értesítésre használjuk. <a href="/hu/averagers/privacy">Adatkezelési tájékoztató</a></small>
+    </div>
+    <div class="xcard">
+      <span class="kick">Támogatás</span>
+      <h3>Meghívsz egy kávéra?</h3>
+      <p>Az Averagers ingyenes, reklám és követés nélkül. Ha hasznos neked, egy kávé sokat segít a fejlesztésben — és abban is, hogy elkészüljön az iPhone-os változat.</p>
+      <a class="kofi-btn" href="https://ko-fi.com/aihoy" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>Támogatás Ko-fi-n</a>
+    </div>
+  </section>
   <section class="sister"><a class="sister-card" href="https://aihoy.app/hu/">
     <img src="/favicon-192.png" alt="" width="64" height="64" loading="lazy">
     <div><span class="kick">Másik appunk</span><h3>Aihoy!</h3><p>Utazol? Találj a közelben társakat egy hajókiránduláshoz, túrához vagy egy szabad délutánhoz — és osszátok meg a költséget.</p></div>
@@ -145,5 +184,40 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 16px}footer a{color:var(--textsec
   <span>© 2026 Averagers · készítette: <a href="https://aihoy.app/hu/">Aihoy!</a></span>
   <nav><a href="/hu/averagers/terms">Felhasználási feltételek</a><a href="/hu/averagers/privacy">Adatkezelési tájékoztató</a><a href="/hu/averagers/delete-data">Adataid törlése</a><a href="mailto:aihoy.app@gmail.com">Kapcsolat</a></nav>
 </div></footer>
+<script>
+// iOS-várólista → Averagers Supabase, join_ios_waitlist (csak beírni tud, olvasni nem).
+(function () {
+  var URL = 'https://nvogghjbjqnzsrfosnnz.supabase.co/rest/v1/rpc/join_ios_waitlist';
+  var KEY = 'sb_publishable_JpLOCY3aGJXjEqE4gWTewQ_dXgcNWgj';
+  var LANG = 'hu';
+  var MSG = { ok: 'Megvan — szólunk, amint kész!', bad: 'Ez nem tűnik érvényes címnek.', err: 'Valami elakadt. Próbáld újra kicsit később.' };
+  var form = document.getElementById('ios-form');
+  var input = document.getElementById('ios-email');
+  var btn = document.getElementById('ios-btn');
+  var msg = document.getElementById('ios-msg');
+  function show(text, isErr) { msg.textContent = text; msg.classList.toggle('err', !!isErr); }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = input.value.trim();
+    if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) { show(MSG.bad, true); return; }
+    btn.disabled = true; show('…');
+    fetch(URL, {
+      method: 'POST',
+      headers: { 'apikey': KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ p_email: email, p_lang: LANG })
+    }).then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function (ok) {
+        if (ok === true) { show(MSG.ok); input.value = ''; } else { show(MSG.bad, true); }
+      })
+      .catch(function () { show(MSG.err, true); })
+      .then(function () { btn.disabled = false; });
+  });
+  // iPhone-on kiemeljük a várólistát
+  var ua = navigator.userAgent || '';
+  if (/iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) {
+    document.getElementById('ios').classList.add('is-ios');
+  }
+})();
+</script>
 </body>
 </html>
