@@ -342,6 +342,43 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
 }
 .shot figcaption { font-size: 12.5px; color: var(--textsec); line-height: 1.5; margin-top: 12px; }
 
+/* ── TerrAihoy! — szárazföldi mód (2026-11-16). Az app Terra-éjszaka színei. ── */
+.terra {
+  --t-bg: #14160E; --t-surface: #1F2316; --t-accent: #A9C25D; --t-text: #F0EEE3; --t-sec: #B3AE98;
+  --t-line: rgba(240,238,227,0.10); --t-line-strong: rgba(169,194,93,0.36);
+  padding: 92px 24px; color: var(--t-text); overflow: hidden;
+  background: radial-gradient(900px 480px at 12% 0%, rgba(169,194,93,0.11), transparent 64%), var(--t-bg);
+  border-top: 1px solid var(--t-line-strong); border-bottom: 1px solid var(--t-line-strong);
+}
+.terra-inner { max-width: 1000px; margin: 0 auto; }
+.terra-top { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center; }
+.terra-media { display: flex; justify-content: center; }
+.terra-media img { display: block; width: 100%; max-width: 360px; height: auto; border-radius: 28px; box-shadow: 0 0 0 1px var(--t-line-strong), 0 24px 70px rgba(0,0,0,0.55), 0 0 90px rgba(169,194,93,0.12); }
+.terra .section-tag { color: var(--t-accent); text-align: left; }
+.terra .section-title { text-align: left; color: var(--t-text); }
+.terra-sub { display: block; font-size: clamp(17px, 0.5em, 24px); line-height: 1.25; letter-spacing: 0; color: var(--t-accent); margin-top: 10px; }
+.terra .section-lead { text-align: left; margin: 0 0 26px; max-width: none; color: var(--t-sec); }
+.terra-types { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.terra-types li { display: flex; gap: 12px; align-items: center; min-width: 0; background: var(--t-surface); border: 1px solid var(--t-line); border-radius: 14px; padding: 12px 14px; }
+.terra-types .ic { width: 22px; height: 22px; color: var(--t-accent); }
+.terra-types div { min-width: 0; }
+.terra-types b { display: block; font-size: 15px; font-weight: 600; line-height: 1.3; }
+.terra-types span { display: block; font-size: 12.5px; color: var(--t-sec); line-height: 1.4; }
+.terra-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 56px; }
+.terra-point { background: var(--t-surface); border: 1px solid var(--t-line); border-radius: 16px; padding: 24px 24px 26px; }
+.terra-point .f-ic { border-color: var(--t-line-strong); color: var(--t-accent); }
+.terra-point h3 { font-size: 16.5px; font-weight: 600; margin-bottom: 8px; color: var(--t-text); }
+.terra-point p { font-size: 14.5px; color: var(--t-sec); line-height: 1.65; }
+.terra-shots { display: flex; gap: 22px; justify-content: center; align-items: flex-start; flex-wrap: wrap; margin-top: 56px; }
+.terra-shots .shot img { background: var(--t-bg); border-color: var(--t-line-strong); }
+.terra-shots .shot figcaption { color: var(--t-sec); }
+.terra-foot { text-align: center; font-size: 14.5px; color: var(--t-sec); line-height: 1.65; max-width: 620px; margin: 40px auto 0; }
+.terra-foot strong { color: var(--t-text); font-weight: 600; }
+.can-terra { border-color: rgba(169,194,93,0.34); background: linear-gradient(160deg, #1F2316, #171A10); }
+.can-terra:hover { border-color: rgba(169,194,93,0.6); }
+.can-terra .f-ic { border-color: rgba(169,194,93,0.4); color: #A9C25D; }
+.can-terra p a { color: #A9C25D; }
+
 /* ── Eszköz szerinti hero-gomb (a <html> osztályát egy korai script állítja) ── */
 .is-android .hero .ios-box { display: none; }
 .is-ios #btn-download, .is-ios #btn-download2 { display: none; }
@@ -429,6 +466,9 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   .meet .section-tag, .meet .section-title, .meet .section-lead { text-align: center; }
   .meet .section-lead { margin: 0 auto 28px; max-width: 560px; }
   .meet-media img { max-width: 280px; }
+  .terra-top { grid-template-columns: 1fr; gap: 36px; }
+  .terra .section-tag, .terra .section-title, .terra .section-lead { text-align: center; }
+  .terra-media img { max-width: 260px; }
 }
 
 /* Alacsony asztali ablak (pl. 1366×768-as vagy 125%-os nagyítású laptop: a böngészőben
@@ -456,6 +496,9 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   .hero-points { flex-direction: column; align-items: stretch; gap: 6px; margin-bottom: 24px; width: 100%; }
   .hero-points li { border-radius: 12px; font-size: 13.5px; padding: 7px 12px; }
   .how, .cans, .meet, .putdown { padding: 72px 20px; }
+  .terra { padding: 72px 20px; }
+  .terra-points { grid-template-columns: 1fr; margin-top: 40px; }
+  .terra-shots { margin-top: 40px; }
   .putdown .pd-p { font-size: 16px; }
   .quote-band { padding: 96px 20px; }
   .section { padding: 72px 20px; }
@@ -468,6 +511,8 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   .shot { width: 150px; }
   .shot img { width: 150px; height: auto; }
   .shots-row { gap: 14px; }
+  .terra-shots { gap: 14px; }
+  .terra-types { grid-template-columns: 1fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -508,6 +553,11 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
   <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
   <symbol id="i-calendar-range" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/><path d="M7 14h4"/><path d="M13 18h4"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/></symbol>
+  <symbol id="i-bike" viewBox="0 0 24 24"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></symbol>
+  <symbol id="i-motorbike" viewBox="0 0 24 24"><circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5 9 11h6l-2.5 5.5H9"/><path d="M18.5 16.5 15 7h-2.5"/><path d="M7 9h4l1 2"/></symbol>
+  <symbol id="i-mountain" viewBox="0 0 24 24"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></symbol>
   <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"/><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"/><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"/><path d="m2 2 20 20"/></symbol>
 </svg>
 
@@ -579,13 +629,14 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   <div class="cans-inner">
     <p class="section-tag" id="can-tag">Mit tud az app</p>
     <h2 class="section-title" id="can-title">Nem csak hajó, és nem csak egy napra</h2>
-    <p class="section-lead" id="can-lead">Egy hajóbérlés a nyolc napból egy. Az Aihoy! a többihez is ad társaságot — bárhol, bármikor. Ötféleképpen keres.</p>
+    <p class="section-lead" id="can-lead">Egy hajóbérlés a nyolc napból egy. Az Aihoy! a többihez is ad társaságot — bárhol, bármikor. Ötféleképpen keres — vízen és szárazföldön.</p>
     <div class="cans-grid">
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></span><h3 id="can1-t">Túrák a közeledben</h3><p id="can1-d">Dátum, ár és szabad helyek szerint böngészve — azt látod, ami a környéken tényleg elérhető, nem egy végtelen globális katalógust.</p></div>
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-sparkles"/></svg></span><h3 id="can2-t">Vagy hangulat szerint</h3><p id="can2-d">Ugyanaz a lista, csak arra szűrve, ami hozzád illik: stílus, érdeklődés, korosztály, nyelv. Nem több találat, hanem jobb.</p></div>
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-pen"/></svg></span><h3 id="can3-t">Nincs kiírva? Írd ki te</h3><p id="can3-d">Kiszemeltél egy hatszemélyes kishajót a strandon, vagy csak lenne egy ötleted? Kiírod, és jönnek, akiknek pont ez kell.</p></div>
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-calendar-range"/></svg></span><h3 id="can4-t">Utazási ablak — a Facebook-poszt helyett</h3><p id="can4-d">Beírod, mikor hol leszel. Csak azok látják, akiknek a dátuma fedésben van a tiéddel és a szűrésedbe illenek — nem az egész csoport, akik közül a többség amúgy sem akkor megy.</p></div>
       <div class="can"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-radar"/></svg></span><h3 id="can5-t">Radar — a felszabadult órákra</h3><p id="can5-d">Két szabad órád van, nyaraláson vagy itthon? Szembejön egy kishajó a parton? Megnézed, ki van a közelben, aki épp ugyanígy. Három nappal korábban értem Zakynthosra, és egyedül lézengtem a városban — pont erre van a Radar. És ha összejön, <a href="#aihoy">Aihoy!-ozd meg</a>: a radar oda is vezet hozzá.</p></div>
+      <div class="can can-terra"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-mountain"/></svg></span><h3 id="can6-t">TerrAihoy! — szárazföldön is</h3><p id="can6-d">Terepjárós, motoros, kerékpáros és gyalogos túrák, szárazföldre hangolt radarral. Egy kapcsoló az appban — <a href="#terra">nézd meg, mit tud</a>.</p></div>
     </div>
   </div>
 </section>
@@ -630,6 +681,54 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
   </div>
 </section>
 
+<!-- ══════════ TERRAIHOY! — szárazföldi mód (2026-11-16) ══════════ -->
+<section class="terra" id="terra">
+  <div class="terra-inner">
+    <div class="terra-top">
+      <div class="terra-media">
+        <picture>
+          <source type="image/webp" srcset="/img/terra-emblem-720.webp">
+          <img src="/img/terra-emblem-720.jpg" width="720" height="720" loading="lazy" decoding="async" alt="TerrAihoy! embléma: hegyek, fenyves és egy hegyikerékpáros">
+        </picture>
+      </div>
+      <div class="terra-text">
+        <p class="section-tag" id="terra-tag">Új mód</p>
+        <h2 class="section-title" id="terra-title">TerrAihoy!<span class="terra-sub">Ugyanaz az app — szárazföldön.</span></h2>
+        <p class="section-lead" id="terra-lead">Nem mindenki a vízre vágyik, és a hajós is kiköt egyszer. Egy koppintás a fejlécben, és az app olajzöldre vált: hajók helyett terepjárós, motoros, kerékpáros és gyalogos túrák, a radaron pedig az, akinek épp ugyanahhoz van kedve, amihez neked.</p>
+        <ul class="terra-types">
+          <li><svg class="ic" aria-hidden="true"><use href="#i-car"/></svg><div><b id="terra-t1">Terepjárós túra</b><span id="terra-t1d">Overland, off-road, konvoj</span></div></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-motorbike"/></svg><div><b id="terra-t2">Motoros túra</b><span id="terra-t2d">Aszfalton vagy terepen</span></div></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-bike"/></svg><div><b id="terra-t3">Kerékpártúra</b><span id="terra-t3d">Országút, gravel, bikepacking</span></div></li>
+          <li><svg class="ic" aria-hidden="true"><use href="#i-mountain"/></svg><div><b id="terra-t4">Gyalogtúra</b><span id="terra-t4d">Hegyek, vadkemping, kanyon</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="terra-points">
+      <div class="terra-point"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-radar"/></svg></span><h3 id="terra1-t">Radar a környékre</h3><p id="terra1-d">Megérkezel valahová, és megnézed, kinek lenne kedve egy sétához, bringázáshoz, motorozáshoz — vagy csak meginni valamit. Ha más jár a fejedben, beírod: akár golfpartnert is kereshetsz.</p></div>
+      <div class="terra-point"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-car"/></svg></span><h3 id="terra2-t">Saját járművel vagy utasként</h3><p id="terra2-d">Egy konvojos túrára jöhetsz a saját járműveddel, kérhetsz béreltet a szervezőtől, vagy jelentkezhetsz jármű nélkül, egy szabad ülésre. A szervező adja meg, hány jármű fér bele, és hány főtől indul.</p></div>
+      <div class="terra-point"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-wallet"/></svg></span><h3 id="terra3-t">Érthető ár</h3><p id="terra3-d">Fejenként, járművenként vagy az egész csoportra — az ár mellett mindig ott van, mire vonatkozik. Jutalék itt sincs.</p></div>
+      <div class="terra-point"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-calendar-range"/></svg></span><h3 id="terra4-t">Utazási ablak szárazföldre is</h3><p id="terra4-d">Túrázás, bringa, motor, terepezés, gasztro: beírod, mikor hol leszel és mihez lenne kedved, és megtalál, akinek a dátuma fedésben van a tiéddel.</p></div>
+    </div>
+
+    <div class="terra-shots">
+      <figure class="shot">
+        <picture><source type="image/webp" srcset="/screen-terra-tura.webp"><img src="/screen-terra-tura.jpg" width="620" height="1209" alt="TerrAihoy! — új túra szervezése: mód-kapcsoló és négy túratípus" loading="lazy"></picture>
+        <figcaption id="terra-shot1">Egy kapcsoló: Aihoy! a vízen, TerrAihoy! a szárazföldön. Túrát négy típusban írhatsz ki.</figcaption>
+      </figure>
+      <figure class="shot">
+        <picture><source type="image/webp" srcset="/screen-terra-radar.webp"><img src="/screen-terra-radar.jpg" width="620" height="1023" alt="TerrAihoy! radar — személyek és szervezők" loading="lazy"></picture>
+        <figcaption id="terra-shot2">A radar ugyanúgy működik — csak hajósok helyett szervezőket és útitársakat keres.</figcaption>
+      </figure>
+      <figure class="shot">
+        <picture><source type="image/webp" srcset="/screen-terra-terv.webp"><img src="/screen-terra-terv.jpg" width="620" height="1227" alt="TerrAihoy! — utazási terv tevékenységek és hangulat szerint" loading="lazy"></picture>
+        <figcaption id="terra-shot3">Utazási terv mozgás és hangulat szerint. Több is bejelölhető — például túrázás és gasztro.</figcaption>
+      </figure>
+    </div>
+    <p class="terra-foot" id="terra-foot"><strong>Bármikor visszaválthatsz.</strong> A fiókod, a beszélgetéseid és a beállításaid ugyanazok — csak a nézőpont más.</p>
+  </div>
+</section>
+
 <!-- ══════════ ÁRSZÁMTAN ══════════ -->
 <section class="math">
   <h2 id="math-title">Ugyanaz a hajó. Ugyanaz a nap. Más ár.</h2>
@@ -664,7 +763,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
     <h2 class="section-title" id="how-title">Nem neked kell keresgélni</h2>
     <p class="section-lead" id="how-lead">Nem a találatok száma számít, hanem hogy akit találsz, az hozzád illjen.</p>
     <ol class="how-steps">
-    <li class="how-step"><span class="how-num">1</span><h3 id="how1-t">Megmondod, mit szeretnél</h3><p id="how1-d">Mikor és hol nyaralsz, és mi érdekel: vitorlázás, búvárkodás, horgászat, strandnap, kirándulás. Pár perc az egész.</p></li>
+    <li class="how-step"><span class="how-num">1</span><h3 id="how1-t">Megmondod, mit szeretnél</h3><p id="how1-d">Mikor és hol nyaralsz, és mi érdekel: vitorlázás, búvárkodás, horgászat, strandnap, kirándulás, bringa- vagy motoros túra. Pár perc az egész.</p></li>
     <li class="how-step"><span class="how-num">2</span><h3 id="how2-t">Az app keres helyetted</h3><p id="how2-d">A közeledben lévő utazók és túrák közül azokat mutatja, akikkel stílusban, nyelvben és érdeklődésben összeilletek. Nem száz ajánlatot, hanem a jókat.</p></li>
     <li class="how-step"><span class="how-num">3</span><h3 id="how3-t">Összeálltok, és indultok</h3><p id="how3-d">Megbeszélitek a chatben — ha kell, fordít —, és mehettek. Hatan a privát hajó fejenként annyi, mint a zsúfolt nagy hajón.</p></li>
     </ol>
@@ -738,6 +837,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
       <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-wheel"/></svg></span><h3 id="hf5-t">Kapitányos árazás</h3><p id="hf5-d">A kapitány és a legénység nem fizető hely — az ár/fő valósat mutat.</p></div>
       <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-percent"/></svg></span><h3 id="hf6-t">Nulla jutalék</h3><p id="hf6-d">Amit ma használsz, ingyenes is marad. A foglalásból nem vonunk el semmit.</p></div>
       <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg></span><h3 id="hf7-t">Saját link minden túrához</h3><p id="hf7-d">Minden túrád kap egy megosztható linket — kiteheted Facebook-csoportba vagy elküldheted WhatsAppon. Aki megnyitja, azonnal látja az árat, az időpontot és a szabad helyeket, app nélkül is.</p></div>
+      <div class="feature"><span class="f-ic"><svg class="ic" aria-hidden="true"><use href="#i-flag"/></svg></span><h3 id="hf8-t">Szárazföldi túrák is</h3><p id="hf8-d">Terepjárós, motoros, kerékpáros vagy gyalogos túra: ár fejenként, járművenként vagy csoportra, jármű-kerettel és minimum létszámmal. <a href="#terra" style="color:var(--accent-ink);font-weight:600;text-decoration:none;">TerrAihoy!</a></p></div>
     </div>
   </div>
 </section>
@@ -806,7 +906,7 @@ footer { text-align: center; padding: 48px 24px; border-top: 1px solid var(--lin
       <img src="/img/boats-1600.jpg" alt="" width="1600" height="1181" loading="lazy" decoding="async">
     </picture>
   </div>
-  <h2 id="dl-title">Készen állsz? Vízre!</h2>
+  <h2 id="dl-title">Készen állsz? Vízre — vagy útra!</h2>
   <a href="https://play.google.com/store/apps/details?id=com.aihoy.app" target="_blank" rel="noopener" class="btn btn-primary" id="btn-download2" onclick="trackPlay('bottom')"><svg class="ic ic-solid" aria-hidden="true"><use href="#i-play"/></svg>Letöltés a Google Play-ről</a>
 
   <div class="ios-box" id="ios-box-2">

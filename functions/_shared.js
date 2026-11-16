@@ -119,6 +119,8 @@ const DICT = {
     actBeach: '🏖️ Strand', actCulture: '🏛️ Kultúra', actRuins: '🏺 Romkereső',
     actHiking: '🥾 Gyaloglás', actCycling: '🚴 Kerékpározás', actFood: '🍽️ Gasztro',
     actNightlife: '🎉 Szórakozás', actBaby: '👶 Kisgyerekes',
+    // 2026-11-16: TerrAihoy-tevékenységek (az app 156-os buildjétől)
+    actWalking: '🚶 Séta', actMotorbike: '🏍️ Motorozás', actOffroad: '🚙 Terepezés', actDrinks: '☕ Igyunk valamit',
     actParty: '🎉 Buli', actSurf: '🏄 Szörf', actWakeboard: '🏄 Wakeboard',
   },
   en: {
@@ -166,6 +168,8 @@ const DICT = {
     actBeach: '🏖️ Beach', actCulture: '🏛️ Culture', actRuins: '🏺 Ruins',
     actHiking: '🥾 Hiking', actCycling: '🚴 Cycling', actFood: '🍽️ Food',
     actNightlife: '🎉 Nightlife', actBaby: '👶 With small children',
+    // 2026-11-16: TerrAihoy-tevékenységek (az app 156-os buildjétől)
+    actWalking: '🚶 Walk', actMotorbike: '🏍️ Motorbiking', actOffroad: '🚙 Off-roading', actDrinks: '☕ Grab a drink',
     actParty: '🎉 Party', actSurf: '🏄 Surfing', actWakeboard: '🏄 Wakeboarding',
   },
   hr: {
@@ -213,6 +217,8 @@ const DICT = {
     actBeach: '🏖️ Plaža', actCulture: '🏛️ Kultura', actRuins: '🏺 Ruševine',
     actHiking: '🥾 Pješačenje', actCycling: '🚴 Biciklizam', actFood: '🍽️ Gastro',
     actNightlife: '🎉 Izlasci', actBaby: '👶 S malom djecom',
+    // 2026-11-16: TerrAihoy-tevékenységek (az app 156-os buildjétől)
+    actWalking: '🚶 Šetnja', actMotorbike: '🏍️ Vožnja motorom', actOffroad: '🚙 Off-road', actDrinks: '☕ Na piće',
     actParty: '🎉 Party', actSurf: '🏄 Surfanje', actWakeboard: '🏄 Wakeboard',
   },
   el: {
@@ -260,6 +266,8 @@ const DICT = {
     actBeach: '🏖️ Παραλία', actCulture: '🏛️ Πολιτισμός', actRuins: '🏺 Αρχαία ερείπια',
     actHiking: '🥾 Πεζοπορία', actCycling: '🚴 Ποδηλασία', actFood: '🍽️ Γαστρονομία',
     actNightlife: '🎉 Διασκέδαση', actBaby: '👶 Με μικρά παιδιά',
+    // 2026-11-16: TerrAihoy-tevékenységek (az app 156-os buildjétől)
+    actWalking: '🚶 Βόλτα', actMotorbike: '🏍️ Βόλτα με μηχανή', actOffroad: '🚙 Off-road 4×4', actDrinks: '☕ Ένα ποτό',
     actParty: '🎉 Πάρτι', actSurf: '🏄 Σέρφινγκ', actWakeboard: '🏄 Wakeboard',
   },
   pl: {
@@ -307,6 +315,8 @@ const DICT = {
     actBeach: '🏖️ Plaża', actCulture: '🏛️ Kultura', actRuins: '🏺 Ruiny',
     actHiking: '🥾 Wędrówki', actCycling: '🚴 Rower', actFood: '🍽️ Gastronomia',
     actNightlife: '🎉 Życie nocne', actBaby: '👶 Z małymi dziećmi',
+    // 2026-11-16: TerrAihoy-tevékenységek (az app 156-os buildjétől)
+    actWalking: '🚶 Spacer', actMotorbike: '🏍️ Jazda motocyklem', actOffroad: '🚙 Off-road', actDrinks: '☕ Coś do picia',
     actParty: '🎉 Impreza', actSurf: '🏄 Surfing', actWakeboard: '🏄 Wakeboard',
   },
   de: {
@@ -354,6 +364,8 @@ const DICT = {
     actBeach: '🏖️ Strand', actCulture: '🏛️ Kultur', actRuins: '🏺 Ruinen',
     actHiking: '🥾 Wandern', actCycling: '🚴 Radfahren', actFood: '🍽️ Kulinarik',
     actNightlife: '🎉 Nachtleben', actBaby: '👶 Mit Kleinkindern',
+    // 2026-11-16: TerrAihoy-tevékenységek (az app 156-os buildjétől)
+    actWalking: '🚶 Spaziergang', actMotorbike: '🏍️ Motorradfahren', actOffroad: '🚙 Offroad', actDrinks: '☕ Etwas trinken',
     actParty: '🎉 Party', actSurf: '🏄 Surfen', actWakeboard: '🏄 Wakeboard',
   },
   it: {
@@ -401,6 +413,8 @@ const DICT = {
     actBeach: '🏖️ Spiaggia', actCulture: '🏛️ Cultura', actRuins: '🏺 Rovine',
     actHiking: '🥾 Escursioni', actCycling: '🚴 Ciclismo', actFood: '🍽️ Gastronomia',
     actNightlife: '🎉 Vita notturna', actBaby: '👶 Con bambini piccoli',
+    // 2026-11-16: TerrAihoy-tevékenységek (az app 156-os buildjétől)
+    actWalking: '🚶 Passeggiata', actMotorbike: '🏍️ Giro in moto', actOffroad: '🚙 Fuoristrada', actDrinks: '☕ Bere qualcosa',
     actParty: '🎉 Festa', actSurf: '🏄 Surf', actWakeboard: '🏄 Wakeboard',
   },
 };
@@ -425,6 +439,9 @@ export function activityLabel(lang, key) {
     beach: 'actBeach', culture: 'actCulture', ruins: 'actRuins',
     hiking: 'actHiking', cycling: 'actCycling', food: 'actFood',
     nightlife: 'actNightlife', baby: 'actBaby',
+    // 2026-11-16: TerrAihoy (szárazföldi mód) — az app 156-os buildjétől választhatók.
+    walking: 'actWalking', motorbike: 'actMotorbike', offroad4x4: 'actOffroad',
+    drinks: 'actDrinks',
     // Régi értékek: már nem választhatók az appban, de meglévő sorokban
     // még szerepelhetnek. Megtartva, hogy azok se essenek vissza nyers kulcsra.
     party: 'actParty', surf: 'actSurf', wakeboard: 'actWakeboard',
