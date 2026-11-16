@@ -75,13 +75,18 @@ export async function onRequestGet({ params, env, request }) {
   // (Egyetlen egybeesés: csoportos ár, amit egyetlen fizető visel — ott a „/ fő” is igaz.)
   const land = isLandMode(tr.trip_mode);
   const egeszAr = Math.round(tr.price || 0);
+  // 164: a 98-as migráció óta a szerver ki is adja az egységet (tr.ar_egyseg) — ha megvan, az dönt;
+  // a fenti következtetés csak akkor fut, ha a régi kimenetet kapjuk (a két sorrend bármelyike jó).
+  const EGYSEG = { jarmu: 'tripPerVehicle', fo: 'tripPerPersonUnit', osszes: 'tripPerGroup' };
   const landUnit = !land || !(tr.price > 0)
     ? ''
-    : tr.price_per_person == null
-      ? 'tripPerVehicle'
-      : Number(tr.price_per_person) === egeszAr
-        ? 'tripPerPersonUnit'
-        : 'tripPerGroup';
+    : EGYSEG[tr.ar_egyseg]
+      ? EGYSEG[tr.ar_egyseg]
+      : tr.price_per_person == null
+        ? 'tripPerVehicle'
+        : Number(tr.price_per_person) === egeszAr
+          ? 'tripPerPersonUnit'
+          : 'tripPerGroup';
 
   let priceHtml = '';
   if (tr.is_tiered && tr.price_per_person) {
@@ -134,9 +139,17 @@ export async function onRequestGet({ params, env, request }) {
 
   const rows = [];
   if (when) rows.push(['calendar', when]);
+  // 164 (98): közös indulás — ha a túra nem a kezdőpontból indul (pl. „Szeged, Mars tér”)
+  if (tr.indulas_nev) {
+    rows.push(['route', `${t(lang, 'tripRouteDeparture')}: ${clip(tr.indulas_nev, 80)}`]);
+  }
   // A port_name szabad szöveg, néha nagyon hosszú — a kártyán rövidítjük,
   // a teljes szöveg úgyis ott van a leírásban.
   if (place) rows.push(['compass', clip(place, 90)]);
+  // 164 (98): végpont — ha a túra máshol ér véget
+  if (tr.vegpont_nev) {
+    rows.push(['flag', `${t(lang, 'tripEndPoint')}: ${clip(tr.vegpont_nev, 80)}`]);
+  }
   if (started) {
     // Elindult túránál a szabad helyek száma félrevezető: az app amúgy sem
     // enged rá foglalni (blocked = isPast || isFull).
@@ -149,6 +162,12 @@ export async function onRequestGet({ params, env, request }) {
         : t(lang, 'tripFull'),
     ]);
   }
+  // 164 (98): jármű-keret és minimumlétszám („legfeljebb 4 jármű · indul 2 főtől”)
+  const keret = [
+    tr.jarmu_max ? t(lang, 'tripMaxVehicles', { count: tr.jarmu_max }) : '',
+    tr.min_letszam ? t(lang, 'tripStartsFrom', { count: tr.min_letszam }) : '',
+  ].filter(Boolean).join(' · ');
+  if (keret) rows.push([tr.jarmu_max ? 'car' : 'users', keret]);
   // Cégnév a szervező FÖLÖTT: a cég az entitás, a személy a kapcsolattartó.
   // Magánszemélynél az RPC NULL-t ad (25_public_sharing_names.sql), így a sor
   // magától kimarad — nem kell külön ág.
@@ -174,6 +193,11 @@ export async function onRequestGet({ params, env, request }) {
             .join('')}
         </div>
         ${priceHtml}
+        ${
+          tr.utazas_leiras
+            ? `<div class="desc"><strong>${esc(t(lang, 'tripRouteTravel'))}:</strong> ${esc(tr.utazas_leiras)}</div>`
+            : ''
+        }
         ${tr.description ? `<div class="desc">${esc(tr.description)}</div>` : ''}
         ${
           tags.length

@@ -108,6 +108,9 @@ const DICT = {
     tripPerVehicle: '/ jármű', tripPerPersonUnit: '/ fő', tripPerGroup: '/ csoport',
     tripPerPersonNoteLand: 'kb. {price} {sign}/fő teljes létszámnál',
     tripTieredNoteLand: 'Az ár a létszámtól függ — ez a legkedvezőbb, teljes létszámos ár.',
+    // 164 (98): jármű-keret, minimumlétszám, útvonal — az app szövegeivel egyezően
+    tripMaxVehicles: 'legfeljebb {count} jármű', tripStartsFrom: 'indul {count} főtől',
+    tripRouteDeparture: 'Közös indulás', tripEndPoint: 'Végpont', tripRouteTravel: 'Odaút / hazaút',
     tripOgFallback: 'Nézd meg ezt a programot az Aihoy!-ban.',
     tagNoSmoking: '🚭 nemdohányzó',
     tagChildFriendly: '👶 gyerekbarát',
@@ -163,6 +166,9 @@ const DICT = {
     tripPerVehicle: '/ vehicle', tripPerPersonUnit: '/ person', tripPerGroup: '/ group',
     tripPerPersonNoteLand: 'approx. {price} {sign}/person with a full group',
     tripTieredNoteLand: 'The price depends on group size — this is the best rate, with a full group.',
+    // 164 (98): jármű-keret, minimumlétszám, útvonal — az app szövegeivel egyezően
+    tripMaxVehicles: 'vehicles: max. {count}', tripStartsFrom: 'min. group: {count}',
+    tripRouteDeparture: 'Setting off together', tripEndPoint: 'End point', tripRouteTravel: 'Getting there / back',
     tripOgFallback: 'Take a look at this trip on Aihoy!',
     tagNoSmoking: '🚭 non-smoking',
     tagChildFriendly: '👶 child-friendly',
@@ -218,6 +224,9 @@ const DICT = {
     tripPerVehicle: '/ vozilo', tripPerPersonUnit: '/ osoba', tripPerGroup: '/ grupa',
     tripPerPersonNoteLand: 'cca. {price} {sign}/osobi uz punu grupu',
     tripTieredNoteLand: 'Cijena ovisi o broju osoba — ovo je najpovoljnija cijena, uz punu grupu.',
+    // 164 (98): jármű-keret, minimumlétszám, útvonal — az app szövegeivel egyezően
+    tripMaxVehicles: 'vozila: najviše {count}', tripStartsFrom: 'najmanje sudionika: {count}',
+    tripRouteDeparture: 'Zajednički polazak', tripEndPoint: 'Završna točka', tripRouteTravel: 'Put tamo / natrag',
     tripOgFallback: 'Pogledaj ovaj izlet na Aihoy!',
     tagNoSmoking: '🚭 nepušački',
     tagChildFriendly: '👶 prilagođeno djeci',
@@ -273,6 +282,9 @@ const DICT = {
     tripPerVehicle: '/ όχημα', tripPerPersonUnit: '/ άτομο', tripPerGroup: '/ ομάδα',
     tripPerPersonNoteLand: 'περίπου {price} {sign}/άτομο με πλήρη ομάδα',
     tripTieredNoteLand: 'Η τιμή εξαρτάται από τον αριθμό των ατόμων — αυτή είναι η καλύτερη τιμή, με πλήρη ομάδα.',
+    // 164 (98): jármű-keret, minimumlétszám, útvonal — az app szövegeivel egyezően
+    tripMaxVehicles: 'οχήματα: έως {count}', tripStartsFrom: 'ελάχιστη συμμετοχή: {count}',
+    tripRouteDeparture: 'Κοινή αναχώρηση', tripEndPoint: 'Σημείο λήξης', tripRouteTravel: 'Μετάβαση / επιστροφή',
     tripOgFallback: 'Δες αυτό το πρόγραμμα στο Aihoy!',
     tagNoSmoking: '🚭 μη καπνιστές',
     tagChildFriendly: '👶 φιλικό για παιδιά',
@@ -328,6 +340,9 @@ const DICT = {
     tripPerVehicle: '/ pojazd', tripPerPersonUnit: '/ osoba', tripPerGroup: '/ grupa',
     tripPerPersonNoteLand: 'ok. {price} {sign}/os. przy pełnej grupie',
     tripTieredNoteLand: 'Cena zależy od liczby osób — to najkorzystniejsza stawka, przy pełnej grupie.',
+    // 164 (98): jármű-keret, minimumlétszám, útvonal — az app szövegeivel egyezően
+    tripMaxVehicles: 'pojazdy: maks. {count}', tripStartsFrom: 'min. uczestników: {count}',
+    tripRouteDeparture: 'Wspólny wyjazd', tripEndPoint: 'Punkt końcowy', tripRouteTravel: 'Dojazd / powrót',
     tripOgFallback: 'Zobacz ten rejs w Aihoy!',
     tagNoSmoking: '🚭 dla niepalących',
     tagChildFriendly: '👶 przyjazny dzieciom',
@@ -383,6 +398,9 @@ const DICT = {
     tripPerVehicle: '/ Fahrzeug', tripPerPersonUnit: '/ Person', tripPerGroup: '/ Gruppe',
     tripPerPersonNoteLand: 'ca. {price} {sign}/Person bei voller Gruppe',
     tripTieredNoteLand: 'Der Preis hängt von der Gruppengröße ab — dies ist der günstigste Preis bei voller Gruppe.',
+    // 164 (98): jármű-keret, minimumlétszám, útvonal — az app szövegeivel egyezően
+    tripMaxVehicles: 'Fahrzeuge: max. {count}', tripStartsFrom: 'Mindestteilnehmer: {count}',
+    tripRouteDeparture: 'Gemeinsamer Start', tripEndPoint: 'Endpunkt', tripRouteTravel: 'Hin- / Rückreise',
     tripOgFallback: 'Sieh dir dieses Programm auf Aihoy! an.',
     tagNoSmoking: '🚭 Nichtraucher',
     tagChildFriendly: '👶 kinderfreundlich',
@@ -438,6 +456,9 @@ const DICT = {
     tripPerVehicle: '/ veicolo', tripPerPersonUnit: '/ persona', tripPerGroup: '/ gruppo',
     tripPerPersonNoteLand: 'circa {price} {sign}/persona a gruppo completo',
     tripTieredNoteLand: 'Il prezzo dipende dal numero di persone — questa è la tariffa migliore, a gruppo completo.',
+    // 164 (98): jármű-keret, minimumlétszám, útvonal — az app szövegeivel egyezően
+    tripMaxVehicles: 'veicoli: max. {count}', tripStartsFrom: 'minimo partecipanti: {count}',
+    tripRouteDeparture: 'Partenza insieme', tripEndPoint: 'Punto di arrivo', tripRouteTravel: 'Andata / ritorno',
     tripOgFallback: 'Guarda questo programma su Aihoy!',
     tagNoSmoking: '🚭 non fumatori',
     tagChildFriendly: '👶 adatto ai bambini',
@@ -607,6 +628,9 @@ const ICONS = {
   building: '<rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/>',
   user: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
   languages: '<path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/>',
+  // 164: jármű-keret és útvonal sorai
+  car: '<path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/>',
+  route: '<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
   anchor: '<path d="M12 22V8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/><circle cx="12" cy="5" r="3"/>',
 };
 
