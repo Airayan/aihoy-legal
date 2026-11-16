@@ -105,6 +105,9 @@ const DICT = {
     tripFromPerPerson: '{price} {sign}/fő-től',
     tripFromPerPersonShort: '{price} {sign}/fő-től',
     tripTieredNote: 'A hajó díja a létszámtól függ — ez a legkedvezőbb, teli hajós ár.',
+    tripPerVehicle: '/ jármű', tripPerPersonUnit: '/ fő', tripPerGroup: '/ csoport',
+    tripPerPersonNoteLand: 'kb. {price} {sign}/fő teljes létszámnál',
+    tripTieredNoteLand: 'Az ár a létszámtól függ — ez a legkedvezőbb, teljes létszámos ár.',
     tripOgFallback: 'Nézd meg ezt a programot az Aihoy!-ban.',
     tagNoSmoking: '🚭 nemdohányzó',
     tagChildFriendly: '👶 gyerekbarát',
@@ -114,6 +117,9 @@ const DICT = {
     modeBareboat: 'Hajóbérlés kapitány nélkül',
     modeCrewFinding: 'Legénységet keres',
     modeCharterHost: 'Charter program',
+    // 163: szárazföldi (TerrAihoy!) túratípusok — az app szövegeivel egyezően
+    modeOffroad: 'Terepjárós túra', modeMotorbike: 'Motoros túra',
+    modeCycling: 'Kerékpártúra', modeHiking: 'Gyalogtúra',
     actSailing: '⛵ Hajózás', actDiving: '🤿 Búvárkodás', actSnorkeling: '🥽 Snorkeling',
     actFishing: '🎣 Horgászat', actWhale: '🐋 Bálnales', actKayak: '🛶 Kajak',
     actBeach: '🏖️ Strand', actCulture: '🏛️ Kultúra', actRuins: '🏺 Romkereső',
@@ -154,6 +160,9 @@ const DICT = {
     tripFromPerPerson: 'from {price} {sign}/person',
     tripFromPerPersonShort: 'from {price} {sign}/person',
     tripTieredNote: 'The boat fee depends on how many of you there are — this is the best case, with a full boat.',
+    tripPerVehicle: '/ vehicle', tripPerPersonUnit: '/ person', tripPerGroup: '/ group',
+    tripPerPersonNoteLand: 'approx. {price} {sign}/person with a full group',
+    tripTieredNoteLand: 'The price depends on group size — this is the best rate, with a full group.',
     tripOgFallback: 'Take a look at this trip on Aihoy!',
     tagNoSmoking: '🚭 non-smoking',
     tagChildFriendly: '👶 child-friendly',
@@ -163,6 +172,9 @@ const DICT = {
     modeBareboat: 'Bareboat charter',
     modeCrewFinding: 'Looking for crew',
     modeCharterHost: 'Charter programme',
+    // 163: szárazföldi (TerrAihoy!) túratípusok — az app szövegeivel egyezően
+    modeOffroad: '4×4 off-road tour', modeMotorbike: 'Motorbike tour',
+    modeCycling: 'Cycling trip', modeHiking: 'Hiking trip',
     actSailing: '⛵ Sailing', actDiving: '🤿 Diving', actSnorkeling: '🥽 Snorkelling',
     actFishing: '🎣 Fishing', actWhale: '🐋 Whale watching', actKayak: '🛶 Kayaking',
     actBeach: '🏖️ Beach', actCulture: '🏛️ Culture', actRuins: '🏺 Ruins',
@@ -203,6 +215,9 @@ const DICT = {
     tripFromPerPerson: 'od {price} {sign}/os.',
     tripFromPerPersonShort: 'od {price} {sign}/os.',
     tripTieredNote: 'Cijena broda ovisi o broju putnika — ovo je najpovoljnija cijena, uz pun brod.',
+    tripPerVehicle: '/ vozilo', tripPerPersonUnit: '/ osoba', tripPerGroup: '/ grupa',
+    tripPerPersonNoteLand: 'cca. {price} {sign}/osobi uz punu grupu',
+    tripTieredNoteLand: 'Cijena ovisi o broju osoba — ovo je najpovoljnija cijena, uz punu grupu.',
     tripOgFallback: 'Pogledaj ovaj izlet na Aihoy!',
     tagNoSmoking: '🚭 nepušački',
     tagChildFriendly: '👶 prilagođeno djeci',
@@ -212,6 +227,9 @@ const DICT = {
     modeBareboat: 'Najam broda bez skipera',
     modeCrewFinding: 'Traži posadu',
     modeCharterHost: 'Charter program',
+    // 163: szárazföldi (TerrAihoy!) túratípusok — az app szövegeivel egyezően
+    modeOffroad: 'Izlet terencem', modeMotorbike: 'Moto izlet',
+    modeCycling: 'Biciklistički izlet', modeHiking: 'Pješačka tura',
     actSailing: '⛵ Jedrenje', actDiving: '🤿 Ronjenje', actSnorkeling: '🥽 Ronjenje na dah',
     actFishing: '🎣 Ribolov', actWhale: '🐋 Promatranje kitova', actKayak: '🛶 Kajak',
     actBeach: '🏖️ Plaža', actCulture: '🏛️ Kultura', actRuins: '🏺 Ruševine',
@@ -252,6 +270,9 @@ const DICT = {
     tripFromPerPerson: 'από {price} {sign}/άτομο',
     tripFromPerPersonShort: 'από {price} {sign}/άτομο',
     tripTieredNote: 'Η τιμή του σκάφους εξαρτάται από τον αριθμό των ατόμων — αυτή είναι η καλύτερη τιμή, με πλήρες σκάφος.',
+    tripPerVehicle: '/ όχημα', tripPerPersonUnit: '/ άτομο', tripPerGroup: '/ ομάδα',
+    tripPerPersonNoteLand: 'περίπου {price} {sign}/άτομο με πλήρη ομάδα',
+    tripTieredNoteLand: 'Η τιμή εξαρτάται από τον αριθμό των ατόμων — αυτή είναι η καλύτερη τιμή, με πλήρη ομάδα.',
     tripOgFallback: 'Δες αυτό το πρόγραμμα στο Aihoy!',
     tagNoSmoking: '🚭 μη καπνιστές',
     tagChildFriendly: '👶 φιλικό για παιδιά',
@@ -261,6 +282,9 @@ const DICT = {
     modeBareboat: 'Ενοικίαση σκάφους χωρίς κυβερνήτη',
     modeCrewFinding: 'Αναζήτηση πληρώματος',
     modeCharterHost: 'Πρόγραμμα charter',
+    // 163: szárazföldi (TerrAihoy!) túratípusok — az app szövegeivel egyezően
+    modeOffroad: 'Εκδρομή με 4×4', modeMotorbike: 'Εκδρομή με μοτοσυκλέτα',
+    modeCycling: 'Ποδηλατική εκδρομή', modeHiking: 'Πεζοπορία',
     actSailing: '⛵ Ιστιοπλοΐα', actDiving: '🤿 Καταδύσεις', actSnorkeling: '🥽 Snorkeling',
     actFishing: '🎣 Ψάρεμα', actWhale: '🐋 Παρατήρηση φαλαινών', actKayak: '🛶 Καγιάκ',
     actBeach: '🏖️ Παραλία', actCulture: '🏛️ Πολιτισμός', actRuins: '🏺 Αρχαία ερείπια',
@@ -301,6 +325,9 @@ const DICT = {
     tripFromPerPerson: 'od {price} {sign}/os.',
     tripFromPerPersonShort: 'od {price} {sign}/os.',
     tripTieredNote: 'Cena łodzi zależy od liczby osób — to najkorzystniejsza cena, przy pełnej łodzi.',
+    tripPerVehicle: '/ pojazd', tripPerPersonUnit: '/ osoba', tripPerGroup: '/ grupa',
+    tripPerPersonNoteLand: 'ok. {price} {sign}/os. przy pełnej grupie',
+    tripTieredNoteLand: 'Cena zależy od liczby osób — to najkorzystniejsza stawka, przy pełnej grupie.',
     tripOgFallback: 'Zobacz ten rejs w Aihoy!',
     tagNoSmoking: '🚭 dla niepalących',
     tagChildFriendly: '👶 przyjazny dzieciom',
@@ -310,6 +337,9 @@ const DICT = {
     modeBareboat: 'Czarter bez sternika',
     modeCrewFinding: 'Szuka załogi',
     modeCharterHost: 'Program czarterowy',
+    // 163: szárazföldi (TerrAihoy!) túratípusok — az app szövegeivel egyezően
+    modeOffroad: 'Wyprawa 4×4', modeMotorbike: 'Wyprawa motocyklowa',
+    modeCycling: 'Wycieczka rowerowa', modeHiking: 'Wycieczka piesza',
     actSailing: '⛵ Żeglarstwo', actDiving: '🤿 Nurkowanie', actSnorkeling: '🥽 Snorkeling',
     actFishing: '🎣 Wędkarstwo', actWhale: '🐋 Obserwacja wielorybów', actKayak: '🛶 Kajak',
     actBeach: '🏖️ Plaża', actCulture: '🏛️ Kultura', actRuins: '🏺 Ruiny',
@@ -350,6 +380,9 @@ const DICT = {
     tripFromPerPerson: 'ab {price} {sign}/Person',
     tripFromPerPersonShort: 'ab {price} {sign}/Person',
     tripTieredNote: 'Der Bootspreis hängt von der Personenzahl ab — das ist der günstigste Fall, bei vollem Boot.',
+    tripPerVehicle: '/ Fahrzeug', tripPerPersonUnit: '/ Person', tripPerGroup: '/ Gruppe',
+    tripPerPersonNoteLand: 'ca. {price} {sign}/Person bei voller Gruppe',
+    tripTieredNoteLand: 'Der Preis hängt von der Gruppengröße ab — dies ist der günstigste Preis bei voller Gruppe.',
     tripOgFallback: 'Sieh dir dieses Programm auf Aihoy! an.',
     tagNoSmoking: '🚭 Nichtraucher',
     tagChildFriendly: '👶 kinderfreundlich',
@@ -359,6 +392,9 @@ const DICT = {
     modeBareboat: 'Bootscharter ohne Skipper',
     modeCrewFinding: 'Sucht Crew',
     modeCharterHost: 'Charter-Programm',
+    // 163: szárazföldi (TerrAihoy!) túratípusok — az app szövegeivel egyezően
+    modeOffroad: 'Geländewagen-Tour', modeMotorbike: 'Motorradtour',
+    modeCycling: 'Radtour', modeHiking: 'Wanderung',
     actSailing: '⛵ Segeln', actDiving: '🤿 Tauchen', actSnorkeling: '🥽 Schnorcheln',
     actFishing: '🎣 Angeln', actWhale: '🐋 Walbeobachtung', actKayak: '🛶 Kajak',
     actBeach: '🏖️ Strand', actCulture: '🏛️ Kultur', actRuins: '🏺 Ruinen',
@@ -399,6 +435,9 @@ const DICT = {
     tripFromPerPerson: 'da {price} {sign}/persona',
     tripFromPerPersonShort: 'da {price} {sign}/persona',
     tripTieredNote: 'Il prezzo della barca dipende dal numero di persone — questo è il caso migliore, a barca piena.',
+    tripPerVehicle: '/ veicolo', tripPerPersonUnit: '/ persona', tripPerGroup: '/ gruppo',
+    tripPerPersonNoteLand: 'circa {price} {sign}/persona a gruppo completo',
+    tripTieredNoteLand: 'Il prezzo dipende dal numero di persone — questa è la tariffa migliore, a gruppo completo.',
     tripOgFallback: 'Guarda questo programma su Aihoy!',
     tagNoSmoking: '🚭 non fumatori',
     tagChildFriendly: '👶 adatto ai bambini',
@@ -408,6 +447,9 @@ const DICT = {
     modeBareboat: 'Noleggio barca senza skipper',
     modeCrewFinding: 'Cerca equipaggio',
     modeCharterHost: 'Programma charter',
+    // 163: szárazföldi (TerrAihoy!) túratípusok — az app szövegeivel egyezően
+    modeOffroad: 'Tour in fuoristrada', modeMotorbike: 'Tour in moto',
+    modeCycling: 'Tour in bici', modeHiking: 'Escursione a piedi',
     actSailing: '⛵ Vela', actDiving: '🤿 Immersioni', actSnorkeling: '🥽 Snorkeling',
     actFishing: '🎣 Pesca', actWhale: '🐋 Avvistamento balene', actKayak: '🛶 Kayak',
     actBeach: '🏖️ Spiaggia', actCulture: '🏛️ Cultura', actRuins: '🏺 Rovine',
@@ -457,9 +499,19 @@ export function modeLabel(lang, mode) {
     bareboat: 'modeBareboat',
     crew_finding: 'modeCrewFinding',
     charter_host: 'modeCharterHost',
+    // 163: szárazföld
+    offroad4x4: 'modeOffroad',
+    motorbike: 'modeMotorbike',
+    cycling: 'modeCycling',
+    hiking: 'modeHiking',
   };
   const dictKey = map[mode];
   return dictKey ? t(lang, dictKey) : '';
+}
+
+/** 163: szárazföldi (TerrAihoy!) túra-e — a trips.trip_mode alapján. */
+export function isLandMode(mode) {
+  return ['offroad4x4', 'motorbike', 'cycling', 'hiking'].includes(mode);
 }
 
 /**

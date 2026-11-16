@@ -9,7 +9,7 @@
 
 import {
   callRpc, esc, clip, fmtDateTime, renderPage, renderGone, PLAY_URL,
-  pickLang, t, modeLabel, icon, plainLabel,
+  pickLang, t, modeLabel, icon, plainLabel, isLandMode,
 } from '../_shared.js';
 
 const UUID_RE =
@@ -65,12 +65,41 @@ export async function onRequestGet({ params, env, request }) {
   // legolcsóbb ár/fő „-tól" jelöléssel, alatta a magyarázat, hogy a hajó
   // díja a létszámtól függ. (2026-08-18, 35_public_trip_price_tiers.sql)
   const sign = tr.currency === 'EUR' ? '€' : tr.currency || '';
+
+  // ── SZÁRAZFÖLDI TÚRA (TerrAihoy!, 163 — 2026-11-16) ───────────────────────
+  // Az ár egysége (trips.ar_egyseg) nincs a get_public_trip kimenetében, de a
+  // 93-as migráció óta a price_per_person egyértelműen elárulja:
+  //   · NULL                → járművenkénti ár (a szerver ilyenkor szándékosan NULL-t ad)
+  //   · == az ár (kerekítve) → fejenkénti ár (a szerver magát az árat adja vissza)
+  //   · más                 → az egész csoportra szól; a /fő érték becslés teljes létszámra
+  // (Egyetlen egybeesés: csoportos ár, amit egyetlen fizető visel — ott a „/ fő” is igaz.)
+  const land = isLandMode(tr.trip_mode);
+  const egeszAr = Math.round(tr.price || 0);
+  const landUnit = !land || !(tr.price > 0)
+    ? ''
+    : tr.price_per_person == null
+      ? 'tripPerVehicle'
+      : Number(tr.price_per_person) === egeszAr
+        ? 'tripPerPersonUnit'
+        : 'tripPerGroup';
+
   let priceHtml = '';
   if (tr.is_tiered && tr.price_per_person) {
     priceHtml = `
       <div class="price">
         <div class="big">${esc(t(lang, 'tripFromPerPerson', { price: tr.price_per_person, sign }))}</div>
-        <div class="note">${esc(t(lang, 'tripTieredNote'))}</div>
+        <div class="note">${esc(t(lang, land ? 'tripTieredNoteLand' : 'tripTieredNote'))}</div>
+      </div>`;
+  } else if (landUnit) {
+    // Szárazföldön nincs „/ hajó”: fő, jármű vagy csoport.
+    priceHtml = `
+      <div class="price">
+        <div class="big">${esc(egeszAr)} ${esc(sign)} ${esc(t(lang, landUnit))}</div>
+        ${
+          landUnit === 'tripPerGroup'
+            ? `<div class="note">${esc(t(lang, 'tripPerPersonNoteLand', { price: tr.price_per_person, sign }))}</div>`
+            : ''
+        }
       </div>`;
   } else if (tr.price > 0) {
     priceHtml = `
@@ -182,10 +211,13 @@ export async function onRequestGet({ params, env, request }) {
         : '',
     // Social-előnézet: sávos árazásnál is a „-tól" alak megy ki, hogy a
     // Facebook-kártya ugyanazt mondja, mint az oldal.
-    tr.price_per_person
-      ? t(lang, tr.is_tiered ? 'tripFromPerPersonShort' : 'tripPerPersonShort',
-          { price: tr.price_per_person, sign })
-      : '',
+    // 163: szárazföldi egységárnál (fő / jármű) a pontos ár megy ki, nem a „kb. …/fő” becslés.
+    !tr.is_tiered && (landUnit === 'tripPerPersonUnit' || landUnit === 'tripPerVehicle')
+      ? `${egeszAr} ${sign} ${t(lang, landUnit)}`
+      : tr.price_per_person
+        ? t(lang, tr.is_tiered ? 'tripFromPerPersonShort' : 'tripPerPersonShort',
+            { price: tr.price_per_person, sign })
+        : '',
     // Cégnév UTOLSÓNAK: bizalmi jel, de a dátumnál és az árnál kevésbé
     // csábító. Ha az előnézet túl hosszúra nyúlik, EZT a sort vedd ki elsőként.
     tr.company_name ? clip(tr.company_name, 30) : '',
